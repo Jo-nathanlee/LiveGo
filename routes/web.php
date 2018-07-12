@@ -17,7 +17,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+//黃文怡大ＧＧ
 //Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/login/facebook', 'Auth\LoginController@redirectToFacebookProvider');
