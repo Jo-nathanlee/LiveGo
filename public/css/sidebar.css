@@ -1,0 +1,101 @@
+/* 導覽列CSS  */
+.sidebar_shadow {
+    box-shadow: 0 0.0rem 1rem rgba(0, 0, 0, 0.9) !important;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    width: 250px;
+    background: rgba(115,134,213); /* 調整左邊列表色系 */
+    background: #272727;
+    color: #fff;
+    transition: all 0.3s; 
+    position: relative;
+    height: 100vh;
+}
+
+#sidebar:after {
+    background-image: url(../img/bg.jpg) ; /* 導覽列背景圖片 */
+    background-size: cover;
+    top: 0px;
+    left: 0px; 
+    position: absolute;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    content: "";
+}
+
+    #sidebar .sidebar-header {
+        padding: 20px;
+        background: #6d7fcc;
+        background: #000000;
+    }
+
+#sidebar .sidebar-header img {
+   width: 50px;
+}
+
+#sidebar ul.components {
+    padding:  10px 0px;
+    border-bottom: 1px solid #47748b;
+    border-bottom: 1px solid #3c3c3c;
+    z-index: 10;
+    position: relative;
+}
+
+
+#sidebar ul.components p {
+    font-family: "NotoSansCJKtc";
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+    color:white;
+    font-family: "NotoSansCJKtc";
+}
+
+#sidebar ul li a:hover {
+    color: #7386D5;
+    background: #fff;
+}
+
+#sidebar i {
+    padding-right: 10px;
+}
+
+.LOGO{
+    width: 50px;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+
+a[data-toggle="collapse"] {
+    position: relative;
+    color:white;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #6d7fcc;
+}

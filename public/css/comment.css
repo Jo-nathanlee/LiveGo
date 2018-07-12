@@ -1,0 +1,325 @@
+#main{
+    padding: 1rem 0rem 0rem 2rem;
+    font-family: "Microsoft JhengHei";
+    margin-right: 1rem;
+}
+
+#main-top{
+    height: 53vh;
+
+}
+
+#main-down{
+    height: 22vh;
+}
+
+#main-down  .input-group{
+    height: 8vh;
+}
+
+#main-top iframe{
+    height:100%;
+    border:none;
+    width: 50%;
+}
+
+.bid-list{
+    padding-left: 1rem;
+    width: 50%;
+    height: 100%;
+    overflow-y:auto;
+}
+
+#main-down .input-group{
+    padding-top: 1rem;
+}
+
+
+tfoot .input-group input{
+    padding-right: 5rem;
+}
+
+
+
+#fb-comments{
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+#fb-comments .table tfoot img {
+    width: 3rem;
+}
+
+#fb-comments .table tfoot input{
+    margin-left: 2rem;
+    border-radius: 10px; 
+}
+
+#fb-comments .table small{
+    display: -webkit-box;  
+	overflow:hidden;
+	text-overflow : ellipsis;
+	-webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+#fb-comments .table tr td:nth-child(2) i{
+    float: right;
+}
+#fb-comments .table{
+    margin-bottom: -1.8rem;
+}
+
+#fb-comments .table tbody{
+    height:74.5VH;
+    overflow-y: auto;
+    display: block;
+}
+
+#fb-comments .table tfoot{
+    height:10.5VH;
+   display:relative
+}
+
+#comment-component{
+    border-top-right-radius: 0.55rem;
+    border-bottom-right-radius: 0.55rem;
+   
+}
+
+#comment-component button{
+    margin: 0;
+}
+
+#comment-message{
+    border-right: 0;
+}
+
+#bid-list-iformation img{
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    margin-right: 1rem;
+ 
+}
+
+#bid-list-iformation a{
+    display: -webkit-flex;
+    display: flex;  
+}
+
+#content{
+    width: 100%;
+}
+
+#fan-group div{
+    padding-right: 0.8rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 1.8rem;
+}
+
+#fan-group img{
+   height: 5rem;
+   width: 5rem;
+}
+
+#activity::after{
+    background:black ; /* 導覽列背景圖片 */
+    background-size: cover;
+    z-index: 800;
+    top: 0px;
+    left: 0px; 
+    margin-top: -1rem;
+    position: absolute;
+    opacity: 0.75;
+    width: 100%;
+    height: 100vh;
+    content: "";
+}
+#activity{
+    position: absolute;
+    z-index: 900;
+    
+}
+#activity .card{
+    margin-top:3rem;
+    position: relative;
+    padding:0;
+    z-index: 900;
+}
+#activity .card .card{
+    margin-top:0rem;
+}
+
+#web-set i{
+    font-size: 3rem;
+}
+
+#web-set i:hover{
+    color: rgb(190, 180, 243)
+}
+#web-set .media strong{
+    font-size: 1rem;    
+}
+
+#web-set .media button{
+    margin-top: -1.2rem;
+}
+
+
+#log_in img{
+  width: 10rem;
+}
+
+
+#gray_bg {
+
+  background: #FFFFFF;
+  transition: all 0.3s; 
+  position: relative;
+  height: 100vh;
+}
+
+#gray_bg:after {
+  background-image: url(../img/sea.jpg) ; /* 導覽列背景圖片 */
+  background-size: cover;
+  top: 0px;
+  left: 0px; 
+  position: absolute;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  content: "";
+}
+
+#gray_bg .card{
+  position: relative;
+  z-index: 500;
+  margin-top: 10rem;
+}
+#gray_bg .login{
+  position: relative;
+  z-index: 500;
+  margin-top: 10rem;
+}
+
+
+.col-pull-12 {
+    right: 100%;
+  }
+  .col-pull-11 {
+    right: 91.66666667%;
+  }
+  .col-pull-10 {
+    right: 83.33333333%;
+  }
+  .col-pull-9 {
+    right: 75%;
+  }
+  .col-pull-8 {
+    right: 66.66666667%;
+  }
+  .col-pull-7 {
+    right: 58.33333333%;
+  }
+  .col-pull-6 {
+    right: 50%;
+  }
+  .col-pull-5 {
+    right: 41.66666667%;
+  }
+  .col-pull-4 {
+    right: 33.33333333%;
+  }
+  .col-pull-3 {
+    right: 25%;
+  }
+  .col-pull-2 {
+    right: 16.66666667%;
+  }
+  .col-pull-1 {
+    right: 8.33333333%;
+  }
+  .col-pull-0 {
+    right: auto;
+  }
+  .col-push-12 {
+    left: 100%;
+  }
+  .col-push-11 {
+    left: 91.66666667%;
+  }
+  .col-push-10 {
+    left: 83.33333333%;
+  }
+  .col-push-9 {
+    left: 75%;
+  }
+  .col-push-8 {
+    left: 66.66666667%;
+  }
+  .col-push-7 {
+    left: 58.33333333%;
+  }
+  .col-push-6 {
+    left: 50%;
+  }
+  .col-push-5 {
+    left: 41.66666667%;
+  }
+  .col-push-4 {
+    left: 33.33333333%;
+  }
+  .col-push-3 {
+    left: 25%;
+  }
+  .col-push-2 {
+    left: 16.66666667%;
+  }
+  .col-push-1 {
+    left: 8.33333333%;
+  }
+  .col-push-0 {
+    left: auto;
+  }
+  .col-offset-12 {
+    margin-left: 100%;
+  }
+  .col-offset-11 {
+    margin-left: 91.66666667%;
+  }
+  .col-offset-10 {
+    margin-left: 83.33333333%;
+  }
+  .col-offset-9 {
+    margin-left: 75%;
+  }
+  .col-offset-8 {
+    margin-left: 66.66666667%;
+  }
+  .col-offset-7 {
+    margin-left: 58.33333333%;
+  }
+  .col-offset-6 {
+    margin-left: 50%;
+  }
+  .col-offset-5 {
+    margin-left: 41.66666667%;
+  }
+  .col-offset-4 {
+    margin-left: 33.33333333%;
+  }
+  .col-offset-3 {
+    margin-left: 25%;
+  }
+  .col-offset-2 {
+    margin-left: 16.66666667%;
+  }
+  .col-offset-1 {
+    margin-left: 8.33333333%;
+  }
+  .col-offset-0 {
+    margin-left: 0;
+  }

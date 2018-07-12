@@ -1,0 +1,47 @@
+/* 通知CSS */
+#notification-list {
+    max-height: 20em;
+    overflow: auto;
+  }
+  
+#notification-list a {
+    display: -webkit-flex;
+    display: flex;
+    opacity: 0.7;
+    margin: 1.5rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.3rem;
+    background-color: #EFEFEF;
+    position: relative;
+ }
+  
+#notification-list a:hover {
+    color: #262626;
+    text-decoration: none;
+    opacity: 1;
+}
+  
+#notification-list img {
+    display: inline-block;
+    height: 80px;
+    width: 80px;
+    margin-right: 1rem;
+    margin-top:0.3rem;
+}
+  
+#notification-list .notification-message {
+    display: inline-block;
+    white-space: normal;
+    min-width: 25rem;
+}
+  
+#notification-list .badge:empty {
+    display: inline-block;
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    background-color: #f35958;
+    height: 1.4rem;
+}
+  
+
