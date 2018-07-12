@@ -31,4 +31,9 @@ Route::group(['middleware' => [
 
 });
 Route::get('/save_page', 'EntitiesController@CreateOrUpdatePage')->name('save_page');
+<<<<<<< HEAD
 //1442124
+=======
+// Route::get('/save_page', 'EntitiesController@CreateOrUpdatePage')->name('save_page');
+//12312312
+>>>>>>> e824ca0b723fe68c5fb09f7573b6afb9747e073a
