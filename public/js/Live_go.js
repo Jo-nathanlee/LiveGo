@@ -189,25 +189,28 @@ $(".pictureEdit_item").click(function () {
     var cropper;
     var reader = new FileReader();
 
-
+    
     options.imgSrc = "img/59891.jpg";
     cropper = new cropbox(options);
     cropper.zoomStart();
 
     reader.readAsDataURL(options.files[0]);
     options.files = [];
-    document.querySelector('#btnCrop').addEventListener('click', function () {
-        var img = cropper.getDataURL()
-        $('#pictureEdit_upload').attr('src', img);
-        $("#activity").addClass("d-none");
-    })
-    document.querySelector('#btnZoomIn').addEventListener('click', function () {
-        cropper.zoomIn();
-    })
-    document.querySelector('#btnZoomOut').addEventListener('click', function () {
-        cropper.zoomOut();
-    })
+    
 });
+
+
+// function enter_event(event){
+//     var x = event.which || event.keyCode;
+//    if(x==13){
+//        console.log("enter");
+//    }
+
+// }
+
+
+
+
 
 //up load img
 function readURL(input) {

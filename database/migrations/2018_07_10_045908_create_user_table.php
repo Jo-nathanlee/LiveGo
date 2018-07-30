@@ -16,7 +16,7 @@ class CreateUserTable extends Migration
         if (!Schema::hasTable('user')) {
             Schema::create('user', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('fb_id', 200)->collate('utf8_unicode_ci')->unique();
+                $table->string('fb_id', 180)->collate('utf8_unicode_ci')->unique();
                 $table->string('name')->collate('utf8_unicode_ci');
                 $table->string('token')->collate('utf8_unicode_ci');
                 $table->rememberToken();

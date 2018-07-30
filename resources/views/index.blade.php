@@ -294,37 +294,39 @@
                     });
             });
 
-            //貼文留言
-            function enter_event(event) {
+
+
+
+
+       });
+
+                //貼文留言
+                function enter_event(event) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 var x = event.which || event.keyCode;
                 if(x==13)
                 {
-                    alert("fukk");
-                    var comment_message=$("#comment-message").val();
+                    var comment_message=$(".emojionearea-editor").text();
                     $.ajax({
                             /* the route pointing to the post function */
                             url: '/add_comment',
                             type: 'POST',
                             /* send the csrf-token and the input to the controller */
-                            data: {comment:comment_message,video_id:'{{$video_id}}',_token:CSRF_TOKEN},
+                            data: {comment:comment_message,post_video_id:'{{$post_video_id}}',page_token:'{{$token}}',_token:CSRF_TOKEN},
                             dataType: 'JSON',
                             /* remind that 'data' is the response of the AjaxController */
                             success: function (data) {
-                                $("#comment-message").val("");
+                                $(".emojionearea-editor").html("");
                             },
                             error: function(XMLHttpRequest, status, error) {
-                                $("#comment-message").val("");
+                                $(".emojionearea-editor").html("");
                                 alert(error);
                                 alert(XMLHttpRequest.status);
                                 alert(XMLHttpRequest.responseText);
                             }
                     });
                 }
-            }
-
-
-       });
-
+                 }
 </script>
 
 
@@ -340,8 +342,9 @@
                     <div class="row">
                         <div id="main-top" class="col-md-12 row">
                             <div class="col-md-5">
-                                <iframe src="{!! $url !!}" class="float-left" width="300" height="400" style="border:none;overflow:hidden" scrolling="no"
-                                    frameborder="0" allowTransparency="true" allow="encrypted-media" allowFullScreen="true"></iframe>
+                                <!-- <iframe src="{!! $url !!}" class="float-left" width="300" height="400" style="border:none;overflow:hidden" scrolling="no"
+                                    frameborder="0" allowTransparency="true" allow="encrypted-media" allowFullScreen="true"></iframe> -->
+                                    {!! $url !!}
                             </div>
                             <div class="col-md-7">
                                 <div class="input-group">

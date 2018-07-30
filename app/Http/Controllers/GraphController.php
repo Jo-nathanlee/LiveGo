@@ -86,29 +86,32 @@ class GraphController extends Controller
         $page_id = $page->page_id;
         $page_token = $page->page_token;
         $query = '/' . $page_id . '/live_videos';
-
+        $query2 = '/' . $page_id . '/videos';
         $token = $page_token;
 
         try {
             $response = $this->graphapi($query, $token);
+            $response2 = $this->graphapi($query2, $token);
             $item = 0;
             $videos = $response->getGraphEdge()->asArray();
+            $videos2 = $response2->getGraphEdge()->asArray();
             $video_id = '';
+            $post_video_id=$videos2[0]['id'];
             $url = '';
             foreach ($videos as $key) {
                 if ($key['status'] == 'LIVE') {
                     $item++;
                     $video_id = $key['id'];
                     $url = $key['embed_html'];
+                    // $url = str_replace('<iframe src="', "", $url);
+                    // $url = str_replace('&width=0" width="0" height="0" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>', '&height=540', $url);
+                    
                 }
             }
-            if ($item == 1) {
+            if ($item>0) {
                 return redirect()->action(
-                    'GraphController@index_show', ['page_token' => $page_token, 'video_id' => $video_id, 'url' => $url]
+                    'GraphController@index_show', ['page_token' => $page_token, 'video_id' => $video_id,'post_video_id' => $post_video_id, 'url' => $url]
                 );
-            } else {
-
-                return view('set_video', ['videos' => $videos]);
             }
         } catch (FacebookSDKException $e) {
             dd($e); // handle exception
@@ -123,11 +126,12 @@ class GraphController extends Controller
             //iframe
             $url = $request->input('url');
 
-            $url = str_replace('<iframe src="', "", $url);
-            $url = str_replace('&width=0" width="0" height="0" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>', '&height=540', $url);
+            // $url = str_replace('<iframe src="', "", $url);
+            // $url = str_replace('&width=0" width="0" height="0" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>', '&height=540', $url);
 
             //comments
             $video_id = $request->input('video_id');
+            $post_video_id = $request->input('post_video_id');
 
             $query = '/' . $video_id . '?fields=comments.order(reverse_chronological)';
             $token = $request->input('page_token');
@@ -152,7 +156,7 @@ class GraphController extends Controller
                 $comments = "";
             }
 
-            return view('index', ['url' => $url, 'comments' => $comments, 'video_id' => $video_id, 'token' => $token]);
+            return view('index', ['url' => $url, 'comments' => $comments, 'video_id' => $video_id,'post_video_id' => $post_video_id, 'token' => $token]);
         } catch (FacebookSDKException $e) {
             return redirect()->action(
                 'GraphController@index_load'
@@ -363,10 +367,12 @@ class GraphController extends Controller
     //影片留言
     public function add_comment(Request $request)
     {
-        $video_id = $request->input('video_id');
+        $token = $request->input('page_token');
+        $post_video_id = $request->input('post_video_id');
         $comment = $request->input('comment');
-        $query = '/' . $video_id . '/comments';
+        $query = '/' . $post_video_id . '/comments';
         $response = $this->api->post($query, array('message' => $comment), $token);
+        return json_encode("", true);
     }
 
 }
