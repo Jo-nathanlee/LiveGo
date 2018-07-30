@@ -11,16 +11,21 @@ class EntitiesController extends Controller
 {
     public function CreateOrUpdatePage(Request $request)
     {
-        $page_id_name = $request->input('id');
-        $id_and_name = preg_split("/[,]+/", $page_id_name);
-        $page_id = $id_and_name[0];
-        $page_name = $id_and_name[1];
-        $page = Page::updateOrCreate(
+        $page = $request->input('id');
+        $id_name_token = preg_split("/[,]+/", $page);
+        $page_id = $id_name_token[0];
+        $request->session()->put('page_id', $page_id);
+        $page_name = $id_name_token[1];
+        $page_token = $id_name_token[2];
+        $page_pic = $id_name_token[3];
+        $page_store = Page::updateOrCreate(
             ['fb_id' => Auth::user()->fb_id],
             [
                 'name' => Auth::user()->name,
                 'page_id' => $page_id,
                 'page_name' => $page_name,
+                'page_pic' => $page_pic,
+                'page_token' => $page_token,
             ]
         );
         return redirect('/home');

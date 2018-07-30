@@ -44,6 +44,7 @@
 
 
 <body>
+    {{--
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
@@ -89,7 +90,7 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> --}}
     <div class="wrapper">
         <!-- Page Content  -->
         <div id="content">
@@ -106,7 +107,7 @@
                                     {{$key[1]}}
                                 </div>
                                 <div class="custom-control custom-checkbox d-flex align-self-center">
-                                    <input type="checkbox" class="custom-control-input" id="{{$key[1]}}" name="id" value="{{$key[1]}},{{$key[0]}}">
+                                    <input type="checkbox" class="custom-control-input" id="{{$key[1]}}" name="id" value="{{$key[1]}},{{$key[0]}},{{$key[3]}},{{$key[2]}}">
                                     <label class="custom-control-label text-muted" for="{{$key[1]}}"></label>
                                 </div>
                             </div>

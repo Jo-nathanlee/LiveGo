@@ -20,6 +20,8 @@ class CreatePageTable extends Migration
                 $table->string('name');
                 $table->string('page_id');
                 $table->string('page_name');
+                $table->string('page_pic');
+                $table->string('page_token');
                 $table->timestamps();
             });
         }
