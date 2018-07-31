@@ -14,10 +14,12 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                   <a href="{{ route('index_load') }}">Start Live Streaming</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
+
+

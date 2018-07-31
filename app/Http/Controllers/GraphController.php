@@ -133,7 +133,7 @@ class GraphController extends Controller
             $video_id = $request->input('video_id');
             $post_video_id = $request->input('post_video_id');
 
-            $query = '/' . $video_id . '?fields=comments.order(reverse_chronological)';
+            $query = '/' . $video_id . '?fields=comments.limit(9999)';
             $token = $request->input('page_token');
 
             $response = $this->graphapi($query, $token);
@@ -169,7 +169,7 @@ class GraphController extends Controller
         $video_id = $request->input('video_id');
         $token = $request->input('page_token');
 
-        $query = '/' . $video_id . '?fields=comments.order(chronological)';
+        $query = '/' . $video_id . '?fields=comments.limit(9999)';
         try {
             $response = $this->graphapi($query, $token);
             $comments = $response->getGraphNode();

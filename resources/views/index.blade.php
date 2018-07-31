@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,7 +59,7 @@
             //抓取留言
             setInterval(function () {
                 ajax();
-            }, 500);
+            }, 5500);
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
             function ajax() {
@@ -80,7 +79,7 @@
                         $.each(data, function(i, comment) {
                             $( "#tbody" ).append(
                             "<tr class='border-bottom'> <td>\
-                                        <img src='' />\
+                                        <img src='https://scontent.xx.fbcdn.net/v/t1.0-1/c1.0.50.50/p50x50/18402820_1775802776065874_9206640166758086369_n.png?_nc_cat=0&oh=f7f89277ead84e87cfe61e5d111733fb&oe=5C0ECBC3' />\
                                     </td><td><h6>"+comment.from.name+
                                 "<i class='icofont icofont-star'></i>\
                                  <i class='icofont icofont-star'></i>\
@@ -287,7 +286,6 @@
                             dataType: 'JSON',
                             /* remind that 'data' is the response of the AjaxController */
                             success: function (data) {
-                                alert(data);
                                 $("#buyer_list").children().remove();
                                 $( "#buyer_list" ).append("<li class='list-group-item list-group-item-action list-group-item-info '>\
                                     <B>得標清單</B>\

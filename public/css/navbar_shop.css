@@ -1,19 +1,24 @@
 /* 標題列CSS */
 
-.navbar {
-    padding: 15px 10px;
-    background:#5f6E7a;
-    background: #455460;
+.navbar-ft {
+    padding: 5px 10px;
+    background: rgb(231, 236, 234);
     border: none;
     border-radius: 0;
-    box-shadow: 0 0.0rem 1rem rgba(0, 0, 0, 0.6) !important;
 }
 
-.nav-item a{
-    color:white;
+.navbar-sec {
+    padding: 15px 10px;
+    background: #EFF4F2;
+    border: none;
+    border-radius: 0;
 }
 
-.nav li{
+.nav-item-shop a{
+    color:#757575;
+}
+
+.nav-shop li{
     padding-right: 20px;
 }
 .dropdown-menu a{
@@ -30,4 +35,6 @@
     position: relative;
 }
 
-
+.nav-shop h3 img{
+    width: 50px;
+}

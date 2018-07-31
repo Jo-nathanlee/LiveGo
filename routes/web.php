@@ -27,7 +27,7 @@ Route::group(['middleware' => [
 ]], function () {
     Route::get('/set_page', 'GraphController@retrieveUserProfile')->name('set_page');
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/index_load', 'GraphController@index_load');
+    Route::get('/index_load', 'GraphController@index_load')->name('index_load');
     Route::get('/index_show', 'GraphController@index_show');
     Route::get('/save_page', 'EntitiesController@CreateOrUpdatePage')->name('save_page');
 });

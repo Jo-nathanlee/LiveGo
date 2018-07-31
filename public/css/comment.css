@@ -25,8 +25,10 @@
 }
 
 #main-top iframe{
+    margin-top:0.25rem;
     border:none;
-    max-width: 100%;
+    width: auto;
+    max-width: 88%;
     min-height: 100%;
     max-height: 100%;
 }
@@ -411,6 +413,7 @@ tfoot .input-group input{
   z-index: 1030;
 }
 
+
 #shop_product .col-md-2{
   background-color: white;
   padding-bottom: 1rem;
@@ -717,4 +720,20 @@ tfoot .input-group input{
   color: #fff;
   background-color: #dc3545;
   border-color: #dc3545;
+}
+
+.mr250{
+  margin-left: 250px;
+}
+
+#fb-comments .table tbody tr td:nth-child(1){
+  width: 10%;
+}
+
+#fb-comments .table tbody tr td:nth-child(2){
+width: 70%;
+}
+
+#fb-comments .table tbody tr td:nth-child(3){
+width: 20%;
 }
