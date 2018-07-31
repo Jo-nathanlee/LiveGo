@@ -17,18 +17,7 @@ $(document).ready(function () {
     });
 
 
-    $("#time_start").click(function () {
-        alertify.prompt('系統訊息', '請確認商品名稱是否為 ㄩㄩ ?'
-            , function (evt, value) {
-                $("#time_end").removeClass("d-none").addClass("d-block");
-                $("#time_start").removeClass("d-block").addClass("d-none");
-            });
-    });
 
-    $("#time_end").click(function () {
-        $("#time_start").removeClass("d-none").addClass("d-block");
-        $("#time_end").removeClass("d-block").addClass("d-none");
-    });
 
     $("#btnEdit").click(function () {
         $("#btnSubmit").removeClass("d-none");

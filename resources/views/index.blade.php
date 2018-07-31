@@ -47,6 +47,11 @@
 
 
       $(document).ready(function(){
+        $('iframe').attr('id','live_video');
+        $('#live_video').removeAttr('height');
+        $('#live_video').removeAttr('width');
+        $( "#live_video" ).addClass( "float-left" );
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -102,6 +107,17 @@
                 var goods_name=$("#goods_name").val();
                 alertify.prompt('系統訊息', '請確認商品名稱是否為'+goods_name+'?'
             , function (evt, value) {
+                //禁止修改名稱及+1最高價制
+                $("#goods_name").attr("disabled", true);
+                                $("#type").attr("disabled", true);
+                                //start->end
+                                $("#time_start").removeClass("d-block").addClass("d-none");
+                                $("#time_end").removeClass("d-none").addClass("d-block");
+
+                                $("#buyer_list").children().remove();
+                                $( "#buyer_list" ).append("<li class='list-group-item list-group-item-action list-group-item-info '>\
+                                    <B>得標清單</B>\
+                                </li>");
                 CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 var now=new Date();
                 var start_time=now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+" "+now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
@@ -114,17 +130,7 @@
                             dataType: 'JSON',
                             /* remind that 'data' is the response of the AjaxController */
                             success: function (data) {
-                                //禁止修改名稱及+1最高價制
-                                $("#goods_name").attr("disabled", true);
-                                $("#type").attr("disabled", true);
-                                //start->end
-                                $("#time_start").removeClass("d-block").addClass("d-none");
-                                $("#time_end").removeClass("d-none").addClass("d-block");
-
-                                $("#buyer_list").children().remove();
-                                $( "#buyer_list" ).append("<li class='list-group-item list-group-item-action list-group-item-info '>\
-                                    <B>得標清單</B>\
-                                </li>");
+                                
                             },
                             error: function(xhr, status, error) {
                                 alert(error);
@@ -162,7 +168,7 @@
                                 {
                                     var data = JSON.parse(data);
                                     $.each(data, function(i, comment) {
-                                    $( "#buyer_list" ).append("<li class='list-group-item '>\
+                                    $( "#buyer_list" ).append("<li class='list-group-item delete'>\
                                     <div id='bid-list-iformation ' aria-labelledby='Notice '>\
                                         <a>\
                                             <div class='text-truncate w-100 '>\
@@ -171,7 +177,7 @@
                                                         <b>"+comment.name+"</b>\
                                                     </h6>\
                                                     <small class='text-muted float-right ' >\
-                                                        <button type='button' class='btn btn-xm btn-danger' ='delete'>刪除</button>\
+                                                        <button type='button' class='btn btn-xm btn-danger btn_delete' onclick='delete_getter(event)'>刪除</button>\
                                                     </small>\
                                                     <input type='hidden' id='fb_id' value='"+comment.id+"'>\
                                                     <input type='hidden' id='message_time' value='"+comment.message_time+"'></div>\
@@ -212,8 +218,8 @@
                                     var data = JSON.parse(data);
                                     var price=data[0].price;
                                     $("#goods_price").val(price);
-                                    $( "#buyer_list" ).append("<li class='list-group-item '>\
-                                    <div id='bid-list-iformation ' aria-labelledby='Notice '>\
+                                    $( "#buyer_list" ).append("<li class='list-group-item delete'>\
+                                    <div id='bid-list-iformation' aria-labelledby='Notice '>\
                                         <a>\
                                             <div class='text-truncate w-100 '>\
                                                 <div class='d-flex w-100 justify-content-between '>\
@@ -221,7 +227,7 @@
                                                         <b>"+data[0].name+"</b>\
                                                     </h6>\
                                                     <small class='text-muted float-right ' >\
-                                                        <button type='button' class='btn btn-xm btn-danger' ='delete'>刪除</button>\
+                                                        <button type='button' class='btn btn-xm btn-danger btn_delete' onclick='delete_getter(event)'>刪除</button>\
                                                     </small>\
                                                     <input type='hidden' id='fb_id' value='"+data[0].id+"'>\
                                                     <input type='hidden' id='message_time' value='"+data[0].message_time+"'></div>\
@@ -241,15 +247,16 @@
                 $("#time_end").removeClass("d-block").addClass("d-none");
                 $("#time_start").removeClass("d-none").addClass("d-block");
             });
+            
+        
 
-            //得標清單點擊刪除
-            $( "#delete" ).each(function(index) {
-                $(event.target).click(function(e){
-                    $(event.target).parent().remove();
-                });
+            $('.delete').on('click','.btn_delete', function(){
+              
             });
+
+           
             //點擊確認後，將得標清單轉成array or json傳至後台存入資料庫
-            $('#buyer_list').on('click','button', function(){
+            $('#buyer_list').on('click','#confirm', function(){
                 var buyer = [];
 
                 for (i = 2; i < $("#buyer_list>li").length; i++) {
@@ -280,6 +287,7 @@
                             dataType: 'JSON',
                             /* remind that 'data' is the response of the AjaxController */
                             success: function (data) {
+                                alert(data);
                                 $("#buyer_list").children().remove();
                                 $( "#buyer_list" ).append("<li class='list-group-item list-group-item-action list-group-item-info '>\
                                     <B>得標清單</B>\
@@ -306,6 +314,7 @@
                 var x = event.which || event.keyCode;
                 if(x==13)
                 {
+                    
                     var comment_message=$(".emojionearea-editor").text();
                     $.ajax({
                             /* the route pointing to the post function */
@@ -316,7 +325,7 @@
                             dataType: 'JSON',
                             /* remind that 'data' is the response of the AjaxController */
                             success: function (data) {
-                                $(".emojionearea-editor").html("");
+                               $(".emojionearea-editor").html("");
                             },
                             error: function(XMLHttpRequest, status, error) {
                                 $(".emojionearea-editor").html("");
@@ -327,6 +336,14 @@
                     });
                 }
                  }
+
+            //得標清單點擊刪除
+            function delete_getter(event)
+            {
+                $(event.target).parents('.delete').remove();
+            }
+
+                             
 </script>
 
 

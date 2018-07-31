@@ -336,24 +336,36 @@ class GraphController extends Controller
             }
         } else { //+1制
 
-            foreach ($buyer as $key) {
-                $num = str_replace('+', "", $key['comment']);
-                $page_store = StreamingOrder::create(
-                    [
-                        'page_id' => $page_id,
-                        'fb_id' => $key['id'],
-                        'name' => $key['name'],
-                        'goods_name' => $goods_name,
-                        'goods_price' => $goods_price,
-                        'goods_num' => $num,
-                        'note' => $note,
-                        'comment' => $key['comment'],
-                        'created_time' => date("Y-m-d H:i:s"),
-                    ]
-                );
+            for ($i=0;$i<count($buyer);$i++) {
+                $num = str_replace('+', "", $buyer[$i]['comment']);
+                // $page_store = StreamingOrder::create(
+                //     [
+                //         'page_id' => $page_id,
+                //         'fb_id' =>  $buyer[$i]['id'],
+                //         'name' =>  $buyer[$i]['name'],
+                //         'goods_name' => $goods_name,
+                //         'goods_price' => $goods_price,
+                //         'goods_num' => $num,
+                //         'note' => $note,
+                //         'comment' => $buyer[$i]['comment'],
+                //         'created_time' => date("Y-m-d H:i:s"),
+                //     ]
+                // );
+                $page_store = new StreamingOrder();
+                $page_store->page_id = $page_id;
+                $page_store->fb_id = $buyer[$i]['id'];
+                $page_store->name = $buyer[$i]['name'];
+                $page_store->goods_name =  $goods_name;
+                $page_store->goods_price =  $goods_name;
+                $page_store->goods_num =  $num;
+                $page_store->note =  $note;
+                $page_store->comment =  $buyer[$i]['comment'];
+                $page_store->created_time =  date("Y-m-d H:i:s");
+                $page_store->save();
+
                 //私訊
                 try {
-                    $query = '/' . $key['message_id'] . '/private_replies';
+                    $query = '/' . $buyer[$i]['message_id'] . '/private_replies';
                     $post = $this->api->post($query, array('message' => 'test'), $token);
                     $post = $post->getGraphNode()->asArray();
                 } catch (FacebookSDKException $e) {
@@ -361,7 +373,7 @@ class GraphController extends Controller
                 }
             }
         }
-        return json_encode("", true);
+        return json_encode(count($buyer), true);
     }
 
     //影片留言
