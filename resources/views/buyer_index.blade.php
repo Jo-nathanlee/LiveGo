@@ -52,7 +52,7 @@
             <div id="navbar_page"></div>
             <div id="main" class="row">
                 <div class="col-md-12">
-               @if(isset($shopping_cart))
+               @if(!isset($shopping_cart))
                     <table class="table table-striped " id="table_cart">
                         <thead>
                             <tr>
