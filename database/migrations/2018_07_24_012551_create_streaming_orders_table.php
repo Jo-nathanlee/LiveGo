@@ -16,6 +16,7 @@ class CreateStreamingOrdersTable extends Migration
         Schema::create('streaming_order', function (Blueprint $table) {
             $table->increments('id');
             $table->string('page_id');
+            $table->string('page_name');
             $table->string('fb_id');
             $table->string('name');
             $table->string('goods_name');

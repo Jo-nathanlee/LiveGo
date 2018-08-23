@@ -16,6 +16,7 @@ class CreateCheckoutOrdersTable extends Migration
         Schema::create('checkout_order', function (Blueprint $table) {
             $table->increments('id');
             $table->string('page_id');
+            $table->string('page_name');
             $table->string('order_id');
             $table->string('fb_id');
             $table->string('name');
