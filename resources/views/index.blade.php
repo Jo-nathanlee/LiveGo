@@ -462,7 +462,7 @@
                                             <div id="comment_icon">
                                                 <i class="icofont icofont-audio"></i>
                                             </div>
-                                            <input type="text" id="comment-message" class="ml-3 mr-4" placeholder="留言 ..." onkeypress="myFunction(event)">
+                                            <input type="text" id="comment-message" class="ml-3 mr-4" placeholder="留言 ..." onkeypress="enter_event(event)">
 
                                             <script type="text/javascript">
                                                 $(document).ready(function () {
