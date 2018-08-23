@@ -272,17 +272,18 @@
 
                     buyer.push(tmp);
                 }
+                
                 var type=$("#type").find("option:selected").val();
                 var goods_name=$("#goods_name").val();
-                var goods_price=$("#goods_price").val();
                 var note=$("#note").val();
-                 if(isNaN(goods_price))
+                var goods_price=$("#goods_price").val();
+                if(isNaN(goods_price))
                 {
                     alert("成交價格請輸入數字！");
                 }
                 else
                 {
-                            $.ajax({
+                    $.ajax({
                             /* the route pointing to the post function */
                             url: '/store_streaming_order',
                             type: 'POST',
@@ -291,6 +292,8 @@
                             dataType: 'JSON',
                             /* remind that 'data' is the response of the AjaxController */
                             success: function (data) {
+                                    
+                               alert(data);
                                 $("#buyer_list").children().remove();
                                 $( "#buyer_list" ).append("<li class='list-group-item list-group-item-action list-group-item-info '>\
                                     <B>得標清單</B>\
@@ -306,8 +309,6 @@
                             }
                     });
                 }
-
-
             });
 
 

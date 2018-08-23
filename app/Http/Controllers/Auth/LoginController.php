@@ -71,11 +71,11 @@ class LoginController extends Controller
         );
 
         Auth::login($user, true);
-        // if ($if_buyer) {
-        //     return redirect()->route('buyer_index');
-        // } else {
+        if ($if_buyer) {
+            return redirect()->route('buyer_index');
+        } else {
            return redirect()->route('home');
-        // }
+        }
 
     }
     public function logout()
