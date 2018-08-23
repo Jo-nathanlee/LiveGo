@@ -318,12 +318,12 @@
        });
 
                 //貼文留言
-                function enter_event(event) {
+                 function enter_event(event) {
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 var x = event.which || event.keyCode;
                 if(x==13)
                 {
-                    
+                    alert("fukk");
                     var comment_message=$(".emojionearea-editor").text();
                     $.ajax({
                             /* the route pointing to the post function */
