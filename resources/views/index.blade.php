@@ -323,7 +323,7 @@
                 var x = event.which || event.keyCode;
                 if(x==13)
                 {
-                    
+                    alert("fuk");
                     var comment_message=$(".emojionearea-editor").text();
                     $.ajax({
                             /* the route pointing to the post function */
