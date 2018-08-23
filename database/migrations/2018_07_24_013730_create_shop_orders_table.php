@@ -22,6 +22,7 @@ class CreateShopOrdersTable extends Migration
             $table->string('goods_name');
             $table->string('goods_price');
             $table->string('goods_num');
+            $table->string('total_price');
             $table->string('order_id')->nullable();
             $table->string('created_time');
             $table->timestamps();

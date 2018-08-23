@@ -23,6 +23,7 @@ class CreateCheckoutOrdersTable extends Migration
             $table->string('goods_name');
             $table->string('goods_price');
             $table->string('goods_num');
+            $table->string('total_price');
             $table->string('order_status');
             $table->string('created_time');
             $table->timestamps();

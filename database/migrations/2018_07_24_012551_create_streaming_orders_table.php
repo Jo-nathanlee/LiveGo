@@ -22,6 +22,7 @@ class CreateStreamingOrdersTable extends Migration
             $table->string('goods_name');
             $table->string('goods_price');
             $table->string('goods_num');
+            $table->string('total_price');
             $table->string('note')->nullable();
             $table->string('comment');
             $table->string('order_id')->nullable();
