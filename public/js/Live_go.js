@@ -200,13 +200,7 @@ $(".pictureEdit_item").click(function () {
 });
 
 
-function enter_event(event){
-    var x = event.which || event.keyCode;
-   if(x==13){
-       console.log("enter");
-   }
 
-}
 
 
 //up load img
