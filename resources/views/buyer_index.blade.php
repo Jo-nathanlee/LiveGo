@@ -52,7 +52,7 @@
             <div id="navbar_page"></div>
             <div id="main" class="row">
                 <div class="col-md-12">
-                @if(empty($shopping_cart))
+               @if(isset($shopping_cart))
                     <table class="table table-striped " id="table_cart">
                         <thead>
                             <tr>
@@ -99,7 +99,7 @@
                                         <tr>
                                         <td>
                                             <div class="custom-control custom-checkbox ml-4">
-                                                <input type="checkbox" class="custom-control-input" id="{{$item}}" name="goods[]" value="{{$cart->page_name}},{{$cart->fb_id}},{{$cart->name}},{{$cart->goods_name}},{{$cart->goods_price}},{{$cart->goods_num}}">
+                                                <input type="checkbox" class="custom-control-input" id="{{$item}}" name="goods[]" value="{{$cart->page_name}},{{$cart->fb_id}},{{$cart->name}},{{$cart->goods_name}},{{$cart->goods_price}},{{$cart->goods_num}},{{$cart->total_price}}">
                                                 <label class="custom-control-label" for="{{$item}}"></label>
 
                                             </div>
@@ -111,7 +111,7 @@
                                         <td>{{$cart->goods_name}}</td>
                                         <td>{{$cart->goods_price}}</td>
                                         <td>{{$cart->goods_num}}</td>
-                                        <td>{{(int)($cart->goods_price)*(int)($cart->goods_num)}}</td>
+                                        <td>{{$cart->total_price}}</td>
                                         <td></td>
                                         </tr>
                                         @endforeach

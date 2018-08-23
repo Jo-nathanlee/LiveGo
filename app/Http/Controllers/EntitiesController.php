@@ -36,22 +36,27 @@ class EntitiesController extends Controller
 
     public function BuyerIndexShow(Request $request)
     {
-        $fb_id=Auth::user()->fb_id;
-        $query = StreamingOrder::where('fb_id', '=', $fb_id)
-                ->whereNull('streaming_order.order_id')
-                ->select('page_name','fb_id','name','goods_name','goods_price','goods_num')
-                ->get();
-                 
+       try
+        {
+            $fb_id=Auth::user()->fb_id;
+            $query = StreamingOrder::where('fb_id', '=', $fb_id)
+                    ->whereNull('streaming_order.order_id')
+                    ->select('page_name','fb_id','name','goods_name','goods_price','goods_num','total_price')
+                    ->get();
+                     
+    
+            $query2 = ShopOrder::where('fb_id', '=', $fb_id) 
+                      ->select('page_name','fb_id','name','goods_name','goods_price','goods_num','total_price')
+                      ->get();
+    
+            $cart=$query->union($query2);
+            $cart=$cart->groupBy('page_name');
 
-        $query2 = ShopOrder::where('fb_id', '=', $fb_id) 
-                  ->select('page_name','fb_id','name','goods_name','goods_price','goods_num')
-                  ->get();
-
-        $cart=$query->merge($query2);
-        $cart=$cart->groupBy('page_name');
-        
-
-
-        return view('buyer_index', ['shopping_cart' => $query]);
+            return view('buyer_index', ['shopping_cart' => $cart]);
+        }
+        catch(Exception $e)
+        {
+            return view('buyer_index', ['nothing' => '']);
+        }
     }
 }

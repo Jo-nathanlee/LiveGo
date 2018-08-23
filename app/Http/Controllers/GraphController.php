@@ -306,6 +306,7 @@ class GraphController extends Controller
         $token = $request->input('page_token');
         $goods_name = $request->input('goods_name');
         $goods_price = $request->input('goods_price');
+        $total_price=(int)($goods_name)*(int)($goods_price);
         $note = $request->input('note');
         $buyer = $request->input('buyer');
         $type = $request->input('type');
@@ -335,6 +336,7 @@ class GraphController extends Controller
             $page_store->goods_name =  $goods_name;
             $page_store->goods_price =  $goods_price;
             $page_store->goods_num =  $goods_num;
+            $page_store->total_price =  (string)$total_price;
             $page_store->note =  $note;
             $page_store->comment =  $buyer[0]['comment'];
             $page_store->created_time =  date("Y-m-d H:i:s");
@@ -361,6 +363,7 @@ class GraphController extends Controller
                 $page_store->goods_name =  $goods_name;
                 $page_store->goods_price =  $goods_price;
                 $page_store->goods_num =  $num;
+                $page_store->total_price =  (string)$total_price;
                 $page_store->note =  $note;
                 $page_store->comment =  $buyers['comment'];
                 $page_store->created_time =  date("Y-m-d H:i:s");
@@ -380,6 +383,7 @@ class GraphController extends Controller
         
         
         return json_encode(count($buyer));
+        
     }
 
     //影片留言
