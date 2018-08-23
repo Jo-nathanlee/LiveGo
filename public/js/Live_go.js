@@ -17,7 +17,18 @@ $(document).ready(function () {
     });
 
 
+    $("#time_start").click(function () {
+        alertify.prompt('系統訊息', '請確認商品名稱是否為 ㄩㄩ ?'
+            , function (evt, value) {
+                $("#time_end").removeClass("d-none").addClass("d-block");
+                $("#time_start").removeClass("d-block").addClass("d-none");
+            });
+    });
 
+    $("#time_end").click(function () {
+        $("#time_start").removeClass("d-none").addClass("d-block");
+        $("#time_end").removeClass("d-block").addClass("d-none");
+    });
 
     $("#btnEdit").click(function () {
         $("#btnSubmit").removeClass("d-none");
@@ -80,7 +91,7 @@ $(document).ready(function () {
 
 
     // shopping dt
-    $('#table_cart').DataTable({
+    $('.tablecart').DataTable({
         "columns": [
             {
                 "defaultContent": '',
@@ -189,16 +200,13 @@ $(".pictureEdit_item").click(function () {
 });
 
 
-// function enter_event(event){
-//     var x = event.which || event.keyCode;
-//    if(x==13){
-//        console.log("enter");
-//    }
+function enter_event(event){
+    var x = event.which || event.keyCode;
+   if(x==13){
+       console.log("enter");
+   }
 
-// }
-
-
-
+}
 
 
 //up load img
@@ -233,34 +241,3 @@ $("#imgInp").change(function () {
     readURL(this);
 });
 
-window.onload = function () {
-    var options =
-    {
-        imageBox: '.imageBox',
-        thumbBox: '.thumbBox',
-        spinner: '.spinner',
-        imgSrc: 'avatar.png'
-    }
-    var cropper;
-    document.querySelector('#imgInp').addEventListener('change', function () {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            options.imgSrc = e.target.result;
-            cropper = new cropbox(options);
-            cropper.zoomStart();
-        }
-        reader.readAsDataURL(this.files[0]);
-        this.files = [];
-    })
-    document.querySelector('#btnCrop').addEventListener('click', function () {
-        var img = cropper.getDataURL()
-        $('#product_upload_img').attr('src', img);
-        $("#activity").addClass("d-none");
-    })
-    document.querySelector('#btnZoomIn').addEventListener('click', function () {
-        cropper.zoomIn();
-    })
-    document.querySelector('#btnZoomOut').addEventListener('click', function () {
-        cropper.zoomOut();
-    })
-};

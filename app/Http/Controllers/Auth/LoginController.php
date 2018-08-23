@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use URL;
 
 class LoginController extends Controller
 {
@@ -57,9 +58,9 @@ class LoginController extends Controller
         $auth_user = Socialite::driver('facebook')->stateless()->user();
         $query = User::where('fb_id', '=', $auth_user->id)->count();
 
-        $if_firsttime = true;
+        $if_buyer = true;
         if ($query > 0) {
-            $if_firsttime = false;
+            $if_buyer = false;
         }
         $user = User::updateOrCreate(
             ['fb_id' => $auth_user->id],
@@ -70,16 +71,16 @@ class LoginController extends Controller
         );
 
         Auth::login($user, true);
-        if ($if_firsttime) {
-            return redirect()->route('set_page');
-        } else {
-            return redirect()->route('home');
-        }
+        // if ($if_buyer) {
+        //     return redirect()->route('buyer_index');
+        // } else {
+           return redirect()->route('home');
+        // }
 
     }
     public function logout()
     {
         Auth::logout();
-        return redirect('/set_page');
+        return redirect('/login');
     }
 }

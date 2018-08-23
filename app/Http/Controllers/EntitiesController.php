@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Page;
+use App\Entities\StreamingOrder;
+use App\Entities\ShopOrder;
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,5 +32,26 @@ class EntitiesController extends Controller
             ]
         );
         return redirect('/home');
+    }
+
+    public function BuyerIndexShow(Request $request)
+    {
+        $fb_id=Auth::user()->fb_id;
+        $query = StreamingOrder::where('fb_id', '=', $fb_id)
+                ->whereNull('streaming_order.order_id')
+                ->select('page_name','fb_id','name','goods_name','goods_price','goods_num')
+                ->get();
+                 
+
+        $query2 = ShopOrder::where('fb_id', '=', $fb_id) 
+                  ->select('page_name','fb_id','name','goods_name','goods_price','goods_num')
+                  ->get();
+
+        $cart=$query->merge($query2);
+        $cart=$cart->groupBy('page_name');
+        
+
+
+        return view('buyer_index', ['shopping_cart' => $query]);
     }
 }

@@ -200,7 +200,7 @@ class GraphController extends Controller
         $token = $request->input('page_token');
         $end_time = $request->input('end_time');
         $start_time = Session::get('start_time');
-        $query = '/' . $video_id . '?fields=comments.order(chronological)';
+        $query = '/' . $video_id . '?fields=comments.order(chronological).limit(9999)';
         try {
             $response = $this->graphapi($query, $token);
             $comments = $response->getGraphNode();
@@ -250,7 +250,7 @@ class GraphController extends Controller
         $token = $request->input('page_token');
         $end_time = $request->input('end_time');
         $start_time = Session::get('start_time');
-        $query = '/' . $video_id . '?fields=comments.order(chronological)';
+        $query = '/' . $video_id . '?fields=comments.order(chronological).limit(9999)';
         try {
             $response = $this->graphapi($query, $token);
             $comments = $response->getGraphNode();
@@ -302,6 +302,7 @@ class GraphController extends Controller
     {
         $page = Page::where('fb_id', Auth::user()->fb_id)->first();
         $page_id = $page->page_id;
+        $page_name= $page->page_name;
         $token = $request->input('page_token');
         $goods_name = $request->input('goods_name');
         $goods_price = $request->input('goods_price');
@@ -312,19 +313,32 @@ class GraphController extends Controller
         if ($type == 2) //最高價制
         {
             $goods_num = 1;
-            $page_store = StreamingOrder::create(
-                [
-                    'page_id' => $page_id,
-                    'fb_id' => $buyer[0]['id'],
-                    'name' => $buyer[0]['name'],
-                    'goods_name' => $goods_name,
-                    'goods_price' => $goods_price,
-                    'goods_num' => $goods_num,
-                    'note' => $note,
-                    'comment' => $buyer[0]['comment'],
-                    'created_time' => date("Y-m-d H:i:s"),
-                ]
-            );
+            // $page_store = StreamingOrder::create(
+            //     [
+            //         'page_id' => $page_id,
+            //         'fb_id' => $buyer[0]['id'],
+            //         'name' => $buyer[0]['name'],
+            //         'goods_name' => $goods_name,
+            //         'goods_price' => $goods_price,
+            //         'goods_num' => $goods_num,
+            //         'note' => $note,
+            //         'comment' => $buyer[0]['comment'],
+            //         'created_time' => date("Y-m-d H:i:s"),
+            //     ]
+            // );
+
+            $page_store = new StreamingOrder();
+            $page_store->page_id = $page_id;
+            $page_store->page_name = $page_name;
+            $page_store->fb_id = $buyer[0]['id'];
+            $page_store->name = $buyer[0]['name'];
+            $page_store->goods_name =  $goods_name;
+            $page_store->goods_price =  $goods_price;
+            $page_store->goods_num =  $goods_num;
+            $page_store->note =  $note;
+            $page_store->comment =  $buyer[0]['comment'];
+            $page_store->created_time =  date("Y-m-d H:i:s");
+            $page_store->save();
 
             //私訊
             try {
@@ -335,45 +349,37 @@ class GraphController extends Controller
                 return json_encode($e, true);
             }
         } else { //+1制
+            
+            foreach ($buyer as $buyers){
+                $num = str_replace('+', "", $buyers['comment']);
 
-            for ($i=0;$i<count($buyer);$i++) {
-                $num = str_replace('+', "", $buyer[$i]['comment']);
-                // $page_store = StreamingOrder::create(
-                //     [
-                //         'page_id' => $page_id,
-                //         'fb_id' =>  $buyer[$i]['id'],
-                //         'name' =>  $buyer[$i]['name'],
-                //         'goods_name' => $goods_name,
-                //         'goods_price' => $goods_price,
-                //         'goods_num' => $num,
-                //         'note' => $note,
-                //         'comment' => $buyer[$i]['comment'],
-                //         'created_time' => date("Y-m-d H:i:s"),
-                //     ]
-                // );
-                $page_store = new StreamingOrder();
+                $page_store = new StreamingOrder;
                 $page_store->page_id = $page_id;
-                $page_store->fb_id = $buyer[$i]['id'];
-                $page_store->name = $buyer[$i]['name'];
+                $page_store->page_name = $page_name;
+                $page_store->fb_id = $buyers['id'];
+                $page_store->name = $buyers['name'];
                 $page_store->goods_name =  $goods_name;
-                $page_store->goods_price =  $goods_name;
+                $page_store->goods_price =  $goods_price;
                 $page_store->goods_num =  $num;
                 $page_store->note =  $note;
-                $page_store->comment =  $buyer[$i]['comment'];
+                $page_store->comment =  $buyers['comment'];
                 $page_store->created_time =  date("Y-m-d H:i:s");
                 $page_store->save();
 
                 //私訊
                 try {
-                    $query = '/' . $buyer[$i]['message_id'] . '/private_replies';
-                    $post = $this->api->post($query, array('message' => 'test'), $token);
+                    $query = '/' . $buyers['message_id'] . '/private_replies';
+                    $post = $this->api->post($query, array('message' => '得標成功！'), $token);
                     $post = $post->getGraphNode()->asArray();
                 } catch (FacebookSDKException $e) {
-                    return json_encode($e, true);
+                   // return json_encode($e, true);
                 }
             }
+            
         }
-        return json_encode(count($buyer), true);
+        
+        
+        return json_encode(count($buyer));
     }
 
     //影片留言

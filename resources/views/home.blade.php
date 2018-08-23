@@ -13,8 +13,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                   <a href="{{ route('set_page') }}">Set Page</a><br>
                    <a href="{{ route('index_load') }}">Start Live Streaming</a>
+                    <a href="{{ route('buyer_index') }}">Buyer</a>
                 </div>
             </div>
         </div>

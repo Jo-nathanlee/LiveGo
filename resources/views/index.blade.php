@@ -276,8 +276,13 @@
                 var goods_name=$("#goods_name").val();
                 var goods_price=$("#goods_price").val();
                 var note=$("#note").val();
-
-                $.ajax({
+                 if(isNaN(goods_price))
+                {
+                    alert("成交價格請輸入數字！");
+                }
+                else
+                {
+                            $.ajax({
                             /* the route pointing to the post function */
                             url: '/store_streaming_order',
                             type: 'POST',
@@ -290,6 +295,8 @@
                                 $( "#buyer_list" ).append("<li class='list-group-item list-group-item-action list-group-item-info '>\
                                     <B>得標清單</B>\
                                 </li>");
+                                 $("#goods_name").attr("disabled", false);
+                                $("#type").attr("disabled", false);
                                 alert("得標訊息已私訊得標者!");
                             },
                             error: function(XMLHttpRequest, status, error) {
@@ -298,6 +305,9 @@
                                 alert(XMLHttpRequest.responseText);
                             }
                     });
+                }
+
+
             });
 
 

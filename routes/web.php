@@ -13,7 +13,7 @@
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
-    return view('welcome');
+    return Redirect::route('home');
 });
 
 Auth::routes();
@@ -21,6 +21,7 @@ Auth::routes();
 Route::get('/login/facebook', 'Auth\LoginController@redirectToFacebookProvider');
 Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderFacebookCallback');
 Route::get('logout', 'Auth\LoginController@logout');
+Route::get('/webhook', 'MessengerWebhook@index')->name('webhook');
 
 Route::group(['middleware' => [
     'auth',
@@ -30,8 +31,10 @@ Route::group(['middleware' => [
     Route::get('/index_load', 'GraphController@index_load')->name('index_load');
     Route::get('/index_show', 'GraphController@index_show');
     Route::get('/save_page', 'EntitiesController@CreateOrUpdatePage')->name('save_page');
+    Route::get('/buyer_index', 'EntitiesController@BuyerIndexShow')->name('buyer_index');
 });
 
+Route::get('/checkout', 'EntitiesController@CheckOut')->name('checkout');
 //ajax
 Route::get('/update_message', 'GraphController@update_message');
 Route::post('/update_message', 'GraphController@update_message');

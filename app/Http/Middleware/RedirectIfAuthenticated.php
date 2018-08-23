@@ -4,6 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use App\User;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Laravel\Socialite\Facades\Socialite;
 
 class RedirectIfAuthenticated
 {
@@ -18,7 +21,19 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+            // $auth_user = Socialite::driver('facebook')->stateless()->user();
+            // $query = User::where('fb_id', '=', $auth_user->id)->count();
+
+            // $if_buyer = true;
+            // if ($query > 0) {
+            //     $if_buyer = false;
+            // }
+
+            // if ($if_buyer) {
+            //     return redirect()->route('buyer_index');
+            // } else {
+               return redirect()->route('home');
+            //}
         }
 
         return $next($request);
