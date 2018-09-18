@@ -117,6 +117,8 @@
                                 $( "#buyer_list" ).append("<li class='list-group-item list-group-item-action list-group-item-info '>\
                                     <B>得標清單</B>\
                                 </li>");
+
+
                 CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 var now=new Date();
                 var start_time=now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+" "+now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
@@ -349,6 +351,15 @@
             function delete_getter(event)
             {
                 $(event.target).parents('.delete').remove();
+                if($("#buyer_list>li").length==2)
+                {
+                     $("#buyer_list").children().remove();
+                    $( "#buyer_list" ).append("<li class='list-group-item list-group-item-action list-group-item-info '>\
+                                    <B>得標清單</B>\
+                                </li>");
+                                 $("#goods_name").attr("disabled", false);
+                                $("#type").attr("disabled", false);
+                }
             }
 
                              
