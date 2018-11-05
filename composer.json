@@ -6,11 +6,9 @@
     "type": "project",
     "require": {
         "php": "^7.1.3",
-        "botman/driver-facebook": "^1.9",
         "facebook/graph-sdk": "^5.6",
         "fideloper/proxy": "^4.0",
         "inwave/laravel-uploadcare": "^1.6",
-        "kennychou3896/allpay2in1": "dev-master",
         "laravel/framework": "5.6.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "^1.0",
