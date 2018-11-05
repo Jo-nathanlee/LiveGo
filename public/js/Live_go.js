@@ -1,6 +1,54 @@
 $(document).ready(function () {
+    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+    $('#drp_product .dropdown-item').on('click', function(){
+        
+        $('#goods_name').val($(this).text());
+        $.ajax({
+            /* the route pointing to the post function */
+            url: '/get_streaming_productInfo',
+            type: 'POST',
+            /* send the csrf-token and the input to the controller */
+            data: { goods_name:$(this).text(),_token:csrfToken},
+            dataType: 'JSON',
+            /* remind that 'data' is the response of the AjaxController */
+            success: function (data) {
+                console.log(data[0]);
+                if(data!="")
+                {
+                    $('#goods_price').val(data[0].goods_price);
+                    $('#note').val(data[0].description);
+                }
+            },
+            error: function(xhr, status, error) {
+                alert(error);
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.responseText);
+            }
+        });
+
+        //可以get this id
+    });
+
+    $('.product_size_info div').on('click', function(){
+        $('.product_size_info div').removeClass('product_action');
+        $('.product_size_info div').addClass('text-black-50');
+        $(this).removeClass('text-black-50');
+        $(this).addClass('product_action');
+        //可以get this id
+    });
+
+    $('#Terms_content').on('click', function(){
+        $('#Terms_content').addClass('d-none');
+    });
+    $('#Privacy').on('click', function(){
+        $('#Terms_content').removeClass('d-none');
+    });
+
+
     $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
+        $('#content').toggleClass('active');
+        $('#sidebar_shop').toggleClass('active');
     });
 
     //collapse 點選其他選單時收起      
@@ -15,9 +63,6 @@ $(document).ready(function () {
     $(".activity_close").click(function () {
         $("#activity").addClass("d-none");
     });
-
-
-    
 
     $("#btnEdit").click(function () {
         $("#btnSubmit").removeClass("d-none");
@@ -203,17 +248,27 @@ function readURL(input) {
             $("#Upload_div").removeClass("invisible");
             $('#Upload_div').attr('style', 'background-color:#f3f3f3');
             $('#Upload_div').addClass('border');
-            $('#Upload_div').mouseenter(function () {
-                $('#Upload_div').addClass('mh-on')
+            $('#Upload_div ').mouseenter(function () {
+                $('#Upload_div ').addClass('mh-on')
                 $('.editicon_pic').removeClass('invisible')
                 $(".editicon_pic").css({ top: $("#blah").height() / 4, left: $("#Upload_div").position().left + $("#Upload_div").width() / 2.15 });
             }).mouseleave(function () {
                 $('#Upload_div').removeClass('mh-on')
                 $('.editicon_pic').addClass('invisible')
             })
+            $('.editicon_pic ').mouseenter(function () {
+                $('#Upload_div ').addClass('mh-on')
+                $('.editicon_pic').removeClass('invisible')
+                $(".editicon_pic").css({ top: $("#blah").height() / 4, left: $("#Upload_div").position().left + $("#Upload_div").width() / 2.15 });
+            }).mouseleave(function () {
+                $('#Upload_div').removeClass('mh-on')
+                $('.editicon_pic').addClass('invisible')
+            })
+
             $(".editicon_pic").click(function () {
                 $("#activity").removeClass("d-none");
-                cropper.zoomOut();
+                this.ratio*=0.9;
+                setBackground();
             });
         }
         reader.readAsDataURL(input.files[0]);

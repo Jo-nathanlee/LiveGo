@@ -16,10 +16,14 @@
 }
 
 @media (max-width: 1200px) {
-    #sidebar {
-        margin-left: -250px;
-    }
+
     #sidebar.active {
+        margin-left: 0;
+    }
+    #content.active {
+        margin-left: 0;
+    }
+    #sidebar_shop.active {
         margin-left: 0;
     }
     #sidebarCollapse span{
@@ -240,3 +244,25 @@ height: 60vh;
     right: 0px; 
 }
 
+.center_all{
+    top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+}
+#Terms_content{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    position: fixed;
+    z-index: 2020;
+    top: 0;
+    left: 0;
+  }
+  #Terms_content .card{
+    padding: 2rem;
+    max-width: 80%;
+    margin-left: 10%;
+    max-height: 60%;
+    overflow: auto;
+  }

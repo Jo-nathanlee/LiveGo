@@ -25,20 +25,9 @@ class GraphController extends Controller
 
     public function graphapi($query, $token)
     {
-        // try {
-        // Get the \Facebook\GraphNodes\GraphUser object for the current user.
-        // If you provided a 'default_access_token', the '{access-token}' is optional.
+        
         $response = $this->api->get($query, $token);
         return $response;
-        // } catch (FacebookResponseException $e) {
-        //     // When Graph returns an error
-        //     echo 'Graph returned an error: ' . $e->getMessage();
-        //     exit;
-        // } catch (FacebookSDKException $e) {
-        //     // When validation fails or other local issues
-        //     echo 'Facebook SDK returned an error: ' . $e->getMessage();
-        //     exit;
-        // }
     }
 
     public function retrieveUserProfile()
@@ -103,15 +92,16 @@ class GraphController extends Controller
                     $item++;
                     $video_id = $key['id'];
                     $url = $key['embed_html'];
-                    // $url = str_replace('<iframe src="', "", $url);
-                    // $url = str_replace('&width=0" width="0" height="0" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>', '&height=540', $url);
-                    
                 }
             }
             if ($item>0) {
                 return redirect()->action(
-                    'GraphController@index_show', ['page_token' => $page_token, 'video_id' => $video_id,'post_video_id' => $post_video_id, 'url' => $url]
+                    'GraphController@index_show', ['page_id' => $page_id, 'page_token' => $page_token, 'video_id' => $video_id,'post_video_id' => $post_video_id, 'url' => $url]
                 );
+            }
+            else
+            {
+                return redirect()->back()->with('alert', '直播尚未開啟！');
             }
         } catch (FacebookSDKException $e) {
             dd($e); // handle exception
@@ -123,40 +113,27 @@ class GraphController extends Controller
     {
         Header('X-XSS-Protection: 0');
         try {
+            $page = Page::where('fb_id', Auth::user()->fb_id)->first();
+            $page_id = $page->page_id;
             //iframe
             $url = $request->input('url');
-
-            // $url = str_replace('<iframe src="', "", $url);
-            // $url = str_replace('&width=0" width="0" height="0" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>', '&height=540', $url);
-
             //comments
             $video_id = $request->input('video_id');
             $post_video_id = $request->input('post_video_id');
-
-            $query = '/' . $video_id . '?fields=comments.limit(9999)';
             $token = $request->input('page_token');
 
+            $query = '/' . $video_id . '?fields=comments.limit(9999)';
             $response = $this->graphapi($query, $token);
             $comments = $response->getGraphNode();
 
             if (isset($comments['comments'])) {
                 $comments = $comments['comments'];
             }
-
-            // if (isset($comments['comments'])) {
-            //     $comments = $comments['comments'];
-            //     $temp = json_decode($comments, true);
-            //     $item = 0;
-            //     foreach ($comments as $key) {
-            //         $temp[$item]['pic_url'] = '';
-            //         $item++;
-            //     }
-            //     $comments = json_encode($temp);
             else {
                 $comments = "";
             }
 
-            return view('index', ['url' => $url, 'comments' => $comments, 'video_id' => $video_id,'post_video_id' => $post_video_id, 'token' => $token]);
+            return view('index', ['page_id' => $page_id,'url' => $url, 'comments' => $comments, 'video_id' => $video_id,'post_video_id' => $post_video_id, 'token' => $token]);
         } catch (FacebookSDKException $e) {
             return redirect()->action(
                 'GraphController@index_load'
@@ -186,11 +163,19 @@ class GraphController extends Controller
     }
 
     //紀錄開始時間
-    public function start_record(Request $request2)
+    public function start_record(Request $request)
     {
-        $start_time = $request2->start_time;
+        $token = $request->input('page_token');
+        $post_video_id = $request->input('post_video_id');
+        $goods_name = $request->input('goods_name');
+        //留言拍賣開始----------------------------------------------------------------------
+        $addcomment=$goods_name." 拍賣開始------------------------------";
+        $query = '/' . $post_video_id . '/comments';
+        $response = $this->api->post($query, array('message' => $addcomment), $token);
+        //---------------------------------------------------------------------------------
+        $start_time = $request->start_time;
         Session::put('start_time', $start_time);
-        return json_encode($start_time);
+        return json_encode("");
     }
 
     //結束競標(+1)
@@ -200,6 +185,16 @@ class GraphController extends Controller
         $token = $request->input('page_token');
         $end_time = $request->input('end_time');
         $start_time = Session::get('start_time');
+        $getter="";
+
+         //留言結束競標---------------------------------------------------------------------
+         $post_video_id = $request->input('post_video_id');
+         $goods_name = $request->input('goods_name');
+         $comment=$goods_name." 拍賣結束------------------------------";
+         $query = '/' . $post_video_id . '/comments';
+         $response = $this->api->post($query, array('message' => $comment), $token);
+        //---------------------------------------------------------------------------------
+
         $query = '/' . $video_id . '?fields=comments.order(chronological).limit(9999)';
         try {
             $response = $this->graphapi($query, $token);
@@ -223,23 +218,34 @@ class GraphController extends Controller
                             $num = str_replace('+', " ", $key['message']);
                             //如果是數字的話
                             if (is_numeric($num)) {
-                                $temp[$item] = array(
-                                    'name' => $key['from']['name'],
-                                    'id' => $key['from']['id'],
-                                    'message' => $key['message'],
-                                    'message_time' => $time,
-                                    'message_id' => $key['id'],
-                                );
+                                if($num>0)
+                                {
+                                    $getter=$getter.' '.$key['from']['name'];
+                                    $temp[$item] = array(
+                                        'name' => $key['from']['name'],
+                                        'id' => $key['from']['id'],
+                                        'message' => $key['message'],
+                                        'message_time' => $time,
+                                        'message_id' => $key['id'],
+                                    );
+                                }
                             }
                         }
                     }
                     $item++;
                 }
-                $encodedArr = json_encode($temp);
-                return json_encode($encodedArr);
+                 //留言得標者
+                 $post_query = '/'.$post_video_id.'/comments';
+                 $post_response = $this->api->post($post_query, array('message' => '得標者為'.$getter), $token);
+
+                 return json_encode($temp,true);
+            }
+            else
+            {
+                return json_encode("",true);
             }
         } catch (FacebookSDKException $e) {
-            dd($e);
+            return json_encode($e,true);
         }
     }
 
@@ -250,12 +256,20 @@ class GraphController extends Controller
         $token = $request->input('page_token');
         $end_time = $request->input('end_time');
         $start_time = Session::get('start_time');
-        $query = '/' . $video_id . '?fields=comments.order(chronological).limit(9999)';
+
+        //留言結束競標
+        $post_video_id = $request->input('post_video_id');
+        $goods_name = $request->input('goods_name');
+        $addcomment=$goods_name." 拍賣結束------------------------------";
+        $post_query = '/'.$post_video_id.'/comments';
+        $post_response = $this->api->post($post_query, array('message' => $addcomment), $token);
+      
+        $comment_query = '/' . $video_id . '?fields=comments.order(chronological).limit(9999)';
         try {
-            $response = $this->graphapi($query, $token);
-            $comments = $response->getGraphNode();
-            if (isset($comments['comments'])) {
-                $comments = $comments['comments'];
+            $query_response = $this->graphapi($comment_query, $token);
+            $query_result = $query_response->getGraphNode();
+            if (isset($query_result['comments'])) {
+                $comments = $query_result['comments'];
                 $temp = array();
                 $top_price = 0;
                 $fb_id = "";
@@ -265,11 +279,12 @@ class GraphController extends Controller
 
                 //自動判斷得標
                 foreach ($comments as $key) {
-                    $time = str_replace('T', " ", $key['created_time']);
+                    $tmp = $key['created_time']->format('Y-m-d H:i:s');
+                    $time = str_replace('T', " ", $tmp);
                     $time = substr($time, 0, 19);
                     $time = date("Y-m-d H:i:s", strtotime("$time +8 hour"));
                     $time2 = strtotime($time);
-                    if ($time2 >= $start_time && $time2 <= $end_time) {
+                    if ($time2 >= strtotime($start_time) && $time2 <= strtotime($end_time)) {
                         if (is_numeric($key['message']) && $key['message'] > $top_price) {
                             $top_price = $key['message'];
                             $fb_id = $key['from']['id'];
@@ -277,7 +292,6 @@ class GraphController extends Controller
                             $message_time = $time;
                             $message_id = $key['id'];
                         }
-
                     }
                 }
                 $temp[0] = array(
@@ -289,13 +303,21 @@ class GraphController extends Controller
                         'message_id' => $message_id,
                     ],
                 );
-                $encodedArr = json_encode($temp);
-                return json_encode($encodedArr);
+                //留言得標者
+                $post_query = '/'.$post_video_id.'/comments';
+                $post_response = $this->api->post($post_query, array('message' => '得標者為 '.$fb_name), $token);
+
+                $encoded_json=json_encode($temp,true);
+                return $encoded_json;
+            }
+            else
+            {
+                return json_encode("",true);
             }
         } catch (FacebookSDKException $e) {
-            dd($e);
+            return json_encode($e,true);
         }
-
+        
     }
 
     public function store_streaming_order(Request $request)
@@ -306,28 +328,20 @@ class GraphController extends Controller
         $token = $request->input('page_token');
         $goods_name = $request->input('goods_name');
         $goods_price = $request->input('goods_price');
-        $total_price=(int)($goods_name)*(int)($goods_price);
         $note = $request->input('note');
         $buyer = $request->input('buyer');
         $type = $request->input('type');
 
         if ($type == 2) //最高價制
         {
+            $fb_id= $buyer[0]['id'];
             $goods_num = 1;
-            // $page_store = StreamingOrder::create(
-            //     [
-            //         'page_id' => $page_id,
-            //         'fb_id' => $buyer[0]['id'],
-            //         'name' => $buyer[0]['name'],
-            //         'goods_name' => $goods_name,
-            //         'goods_price' => $goods_price,
-            //         'goods_num' => $goods_num,
-            //         'note' => $note,
-            //         'comment' => $buyer[0]['comment'],
-            //         'created_time' => date("Y-m-d H:i:s"),
-            //     ]
-            // );
+            //產生uid
+            $time_stamp=time();
+            $random_num=rand(100,999);
+            $uid=$fb_id.time().$random_num;
 
+            //存入DB
             $page_store = new StreamingOrder();
             $page_store->page_id = $page_id;
             $page_store->page_name = $page_name;
@@ -336,25 +350,34 @@ class GraphController extends Controller
             $page_store->goods_name =  $goods_name;
             $page_store->goods_price =  $goods_price;
             $page_store->goods_num =  $goods_num;
-            $page_store->total_price =  (string)$total_price;
+            $page_store->total_price =  $goods_price;
             $page_store->note =  $note;
             $page_store->comment =  $buyer[0]['comment'];
             $page_store->created_time =  date("Y-m-d H:i:s");
+            $page_store->uid = $uid;
             $page_store->save();
 
             //私訊
             try {
+                $url='請至 '.'http://livego.herokuapp.com/buyer_index'.' 結帳，謝謝！';
                 $query = '/' . $buyer[0]['message_id'] . '/private_replies';
-                $response = $this->api->post($query, array('message' => 'test'), $token);
-                $post = $post->getGraphNode()->asArray();
+                $post = $this->api->post($query, array('message' => $url), $token);
+                $post2 = $post->getGraphNode()->asArray();
             } catch (FacebookSDKException $e) {
                 return json_encode($e, true);
             }
         } else { //+1制
             
             foreach ($buyer as $buyers){
+                $fb_id=$buyers['id'];
+               //產生uid
+                $time_stamp=time();
+                $random_num=rand(100,999);
+                $uid=$fb_id.time().$random_num;
+                //將留言+拿掉
                 $num = str_replace('+', "", $buyers['comment']);
-
+                $total_price=(int)($num)*(int)($goods_price);
+                //存入資料庫
                 $page_store = new StreamingOrder;
                 $page_store->page_id = $page_id;
                 $page_store->page_name = $page_name;
@@ -367,27 +390,53 @@ class GraphController extends Controller
                 $page_store->note =  $note;
                 $page_store->comment =  $buyers['comment'];
                 $page_store->created_time =  date("Y-m-d H:i:s");
+                $page_store->uid = $uid;
                 $page_store->save();
 
                 //私訊
                 try {
+                    $url='請至 '.'http://livego.herokuapp.com/buyer_index'.' 結帳，謝謝！';
                     $query = '/' . $buyers['message_id'] . '/private_replies';
-                    $post = $this->api->post($query, array('message' => '得標成功！'), $token);
-                    $post = $post->getGraphNode()->asArray();
+                    $post = $this->api->post($query, array('message' => $url), $token);
+                    $post2 = $post->getGraphNode()->asArray();
                 } catch (FacebookSDKException $e) {
-                   // return json_encode($e, true);
+                   return json_encode($e, true);
                 }
             }
-            
         }
-        
-        
-        return json_encode(count($buyer));
-        
+        return json_encode(count($buyer),true);
+    }
+
+    //私訊
+    public function private_reply(Request $request)
+    {
+        $message_id = $request->input('message_id');
+        $reply_text= $request->input('reply_text');
+        $token = $request->input('page_token');
+        try {
+            $query = '/' . $message_id. '/private_replies';
+            $post = $this->api->post($query, array('message' =>$reply_text), $token);
+            $post2 = $post->getGraphNode()->asArray();
+        } catch (FacebookSDKException $e) {
+           return json_encode($e, true);
+        }
+
+        return json_encode($post);
     }
 
     //影片留言
     public function add_comment(Request $request)
+    {
+        $token = $request->input('page_token');
+        $post_video_id = $request->input('post_video_id');
+        $comment = $request->input('comment');
+        $query = '/' . $post_video_id . '/comments';
+        $response = $this->api->post($query, array('message' => $comment), $token);
+        return json_encode("", true);
+    }
+
+    //回覆留言
+    public function reply_comment(Request $request)
     {
         $token = $request->input('page_token');
         $post_video_id = $request->input('post_video_id');

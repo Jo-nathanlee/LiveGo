@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Entities\Page;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -25,6 +26,13 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('seller-only', function ($user) {
+            $ifSeller=Page::where('fb_id', $user->fb_id)->count();
+            if($ifSeller>0)
+            {
+                return true;
+            }
+            return false;
+        });
     }
 }

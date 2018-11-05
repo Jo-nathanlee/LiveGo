@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Entities\Page;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -29,7 +30,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    //protected $redirectTo = '/seller_index';
 
     /**
      * Create a new controller instance.
@@ -38,6 +39,9 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        //
+        $this->redirectTo = url()->previous();
+        //
         $this->middleware('guest')->except('logout');
     }
 
@@ -56,7 +60,7 @@ class LoginController extends Controller
     {
 
         $auth_user = Socialite::driver('facebook')->stateless()->user();
-        $query = User::where('fb_id', '=', $auth_user->id)->count();
+        $query = Page::where('fb_id', '=', $auth_user->id)->count();
 
         $if_buyer = true;
         if ($query > 0) {
@@ -71,11 +75,11 @@ class LoginController extends Controller
         );
 
         Auth::login($user, true);
-        // if ($if_buyer) {
-        //     return redirect()->route('buyer_index');
-        // } else {
-           return redirect()->route('home');
-        // }
+        if ($if_buyer) {
+            return redirect()->route('buyer_index');
+        } else {
+           return redirect()->route('seller_index');
+        }
 
     }
     public function logout()

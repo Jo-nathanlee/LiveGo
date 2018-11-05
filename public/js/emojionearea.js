@@ -193,7 +193,7 @@ document = window.document || {};
                 autocomplete      : "off",
                 autocorrect       : "off",
                 autocapitalize    : "off",
-                onkeydown :"enter_event(event)",
+                onkeydown :" enter_event(event)",
             },
             search            : true,
             placeholder       : null,

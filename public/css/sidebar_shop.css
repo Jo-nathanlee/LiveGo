@@ -10,7 +10,7 @@
     background: #fff;
     color: #fff;
     transition: all 0.3s; 
-    position: fixed;
+    position:fixed ;
     top: 0;
     left: 0;
     min-height: 100vh;

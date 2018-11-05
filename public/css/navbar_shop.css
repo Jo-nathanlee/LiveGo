@@ -1,5 +1,13 @@
 /* 標題列CSS */
 
+#content{
+    margin-left: 250px;
+}
+
+#content.active {
+    margin-left: 0;
+}
+
 .navbar-ft {
     padding: 5px 10px;
     background: rgb(231, 236, 234);
