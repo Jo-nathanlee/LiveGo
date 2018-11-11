@@ -7,20 +7,25 @@
     <ul class="list-unstyled components">
         <p>逛逛分類</p>
         <li>
-            <a href="#"><i class="icofont icofont-home"></i>首頁</a>
-        </li>
-        <!-- <li>
-            <a href="#"><i class="icofont icofont-file-video"></i>運動用品</a>
+            <a href="#">
+                <i class="icofont icofont-home"></i>首頁</a>
         </li>
         <li>
-            <a href="#"><i class="icofont icofont-file-video"></i>運動配備</a>
+            <a href="#">
+                <i class="icofont icofont-helmet"></i>運動用品</a>
         </li>
         <li>
-            <a href="#"><i class="icofont icofont-video-cam"></i>男生衣著</a>
+            <a href="#">
+                <i class="icofont icofont-goal-keeper"></i>運動配備</a>
         </li>
         <li>
-            <a href="#"><i class="icofont icofont-gift"></i>球類用品</a>
-        </li> -->
+            <a href="#">
+                <i class="icofont icofont-refree-jersey"></i>男生衣著</a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="icofont icofont-football"></i>球類用品</a>
+        </li>
     </ul>
     <ul class="list-unstyled">
         <li>

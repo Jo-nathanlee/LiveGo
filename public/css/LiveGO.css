@@ -31,7 +31,47 @@
     }
 }
 
+@media (max-width: 600px) {
 
+    #content {
+        margin-left: 0;
+        
+    }
+    #sidebar_shop {
+        display: none;
+    }
+
+    body{
+        font-size: 0.1rem;
+        margin: 0;
+        
+    }
+    html{
+        overflow-x: hidden;
+    }
+    #main .col-sm-12{
+        padding: 0;
+    }
+    .navbar-nav{
+        flex-direction: initial;
+    }
+    .com_nav_none{
+        display: none;
+    }
+    h3{
+        font-size:  1rem;
+    }
+    .nav-shop h3 img {
+        width: 2rem;
+    }
+
+    .sm-btn{
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        border-radius: 0.2rem;
+    }
+}
 /* My Css */
 
 .div_shadow{

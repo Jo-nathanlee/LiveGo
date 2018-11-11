@@ -24,6 +24,7 @@
                         $all_total=0;
                         //訂購人FB名稱
                         $buyer_name="";
+                        $page_name="";
                         ?>
                         @foreach($order as $values )
                         <tr>
@@ -38,6 +39,7 @@
                             <?php
                             $all_total+=(int)($values->total_price);
                             $buyer_name=$values->name;
+                            $page_name=$values->page_name;
                             ?>
                         </tr>
                         @endforeach
@@ -100,6 +102,9 @@
                             <textarea class="form-control" rows="8" id="comment"></textarea>
                         </div>
                     </div>
+                    <input type="hidden" name="total_amount" value="{{ $all_total}}">
+                    <input type="hidden" name="store_name" value="{{$page_name}}">
+                    <input type="hidden" name="order_detail" value="{{json_encode($order)}}">
                     <div class="col-md-12 text-center">
                         <input type="submit" value="結帳" class="btn btn-secondary">
                     </div>
@@ -120,7 +125,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
     crossorigin="anonymous"></script>
 <!-- My JS -->
-<script src="js/Live_go.js"></script>
-<!--alertify-->
 <script src="js/Live_go.js"></script>
 @stop

@@ -31,18 +31,21 @@ class ECPayController extends Controller
 
     public function checkout(Request $request)
     {
+        $order_detail=json_decode($request->order_detail);
+
+
         //基本參數(請依系統規劃自行調整)
         Ecpay::i()->Send['ReturnURL'] = "http://www.ecpay.com.tw/receive.php";
         Ecpay::i()->Send['MerchantTradeNo'] = "Test" . time(); //訂單編號
         Ecpay::i()->Send['MerchantTradeDate'] = date('Y/m/d H:i:s'); //交易時間
-        Ecpay::i()->Send['TotalAmount'] = 2000; //交易金額
+        Ecpay::i()->Send['TotalAmount'] = $request->total_amount; //交易金額
         Ecpay::i()->Send['TradeDesc'] = "good to drink"; //交易描述
         Ecpay::i()->Send['ChoosePayment'] = $this->GetPaymentWay($request->payway); //付款方式
         //訂單的商品資料
-        array_push(Ecpay::i()->Send['Items'], array('Name' => "歐付寶黑芝麻豆漿", 'Price' => (int) "2000",
-            'Currency' => "元", 'Quantity' => (int) "1", 'URL' => "dedwed"));
-        array_push(Ecpay::i()->Send['Items'], array('Name' => "歐付寶黑芝麻豆漿2", 'Price' => (int) "3000",
-        'Currency' => "元", 'Quantity' => (int) "1", 'URL' => "dedwed"));
+        foreach($order_detail as $order)
+        {
+            array_push(Ecpay::i()->Send['Items'], array('Name' =>  $order->goods_name, 'Price' => (int) ( $order->goods_price),
+            'Currency' => "元", 'Quantity' => (int) ( $order->goods_num), 'URL' => "dedwed"));
         //Go to EcPay
         echo "緑界頁面導向中...";
         echo Ecpay::i()->CheckOutString();

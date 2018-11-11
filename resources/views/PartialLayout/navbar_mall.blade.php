@@ -1,7 +1,7 @@
 <nav class="navbar-ft navbar-expand-sm">
     <div class="container-fluid">
-        <div class="collapse navbar-collapse  col-offset-1" id="#">
-            <ul class="nav-shop navbar-nav">
+        <div class="collapse navbar-collapse  col-offset-1  d-block" id="#">
+            <ul class="nav-shop navbar-nav com_nav_none">
                 <li class="float-right">
                     <button type="button" class="btn btn-outline-dark" id="sidebarCollapse" class="btn">
                         <i class="fas fa-align-left"></i>
@@ -15,6 +15,26 @@
                 </li>
             </ul>
             <ul class="nav-shop navbar-nav ml-auto">
+                <li class="float-right d-md-none d-lg-none d-xl-none">
+                    <button type="button" class="btn btn-outline-dark btn-sm dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" class="btn">
+                        <i class="fas fa-align-left"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <a class="dropdown-item" href="{{ route('buyer_index') }}"><i class="icofont icofont-cart-alt mr-1"></i> 購物車</a>
+                        <a class="dropdown-item" href="#!"><i class="icofont icofont-home  mr-1"></i>首頁</a>
+                        <a class="dropdown-item" href="#!"> <i class="icofont icofont-helmet mr-1"></i>運動用品</a>
+                        <a class="dropdown-item" href="#!"><i class="icofont icofont-goal-keeper mr-1"></i>運動配備</a>
+                        <a class="dropdown-item" href="#!"><i class="icofont icofont-refree-jersey mr-1"></i>男生衣著</a>
+                        <a class="dropdown-item" href="#!"><i class="icofont icofont-football mr-1"></i>球類用品</a>
+                    </div>
+                </li>
+                <li class="nav-item-shop d-md-none d-lg-none d-xl-none">
+                    <a class="nav-link" href="#">
+                    <i class="icofont icofont-social-facebook"></i>
+                    <i class="icofont icofont-social-instagram"></i>
+                    </a>
+                </li>
                 <li class="nav-item-shop">
                     <a class="nav-link" href="#">
                         <i class="icofont icofont-ui-video-play"></i> 節目表</a>
@@ -50,14 +70,24 @@
 
 <nav class="navbar-sec navbar-expand-sm ">
     <div class="container-fluid ">
-        <div class="collapse navbar-collapse" id="#">
-            <ul class="nav-shop navbar-nav col-md-3 col-offset-1">
+        <div class="collapse navbar-collapse d-block" id="#">
+            <ul class="nav-shop navbar-nav col-md-3 col-offset-1 col-sm-12">
                 <li>
                     <H3 style="font-family:Microsoft JhengHei;" class="mt-2 text-nowrap">
                         <img src="img/livego.png" />來福逛逛</H3>
                 </li>
+                <li class="d-xl-none d-lg-none d-md-none">
+                    <div class="input-group" id="search-box">
+                       <input class="form-control py-2 border-right-0 border" type="search" placeholder="Search">
+                        <div class="input-group-append ">
+                            <div class="input-group-text align-middle" id="btnGroupAddon2">
+                                <i class="fa fa-search"></i>
+                            </div>
+                        </div>
+                    </div>
+                </li>
             </ul>
-            <ul class="nav-shop col-md-7 ">
+            <ul class="nav-shop col-md-7 com_nav_none">
                 <div class="input-group"  id="search-box">
                     <input class="form-control py-2 border-right-0 border" type="search" placeholder="Search">
                     <div class="input-group-append ">
@@ -67,10 +97,10 @@
                     </div>
                 </div>
             </ul>
-            <ul class="nav-shop navbar-nav ml-auto col-md-1">
+            <ul class="nav-shop navbar-nav ml-auto col-md-1 com_nav_none">
                 <li class="nav-item-shop">
-                    <a class="nav-link" href="#">
-                        <a href="{{ route('buyer_index') }}"><i class="icofont icofont-cart-alt text-center h3"></i></a>
+                    <a class="nav-link" href="{{ route('buyer_index') }}">
+                        <i class="icofont icofont-cart-alt text-center h3"></i>
                     </a>
                 </li>
             </ul>
