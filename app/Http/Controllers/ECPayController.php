@@ -46,6 +46,7 @@ class ECPayController extends Controller
         {
             array_push(Ecpay::i()->Send['Items'], array('Name' =>  $order->goods_name, 'Price' => (int) ( $order->goods_price),
             'Currency' => "元", 'Quantity' => (int) ( $order->goods_num), 'URL' => "dedwed"));
+        }
         //Go to EcPay
         echo "緑界頁面導向中...";
         echo Ecpay::i()->CheckOutString();
