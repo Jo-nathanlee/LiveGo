@@ -52,7 +52,8 @@
                 </table>
             </div>
             <div class="col-md-12">
-                <form class="row">
+                <form class="row" action="{{ route('ECPayCheckout') }}" method="POST">
+                {{ csrf_field() }}
                     <diV class="col-md-6">
                         <div class="form-group">
                             <label for="formGroupExampleInput">訂購人</label>
