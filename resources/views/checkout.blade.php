@@ -101,7 +101,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 text-center">
-                        <button type="button" class="btn btn-success">送出訂單</button>
+                        <input type="submit" value="結帳" class="btn btn-secondary">
                     </div>
                 </form>
             </div>
