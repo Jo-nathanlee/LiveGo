@@ -1,4 +1,5 @@
 <?php
+namespace App\Http\Controllers;
 use flamelin\ECPay\Facade\Ecpay;
 use Illuminate\Http\Request;
 class ECPayController extends Controller
