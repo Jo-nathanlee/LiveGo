@@ -64,11 +64,10 @@
                         </div>
                         <div class="form-group">
                             <label for="formGroupExampleInput">付款方式</label>
-                            <select class="custom-select">
-                                <option selected>請選擇付款方式</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select class="custom-select" name="payway">
+                                <option value="ALL" selected>ALL</option>
+                                <option value="Credit">Credit</option>
+                                <option value="CVS">CVS</option>
                             </select>
                         </div>
                         <div class="form-group">

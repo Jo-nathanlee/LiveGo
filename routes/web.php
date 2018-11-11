@@ -13,8 +13,8 @@
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', 'HomePageController@HomePageShow');
-Route::post('/AllpayIndex', 'AllPayController@index');
-Route::get('/AllpayReturnURL', 'AllPayController@return_url');
+
+Route::get('/ECPayCheckout', 'ECPayController@checkout');
 
 
 
