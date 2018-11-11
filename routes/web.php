@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', 'HomePageController@HomePageShow');
 
-Route::get('/ECPayCheckout', 'ECPayController@checkout');
+Route::post('/ECPayCheckout', 'ECPayController@checkout')->name('ECPayCheckout');
+Route::get('/ECPayCheckout', 'ECPayController@checkout')->name('ECPayCheckout');
 
 
 
