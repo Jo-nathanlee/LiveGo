@@ -41,6 +41,8 @@ class ECPayController extends Controller
         //訂單的商品資料
         array_push(Ecpay::i()->Send['Items'], array('Name' => "歐付寶黑芝麻豆漿", 'Price' => (int) "2000",
             'Currency' => "元", 'Quantity' => (int) "1", 'URL' => "dedwed"));
+        array_push(Ecpay::i()->Send['Items'], array('Name' => "歐付寶黑芝麻豆漿2", 'Price' => (int) "3000",
+        'Currency' => "元", 'Quantity' => (int) "1", 'URL' => "dedwed"));
         //Go to EcPay
         echo "緑界頁面導向中...";
         echo Ecpay::i()->CheckOutString();
