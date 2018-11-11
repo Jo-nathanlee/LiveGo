@@ -42,9 +42,7 @@
     }
 
     body{
-        font-size: 0.8rem;
         margin: 0;
-        
     }
     html{
         overflow-x: hidden;
@@ -70,6 +68,20 @@
         font-size: 0.875rem;
         line-height: 1.5;
         border-radius: 0.2rem;
+    }
+    .tablecart{
+        font-size: 0.5rem;
+    }
+    .tablecart thead tr th:first-child{
+        max-width: 2rem;
+        padding: 0;
+        margin: 0;
+    }
+
+    .tablecart tbody tr td:first-child{
+        max-width: 2rem;
+        padding: 0;
+        margin: 0;
     }
 }
 /* My Css */
