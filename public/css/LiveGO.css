@@ -72,17 +72,38 @@
     .tablecart{
         font-size: 0.5rem;
     }
-    .tablecart thead tr th:first-child{
+
+    .tablecart .custom-control{
+        margin-left: 0.8rem !important;
+    }
+
+    .tablecart tbody tr td:first-child , .tablecart thead tr th:first-child{
         max-width: 2rem;
         padding: 0;
         margin: 0;
     }
 
-    .tablecart tbody tr td:first-child{
-        max-width: 2rem;
-        padding: 0;
-        margin: 0;
+    .tablecart thead tr th:last-child , .tablecart tbody tr td:last-child{
+        display: none;
     }
+
+    .navbar-ft  .dropdown-toggle::after {
+        display:none;
+    }
+    /* .tablecart tbody tr td:nth-child(1){
+        max-width: 10%;
+
+    }
+    .tablecart tbody tr td:nth-child(2), .tablecart tbody tr td:nth-child(4), .tablecart tbody tr td:nth-child(5), .tablecart tbody tr td:nth-child(6){
+        max-width: 15%;
+
+    } */
+    .tablecart tbody tr td:nth-child(3){
+
+        word-break: break-all;
+        
+    }
+
 }
 /* My Css */
 

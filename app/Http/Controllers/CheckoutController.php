@@ -98,7 +98,7 @@ class CheckoutController extends Controller
             $order_id=$request->input('order_id');
             $query = CheckoutOrder::where('order_id', '=', $order_id)
                     ->get();
-            return view('checkout', ['order' => $query]);
+            return view('checkout', ['order' => $query,'order_id' => $order_id]);
          }
          else
          {

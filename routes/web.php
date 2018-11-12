@@ -13,9 +13,8 @@
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', 'HomePageController@HomePageShow');
+Route::get('/checkout_return', 'ECPayController@CheckoutReturn')->name('checkout_return');
 
-Route::post('/ECPayCheckout', 'ECPayController@checkout')->name('ECPayCheckout');
-Route::get('/ECPayCheckout', 'ECPayController@checkout')->name('ECPayCheckout');
 
 
 
@@ -75,6 +74,9 @@ Route::group(['middleware' => [
     //買家結帳
     Route::post('/checkout', 'CheckoutController@CheckOut')->name('checkout');
     Route::get('/checkout_form', 'CheckoutController@CheckoutForm')->name('checkout_form');
+    //ECPAY
+    Route::post('/ECPayCheckout', 'ECPayController@checkout')->name('ECPayCheckout');
+    Route::get('/ECPayCheckout', 'ECPayController@checkout')->name('ECPayCheckout');
 
     //商城商品新增修改顯示
     Route::get('/AddProduct_show', 'MallProductController@AddProduct_show')->name('AddProduct_show');

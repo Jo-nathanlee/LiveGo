@@ -59,11 +59,11 @@
                     <diV class="col-md-6">
                         <div class="form-group">
                             <label for="formGroupExampleInput">訂購人</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="{{$buyer_name}}">
+                            <input type="text" class="form-control" id="formGroupExampleInput" name="buyer_name" placeholder="{{$buyer_name}}">
                         </div>
                         <div class="form-group">
                             <label for="formGroupExampleInput2">電話</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="請輸入收件人電話 ...">
+                            <input type="text" class="form-control" name="phone" id="formGroupExampleInput2" placeholder="請輸入收件人電話 ...">
                         </div>
                         <div class="form-group">
                             <label for="formGroupExampleInput">付款方式</label>
@@ -73,37 +73,22 @@
                                 <option value="CVS">CVS</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="formGroupExampleInput2">物流方式</label>
-                            <select class="custom-select">
-                                <option selected>請選擇物流方式</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
                     </diV>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="formGroupExampleInput">計件地址</label>
                             <div class="input-group">
-
-                                <div class="input-group-prepend">
-                                    <select class="custom-select">
-                                        <option selected>國內</option>
-                                        <option value="1">國外</option>
-                                    </select>
-                                </div>
-                                <input type="text" class="form-control" placeholder="請輸入寄件地址 ..." aria-label="" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" name="address" placeholder="請輸入寄件地址 ..." aria-label="" aria-describedby="basic-addon1">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="comment">備註:</label>
-                            <textarea class="form-control" rows="8" id="comment"></textarea>
+                            <textarea class="form-control" name="note" rows="8" id="comment"></textarea>
                         </div>
                     </div>
-                    <input type="hidden" name="total_amount" value="{{ $all_total}}">
-                    <input type="hidden" name="store_name" value="{{$page_name}}">
+                    <input type="hidden" name="total_amount" value="{{$all_total}}">
+                    <input type="hidden" name="page_name" value="{{$page_name}}">
+                    <input type="hidden" name="order_id" value="{{$order_id}}">
                     <input type="hidden" name="order_detail" value="{{json_encode($order)}}">
                     <div class="col-md-12 text-center">
                         <input type="submit" value="結帳" class="btn btn-secondary">
