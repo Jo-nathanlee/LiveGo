@@ -44,7 +44,7 @@ class ECPayController extends Controller
         $MerchantTradeDate=date('Y/m/d H:i:s');
 
         //基本參數(請依系統規劃自行調整)
-        Ecpay::i()->Send['ReturnURL'] = "livego.herokuapp.com/checkout_return";
+        Ecpay::i()->Send['ReturnURL'] = "https://livego.herokuapp.com/checkout_return";
         Ecpay::i()->Send['MerchantTradeNo'] =$MerchantTradeNo; //訂單編號
         Ecpay::i()->Send['MerchantTradeDate'] =$MerchantTradeDate; //交易時間
         Ecpay::i()->Send['TotalAmount'] = $TotalAmount; //交易金額
