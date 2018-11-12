@@ -107,6 +107,7 @@ class ECPayController extends Controller
         $OrderDetail->total_price = $TotalAmount;
         $OrderDetail->buyer_address = $address;
         $OrderDetail->buyer_phone = $phone;
+        $OrderDetail->save();
 
         //Go to EcPay
         echo "緑界頁面導向中...";
