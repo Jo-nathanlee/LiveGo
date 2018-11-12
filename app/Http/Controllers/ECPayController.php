@@ -131,32 +131,30 @@ class ECPayController extends Controller
         $SimulatePaid=$request->input('SimulatePaid');
         $CheckMacValue=$request->input('CheckMacValue');
 
+        $sMacValue=OrderDetail::where('status', '=', '0')
+                 ->where('order_id', '=',$TradeNo ) 
+                 ->select('mac_value')
+                 ->get();
 
-        $donate = donate::where('MerchantTradeNo',$MerchantTradeNo)->update(['status'=>$RtnCode,'others'=>$CheckMacValue,'PaymentDate'=>$PaymentDate,'PaymentType'=>$PaymentType]);            
-        // if($donate){ 
-        // $donate->status = $RtnCode;                              
-        // $donate->save(); 
-        // }
-        $donate=donate::where('MerchantTradeNo',$MerchantTradeNo)->get();
-        $query=project::where('projectNo',$donate[0]['projectNo'])->get();
+        if($CheckMacValue==$sMacValue)
+        {
+            return '1|OK';
+        }
 
-        foreach($query as $project){
-        $title='恭喜捐款'.$project -> projectName .'成功';
-        $detail ='我們已收到您對'.$project -> projectName.'的贊助，感謝您的支助<br>詳請請點捐款紀錄查看';
+        
         //輸入通知
-        notification::create([
-            'email'=>$project -> id,
-            'img'=>'/outImg/'.$project->out_pic_path,
-            'title'=>$title,
-            'detail'=>$detail,
-            'status'=>"0"
-        ]);
+        // notification::create([
+        //     'email'=>$project -> id,
+        //     'img'=>'/outImg/'.$project->out_pic_path,
+        //     'title'=>$title,
+        //     'detail'=>$detail,
+        //     'status'=>"0"
+        // ]);
 
-        }  
+    }  
 
-        return '1|OK';
-        // return $donate;
+      
 
-    }
+    
    
 }
