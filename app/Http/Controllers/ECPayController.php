@@ -131,6 +131,24 @@ class ECPayController extends Controller
         $SimulatePaid=$request->input('SimulatePaid');
         $CheckMacValue=$request->input('CheckMacValue');
 
+        $OrderDetail = new OrderDetail();
+        $OrderDetail->page_id = $MerchantID;
+        $OrderDetail->page_name = $MerchantTradeNo;
+        $OrderDetail->buyer_fbid = $RtnCode;
+        $OrderDetail->buyer_name = $RtnMsg;
+        $OrderDetail->order_id = $TradeNo;
+        $OrderDetail->transaction_date = $TradeAmt;
+        $OrderDetail->status = $PaymentDate;
+        $OrderDetail->mac_value = $PaymentType;
+        $OrderDetail->note = $PaymentTypeChargeFee;
+        $OrderDetail->total_price = $TradeDate;
+        $OrderDetail->buyer_address = $SimulatePaid;
+        $OrderDetail->buyer_phone = $CheckMacValue;
+        $OrderDetail->save();
+
+
+
+
         $sMacValue=OrderDetail::where('status', '=', '0')
                  ->where('order_id', '=',$TradeNo ) 
                  ->select('mac_value')
