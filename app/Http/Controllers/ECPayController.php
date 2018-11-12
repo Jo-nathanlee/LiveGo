@@ -97,7 +97,7 @@ class ECPayController extends Controller
         $OrderDetail = new OrderDetail();
         $OrderDetail->page_id = $page_id;
         $OrderDetail->page_name = $page_name;
-        $OrderDetail->buyer_id = $buyer_id;
+        $OrderDetail->buyer_fbid = $buyer_id;
         $OrderDetail->buyer_name = $buyer_name;
         $OrderDetail->order_id = $MerchantTradeNo;
         $OrderDetail->transaction_date = $MerchantTradeDate;
