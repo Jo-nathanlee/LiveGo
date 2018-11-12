@@ -94,7 +94,6 @@ class ECPayController extends Controller
         $sMacValue = strtoupper($sMacValue);
 
         //insert DB
-        $fb_id=Auth::user()->fb_id;
         $OrderDetail = new OrderDetail();
         $OrderDetail->page_id = $page_id;
         $OrderDetail->page_name = $page_name;
