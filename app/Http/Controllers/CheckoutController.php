@@ -50,7 +50,7 @@ class CheckoutController extends Controller
                 {
                     $time_stamp=time();
                     $random_num=rand(10,99);
-                    $order_id=$fb_id.time().$random_num;
+                    $order_id=$time_stamp.$random_num.substr($fb_id,0,8);
                     $order_time=date("Y-m-d H:i:s");
                 }
     
