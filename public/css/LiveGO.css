@@ -18,13 +18,13 @@
 @media (max-width: 1200px) {
 
     #sidebar.active {
-        margin-left: 0;
+        margin-left: -250px;
     }
     #content.active {
         margin-left: 0;
     }
     #sidebar_shop.active {
-        margin-left: 0;
+        margin-left: -250px;
     }
     #sidebarCollapse span{
         display: none;
