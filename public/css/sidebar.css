@@ -18,8 +18,9 @@
     height: 100%;
 }
 
-#sidebar .sidebar-header a:link ,#sidebar .sidebar-header a{
-    color: fff;
+#sidebar .sidebar-header a :link ,#sidebar .sidebar-header a{
+    color: #fff;
+    text-decoration: none;
 }
 
 
