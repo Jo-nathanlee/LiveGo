@@ -171,7 +171,7 @@
                     <diV class="col-md-6">
                         <div class="form-group">
                             <label for="formGroupExampleInput">訂購人</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" name="buyer_name" placeholder="{{$buyer_name}}">
+                            <input type="text" class="form-control" id="formGroupExampleInput" name="buyer_name" value="{{$buyer_name}}">
                         </div>
                         <div class="form-group">
                             <label for="formGroupExampleInput2">電話</label>
