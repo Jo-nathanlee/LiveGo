@@ -103,7 +103,11 @@ class ECPayController extends Controller
         //echo Ecpay::i()->CheckOut();
     }
 
+
+
     public function CheckoutReturn(Request $request){
+        $arFeedback = Ecpay::i()->CheckOutFeedback($request->all());
+        print Ecpay::i()->getResponse($arFeedback);
         // $input = Input::all();
         // $MerchantID=$request->input('MerchantID');
         // $MerchantTradeNo=$request->input('MerchantTradeNo');
