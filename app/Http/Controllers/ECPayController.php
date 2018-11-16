@@ -105,32 +105,31 @@ class ECPayController extends Controller
 
     public function CheckoutReturn(Request $request){
         // $input = Input::all();
-        $MerchantID=$request->input('MerchantID');
-        $MerchantTradeNo=$request->input('MerchantTradeNo');
-        //$TradeDate=$request->input('TradeDate');
-        $RtnCode=$request->input('RtnCode');
-        $RtnMsg=$request->input('RtnMsg');
-        $TradeNo=$request->input('TradeNo');
-        $TradeAmt=$request->input('TradeAmt');
-        $PaymentDate=$request->input('PaymentDate');
-        $PaymentType=$request->input('PaymentType');
-        $PaymentTypeChargeFee=$request->input('PaymentTypeChargeFee');
-        $TradeDate=$request->input('TradeDate');
-        $SimulatePaid=$request->input('SimulatePaid');
+        // $MerchantID=$request->input('MerchantID');
+        // $MerchantTradeNo=$request->input('MerchantTradeNo');
+        // $RtnCode=$request->input('RtnCode');
+        // $RtnMsg=$request->input('RtnMsg');
+        // $TradeNo=$request->input('TradeNo');
+        // $TradeAmt=$request->input('TradeAmt');
+        // $PaymentDate=$request->input('PaymentDate');
+        // $PaymentType=$request->input('PaymentType');
+        // $PaymentTypeChargeFee=$request->input('PaymentTypeChargeFee');
+        // $TradeDate=$request->input('TradeDate');
+        // $SimulatePaid=$request->input('SimulatePaid');
         $CheckMacValue=$request->input('CheckMacValue');
 
         $OrderDetail = new OrderDetail();
-        $OrderDetail->page_id = $MerchantID;
-        $OrderDetail->page_name = $MerchantTradeNo;
-        $OrderDetail->buyer_fbid = $RtnCode;
-        $OrderDetail->buyer_name = $RtnMsg;
-        $OrderDetail->order_id = $TradeNo;
-        $OrderDetail->transaction_date = $TradeAmt;
-        $OrderDetail->status = $PaymentDate;
-        $OrderDetail->mac_value = $PaymentType;
-        $OrderDetail->note = $PaymentTypeChargeFee;
-        $OrderDetail->total_price = $TradeDate;
-        $OrderDetail->buyer_address = $SimulatePaid;
+        // $OrderDetail->page_id = $MerchantID;
+        // $OrderDetail->page_name = $MerchantTradeNo;
+        // $OrderDetail->buyer_fbid = $RtnCode;
+        // $OrderDetail->buyer_name = $RtnMsg;
+        // $OrderDetail->order_id = $TradeNo;
+        // $OrderDetail->transaction_date = $TradeAmt;
+        // $OrderDetail->status = $PaymentDate;
+        // $OrderDetail->mac_value = $PaymentType;
+        // $OrderDetail->note = $PaymentTypeChargeFee;
+        // $OrderDetail->total_price = $TradeDate;
+        // $OrderDetail->buyer_address = $SimulatePaid;
         $OrderDetail->buyer_phone = $CheckMacValue;
         $OrderDetail->save();
 
