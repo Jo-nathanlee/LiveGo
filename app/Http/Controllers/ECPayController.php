@@ -106,8 +106,8 @@ class ECPayController extends Controller
 
 
     public function CheckoutReturn(Request $request){
-        $arFeedback = Ecpay::i()->CheckOutFeedback($request->all());
-        print Ecpay::i()->getResponse($arFeedback);
+        // $arFeedback = Ecpay::i()->CheckOutFeedback($request->all());
+        // print Ecpay::i()->getResponse($arFeedback);
         // $input = Input::all();
         // $MerchantID=$request->input('MerchantID');
         // $MerchantTradeNo=$request->input('MerchantTradeNo');
@@ -120,9 +120,10 @@ class ECPayController extends Controller
         // $PaymentTypeChargeFee=$request->input('PaymentTypeChargeFee');
         // $TradeDate=$request->input('TradeDate');
         // $SimulatePaid=$request->input('SimulatePaid');
-        $CheckMacValue=$request->input('CheckMacValue');
+        //$CheckMacValue=$request->input('CheckMacValue');
 
         $OrderDetail = new OrderDetail();
+        $OrderDetail->page_id = '111';
         // $OrderDetail->page_id = $MerchantID;
         // $OrderDetail->page_name = $MerchantTradeNo;
         // $OrderDetail->buyer_fbid = $RtnCode;
@@ -134,21 +135,21 @@ class ECPayController extends Controller
         // $OrderDetail->note = $PaymentTypeChargeFee;
         // $OrderDetail->total_price = $TradeDate;
         // $OrderDetail->buyer_address = $SimulatePaid;
-        $OrderDetail->buyer_phone = $CheckMacValue;
+        //$OrderDetail->buyer_phone = $CheckMacValue;
         $OrderDetail->save();
 
 
 
 
-        $sMacValue=OrderDetail::where('status', '=', '0')
-                 ->where('order_id', '=',$TradeNo ) 
-                 ->select('mac_value')
-                 ->get();
+        // $sMacValue=OrderDetail::where('status', '=', '0')
+        //          ->where('order_id', '=',$TradeNo ) 
+        //          ->select('mac_value')
+        //          ->get();
 
-        if($CheckMacValue==$sMacValue)
-        {
-            return '1|OK';
-        }
+        // if($CheckMacValue==$sMacValue)
+        // {
+        //     return '1|OK';
+        // }
 
         
         //輸入通知
