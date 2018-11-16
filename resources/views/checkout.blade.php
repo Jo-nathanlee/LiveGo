@@ -177,14 +177,6 @@
                             <label for="formGroupExampleInput2">電話</label>
                             <input type="text" class="form-control" name="phone" id="formGroupExampleInput2" placeholder="請輸入收件人電話 ...">
                         </div>
-                        <div class="form-group">
-                            <label for="formGroupExampleInput">付款方式</label>
-                            <select class="custom-select" name="payway">
-                                <option value="ALL" selected>ALL</option>
-                                <option value="Credit">Credit</option>
-                                <option value="CVS">CVS</option>
-                            </select>
-                        </div>
                     </diV>
                     <div class="col-md-6">
                         <div class="form-group">

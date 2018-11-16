@@ -7,21 +7,9 @@ class ECPayController extends Controller
 {
     private function GetPaymentWay($p)
     {
-        $val = "";
-        switch ($p) {
-            case 'ALL':
-                $val = \ECPay_PaymentMethod::ALL;
-                break;
-            case 'Credit':
-                $val = \ECPay_PaymentMethod::Credit;
-                break;
-            case 'CVS':
-                $val = \ECPay_PaymentMethod::CVS;
-                break;
-            default:
-                $val = \ECPay_PaymentMethod::ALL;
-                break;
-        }
+      
+        $val = \ECPay_PaymentMethod::ALL;
+              
         return $val;
     }
 
