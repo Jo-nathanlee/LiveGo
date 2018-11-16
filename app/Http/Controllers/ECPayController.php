@@ -32,7 +32,7 @@ class ECPayController extends Controller
         $MerchantTradeDate=date('Y/m/d H:i:s');
 
         //基本參數(請依系統規劃自行調整)
-        Ecpay::i()->Send['ReturnURL'] = "https://livego.herokuapp.com/checkout_return";
+        Ecpay::i()->Send['ReturnURL'] = 'http://livego.herokuapp.com/checkout_return';
         Ecpay::i()->Send['MerchantTradeNo'] =$MerchantTradeNo; //訂單編號
         Ecpay::i()->Send['MerchantTradeDate'] =$MerchantTradeDate; //交易時間
         Ecpay::i()->Send['TotalAmount'] = $TotalAmount; //交易金額
@@ -120,11 +120,12 @@ class ECPayController extends Controller
         // $PaymentTypeChargeFee=$request->input('PaymentTypeChargeFee');
         // $TradeDate=$request->input('TradeDate');
         // $SimulatePaid=$request->input('SimulatePaid');
-        //$CheckMacValue=$request->input('CheckMacValue');
+        // $CheckMacValue=$request->input('CheckMacValue');
 
         $OrderDetail = new OrderDetail();
-        $OrderDetail->page_id = '111';
-        // $OrderDetail->page_id = $MerchantID;
+       
+        $OrderDetail->page_id = 'MerchantID';
+        //$OrderDetail->page_id = $MerchantID;
         // $OrderDetail->page_name = $MerchantTradeNo;
         // $OrderDetail->buyer_fbid = $RtnCode;
         // $OrderDetail->buyer_name = $RtnMsg;
@@ -135,7 +136,7 @@ class ECPayController extends Controller
         // $OrderDetail->note = $PaymentTypeChargeFee;
         // $OrderDetail->total_price = $TradeDate;
         // $OrderDetail->buyer_address = $SimulatePaid;
-        //$OrderDetail->buyer_phone = $CheckMacValue;
+        // $OrderDetail->buyer_phone = $CheckMacValue;
         $OrderDetail->save();
 
 
