@@ -124,8 +124,7 @@ class ECPayController extends Controller
 
 
     public function CheckoutReturn(Request $request){
-        $arFeedback = Ecpay::i()->CheckOutFeedback($request->all());
-        print Ecpay::i()->getResponse($arFeedback);
+       
         // $input = Input::all();
         // $MerchantID=$request->input('MerchantID');
         // $MerchantTradeNo=$request->input('MerchantTradeNo');
@@ -157,7 +156,8 @@ class ECPayController extends Controller
         // $OrderDetail->buyer_phone = $CheckMacValue;
         $OrderDetail->save();
 
-
+        $arFeedback = Ecpay::i()->CheckOutFeedback($request->all());
+        print Ecpay::i()->getResponse($arFeedback);
 
 
         // $sMacValue=OrderDetail::where('status', '=', '0')
