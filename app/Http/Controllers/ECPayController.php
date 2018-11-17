@@ -38,7 +38,7 @@ class ECPayController extends Controller
         Ecpay::i()->Send['TotalAmount'] = $TotalAmount; //交易金額
         Ecpay::i()->Send['TradeDesc'] = $page_name; //交易描述
         //Ecpay::i()->Send['ChoosePayment'] = $this->GetPaymentWay($request->payway); //付款方式
-        array_push(Allpay::i()->Send['Items'], array('Name' => 'test', 'Price' =>100,
+        array_push(Ecpay::i()->Send['Items'], array('Name' => 'test', 'Price' =>100,
         'Currency' => "元", 'Quantity' => (int) "1", 'URL' => "dedwed"));
 
         //加密
