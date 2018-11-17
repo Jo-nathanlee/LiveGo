@@ -13,10 +13,11 @@
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', 'HomePageController@HomePageShow');
+Route::post('/checkout_return', 'ECPayController@CheckoutReturn')->name('checkout_return');
 Route::get('/checkout_return', 'ECPayController@CheckoutReturn')->name('checkout_return');
 //ECPAY
 Route::post('/ECPayCheckout', 'ECPayController@checkout')->name('ECPayCheckout');
-//Route::get('/ECPayCheckout', 'ECPayController@checkout')->name('ECPayCheckout');
+Route::get('/ECPayCheckout', 'ECPayController@checkout')->name('ECPayCheckout');
 
 
 
