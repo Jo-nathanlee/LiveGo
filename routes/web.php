@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', 'HomePageController@HomePageShow');
 Route::get('/checkout_return', 'ECPayController@CheckoutReturn')->name('checkout_return');
 Route::post('/checkout_return', 'ECPayController@CheckoutReturn')->name('checkout_return');
+Route::get('/checkout', 'CheckoutController@CheckOut')->name('checkout');
+Route::post('/checkout', 'CheckoutController@CheckOut')->name('checkout');
 
 
 
@@ -72,8 +74,7 @@ Route::group(['middleware' => [
     //得標者頁面
     Route::get('/bid_winner', 'BidWinnerController@show')->name('bid_winner');
     //買家結帳
-    Route::get('/checkout', 'CheckoutController@CheckOut')->name('checkout');
-    Route::post('/checkout', 'CheckoutController@CheckOut')->name('checkout');
+
     Route::get('/checkout_form', 'CheckoutController@CheckoutForm')->name('checkout_form');
     //ECPAY
     Route::post('/ECPayCheckout', 'ECPayController@checkout')->name('ECPayCheckout');
