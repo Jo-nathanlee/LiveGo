@@ -13,6 +13,7 @@
         "laravel/framework": "5.6.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "^1.0",
+        "scottchayaa/allpay": "dev-master",
         "yish/imgur": "^1.0"
     },
     "require-dev": {

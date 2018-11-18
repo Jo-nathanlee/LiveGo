@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "90626423dce3e292f51e7b620217dff5",
+    "content-hash": "96719795be41606a21e74e656c89ccad",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1839,6 +1839,48 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "scottchayaa/allpay",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ScottChayaa/Allpay.git",
+                "reference": "c7b695e8b3dbe998b3ff03358049b167ff37d9e9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ScottChayaa/Allpay/zipball/c7b695e8b3dbe998b3ff03358049b167ff37d9e9",
+                "reference": "c7b695e8b3dbe998b3ff03358049b167ff37d9e9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "ectool",
+            "autoload": {
+                "classmap": [
+                    "src/lib"
+                ],
+                "psr-4": {
+                    "ScottChayaa\\Allpay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Scott Lin",
+                    "email": "mmx112945@gmail.com"
+                }
+            ],
+            "description": "Allpay - Laravel 5 version",
+            "keywords": [
+                "allpay"
+            ],
+            "time": "2018-05-15T14:40:06+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -4668,7 +4710,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "flamelin/ecpay": 20
+        "flamelin/ecpay": 20,
+        "scottchayaa/allpay": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

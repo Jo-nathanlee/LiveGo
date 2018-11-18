@@ -147,7 +147,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         flamelin\ECPay\EcpayServiceProvider::class,
-      
+        ScottChayaa\Allpay\AllpayServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -211,6 +211,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Imgur' => Yish\Imgur\Facades\Upload::class,
         'Ecpay' => flamelin\ECPay\Facade\Ecpay::class,
+        'Allpay' => ScottChayaa\Allpay\Facade\Allpay::class,
     ],
 
 ];
