@@ -118,7 +118,8 @@ class ECPayController extends Controller
 
 
 
-    public function payReturn(Request $request){
+    public function payReturn(Request $request)
+    {
        
         // $input = Input::all();
         // $MerchantID=$request->input('MerchantID');
@@ -134,9 +135,12 @@ class ECPayController extends Controller
         // $SimulatePaid=$request->input('SimulatePaid');
         // $CheckMacValue=$request->input('CheckMacValue');
 
+        // $arFeedback = Ecpay::i()->CheckOutFeedback($request->all());
+        // print Ecpay::i()->getResponse($arFeedback);
+
         $OrderDetail = new OrderDetail();
        
-        $OrderDetail->page_id = 'MerchantID';
+        $OrderDetail->page_id = $request->input('CheckMacValue');
         //$OrderDetail->page_id = $MerchantID;
         // $OrderDetail->page_name = $MerchantTradeNo;
         // $OrderDetail->buyer_fbid = $RtnCode;
@@ -151,8 +155,7 @@ class ECPayController extends Controller
         // $OrderDetail->buyer_phone = $CheckMacValue;
         $OrderDetail->save();
 
-        $arFeedback = Ecpay::i()->CheckOutFeedback($request->all());
-        print Ecpay::i()->getResponse($arFeedback);
+      
 
 
         // $sMacValue=OrderDetail::where('status', '=', '0')
