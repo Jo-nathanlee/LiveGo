@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "90626423dce3e292f51e7b620217dff5",
+    "content-hash": "0e8fc3ebbe6417d3a9f9e8ecf0d15dc0",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -423,42 +423,6 @@
                 "trusted proxy"
             ],
             "time": "2018-02-07T20:20:57+00:00"
-        },
-        {
-            "name": "flamelin/ecpay",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/flamelin/ECPay.git",
-                "reference": "6417728c5a43db68b6dc9b4e0683eec82b18191d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/flamelin/ECPay/zipball/6417728c5a43db68b6dc9b4e0683eec82b18191d",
-                "reference": "6417728c5a43db68b6dc9b4e0683eec82b18191d",
-                "shasum": ""
-            },
-            "type": "ectool",
-            "autoload": {
-                "classmap": [
-                    "src/lib"
-                ],
-                "psr-4": {
-                    "flamelin\\ECPay\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "AIRO",
-                    "email": "service@airo.com.tw"
-                }
-            ],
-            "description": "ECPay for Laravel 5",
-            "keywords": [
-                "ecpay"
-            ],
-            "time": "2017-05-24T09:57:19+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -3085,6 +3049,42 @@
             "time": "2018-10-23T09:00:00+00:00"
         },
         {
+            "name": "flamelin/ecpay",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/flamelin/ECPay.git",
+                "reference": "6417728c5a43db68b6dc9b4e0683eec82b18191d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/flamelin/ECPay/zipball/6417728c5a43db68b6dc9b4e0683eec82b18191d",
+                "reference": "6417728c5a43db68b6dc9b4e0683eec82b18191d",
+                "shasum": ""
+            },
+            "type": "ectool",
+            "autoload": {
+                "classmap": [
+                    "src/lib"
+                ],
+                "psr-4": {
+                    "flamelin\\ECPay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "AIRO",
+                    "email": "service@airo.com.tw"
+                }
+            ],
+            "description": "ECPay for Laravel 5",
+            "keywords": [
+                "ecpay"
+            ],
+            "time": "2017-05-24T09:57:19+00:00"
+        },
+        {
             "name": "fzaninotto/faker",
             "version": "v1.8.0",
             "source": {
@@ -4667,9 +4667,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "flamelin/ecpay": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

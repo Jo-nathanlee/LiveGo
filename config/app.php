@@ -124,7 +124,6 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
-        flamelin\ECPay\EcpayServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -210,7 +209,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Imgur' => Yish\Imgur\Facades\Upload::class,
-        'Ecpay' => flamelin\ECPay\Facade\Ecpay::class, 
     ],
 
 ];
