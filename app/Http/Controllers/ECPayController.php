@@ -99,7 +99,6 @@ class ECPayController extends Controller
         // echo Ecpay::i()->CheckOutString();
 
         Ecpay::i()->Send['ReturnURL']         = "http://livego.herokuapp.com/payReturn" ;
-        Ecpay::i()->Send['OrderResultURL']         = "http://livego.herokuapp.com/payReturn" ;
         Ecpay::i()->Send['MerchantTradeNo']   = "Test".time() ;           //訂單編號
         Ecpay::i()->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');      //交易時間
         Ecpay::i()->Send['TotalAmount']       = 2000;                     //交易金額
