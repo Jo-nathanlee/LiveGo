@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "787762fdec87eff119df8eb504781377",
+    "content-hash": "90626423dce3e292f51e7b620217dff5",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -640,49 +640,6 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
-        },
-        {
-            "name": "howtomakeaturn/allpay-4-laravel",
-            "version": "0.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/howtomakeaturn/allpay-4-laravel.git",
-                "reference": "4b57dc513b30c116f9a9f978a6e084233d40553e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/howtomakeaturn/allpay-4-laravel/zipball/4b57dc513b30c116f9a9f978a6e084233d40553e",
-                "reference": "4b57dc513b30c116f9a9f978a6e084233d40553e",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ],
-                "psr-0": {
-                    "Howtomakeaturn\\Allpay\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Chuan-Hao, You",
-                    "email": "howtomakeaturn@hotmail.com",
-                    "homepage": "http://blog.turn.tw",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Allpay Service Provider for Laravel 4.",
-            "homepage": "https://github.com/howtomakeaturn/allpay-4-laravel",
-            "keywords": [
-                "allpay",
-                "laravel"
-            ],
-            "time": "2014-12-15T15:16:15+00:00"
         },
         {
             "name": "inwave/laravel-uploadcare",
