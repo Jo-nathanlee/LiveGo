@@ -1,6 +1,6 @@
 <?php
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Allpay;
+use Ecpay;
 use Illuminate\Http\Request;
 use App\Entities\OrderDetail;
 class ECPayController extends Controller
@@ -16,16 +16,16 @@ class ECPayController extends Controller
 
     public function checkout(Request $request)
     {
-        // $order_detail=json_decode($request->order_detail);
-        // $address=$request->address;
-        // $phone=$request->phone;
-        // $note=$request->note;
-        // $buyer_name=$request->buyer_name;
-        // $TotalAmount=$request->total_amount;
-        // $MerchantTradeNo=$request->order_id;
-        // $page_name=$request->page_name;
-        // date_default_timezone_set("Asia/Taipei");
-        // $MerchantTradeDate=date('Y/m/d H:i:s');
+        $order_detail=json_decode($request->order_detail);
+        $address=$request->address;
+        $phone=$request->phone;
+        $note=$request->note;
+        $buyer_name=$request->buyer_name;
+        $TotalAmount=$request->total_amount;
+        $MerchantTradeNo=$request->order_id;
+        $page_name=$request->page_name;
+        date_default_timezone_set("Asia/Taipei");
+        $MerchantTradeDate=date('Y/m/d H:i:s');
 
         //基本參數(請依系統規劃自行調整)
         // Ecpay::i()->Send['ReturnURL'] = "https://livego.herokuapp.com/checkout_return";
@@ -98,17 +98,17 @@ class ECPayController extends Controller
         // echo "緑界頁面導向中...";
         // echo Ecpay::i()->CheckOutString();
 
-        Allpay::i()->Send['ReturnURL']         = "http://livego.herokuapp.com/payReturn" ;
-        Allpay::i()->Send['MerchantTradeNo']   = "Test".time() ;           //訂單編號
-        Allpay::i()->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');      //交易時間
-        Allpay::i()->Send['TotalAmount']       = 2000;                     //交易金額
-        Allpay::i()->Send['TradeDesc']         = "good to drink" ;         //交易描述
-        Allpay::i()->Send['ChoosePayment']     = \ECPay_PaymentMethod::ALL ;     //付款方式
+        Ecpay::i()->Send['ReturnURL']         = "http://livego.herokuapp.com/payReturn" ;
+        Ecpay::i()->Send['MerchantTradeNo']   = "Test".time() ;           //訂單編號
+        Ecpay::i()->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');      //交易時間
+        Ecpay::i()->Send['TotalAmount']       = 2000;                     //交易金額
+        Ecpay::i()->Send['TradeDesc']         = "good to drink" ;         //交易描述
+        Ecpay::i()->Send['ChoosePayment']     = ECPay_PaymentMethod::ALL ;     //付款方式
         
    
   
           
-        array_push(Allpay::i()->Send['Items'], array('Name' => "緑界黑芝麻豆漿", 'Price' => (int)"2000",
+        array_push(Ecpay::i()->Send['Items'], array('Name' => "緑界黑芝麻豆漿", 'Price' => (int)"2000",
         'Currency' => "元", 'Quantity' => (int) "1", 'URL' => "dedwed"));
   
         //Go to EcPay
@@ -151,8 +151,8 @@ class ECPayController extends Controller
         // $OrderDetail->buyer_phone = $CheckMacValue;
         $OrderDetail->save();
 
-        $arFeedback = Allpay::i()->CheckOutFeedback($request->all());
-        print Allpay::i()->getResponse($arFeedback);
+        $arFeedback = Ecpay::i()->CheckOutFeedback($request->all());
+        print Ecpay::i()->getResponse($arFeedback);
 
 
         // $sMacValue=OrderDetail::where('status', '=', '0')
