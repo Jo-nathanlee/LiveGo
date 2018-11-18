@@ -166,7 +166,7 @@
                 </table>
             </div>
             <div class="col-md-12">
-                <form class="row" action="/ecpay/ecpayCheckout" method="POST">
+                <form class="row" action="/ecpayCheckout" method="POST">
                 {{ csrf_field() }}
                     <diV class="col-md-6">
                         <div class="form-group">
