@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers;
-//use flamelin\ECPay\Facade\Ecpay;
-use Ecpay;
+use Illuminate\Support\Facades\Allpay;
 use Illuminate\Http\Request;
 use App\Entities\OrderDetail;
 class ECPayController extends Controller
@@ -14,10 +13,6 @@ class ECPayController extends Controller
         return $val;
     }
 
-    public function index()
-    {
-        return view('ecpay::demo');
-    }
 
     public function checkout(Request $request)
     {
@@ -103,17 +98,17 @@ class ECPayController extends Controller
         // echo "緑界頁面導向中...";
         // echo Ecpay::i()->CheckOutString();
 
-        Ecpay::i()->Send['ReturnURL']         = "http://livego.herokuapp.com/payReturn" ;
-        Ecpay::i()->Send['MerchantTradeNo']   = "Test".time() ;           //訂單編號
-        Ecpay::i()->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');      //交易時間
-        Ecpay::i()->Send['TotalAmount']       = 2000;                     //交易金額
-        Ecpay::i()->Send['TradeDesc']         = "good to drink" ;         //交易描述
-        Ecpay::i()->Send['ChoosePayment']     = \ECPay_PaymentMethod::ALL ;     //付款方式
+        Allpay::i()->Send['ReturnURL']         = "http://livego.herokuapp.com/payReturn" ;
+        Allpay::i()->Send['MerchantTradeNo']   = "Test".time() ;           //訂單編號
+        Allpay::i()->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');      //交易時間
+        Allpay::i()->Send['TotalAmount']       = 2000;                     //交易金額
+        Allpay::i()->Send['TradeDesc']         = "good to drink" ;         //交易描述
+        Allpay::i()->Send['ChoosePayment']     = \ECPay_PaymentMethod::ALL ;     //付款方式
         
    
   
           
-        array_push(Ecpay::i()->Send['Items'], array('Name' => "緑界黑芝麻豆漿", 'Price' => (int)"2000",
+        array_push(Allpay::i()->Send['Items'], array('Name' => "緑界黑芝麻豆漿", 'Price' => (int)"2000",
         'Currency' => "元", 'Quantity' => (int) "1", 'URL' => "dedwed"));
   
         //Go to EcPay
@@ -156,8 +151,8 @@ class ECPayController extends Controller
         // $OrderDetail->buyer_phone = $CheckMacValue;
         $OrderDetail->save();
 
-        $arFeedback = Ecpay::i()->CheckOutFeedback($request->all());
-        print Ecpay::i()->getResponse($arFeedback);
+        $arFeedback = Allpay::i()->CheckOutFeedback($request->all());
+        print Allpay::i()->getResponse($arFeedback);
 
 
         // $sMacValue=OrderDetail::where('status', '=', '0')
