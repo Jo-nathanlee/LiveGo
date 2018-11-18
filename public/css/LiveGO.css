@@ -10,6 +10,19 @@
     display: flex;
 }
 
+.product_img img{
+    width: 100%;
+}
+
+.product_size_info div{
+
+  width: auto;
+}
+
+.opacity9{
+  opacity:.9;
+}
+
 @media (max-width: 1600px) {
 
 
@@ -32,6 +45,9 @@
 }
 
 @media (max-width: 600px) {
+    #Slidebox{
+        margin-bottom: 1rem;
+    }
     #sidebar {
         display: none;
     }
