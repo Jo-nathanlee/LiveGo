@@ -140,7 +140,7 @@ class ECPayController extends Controller
 
         $OrderDetail = new OrderDetail();
        
-        $OrderDetail->page_id = $request->input('CheckMacValue');
+        $OrderDetail->note = $request->all();
         //$OrderDetail->page_id = $MerchantID;
         // $OrderDetail->page_name = $MerchantTradeNo;
         // $OrderDetail->buyer_fbid = $RtnCode;
