@@ -135,12 +135,12 @@ class ECPayController extends Controller
         // $SimulatePaid=$request->input('SimulatePaid');
         // $CheckMacValue=$request->input('CheckMacValue');
 
-        // $arFeedback = Ecpay::i()->CheckOutFeedback($request->all());
-        // print Ecpay::i()->getResponse($arFeedback);
+        $arFeedback = Ecpay::i()->CheckOutFeedback($request->all());
+        print Ecpay::i()->getResponse($arFeedback);
 
         $OrderDetail = new OrderDetail();
        
-        $OrderDetail->note = $request->all();
+        $OrderDetail->page_id = 'test';
         //$OrderDetail->page_id = $MerchantID;
         // $OrderDetail->page_name = $MerchantTradeNo;
         // $OrderDetail->buyer_fbid = $RtnCode;
