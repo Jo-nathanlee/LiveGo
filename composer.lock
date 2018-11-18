@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e8fc3ebbe6417d3a9f9e8ecf0d15dc0",
+    "content-hash": "90626423dce3e292f51e7b620217dff5",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -423,6 +423,42 @@
                 "trusted proxy"
             ],
             "time": "2018-02-07T20:20:57+00:00"
+        },
+        {
+            "name": "flamelin/ecpay",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/flamelin/ECPay.git",
+                "reference": "6417728c5a43db68b6dc9b4e0683eec82b18191d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/flamelin/ECPay/zipball/6417728c5a43db68b6dc9b4e0683eec82b18191d",
+                "reference": "6417728c5a43db68b6dc9b4e0683eec82b18191d",
+                "shasum": ""
+            },
+            "type": "ectool",
+            "autoload": {
+                "classmap": [
+                    "src/lib"
+                ],
+                "psr-4": {
+                    "flamelin\\ECPay\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "AIRO",
+                    "email": "service@airo.com.tw"
+                }
+            ],
+            "description": "ECPay for Laravel 5",
+            "keywords": [
+                "ecpay"
+            ],
+            "time": "2017-05-24T09:57:19+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -3049,42 +3085,6 @@
             "time": "2018-10-23T09:00:00+00:00"
         },
         {
-            "name": "flamelin/ecpay",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/flamelin/ECPay.git",
-                "reference": "6417728c5a43db68b6dc9b4e0683eec82b18191d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/flamelin/ECPay/zipball/6417728c5a43db68b6dc9b4e0683eec82b18191d",
-                "reference": "6417728c5a43db68b6dc9b4e0683eec82b18191d",
-                "shasum": ""
-            },
-            "type": "ectool",
-            "autoload": {
-                "classmap": [
-                    "src/lib"
-                ],
-                "psr-4": {
-                    "flamelin\\ECPay\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "AIRO",
-                    "email": "service@airo.com.tw"
-                }
-            ],
-            "description": "ECPay for Laravel 5",
-            "keywords": [
-                "ecpay"
-            ],
-            "time": "2017-05-24T09:57:19+00:00"
-        },
-        {
             "name": "fzaninotto/faker",
             "version": "v1.8.0",
             "source": {
@@ -3929,16 +3929,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.4.3",
+            "version": "7.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "c151651fb6ed264038d486ea262e243af72e5e64"
+                "reference": "b1be2c8530c4c29c3519a052c9fb6cee55053bbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c151651fb6ed264038d486ea262e243af72e5e64",
-                "reference": "c151651fb6ed264038d486ea262e243af72e5e64",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b1be2c8530c4c29c3519a052c9fb6cee55053bbd",
+                "reference": "b1be2c8530c4c29c3519a052c9fb6cee55053bbd",
                 "shasum": ""
             },
             "require": {
@@ -4009,7 +4009,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-10-23T05:57:41+00:00"
+            "time": "2018-11-14T16:52:02+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -4667,7 +4667,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "flamelin/ecpay": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
