@@ -18,8 +18,8 @@ Route::get('/', 'HomePageController@HomePageShow');
 Route::post('/ecpayCheckout', 'ECPayController@checkout');
 Route::get('/ecpayCheckout', 'ECPayController@checkout');
 
-Route::post('/payReturn', 'ECPayController@payReturn');
-Route::get('/payReturn', 'ECPayController@payReturn');
+Route::post('/OrderResult', 'ECPayController@payReturn');
+Route::get('/OrderResult', 'ECPayController@payReturn');
 
 
 
