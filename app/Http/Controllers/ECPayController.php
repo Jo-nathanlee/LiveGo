@@ -32,7 +32,7 @@ class ECPayController extends Controller
         //加密
         //step1、2
         $sMacValue=
-        'HashKey=5294y06JbISpM5x9&ChoosePayment=ALL&EncryptType=1&ItemName=';
+        'HashKey=5294y06JbISpM5x9& ChoosePayment=ALL&EncryptType=1&ItemName=';
 
         $page_id='';
         $buyer_id='';
@@ -94,6 +94,7 @@ class ECPayController extends Controller
         Ecpay::i()->Send['MerchantTradeDate'] =$MerchantTradeDate; //交易時間
         Ecpay::i()->Send['TotalAmount'] = $TotalAmount; //交易金額
         Ecpay::i()->Send['TradeDesc'] = $page_name; //交易描述
+        Ecpay::i()->Send['EncryptType'] = 1;
         Ecpay::i()->Send['ChoosePayment'] = $this->GetPaymentWay($request->payway); //付款方式
         
         //Go to EcPay
@@ -132,14 +133,30 @@ class ECPayController extends Controller
 
 
         $sMacValue=OrderDetail::where('status', '=', '0')
-                 ->where('order_id', '=',$TradeNo ) 
+                 ->where('order_id', '=',$MerchantTradeNo ) 
                  ->select('mac_value')
                  ->get();
 
-        if($CheckMacValue==$sMacValue)
+        if($RtnCode==1)
         {
-            return '1|OK';
+            if($CheckMacValue==$sMacValue)
+            {
+                return '1|OK';
+            }
+            else
+            {
+                $OrderDetail = new OrderDetail();
+                $OrderDetail->page_id = 'mac_wrong';
+                $OrderDetail->save();
+            }
         }
+        else
+        {
+            $OrderDetail = new OrderDetail();
+            $OrderDetail->page_id = $RtnMsg;
+            $OrderDetail->save();
+        }
+        
 
         
        
