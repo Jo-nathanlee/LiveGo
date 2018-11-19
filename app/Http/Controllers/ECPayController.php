@@ -79,11 +79,7 @@ class ECPayController extends Controller
     public function payReturn(Request $request)
     {
         $arFeedback = Ecpay::i()->CheckOutFeedback($request->all());
-        foreach($arFeedback as $result) {
-            echo $result.'<br>';
-        }
         echo Ecpay::i()->getResponse($arFeedback);
-       
     }  
 }
 
