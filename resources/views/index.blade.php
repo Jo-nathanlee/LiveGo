@@ -35,19 +35,25 @@
            
         //     $("#main-top iframe").css({"max-width": "100%","left":"0vh","margin-top":"5vh"});
         // }
-       
-        var ifrw = $("#ifrFB iframe").attr("width");
-        var ifrh = $("#ifrFB iframe").attr("height");
-        console.log(ifrw);
-        console.log(ifrh);
-        if(ifrw>ifrh){
-            $("#main-top iframe").css({"max-width": "none","left":"0"});
-            $("#ifrFB").css({"margin-bottom":"-90%","margin-top":"5vh"});
+        resizeLiveVideo();
+        $(window).resize(resizeLiveVideo);
+        function resizeLiveVideo(){
+            var ifrw = $("#ifrFB iframe").attr("width");
+            var ifrh = $("#ifrFB iframe").attr("height");
+            var multiple = ifrw / 500;
+        // console.log(ifrw);
+        // console.log(ifrh);
+        if(ifrw>ifrh){ //電腦版
+            $("#main-top iframe").css({"width": "100%"});
+            $("#ifrFB").css({"margin-bottom":"-100%","margin-top": ifrh * multiple / 3.45});
             
-        }else{
-            $("#main-top iframe").css({"max-width": "50%","left":"12vh"});
+        }else{      //手機板
+            $("#main-top iframe").css({"width": "50%","maring-left":"25%"});
             $("#ifrFB").css({"margin-bottom":"none","margin-top":"none"});
         }
+
+        }
+
 
 
         // $("#ifrFB").css({"margin-bottom":"none","margin-top":"none"});
