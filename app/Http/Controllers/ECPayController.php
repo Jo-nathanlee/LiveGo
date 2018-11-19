@@ -32,7 +32,7 @@ class ECPayController extends Controller
         //加密
         //step1、2
         $sMacValue=
-        'HashKey=5294y06JbISpM5x9& ChoosePayment=ALL&EncryptType=1&ItemName= test';
+        'HashKey=5294y06JbISpM5x9&ChoosePayment=ALL&EncryptType=1&ItemName=test';
 
         // $page_id='';
         // $buyer_id='';
@@ -49,7 +49,7 @@ class ECPayController extends Controller
         $sMacValue=$sMacValue.
         '&MerchantID=2000132&MerchantTradeDate='.$MerchantTradeDate.
         '&MerchantTradeNo='.$MerchantTradeNo.
-        '&PaymentType=aio&ReturnURL=http://livego.herokuapp.com/OrderResult &TotalAmount='.$TotalAmount.
+        '&PaymentType=aio&ReturnURL=http://livego.herokuapp.com/OrderResult&TotalAmount='.$TotalAmount.
         '&TradeDesc='.$page_name.
         '&HashIV=v77hoKGq4kWxNNIS';
         //step3
