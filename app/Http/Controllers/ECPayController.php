@@ -45,7 +45,7 @@ class ECPayController extends Controller
         //     $buyer_id=$order->fb_id;
         //     $sMacValue=$sMacValue.'#'. $order->goods_name;
         // }
-
+        $sMacValue2=$sMacValue;
         $sMacValue=$sMacValue.
         '&MerchantID=2000132&MerchantTradeDate='.$MerchantTradeDate.
         '&MerchantTradeNo='.$MerchantTradeNo.
@@ -64,7 +64,7 @@ class ECPayController extends Controller
         $sMacValue = str_replace('%2a', '*', $sMacValue);
         $sMacValue = str_replace('%28', '(', $sMacValue);
         $sMacValue = str_replace('%29', ')', $sMacValue);
-        $sMacValue = str_replace('%20', '+', $sMacValue);
+
         //step6        
         $sMacValue=hash('sha256', $sMacValue);
         //step7
@@ -80,7 +80,7 @@ class ECPayController extends Controller
         $OrderDetail->transaction_date = $MerchantTradeDate;
         $OrderDetail->status = '0';
         $OrderDetail->mac_value = $sMacValue;
-        $OrderDetail->note = $note;
+        $OrderDetail->note = $sMacValue2;
         $OrderDetail->total_price = $TotalAmount;
         $OrderDetail->buyer_address = $address;
         $OrderDetail->buyer_phone = $phone;
@@ -93,8 +93,7 @@ class ECPayController extends Controller
         Ecpay::i()->Send['MerchantTradeDate'] =$MerchantTradeDate; //交易時間
         Ecpay::i()->Send['TotalAmount'] = $TotalAmount; //交易金額
         Ecpay::i()->Send['TradeDesc'] = $page_name; //交易描述
-        //Ecpay::i()->Send['EncryptType'] = 1;
-        Ecpay::i()->Send['ChoosePayment'] = $this->GetPaymentWay($request->payway); //付款方式
+        Ecpay::i()->Send['ChoosePayment'] = \ECPay_PaymentMethod::ALL; //付款方式
 
         array_push(Ecpay::i()->Send['Items'], array('Name' => 'test', 'Price' => 1,
         'Currency' => "元", 'Quantity' => 1, 'URL' => "dedwed"));
@@ -139,25 +138,25 @@ class ECPayController extends Controller
                  ->select('mac_value')
                  ->get();
 
-        if($RtnCode==1)
-        {
-            if($CheckMacValue==$sMacValue)
-            {
-                return '1|OK';
-            }
-            else
-            {
-                $OrderDetail = new OrderDetail();
-                $OrderDetail->page_id = 'mac_wrong';
-                $OrderDetail->save();
-            }
-        }
-        else
-        {
-            $OrderDetail = new OrderDetail();
-            $OrderDetail->page_id = $RtnMsg;
-            $OrderDetail->save();
-        }
+        // if($RtnCode==1)
+        // {
+        //     if($CheckMacValue==$sMacValue)
+        //     {
+        //         return '1|OK';
+        //     }
+        //     else
+        //     {
+        //         $OrderDetail = new OrderDetail();
+        //         $OrderDetail->page_id = 'mac_wrong';
+        //         $OrderDetail->save();
+        //     }
+        // }
+        // else
+        // {
+        //     $OrderDetail = new OrderDetail();
+        //     $OrderDetail->page_id = $RtnMsg;
+        //     $OrderDetail->save();
+        // }
         
 
         
