@@ -27,65 +27,6 @@ class ECPayController extends Controller
         date_default_timezone_set("Asia/Taipei");
         $MerchantTradeDate=date('Y/m/d H:i:s');
 
-        
-        
-        //加密
-        //step1、2
-        $sMacValue=
-        'HashKey=5294y06JbISpM5x9&ChoosePayment=ALL&EncryptType=1&ItemName=test';
-
-        // $page_id='';
-        // $buyer_id='';
-        // //訂單的商品資料
-        // foreach($order_detail as $order)
-        // {
-        //     array_push(Ecpay::i()->Send['Items'], array('Name' =>  $order->goods_name, 'Price' => (int) ( $order->goods_price),
-        //     'Currency' => "元", 'Quantity' => (int) ( $order->goods_num), 'URL' => "dedwed"));
-        //     $page_id=$order->page_id;
-        //     $buyer_id=$order->fb_id;
-        //     $sMacValue=$sMacValue.'#'. $order->goods_name;
-        // }
-        $sMacValue2=$sMacValue;
-        $sMacValue=$sMacValue.
-        '&MerchantID=2000132&MerchantTradeDate='.$MerchantTradeDate.
-        '&MerchantTradeNo='.$MerchantTradeNo.
-        '&PaymentType=aio&ReturnURL=http://livego.herokuapp.com/OrderResult&TotalAmount='.$TotalAmount.
-        '&TradeDesc='.$page_name.
-        '&HashIV=v77hoKGq4kWxNNIS';
-        //step3
-        $sMacValue=urlencode($sMacValue);        
-        //step4
-        $sMacValue = strtolower($sMacValue);
-        //step5
-        $sMacValue = str_replace('%2d', '-', $sMacValue);
-        $sMacValue = str_replace('%5f', '_', $sMacValue);
-        $sMacValue = str_replace('%2e', '.', $sMacValue);
-        $sMacValue = str_replace('%21', '!', $sMacValue);
-        $sMacValue = str_replace('%2a', '*', $sMacValue);
-        $sMacValue = str_replace('%28', '(', $sMacValue);
-        $sMacValue = str_replace('%29', ')', $sMacValue);
-
-        //step6        
-        $sMacValue=hash('sha256', $sMacValue);
-        //step7
-        $sMacValue = strtoupper($sMacValue);
-
-        //insert DB
-        $OrderDetail = new OrderDetail();
-        $OrderDetail->page_id = '111';
-        $OrderDetail->page_name = $page_name;
-        $OrderDetail->buyer_fbid = '111';
-        $OrderDetail->buyer_name = $buyer_name;
-        $OrderDetail->order_id = $MerchantTradeNo;
-        $OrderDetail->transaction_date = $MerchantTradeDate;
-        $OrderDetail->status = '0';
-        $OrderDetail->mac_value = $sMacValue;
-        $OrderDetail->note = $sMacValue2;
-        $OrderDetail->total_price = $TotalAmount;
-        $OrderDetail->buyer_address = $address;
-        $OrderDetail->buyer_phone = $phone;
-        $OrderDetail->save();
-
         //基本參數(請依系統規劃自行調整)
         Ecpay::i()->Send['ReturnURL'] = "http://livego.herokuapp.com/OrderResult";
         Ecpay::i()->Send['OrderResultURL'] = "http://livego.herokuapp.com/OrderResult" ; 
@@ -94,9 +35,39 @@ class ECPayController extends Controller
         Ecpay::i()->Send['TotalAmount'] = $TotalAmount; //交易金額
         Ecpay::i()->Send['TradeDesc'] = $page_name; //交易描述
         Ecpay::i()->Send['ChoosePayment'] = \ECPay_PaymentMethod::ALL; //付款方式
+        
+      
+       
 
-        array_push(Ecpay::i()->Send['Items'], array('Name' => 'test', 'Price' => 1,
-        'Currency' => "元", 'Quantity' => 1, 'URL' => "dedwed"));
+        $page_id='';
+        $buyer_id='';
+        //訂單的商品資料
+        foreach($order_detail as $order)
+        {
+            array_push(Ecpay::i()->Send['Items'], array('Name' =>  $order->goods_name, 'Price' => (int) ( $order->goods_price),
+            'Currency' => "元", 'Quantity' => (int) ( $order->goods_num), 'URL' => "dedwed"));
+            $page_id=$order->page_id;
+            $buyer_id=$order->fb_id;
+            
+        }
+
+        //insert DB
+        $OrderDetail = new OrderDetail();
+        $OrderDetail->page_id = $page_id;
+        $OrderDetail->page_name = $page_name;
+        $OrderDetail->buyer_fbid = $buyer_id;
+        $OrderDetail->buyer_name = $buyer_name;
+        $OrderDetail->order_id = $MerchantTradeNo;
+        $OrderDetail->transaction_date = $MerchantTradeDate;
+        $OrderDetail->note = $note;
+        $OrderDetail->total_price = $TotalAmount;
+        $OrderDetail->buyer_address = $address;
+        $OrderDetail->buyer_phone = $phone;
+        $OrderDetail->save();
+
+
+
+
         
         //Go to EcPay
         echo "緑界頁面導向中...";
@@ -108,127 +79,11 @@ class ECPayController extends Controller
     public function payReturn(Request $request)
     {
         $arFeedback = Ecpay::i()->CheckOutFeedback($request->all());
-        $return_status = Ecpay::i()->getResponse($arFeedback);
-        $arParameters = $request->all();
-        $HashKey = '5294y06JbISpM5x9';
-        $HashIV = 'v77hoKGq4kWxNNIS';
-
-
-        $MerchantID = $request->input('MerchantID');
-        $MerchantTradeNo = $request->input('MerchantTradeNo');
-        $RtnCode = $request->input('RtnCode');
-        $RtnMsg = $request->input('RtnMsg');
-        $TradeNo=$request->input('TradeNo');
-        $TradeAmt=$request->input('TradeAmt');
-        $PaymentDate=$request->input('PaymentDate');
-        $PaymentType=$request->input('PaymentType');
-        $PaymentTypeChargeFee=$request->input('PaymentTypeChargeFee');
-        $TradeDate=$request->input('TradeDate');
-        $SimulatePaid=$request->input('SimulatePaid');
-        $CheckMacValue=$request->input('CheckMacValue');
-
-        $szCheckMacValue = ECPay_CheckMacValue::generate($arParameters,$HashKey,$HashIV,1);
-
-        $OrderDetail = new OrderDetail();
-        $OrderDetail->page_id = $CheckMacValue;
-        $OrderDetail->page_name = $szCheckMacValue;
-        $OrderDetail->save();
-
-      
-
-
-        
-
-        // if($RtnCode==1)
-        // {
-        //     if($CheckMacValue==$sMacValue)
-        //     {
-        //         return '1|OK';
-        //     }
-        //     else
-        //     {
-        //         $OrderDetail = new OrderDetail();
-        //         $OrderDetail->page_id = 'mac_wrong';
-        //         $OrderDetail->save();
-        //     }
-        // }
-        // else
-        // {
-        //     $OrderDetail = new OrderDetail();
-        //     $OrderDetail->page_id = $RtnMsg;
-        //     $OrderDetail->save();
-        // }
-        
-
-        
+        echo $arFeedback;
+        echo Ecpay::i()->getResponse($arFeedback);
        
     }  
-
-      
-
-    
-   
 }
 
 
-class ECPay_CheckMacValue{
 
-    static function generate($arParameters = array(),$HashKey = '' ,$HashIV = '',$encType = 0){
-        $sMacValue = '' ;
-        
-        if(isset($arParameters))
-        {   
-            unset($arParameters['CheckMacValue']);
-            uksort($arParameters, array('ECPay_CheckMacValue','merchantSort'));
-               
-            // 組合字串
-            $sMacValue = 'HashKey=' . $HashKey ;
-            foreach($arParameters as $key => $value)
-            {
-                $sMacValue .= '&' . $key . '=' . $value ;
-            }
-            
-            $sMacValue .= '&HashIV=' . $HashIV ;    
-            
-            // URL Encode編碼     
-            $sMacValue = urlencode($sMacValue); 
-            
-            // 轉成小寫
-            $sMacValue = strtolower($sMacValue);        
-            
-            // 取代為與 dotNet 相符的字元
-            $sMacValue = str_replace('%2d', '-', $sMacValue);
-            $sMacValue = str_replace('%5f', '_', $sMacValue);
-            $sMacValue = str_replace('%2e', '.', $sMacValue);
-            $sMacValue = str_replace('%21', '!', $sMacValue);
-            $sMacValue = str_replace('%2a', '*', $sMacValue);
-            $sMacValue = str_replace('%28', '(', $sMacValue);
-            $sMacValue = str_replace('%29', ')', $sMacValue);
-                                
-            // 編碼
-            switch ($encType) {
-                case ECPay_EncryptType::ENC_SHA256:
-                    // SHA256 編碼
-                    $sMacValue = hash('sha256', $sMacValue);
-                break;
-                
-                case ECPay_EncryptType::ENC_MD5:
-                default:
-                // MD5 編碼
-                    $sMacValue = md5($sMacValue);
-            }
-
-                $sMacValue = strtoupper($sMacValue);
-        }  
-        
-        return $sMacValue ;
-    }
-    /**
-    * 自訂排序使用
-    */
-    public static function merchantSort($a,$b)
-    {
-        return strcasecmp($a, $b);
-    }
-
-}
