@@ -72,9 +72,9 @@ class ECPayController extends Controller
 
         //insert DB
         $OrderDetail = new OrderDetail();
-        $OrderDetail->page_id = $page_id;
+        $OrderDetail->page_id = '111';
         $OrderDetail->page_name = $page_name;
-        $OrderDetail->buyer_fbid = $buyer_id;
+        $OrderDetail->buyer_fbid = '111';
         $OrderDetail->buyer_name = $buyer_name;
         $OrderDetail->order_id = $MerchantTradeNo;
         $OrderDetail->transaction_date = $MerchantTradeDate;
