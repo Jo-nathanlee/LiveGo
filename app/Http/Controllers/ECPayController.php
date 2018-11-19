@@ -88,7 +88,7 @@ class ECPayController extends Controller
 
         //基本參數(請依系統規劃自行調整)
         Ecpay::i()->Send['ReturnURL'] = "http://livego.herokuapp.com/OrderResult";
-        Ecpay::i()->Send['OrderResultURL'] = "http://livego.herokuapp.com/OrderResult" ; 
+        //Ecpay::i()->Send['OrderResultURL'] = "http://livego.herokuapp.com/OrderResult" ; 
         Ecpay::i()->Send['MerchantTradeNo'] =$MerchantTradeNo; //訂單編號
         Ecpay::i()->Send['MerchantTradeDate'] =$MerchantTradeDate; //交易時間
         Ecpay::i()->Send['TotalAmount'] = $TotalAmount; //交易金額
