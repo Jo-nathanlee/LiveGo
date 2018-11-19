@@ -226,7 +226,7 @@ class ECPay_CheckMacValue{
     /**
     * 自訂排序使用
     */
-    static function merchantSort($a,$b)
+    public static function merchantSort($a,$b)
     {
         return strcasecmp($a, $b);
     }
