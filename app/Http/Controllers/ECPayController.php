@@ -109,6 +109,9 @@ class ECPayController extends Controller
     {
         $arFeedback = Ecpay::i()->CheckOutFeedback($request->all());
         $return_status = Ecpay::i()->getResponse($arFeedback);
+        $arParameters = $request->all();
+        $HashKey = '5294y06JbISpM5x9';
+        $HashIV = 'v77hoKGq4kWxNNIS';
 
 
         $MerchantID = $request->input('MerchantID');
@@ -124,19 +127,17 @@ class ECPayController extends Controller
         $SimulatePaid=$request->input('SimulatePaid');
         $CheckMacValue=$request->input('CheckMacValue');
 
-         
+        $szCheckMacValue = ECPay_CheckMacValue::generate($arParameters,$HashKey,$HashIV,1);
 
         $OrderDetail = new OrderDetail();
         $OrderDetail->page_id = $CheckMacValue;
+        $OrderDetail->page_name = $szCheckMacValue;
         $OrderDetail->save();
 
       
 
 
-        $sMacValue=OrderDetail::where('status', '=', '0')
-                 ->where('order_id', '=',$MerchantTradeNo ) 
-                 ->select('mac_value')
-                 ->get();
+        
 
         // if($RtnCode==1)
         // {
