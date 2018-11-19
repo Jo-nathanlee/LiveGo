@@ -32,25 +32,24 @@ class ECPayController extends Controller
         //加密
         //step1、2
         $sMacValue=
-        'HashKey=5294y06JbISpM5x9& ChoosePayment=ALL&EncryptType=1&ItemName=';
+        'HashKey=5294y06JbISpM5x9& ChoosePayment=ALL&EncryptType=1&ItemName= test';
 
-        $page_id='';
-        $buyer_id='';
-        //訂單的商品資料
-        foreach($order_detail as $order)
-        {
-            array_push(Ecpay::i()->Send['Items'], array('Name' =>  $order->goods_name, 'Price' => (int) ( $order->goods_price),
-            'Currency' => "元", 'Quantity' => (int) ( $order->goods_num), 'URL' => "dedwed"));
-            $page_id=$order->page_id;
-            $buyer_id=$order->fb_id;
-            $sMacValue=$sMacValue.'#'. $order->goods_name;
-            
-        }
+        // $page_id='';
+        // $buyer_id='';
+        // //訂單的商品資料
+        // foreach($order_detail as $order)
+        // {
+        //     array_push(Ecpay::i()->Send['Items'], array('Name' =>  $order->goods_name, 'Price' => (int) ( $order->goods_price),
+        //     'Currency' => "元", 'Quantity' => (int) ( $order->goods_num), 'URL' => "dedwed"));
+        //     $page_id=$order->page_id;
+        //     $buyer_id=$order->fb_id;
+        //     $sMacValue=$sMacValue.'#'. $order->goods_name;
+        // }
 
         $sMacValue=$sMacValue.
         '&MerchantID=2000132&MerchantTradeDate='.$MerchantTradeDate.
         '&MerchantTradeNo='.$MerchantTradeNo.
-        '&PaymentType=aio&ReturnURL=http://livego.herokuapp.com/OrderResult&TotalAmount='.$TotalAmount.
+        '&PaymentType=aio&ReturnURL=http://livego.herokuapp.com/OrderResult &TotalAmount='.$TotalAmount.
         '&TradeDesc='.$page_name.
         '&HashIV=v77hoKGq4kWxNNIS';
         //step3
@@ -96,6 +95,9 @@ class ECPayController extends Controller
         Ecpay::i()->Send['TradeDesc'] = $page_name; //交易描述
         Ecpay::i()->Send['EncryptType'] = 1;
         Ecpay::i()->Send['ChoosePayment'] = $this->GetPaymentWay($request->payway); //付款方式
+
+        array_push(Ecpay::i()->Send['Items'], array('Name' => 'test', 'Price' => 1,
+        'Currency' => "元", 'Quantity' => 1, 'URL' => "dedwed"));
         
         //Go to EcPay
         echo "緑界頁面導向中...";
