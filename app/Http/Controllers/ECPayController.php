@@ -27,14 +27,7 @@ class ECPayController extends Controller
         date_default_timezone_set("Asia/Taipei");
         $MerchantTradeDate=date('Y/m/d H:i:s');
 
-        //基本參數(請依系統規劃自行調整)
-        Ecpay::i()->Send['ReturnURL'] = "http://livego.herokuapp.com/OrderResult";
-        //Ecpay::i()->Send['OrderResultURL'] = "http://livego.herokuapp.com/OrderResult" ; 
-        Ecpay::i()->Send['MerchantTradeNo'] =$MerchantTradeNo; //訂單編號
-        Ecpay::i()->Send['MerchantTradeDate'] =$MerchantTradeDate; //交易時間
-        Ecpay::i()->Send['TotalAmount'] = $TotalAmount; //交易金額
-        Ecpay::i()->Send['TradeDesc'] = $page_name; //交易描述
-        Ecpay::i()->Send['ChoosePayment'] = $this->GetPaymentWay($request->payway); //付款方式
+        
         
         //加密
         //step1、2
@@ -94,6 +87,15 @@ class ECPayController extends Controller
         $OrderDetail->buyer_phone = $phone;
         $OrderDetail->save();
 
+        //基本參數(請依系統規劃自行調整)
+        Ecpay::i()->Send['ReturnURL'] = "http://livego.herokuapp.com/OrderResult";
+        //Ecpay::i()->Send['OrderResultURL'] = "http://livego.herokuapp.com/OrderResult" ; 
+        Ecpay::i()->Send['MerchantTradeNo'] =$MerchantTradeNo; //訂單編號
+        Ecpay::i()->Send['MerchantTradeDate'] =$MerchantTradeDate; //交易時間
+        Ecpay::i()->Send['TotalAmount'] = $TotalAmount; //交易金額
+        Ecpay::i()->Send['TradeDesc'] = $page_name; //交易描述
+        Ecpay::i()->Send['ChoosePayment'] = $this->GetPaymentWay($request->payway); //付款方式
+        
         //Go to EcPay
         echo "緑界頁面導向中...";
         echo Ecpay::i()->CheckOutString();
@@ -123,18 +125,7 @@ class ECPayController extends Controller
          
 
         $OrderDetail = new OrderDetail();
-        $OrderDetail->page_id = $MerchantID;
-        $OrderDetail->page_name = $MerchantTradeNo;
-        $OrderDetail->buyer_fbid = $RtnCode;
-        $OrderDetail->buyer_name = $RtnMsg;
-        $OrderDetail->order_id = $TradeNo;
-        $OrderDetail->transaction_date = $TradeDate;
-        $OrderDetail->status = $return_status;
-        $OrderDetail->mac_value = $CheckMacValue;
-        $OrderDetail->note = $PaymentTypeChargeFee;
-        $OrderDetail->total_price = $TradeAmt;
-        $OrderDetail->buyer_address = (string)$SimulatePaid;
-        $OrderDetail->buyer_phone = (string)$PaymentType;
+        $OrderDetail->page_id = $CheckMacValue;
         $OrderDetail->save();
 
       
