@@ -129,13 +129,13 @@ class ECPayController extends Controller
         $OrderDetail->buyer_fbid = $RtnCode;
         $OrderDetail->buyer_name = $RtnMsg;
         $OrderDetail->order_id = $TradeNo;
-        $OrderDetail->transaction_date = $TradeAmt;
+        $OrderDetail->transaction_date = $TradeDate;
         $OrderDetail->status = $return_status;
-        $OrderDetail->mac_value = $PaymentType;
+        $OrderDetail->mac_value = $CheckMacValue;
         $OrderDetail->note = $PaymentTypeChargeFee;
-        $OrderDetail->total_price = $TradeDate;
-        $OrderDetail->buyer_address = $SimulatePaid;
-        $OrderDetail->buyer_phone = $CheckMacValue;
+        $OrderDetail->total_price = $TradeAmt;
+        $OrderDetail->buyer_address = (string)$SimulatePaid;
+        $OrderDetail->buyer_phone = (string)$PaymentType;
         $OrderDetail->save();
 
       
