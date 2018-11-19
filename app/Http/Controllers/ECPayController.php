@@ -29,7 +29,7 @@ class ECPayController extends Controller
 
         //基本參數(請依系統規劃自行調整)
         Ecpay::i()->Send['ReturnURL'] = "http://livego.herokuapp.com/OrderResult";
-        Ecpay::i()->Send['ClientRedirectURL'] = "http://livego.herokuapp.com/buyer_index" ; 
+        Ecpay::i()->Send['OrderResultURL'] = "http://livego.herokuapp.com/OrderResult" ; 
         Ecpay::i()->Send['MerchantTradeNo'] =$MerchantTradeNo; //訂單編號
         Ecpay::i()->Send['MerchantTradeDate'] =$MerchantTradeDate; //交易時間
         Ecpay::i()->Send['TotalAmount'] = $TotalAmount; //交易金額
@@ -57,7 +57,7 @@ class ECPayController extends Controller
         $sMacValue=$sMacValue.
         '&MerchantID=2000132&MerchantTradeDate='.$MerchantTradeDate.
         '&MerchantTradeNo='.$MerchantTradeNo.
-        '&PaymentType=aio&ReturnURL=livego.herokuapp.com/checkout_return&TotalAmount='.$TotalAmount.
+        '&PaymentType=aio&ReturnURL=http://livego.herokuapp.com/OrderResult&TotalAmount='.$TotalAmount.
         '&TradeDesc='.$page_name.
         '&HashIV=v77hoKGq4kWxNNIS';
         //step3
@@ -130,7 +130,7 @@ class ECPayController extends Controller
         $OrderDetail->buyer_name = $RtnMsg;
         $OrderDetail->order_id = $TradeNo;
         $OrderDetail->transaction_date = $TradeAmt;
-        $OrderDetail->status = $PaymentDate;
+        $OrderDetail->status = $return_status;
         $OrderDetail->mac_value = $PaymentType;
         $OrderDetail->note = $PaymentTypeChargeFee;
         $OrderDetail->total_price = $TradeDate;
