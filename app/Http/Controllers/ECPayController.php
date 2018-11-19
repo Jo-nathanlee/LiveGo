@@ -103,8 +103,8 @@ class ECPayController extends Controller
 
     public function payReturn(Request $request)
     {
-        $arFeedback = Ecpay::i()->CheckOutFeedback($request->all());
-        $return_status = Ecpay::i()->getResponse($arFeedback);
+        // $arFeedback = Ecpay::i()->CheckOutFeedback($request->all());
+        // $return_status = Ecpay::i()->getResponse($arFeedback);
 
 
         $MerchantID = $request->input('MerchantID');
