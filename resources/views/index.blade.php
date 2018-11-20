@@ -45,7 +45,7 @@
         // console.log(ifrw);
         // console.log(ifrh);
         if(ifrw>ifrh){ //電腦版
-            $("#main-top #ifrFB iframe").css({"margin-top": wraph/4+"px"});
+            $("#main-top #ifrFB iframe").attr( "margin-top",  wraph/4+"px" );
             $("#main-top #ifrFB iframe").addClass( "w-100");
             
         }else{      //手機板
@@ -583,8 +583,6 @@
     </div>
 @stop 
 @section('footer')
-    <script defer src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script defer src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js " integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ "
         crossorigin="anonymous "></script>
