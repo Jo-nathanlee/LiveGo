@@ -19,6 +19,11 @@
   width: auto;
 }
 
+.iframe_phone{
+    width: 50%;
+    margin-left: 25%;
+}
+
 .opacity9{
   opacity:.9;
 }
