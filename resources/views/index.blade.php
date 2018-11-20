@@ -45,12 +45,12 @@
         // console.log(ifrw);
         // console.log(ifrh);
         if(ifrw>ifrh){ //電腦版
-            $("#main-top iframe").css({"width": "100%"});
+            $("#main-top #ifrFB iframe").css({"width": "100%"});
             $("#ifrFB").css({"margin-bottom":"-100%","margin-top": wrap * multiple / 3.45 });
             console.log("電腦")
             
         }else{      //手機板
-            $("#main-top iframe").css({"width": "50%","maring-left":"25%"});
+            $("#main-top #ifrFB iframe").css({"width": "50%","maring-left":"25%"});
             $("#ifrFB").css({"margin-bottom":"none","margin-top":"none"});
             console.log("手機")
         }
