@@ -28,10 +28,22 @@ class ECPayController extends Controller
         date_default_timezone_set("Asia/Taipei");
         $MerchantTradeDate=date('Y/m/d H:i:s');
 
-        //產生訂單
+        //基本參數(請依系統規劃自行調整)
+        Ecpay::i()->Send['ReturnURL'] = "http://livego.herokuapp.com/OrderResult";
+        //Ecpay::i()->Send['OrderResultURL'] = "http://livego.herokuapp.com/OrderResult" ; 
+        Ecpay::i()->Send['MerchantTradeNo'] =$MerchantTradeNo; //訂單編號
+        Ecpay::i()->Send['MerchantTradeDate'] =$MerchantTradeDate; //交易時間
+        Ecpay::i()->Send['TotalAmount'] = $TotalAmount; //交易金額
+        Ecpay::i()->Send['TradeDesc'] = $page_name; //交易描述
+        Ecpay::i()->Send['ChoosePayment'] = \ECPay_PaymentMethod::ALL; //付款方式
+        
+        //產生訂單----------------------------------------------------------------------------------------
         $item=1;
         $order_id;
         $order_time;
+        $page_id='';
+        $buyer_id='';
+        
         foreach($request->input('goods') as $goods){
             $values = preg_split("/[,]+/", $goods);
             $page_name=$values[0];
@@ -54,8 +66,10 @@ class ECPayController extends Controller
                 $order_time=date("Y-m-d H:i:s");
             }
 
-        
-
+            array_push(Ecpay::i()->Send['Items'], array('Name' =>  $goods_name, 'Price' => (int) ( $goods_price),
+            'Currency' => "元", 'Quantity' => (int) ( $goods_num), 'URL' => "dedwed"));
+            $page_id=$order->page_id;
+            $buyer_id=$order->fb_id;
 
             $CheckoutOrder_store = new CheckoutOrder();
             $CheckoutOrder_store->page_id = $page_id;
@@ -76,39 +90,15 @@ class ECPayController extends Controller
             $update_ShopOrder_OrderId = ShopOrder::where('uid', '=', $uid)->update(['order_id' => $order_id]);
 
             $item++; 
+        }
             //--------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-        //基本參數(請依系統規劃自行調整)
-        Ecpay::i()->Send['ReturnURL'] = "http://livego.herokuapp.com/OrderResult";
-        //Ecpay::i()->Send['OrderResultURL'] = "http://livego.herokuapp.com/OrderResult" ; 
-        Ecpay::i()->Send['MerchantTradeNo'] =$MerchantTradeNo; //訂單編號
-        Ecpay::i()->Send['MerchantTradeDate'] =$MerchantTradeDate; //交易時間
-        Ecpay::i()->Send['TotalAmount'] = $TotalAmount; //交易金額
-        Ecpay::i()->Send['TradeDesc'] = $page_name; //交易描述
-        Ecpay::i()->Send['ChoosePayment'] = \ECPay_PaymentMethod::ALL; //付款方式
-        
-      
        
 
-        $page_id='';
-        $buyer_id='';
+        
         //訂單的商品資料
         foreach($order_detail as $order)
         {
-            array_push(Ecpay::i()->Send['Items'], array('Name' =>  $order->goods_name, 'Price' => (int) ( $order->goods_price),
-            'Currency' => "元", 'Quantity' => (int) ( $order->goods_num), 'URL' => "dedwed"));
-            $page_id=$order->page_id;
-            $buyer_id=$order->fb_id;
+           
             
         }
 
