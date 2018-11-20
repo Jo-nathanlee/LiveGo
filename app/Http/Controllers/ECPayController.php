@@ -28,10 +28,20 @@ class ECPayController extends Controller
         date_default_timezone_set("Asia/Taipei");
         $MerchantTradeDate=date('Y/m/d H:i:s');
 
+        //取得fb_id
+        $arr_goods=$request->input('goods');
+        $temp=preg_split("/[,]+/", $arr_goods[0]);
+        $fb_id=$values[1];
+
+        //產生訂單號碼
+        $time_stamp=time();
+        $random_num=rand(10,99);
+        $order_id=$time_stamp.$random_num.substr($fb_id,0,8);
+
         //基本參數(請依系統規劃自行調整)
         Ecpay::i()->Send['ReturnURL'] = "http://livego.herokuapp.com/OrderResult";
         //Ecpay::i()->Send['OrderResultURL'] = "http://livego.herokuapp.com/OrderResult" ; 
-        Ecpay::i()->Send['MerchantTradeNo'] =$MerchantTradeNo; //訂單編號
+        Ecpay::i()->Send['MerchantTradeNo'] =$order_id; //訂單編號
         Ecpay::i()->Send['MerchantTradeDate'] =$MerchantTradeDate; //交易時間
         Ecpay::i()->Send['TotalAmount'] = $TotalAmount; //交易金額
         Ecpay::i()->Send['TradeDesc'] = $page_name; //交易描述
@@ -42,7 +52,8 @@ class ECPayController extends Controller
         $order_id;
         $order_time;
         $page_id='';
-        $buyer_id='';
+        $fb_id='';
+        $page_name='';
         
         foreach($request->input('goods') as $goods){
             $values = preg_split("/[,]+/", $goods);
@@ -60,16 +71,15 @@ class ECPayController extends Controller
             //產生訂單編號
             if($item==1)
             {
-                $time_stamp=time();
-                $random_num=rand(10,99);
-                $order_id=$time_stamp.$random_num.substr($fb_id,0,8);
+                // $time_stamp=time();
+                // $random_num=rand(10,99);
+                // $order_id=$time_stamp.$random_num.substr($fb_id,0,8);
                 $order_time=date("Y-m-d H:i:s");
             }
 
             array_push(Ecpay::i()->Send['Items'], array('Name' =>  $goods_name, 'Price' => (int) ( $goods_price),
             'Currency' => "元", 'Quantity' => (int) ( $goods_num), 'URL' => "dedwed"));
-            $page_id=$order->page_id;
-            $buyer_id=$order->fb_id;
+           
 
             $CheckoutOrder_store = new CheckoutOrder();
             $CheckoutOrder_store->page_id = $page_id;
@@ -95,18 +105,13 @@ class ECPayController extends Controller
        
 
         
-        //訂單的商品資料
-        foreach($order_detail as $order)
-        {
-           
-            
-        }
+
 
         //insert DB
         $OrderDetail = new OrderDetail();
         $OrderDetail->page_id = $page_id;
         $OrderDetail->page_name = $page_name;
-        $OrderDetail->buyer_fbid = $buyer_id;
+        $OrderDetail->buyer_fbid = $fb_id;
         $OrderDetail->buyer_name = $buyer_name;
         $OrderDetail->order_id = $MerchantTradeNo;
         $OrderDetail->transaction_date = $MerchantTradeDate;
