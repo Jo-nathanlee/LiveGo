@@ -44,12 +44,10 @@
             var wraph = $("#ifrFB").height();
             var maintop = $("#main-top").height();
             
-            console.log("wraph : " + wraph);
-            console.log("mainHeight: "+maintop);
         // console.log(ifrw);
         // console.log(ifrh);
         if(ifrw>ifrh){ //電腦版
-            $("#main-top #ifrFB iframe").attr( "margin-top",  maintop/6+"px" );
+            $("#YourElementID").css("margin-top",maintop/6+"px");
             $("#main-top #ifrFB iframe").addClass( "w-100");
             
         }else{      //手機板
