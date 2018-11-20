@@ -46,13 +46,11 @@
         // console.log(ifrh);
         if(ifrw>ifrh){ //電腦版
             $("#main-top #ifrFB iframe").css({"width": "100%"});
-            $("#ifrFB").css({"margin-top": wrap * multiple / 3.45 });
-            console.log("電腦")
+            $("#ifrFB").css({"margin-top": wraph/4 });
             
         }else{      //手機板
             $("#main-top #ifrFB iframe").addClass( "iframe_phone");
             $("#ifrFB").css({"margin-bottom":"none","margin-top":"none"});
-            console.log("手機")
         }
 
         }
