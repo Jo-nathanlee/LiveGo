@@ -51,7 +51,7 @@
             $("#main-top #ifrFB iframe").addClass( "w-100");
             
         }else{      //手機板
-            $("#main-top #ifrFB iframe").addClass( "iframe_phone");
+            $("#main-top #ifrFB iframe").addClass( "iframe_phone w-50");
             $("#ifrFB").css({"margin-bottom":"none","margin-top":"none"});
         }
 
