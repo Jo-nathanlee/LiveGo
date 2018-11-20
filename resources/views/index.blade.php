@@ -41,7 +41,7 @@
             var ifrw = $("#ifrFB iframe").attr("width");
             var ifrh = $("#ifrFB iframe").attr("height");
             var wrapw = $("#ifrFB").attr("width");
-            var wraph = $("#ifrFB").attr("height");
+            var wraph = $("#ifrFB").height();
         // console.log(ifrw);
         // console.log(ifrh);
         if(ifrw>ifrh){ //電腦版
