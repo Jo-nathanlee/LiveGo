@@ -45,7 +45,7 @@
         // console.log(ifrw);
         // console.log(ifrh);
         if(ifrw>ifrh){ //電腦版
-            $("#main-top #ifrFB iframe").attr( "margin-top",  wraph/4+"px" );
+            $("#main-top #ifrFB iframe").attr( "margin-top",  wraph/6+"px" );
             $("#main-top #ifrFB iframe").addClass( "w-100");
             
         }else{      //手機板
