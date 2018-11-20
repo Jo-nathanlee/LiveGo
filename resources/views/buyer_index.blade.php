@@ -52,7 +52,7 @@
             <?php $item=1;?>
             @foreach($shopping_cart as $page => $collection)
                 {{$page}}<hr>
-                <form action="{{ route('checkout') }}" method="POST">       
+                <form action="{{ route('checkout_form') }}" method="POST">       
                             {{ csrf_field() }}
                 <table class="table table-striped tablecart" id="table_cart">  
                 <thead>

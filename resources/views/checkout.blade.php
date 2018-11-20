@@ -132,26 +132,34 @@
                     </thead>
                     <tbody>
                         <?php
-                        //計算訂單總金額
-                        $all_total=0;
-                        //訂購人FB名稱
-                        $buyer_name="";
-                        $page_name="";
+                            $all_total=0;
                         ?>
-                        @foreach($order as $values )
+                         @foreach($order as $goods )
+                        <?php
+                        $values = preg_split("/[,]+/", $goods);
+                        $page_name=$values[0];
+                        $fb_id=$values[1];
+                        $name=$values[2];
+                        $goods_name=$values[3];
+                        $goods_price=$values[4];
+                        $goods_num=$values[5];
+                        $total_price=$values[6];
+                        $page_id=$values[7];
+                        $uid=$values[8];
+                        $pic_url=$values[9];
+                        //計算訂單總金額
+                        ?>
                         <tr>
                             <td>
-                                <img src="{{$values->pic_path}}"
+                                <img src="{{$pic_url}}"
                                 />
                             </td>
-                            <td>{{$values->goods_name}}</td>
-                            <td>{{$values->goods_price}}</td>
-                            <td>{{$values->goods_num}}</td>
-                            <td>{{$values->total_price}}</td>
+                            <td>{{$goods_name}}</td>
+                            <td>{{$goods_price}}</td>
+                            <td>{{$goods_num}}</td>
+                            <td>{{$total_price}}</td>
                             <?php
-                            $all_total+=(int)($values->total_price);
-                            $buyer_name=$values->name;
-                            $page_name=$values->page_name;
+                            $all_total+=(int)($total_price);
                             ?>
                         </tr>
                         @endforeach
@@ -201,8 +209,7 @@
                     </div>
                     <input type="hidden" name="total_amount" value="{{$all_total}}">
                     <input type="hidden" name="page_name" value="{{$page_name}}">
-                    <input type="hidden" name="order_id" value="{{$order_id}}">
-                    <input type="hidden" name="order_detail" value="{{json_encode($order)}}">
+                    <input type="hidden" name="goods" value="{{$order}}">
                     <div class="col-md-12 text-center">
                         <input type="submit" value="結帳" class="btn btn-secondary">
                     </div>

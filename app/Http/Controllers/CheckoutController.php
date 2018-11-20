@@ -95,10 +95,17 @@ class CheckoutController extends Controller
      public function CheckoutForm(Request $request)
      {
          if (Gate::allows('seller-only',  Auth::user())) {
-            $order_id=$request->input('order_id');
-            $query = CheckoutOrder::where('order_id', '=', $order_id)
-                    ->get();
-            return view('checkout', ['order' => $query,'order_id' => $order_id]);
+            if($request->has('goods')){
+             
+
+                return view('checkout', ['order' => $request->input('goods')]);
+            }
+            else
+            {
+                return redirect()->back()->with('alert', '請選擇商品進行結帳！');
+            }
+           
+            
          }
          else
          {

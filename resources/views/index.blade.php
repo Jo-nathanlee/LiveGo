@@ -40,8 +40,9 @@
         function resizeLiveVideo(){
             var ifrw = $("#ifrFB iframe").attr("width");
             var ifrh = $("#ifrFB iframe").attr("height");
-            var wrapw = $("#ifrFB").attr("width");
+
             var wraph = $("#ifrFB").height();
+            console.log("wraph : " + wraph);
         // console.log(ifrw);
         // console.log(ifrh);
         if(ifrw>ifrh){ //電腦版
