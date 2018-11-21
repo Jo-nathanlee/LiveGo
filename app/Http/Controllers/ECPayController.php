@@ -29,7 +29,7 @@ class ECPayController extends Controller
         $MerchantTradeDate=date('Y/m/d H:i:s');
 
         //取得fb_id
-        $arr_goods=$request->input('goods');
+        $arr_goods=json_decode($request->input('goods'));
         $temp=preg_split("/[,]+/", $arr_goods[0]);
         $fb_id=$temp[1];
 
