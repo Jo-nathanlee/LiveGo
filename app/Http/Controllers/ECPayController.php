@@ -31,7 +31,7 @@ class ECPayController extends Controller
         //取得fb_id
         $arr_goods=$request->input('goods');
         $temp=preg_split("/[,]+/", $arr_goods[0]);
-        $fb_id=$values[1];
+        $fb_id=$temp[1];
 
         //產生訂單號碼
         $time_stamp=time();
