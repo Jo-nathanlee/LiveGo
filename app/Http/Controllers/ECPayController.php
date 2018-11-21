@@ -44,7 +44,7 @@ class ECPayController extends Controller
         Ecpay::i()->Send['MerchantTradeNo'] =$order_id; //訂單編號
         Ecpay::i()->Send['MerchantTradeDate'] =$MerchantTradeDate; //交易時間
         Ecpay::i()->Send['TotalAmount'] = $TotalAmount; //交易金額
-        Ecpay::i()->Send['TradeDesc'] = $page_name; //交易描述
+        Ecpay::i()->Send['TradeDesc'] = 'LIVE GO'; //交易描述
         Ecpay::i()->Send['ChoosePayment'] = \ECPay_PaymentMethod::ALL; //付款方式
         
         //產生訂單----------------------------------------------------------------------------------------
