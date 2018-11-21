@@ -49,7 +49,6 @@ class ECPayController extends Controller
         
         //產生訂單----------------------------------------------------------------------------------------
         $item=1;
-        $order_id;
         $order_time;
         $page_id='';
         $fb_id='';
@@ -115,7 +114,7 @@ class ECPayController extends Controller
         $OrderDetail->page_name = $page_name;
         $OrderDetail->buyer_fbid = $fb_id;
         $OrderDetail->buyer_name = $buyer_name;
-        $OrderDetail->order_id = $MerchantTradeNo;
+        $OrderDetail->order_id = $order_id;
         $OrderDetail->transaction_date = $MerchantTradeDate;
         $OrderDetail->note = $note;
         $OrderDetail->total_price = $TotalAmount;
