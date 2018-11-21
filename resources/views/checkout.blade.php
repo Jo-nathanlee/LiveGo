@@ -209,7 +209,7 @@
                     </div>
                     <input type="hidden" name="total_amount" value="{{$all_total}}">
                     <input type="hidden" name="page_name" value="{{$page_name}}">
-                    <input type="hidden" name="goods" value="{{$order}}">
+                    <input type="hidden" name="goods" value="{{json_encode($order)}}">
                     <div class="col-md-12 text-center">
                         <input type="submit" value="結帳" class="btn btn-secondary">
                     </div>
