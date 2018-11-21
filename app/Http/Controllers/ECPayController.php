@@ -136,8 +136,15 @@ class ECPayController extends Controller
     public function payReturn(Request $request)
     {
         $arFeedback = Ecpay::i()->CheckOutFeedback($request->all());
-        //$response = Ecpay::i()->getResponse($arFeedback);
-        echo Ecpay::i()->getResponse($arFeedback);
+        $response = Ecpay::i()->getResponse($arFeedback);
+        if($response=='0|fail')
+        {
+            $update_StreamingOrder_OrderId = StreamingOrder::where('uid', '=', $uid)->update(['order_id' => null]);
+            $update_ShopOrder_OrderId = ShopOrder::where('uid', '=', $uid)->update(['order_id' => null]);
+        }
+        echo $response;
+
+        
     }  
 }
 
