@@ -54,8 +54,10 @@ class ECPayController extends Controller
         $page_id='';
         $fb_id='';
         $page_name='';
+
+        $input_gooods=json_decode($request->input('goods'));
         
-        foreach($request->input('goods') as $goods){
+        foreach($input_gooods as $goods){
             $values = preg_split("/[,]+/", $goods);
             $page_name=$values[0];
             $fb_id=$values[1];
