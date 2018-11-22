@@ -215,8 +215,6 @@
                                                             <B>得標清單</B>\
                                                             </li>");
                             }
-                            $("#goods_name").attr("disabled", false);
-                            $("#type").attr("disabled", false);
                             }
                         },
                         error: function(xhr, status, error) {
@@ -276,8 +274,6 @@
                                                             </li>");
                                 
                             }
-                            $("#goods_name").attr("disabled", false);
-                            $("#type").attr("disabled", false);
                             }
                             else
                             {
@@ -294,7 +290,8 @@
             }
             $("#time_end").removeClass("d-block").addClass("d-none");
             $("#time_start").removeClass("d-none").addClass("d-block");
-            
+            $("#goods_name").attr("disabled", false);
+            $("#type").attr("disabled", false);
         });
         
         //點擊確認後，將得標清單轉成array or json傳至後台存入資料庫
