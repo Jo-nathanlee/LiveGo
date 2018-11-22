@@ -380,48 +380,86 @@
     function bid_win(event) {
         if( $( "#time_start" ).hasClass("d-block"))
         {
-            
+            var type=$("#type").find("option:selected").val();
             
             var winner_name=$(event.target).siblings('.winner_name').val();
             var message_id=$(event.target).siblings('.message_id').val();
             var winner_id=$(event.target).siblings('.winner_id').val();
             var comment_time=$(event.target).siblings('.comment_time').val();
             var comment_message=$(event.target).siblings('.comment_message').val();
-
-            if(comment_message.includes("+"))
+            
+            if(type==1)
             {
-                var temp=comment_message.replace("+","");
-                if(isNaN(temp)==false)
+                if(comment_message.includes("+"))
                 {
-                    if($("#buyer_list>li").length==1)
+                    var temp=comment_message.replace("+","");
+                    if(isNaN(temp)==false)
                     {
-                        $( ".winner_list" ).after("<li class='sticky-bottom list-group-item border-top-0' button_confirm>\
-                                <div class='col-md-12 text-center'>\
-                                    <button type='button' id='confirm' class='btn btn-secondary  btn-block' >確定</button>\
-                                </div>\
-                            </li>");
+                        if($("#buyer_list>li").length==1)
+                        {
+                            $( ".winner_list" ).after("<li class='sticky-bottom list-group-item border-top-0' button_confirm>\
+                                    <div class='col-md-12 text-center'>\
+                                        <button type='button' id='confirm' class='btn btn-secondary  btn-block' >確定</button>\
+                                    </div>\
+                                </li>");
+                        }
+                        $( ".winner_list" ).after("<li class='list-group-item delete bid_winner'>\
+                                    <div id='bid-list-iformation ' aria-labelledby='Notice '>\
+                                        <a>\
+                                            <div class='text-truncate w-100 '>\
+                                                <div class='d-flex w-100 justify-content-between '>\
+                                                    <h6 class='mb-1 '>\
+                                                        <b>"+winner_name+"</b>\
+                                                    </h6>\
+                                                    <small class='text-muted float-right ' >\
+                                                        <button type='button' class='btn btn-xm btn-danger btn_delete' onclick='delete_getter(event)'>刪除</button>\
+                                                    </small>\
+                                                    <input type='hidden' id='fb_id' value='"+winner_id+"'>\
+                                                    <input type='hidden' id='message_time' value='"+comment_time+"'>\
+                                                    <input type='hidden' id='message_id' value='"+message_id+"'>\
+                                                <small id='comment'>"+comment_message+"</small></div>\
+                                            </div>\
+                                        </a>\
+                                    </div>\
+                                </li>");
                     }
-                    $( ".winner_list" ).after("<li class='list-group-item delete bid_winner'>\
-                                <div id='bid-list-iformation ' aria-labelledby='Notice '>\
-                                    <a>\
-                                        <div class='text-truncate w-100 '>\
-                                            <div class='d-flex w-100 justify-content-between '>\
-                                                <h6 class='mb-1 '>\
-                                                    <b>"+winner_name+"</b>\
-                                                </h6>\
-                                                <small class='text-muted float-right ' >\
-                                                    <button type='button' class='btn btn-xm btn-danger btn_delete' onclick='delete_getter(event)'>刪除</button>\
-                                                </small>\
-                                                <input type='hidden' id='fb_id' value='"+winner_id+"'>\
-                                                <input type='hidden' id='message_time' value='"+comment_time+"'>\
-                                                <input type='hidden' id='message_id' value='"+message_id+"'>\
-                                            <small id='comment'>"+comment_message+"</small></div>\
-                                        </div>\
-                                    </a>\
-                                </div>\
-                            </li>");
                 }
             }
+            if(type==2)
+            {
+                if(isNaN(comment_message)==false)
+                {
+                    if($("#buyer_list>li").length==1)
+                        {
+                            $( ".winner_list" ).after("<li class='sticky-bottom list-group-item border-top-0' button_confirm>\
+                                    <div class='col-md-12 text-center'>\
+                                        <button type='button' id='confirm' class='btn btn-secondary  btn-block' >確定</button>\
+                                    </div>\
+                                </li>");
+                        }
+                        $( ".winner_list" ).after("<li class='list-group-item delete bid_winner'>\
+                                    <div id='bid-list-iformation ' aria-labelledby='Notice '>\
+                                        <a>\
+                                            <div class='text-truncate w-100 '>\
+                                                <div class='d-flex w-100 justify-content-between '>\
+                                                    <h6 class='mb-1 '>\
+                                                        <b>"+winner_name+"</b>\
+                                                    </h6>\
+                                                    <small class='text-muted float-right ' >\
+                                                        <button type='button' class='btn btn-xm btn-danger btn_delete' onclick='delete_getter(event)'>刪除</button>\
+                                                    </small>\
+                                                    <input type='hidden' id='fb_id' value='"+winner_id+"'>\
+                                                    <input type='hidden' id='message_time' value='"+comment_time+"'>\
+                                                    <input type='hidden' id='message_id' value='"+message_id+"'>\
+                                                <small id='comment'>"+comment_message+"</small></div>\
+                                            </div>\
+                                        </a>\
+                                    </div>\
+                                </li>");
+                }
+            }
+           
+           
         }
     }
 
