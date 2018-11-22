@@ -208,15 +208,15 @@
                                     <button type='button' id='confirm' class='btn btn-secondary  btn-block' >確定</button>\
                                 </div>\
                             </li>");
-                            if($("#buyer_list>li").length==1)
+                            if($("#buyer_list>li").length==2)
                             {
                                 $("#buyer_list").children().remove();
                                 $( "#buyer_list" ).append("<li class='list-group-item list-group-item-action list-group-item-info winner_list'>\
                                                             <B>得標清單</B>\
                                                             </li>");
-                                $("#goods_name").attr("disabled", false);
-                                $("#type").attr("disabled", false);
                             }
+                            $("#goods_name").attr("disabled", false);
+                            $("#type").attr("disabled", false);
                             }
                         },
                         error: function(xhr, status, error) {
