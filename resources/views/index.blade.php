@@ -107,7 +107,7 @@
                                 <input type='hidden' id='comment_message' class='comment_message' value='"+comment.message+"'>\
                                     <button type='button' class='btn btn-xm btn-primary' id='reply' onclick='reply(event)'>\
                                         <i class='icofont icofont-speech-comments mr-1'></i>訊息</button>\
-                                    <button type='button' class='btn btn-xm btn-danger' id='bid_winBtn onclick='bid_win(event)' disabled><i class='icofont icofont-check-circled mr-1'></i>得標</button>\
+                                    <button type='button' class='btn btn-xm btn-danger' onclick='bid_win(event)'><i class='icofont icofont-check-circled mr-1'></i>得標</button>\
                                 </td></tr>");
                         });
                     }
@@ -126,13 +126,7 @@
                             //start->end
                             $("#time_start").removeClass("d-block").addClass("d-none");
                             $("#time_end").removeClass("d-none").addClass("d-block");
-                            //+1模式得標按鈕開啟功能
-                            var type=$("#type").find("option:selected").val();
-                            if(type==1)
-                            {
-                                console.log("fuk");
-                                $("#bid_winBtn").attr("disabled", false);
-                            }
+
                             $("#buyer_list").children().remove();
                             $( "#buyer_list" ).append("<li class='list-group-item list-group-item-action list-group-item-info winner_list'>\
                                 <B>得標清單</B>\
@@ -297,7 +291,6 @@
         
         //點擊確認後，將得標清單轉成array or json傳至後台存入資料庫
         $('#buyer_list').on('click','#confirm', function(){
-            $("#bid_winBtn").attr("disabled", true);
             var buyer = [];
 
             for (i = 2; i < $("#buyer_list>li").length; i++) {
@@ -474,7 +467,7 @@
             $( "#buyer_list" ).append("<li class='list-group-item list-group-item-action list-group-item-info winner_list'>\
                             <B>得標清單</B>\
                         </li>");
-                            $("#goods_name").attr("disabled", false);
+                        $("#goods_name").attr("disabled", false);
                         $("#type").attr("disabled", false);
         }
     }  
