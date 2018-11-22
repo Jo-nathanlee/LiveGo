@@ -103,11 +103,6 @@ class ECPayController extends Controller
             $item++; 
         }
             //--------------------------------------------------------------------------------------------------------------
-       
-
-        
-
-
         //insert DB
         $OrderDetail = new OrderDetail();
         $OrderDetail->page_id = $page_id;
