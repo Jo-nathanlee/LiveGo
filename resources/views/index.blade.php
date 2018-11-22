@@ -107,7 +107,7 @@
                                 <input type='hidden' id='comment_message' class='comment_message' value='"+comment.message+"'>\
                                     <button type='button' class='btn btn-xm btn-primary' id='reply' onclick='reply(event)'>\
                                         <i class='icofont icofont-speech-comments mr-1'></i>訊息</button>\
-                                    <button type='button' class='btn btn-xm btn-danger' onclick='bid_win(event)'><i class='icofont icofont-check-circled mr-1'></i>得標</button>\
+                                    <button type='button' class='btn btn-xm btn-danger' id='bid_winBtn onclick='bid_win(event)' disabled><i class='icofont icofont-check-circled mr-1'></i>得標</button>\
                                 </td></tr>");
                         });
                     }
@@ -126,7 +126,12 @@
                             //start->end
                             $("#time_start").removeClass("d-block").addClass("d-none");
                             $("#time_end").removeClass("d-none").addClass("d-block");
-
+                            //+1模式得標按鈕開啟功能
+                            var type=$("#type").find("option:selected").val();
+                            if(type==1)
+                            {
+                                $("#bid_winBtn").attr("disabled", false);
+                            }
                             $("#buyer_list").children().remove();
                             $( "#buyer_list" ).append("<li class='list-group-item list-group-item-action list-group-item-info winner_list'>\
                                 <B>得標清單</B>\
@@ -294,6 +299,7 @@
         
         //點擊確認後，將得標清單轉成array or json傳至後台存入資料庫
         $('#buyer_list').on('click','#confirm', function(){
+            $("#bid_winBtn").attr("disabled", true);
             var buyer = [];
 
             for (i = 2; i < $("#buyer_list>li").length; i++) {
@@ -390,34 +396,41 @@
             var winner_id=$(event.target).siblings('.winner_id').val();
             var comment_time=$(event.target).siblings('.comment_time').val();
             var comment_message=$(event.target).siblings('.comment_message').val();
-            if($("#buyer_list>li").length==1)
+
+            if(comment_message.includes("+"))
             {
-                $( ".winner_list" ).after("<li class='sticky-bottom list-group-item border-top-0' button_confirm>\
-                        <div class='col-md-12 text-center'>\
-                            <button type='button' id='confirm' class='btn btn-secondary  btn-block' >確定</button>\
-                        </div>\
-                    </li>");
-            }
-            $( ".winner_list" ).after("<li class='list-group-item delete bid_winner'>\
-                        <div id='bid-list-iformation ' aria-labelledby='Notice '>\
-                            <a>\
-                                <div class='text-truncate w-100 '>\
-                                    <div class='d-flex w-100 justify-content-between '>\
-                                        <h6 class='mb-1 '>\
-                                            <b>"+winner_name+"</b>\
-                                        </h6>\
-                                        <small class='text-muted float-right ' >\
-                                            <button type='button' class='btn btn-xm btn-danger btn_delete' onclick='delete_getter(event)'>刪除</button>\
-                                        </small>\
-                                        <input type='hidden' id='fb_id' value='"+winner_id+"'>\
-                                        <input type='hidden' id='message_time' value='"+comment_time+"'>\
-                                        <input type='hidden' id='message_id' value='"+message_id+"'>\
-                                    <small id='comment'>"+comment_message+"</small></div>\
+                var temp=comment_message.replace("+","");
+                if(isNaN(temp)==false)
+                {
+                    if($("#buyer_list>li").length==1)
+                    {
+                        $( ".winner_list" ).after("<li class='sticky-bottom list-group-item border-top-0' button_confirm>\
+                                <div class='col-md-12 text-center'>\
+                                    <button type='button' id='confirm' class='btn btn-secondary  btn-block' >確定</button>\
                                 </div>\
-                            </a>\
-                        </div>\
-                    </li>");
-            
+                            </li>");
+                    }
+                    $( ".winner_list" ).after("<li class='list-group-item delete bid_winner'>\
+                                <div id='bid-list-iformation ' aria-labelledby='Notice '>\
+                                    <a>\
+                                        <div class='text-truncate w-100 '>\
+                                            <div class='d-flex w-100 justify-content-between '>\
+                                                <h6 class='mb-1 '>\
+                                                    <b>"+winner_name+"</b>\
+                                                </h6>\
+                                                <small class='text-muted float-right ' >\
+                                                    <button type='button' class='btn btn-xm btn-danger btn_delete' onclick='delete_getter(event)'>刪除</button>\
+                                                </small>\
+                                                <input type='hidden' id='fb_id' value='"+winner_id+"'>\
+                                                <input type='hidden' id='message_time' value='"+comment_time+"'>\
+                                                <input type='hidden' id='message_id' value='"+message_id+"'>\
+                                            <small id='comment'>"+comment_message+"</small></div>\
+                                        </div>\
+                                    </a>\
+                                </div>\
+                            </li>");
+                }
+            }
         }
     }
 

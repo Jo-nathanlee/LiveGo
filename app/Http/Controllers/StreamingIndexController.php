@@ -365,39 +365,42 @@ class StreamingIndexController extends Controller
         } else { //+1制
             
             foreach ($buyer as $buyers){
-                $fb_id=$buyers['id'];
-               //產生uid
-                $time_stamp=time();
-                $random_num=rand(100,999);
-                $uid=$fb_id.time().$random_num;
-                //將留言+拿掉
-                $num = str_replace('+', "", $buyers['comment']);
-                $total_price=(int)($num)*(int)($goods_price);
-                //存入資料庫
-                $page_store = new StreamingOrder;
-                $page_store->page_id = $page_id;
-                $page_store->page_name = $page_name;
-                $page_store->fb_id = $buyers['id'];
-                $page_store->name = $buyers['name'];
-                $page_store->goods_name =  $goods_name;
-                $page_store->goods_price =  $goods_price;
-                $page_store->goods_num =  $num;
-                $page_store->total_price =  (string)$total_price;
-                $page_store->note =  $note;
-                $page_store->comment =  $buyers['comment'];
-                $page_store->created_time =  date("Y-m-d H:i:s");
-                $page_store->uid = $uid;
-                $page_store->pic_path = $pic_url;
-                $page_store->save();
+                if (strpos($buyers['comment'], '+') !== false) {
 
-                //私訊
-                try {
-                    $url='請至 '.'http://livego.herokuapp.com/buyer_index'.' 結帳，謝謝！';
-                    $query = '/' . $buyers['message_id'] . '/private_replies';
-                    $post = $this->api->post($query, array('message' => $url), $token);
-                    $post2 = $post->getGraphNode()->asArray();
-                } catch (FacebookSDKException $e) {
-                   return json_encode($e, true);
+                    $fb_id=$buyers['id'];
+                    //產生uid
+                     $time_stamp=time();
+                     $random_num=rand(100,999);
+                     $uid=$fb_id.time().$random_num;
+                     //將留言+拿掉
+                     $num = str_replace('+', "", $buyers['comment']);
+                     $total_price=(int)($num)*(int)($goods_price);
+                     //存入資料庫
+                     $page_store = new StreamingOrder;
+                     $page_store->page_id = $page_id;
+                     $page_store->page_name = $page_name;
+                     $page_store->fb_id = $buyers['id'];
+                     $page_store->name = $buyers['name'];
+                     $page_store->goods_name =  $goods_name;
+                     $page_store->goods_price =  $goods_price;
+                     $page_store->goods_num =  $num;
+                     $page_store->total_price =  (string)$total_price;
+                     $page_store->note =  $note;
+                     $page_store->comment =  $buyers['comment'];
+                     $page_store->created_time =  date("Y-m-d H:i:s");
+                     $page_store->uid = $uid;
+                     $page_store->pic_path = $pic_url;
+                     $page_store->save();
+     
+                     //私訊
+                     try {
+                         $url='請至 '.'http://livego.herokuapp.com/buyer_index'.' 結帳，謝謝！';
+                         $query = '/' . $buyers['message_id'] . '/private_replies';
+                         $post = $this->api->post($query, array('message' => $url), $token);
+                         $post2 = $post->getGraphNode()->asArray();
+                     } catch (FacebookSDKException $e) {
+                        return json_encode($e, true);
+                     }
                 }
             }
         }
