@@ -130,6 +130,7 @@
                             var type=$("#type").find("option:selected").val();
                             if(type==1)
                             {
+                                console.log("fuk");
                                 $("#bid_winBtn").attr("disabled", false);
                             }
                             $("#buyer_list").children().remove();
