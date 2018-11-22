@@ -208,7 +208,7 @@
                                     <button type='button' id='confirm' class='btn btn-secondary  btn-block' >確定</button>\
                                 </div>\
                             </li>");
-                            if($("#buyer_list>li").length==2)
+                            if($("#buyer_list>li").length==1)
                             {
                                 $("#buyer_list").children().remove();
                                 $( "#buyer_list" ).append("<li class='list-group-item list-group-item-action list-group-item-info winner_list'>\
