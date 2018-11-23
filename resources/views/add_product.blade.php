@@ -34,8 +34,7 @@
                                 <!-- {!! Form::uploadcare('image', null, array('data-crop' => '3:4')) !!} -->
                                     <input type="file" class="custom-file-input" name="image" id="imgInp" required>
                                     <div class="align-middle text-muted mb-4" id="div_text">
-                                            <i class="icofont icofont-plus align-middle"></i>
-                                            <P>點選新增照片</P>
+                                           
                                     </div>
                                 </div>
                             </div>

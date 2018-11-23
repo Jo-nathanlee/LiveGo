@@ -781,3 +781,8 @@ tfoot .input-group input{
    color: #777777;
 }
 
+.warp_img{
+  min-height: 18vh;
+  max-height: 18vh;
+}
+

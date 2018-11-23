@@ -77,7 +77,9 @@
                                 <!-- ------------- -->
                                 <div class="col-lg-2 col-md-3 col-sm-6">
                                     <div class="col-md-12 shadow  pb-1 mt-4">
-                                        <a href="{{route('EditProduct_show', ['key' =>$product->pic_url ])}}"><img src="{{$product->pic_url }}"></a>
+                                        <div class="warp_img">
+                                          <a href="{{route('EditProduct_show', ['key' =>$product->pic_url ])}}"><img src="{{$product->pic_url }}"></a>
+                                        </div>
                                         <P class="pt-2">
                                             {{$product->goods_name}}
                                         </P>
