@@ -772,3 +772,12 @@ tfoot .input-group input{
   margin-left: 250px;
 }
 
+#blah:after{
+  font-family: 'IcoFont' !important;
+   content: "\f0a5點選新增商品";
+   display: table-cell;
+   vertical-align: middle;
+   text-align: center;
+   color: #777777;
+}
+
