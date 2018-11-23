@@ -94,7 +94,7 @@ class SetpageController extends Controller//設定粉絲團
                         'page_token' => $page_token,
                     ]
                 );
-                return redirect('/seller_index');
+                return redirect()->back()->with('alert', '綁定成功！');
             }
             else
             {

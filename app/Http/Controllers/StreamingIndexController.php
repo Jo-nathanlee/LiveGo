@@ -365,15 +365,13 @@ class StreamingIndexController extends Controller
         } else { //+1制
             
             foreach ($buyer as $buyers){
-                if (strpos($buyers['comment'], '+') !== false) {
-
                     $fb_id=$buyers['id'];
                     //產生uid
                      $time_stamp=time();
                      $random_num=rand(100,999);
                      $uid=$fb_id.time().$random_num;
                      //將留言+拿掉
-                     $num = str_replace('+', "", $buyers['comment']);
+                     $num = $buyers['num'];
                      $total_price=(int)($num)*(int)($goods_price);
                      //存入資料庫
                      $page_store = new StreamingOrder;
@@ -401,7 +399,6 @@ class StreamingIndexController extends Controller
                      } catch (FacebookSDKException $e) {
                         return json_encode($e, true);
                      }
-                }
             }
         }
         return json_encode(count($buyer),true);

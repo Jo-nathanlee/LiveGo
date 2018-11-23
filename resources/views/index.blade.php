@@ -194,6 +194,8 @@
                                         <input type='hidden' id='fb_id' value='"+comment.id+"'>\
                                                 <input type='hidden' id='message_time' value='"+comment.message_time+"'>\
                                                 <input type='hidden' id='message_id' value='"+comment.message_id+"'>\
+                                                <input type='hidden' id='message_content' value='"+comment.message+"'>\
+                                                <input type='hidden' id='message_num' value='"+comment.num+"'>\
                                     </a>\
                                 </div>\
                             </li>");
@@ -244,7 +246,8 @@
                                                 </h6>\
                                             </div>\
                                             <small>"+goods_name+"得標價錢：</small>\
-                                            <small id='small_num'>"+data[0][0].price+"元得標</small>\
+                                            <small id='small_price'>"+data[0][0].price+"</small>\
+                                            <small>元得標</small>\
                                         </div>\
                                         <div class='align-middle m-auto '>\
                                             <button type='button' class='btn btn-xm btn-danger btn_delete' onclick='delete_getter(event)'>刪除</button>\
@@ -252,6 +255,8 @@
                                         <input type='hidden' id='fb_id' value='"+data[0][0].id+"'>\
                                                 <input type='hidden' id='message_time' value='"+data[0][0].message_time+"'>\
                                                 <input type='hidden' id='message_id' value='"+data[0][0].message_id+"'>\
+                                                <input type='hidden' id='message_content' value='"+comment.message+"'>\
+                                                <input type='hidden' id='message_num' value='1'>\
                                     </a>\
                                 </div>\
                             </li>");
@@ -295,12 +300,14 @@
 
             for (i = 2; i < $("#buyer_list>li").length; i++) {
                 var name = $("ul li:nth-child("+i+")").find("b").html();
-                var comment = $("ul li:nth-child("+i+")").find("#small_num").html();
+                var num = $("ul li:nth-child("+i+")").find("#message_num").val();
+                var comment = $("ul li:nth-child("+i+")").find("#message_content").val();
                 var id=$("ul li:nth-child("+i+")").find("#fb_id").val();
                 var message_id=$("ul li:nth-child("+i+")").find("#message_id").val();
                 tmp = {
                     'name': name,
                     'comment': comment,
+                    'num':num,
                     'id':id,
                     'message_id':message_id,
                 };
@@ -314,7 +321,7 @@
             var goods_price=$("#goods_price").val();
             if(type==2)
             {
-                goods_price= $("ul li:nth-child(2)").find("#small_num").html();
+                goods_price= $("ul li:nth-child(2)").find("#small_price").html();
             }
             if(isNaN(goods_price)&&type==1)
             {
