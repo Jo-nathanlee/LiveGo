@@ -119,7 +119,7 @@
         $( "#time_start" ).click(function() {
             var goods_name=$("#goods_name").val();
             alertify.confirm('系統訊息', '請確認商品名稱是否為'+goods_name+'?'
-        , function (evt, value) {
+        , function () {
                             //禁止修改名稱及+1最高價制
                             $("#goods_name").attr("disabled", true);
                             $("#type").attr("disabled", true);
