@@ -47,7 +47,7 @@
             closeButton:false
         },
         glossary:{
-            title:'AlertifyJS',
+            title:'系統訊息',
             ok: 'OK',
             cancel: 'Cancel',
             acccpt: 'Accept',

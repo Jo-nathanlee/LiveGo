@@ -514,6 +514,7 @@ tfoot .input-group input{
   background: rgb(243, 243, 243);
   height: 200px;
   width: 200px;
+  display: table;
 }
 
 #imgInp{
