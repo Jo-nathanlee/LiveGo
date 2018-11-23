@@ -77,39 +77,37 @@
                                 <!-- ------------- -->
                                 <div class="col-lg-2 col-md-3 col-sm-6">
                                     <div class="col-md-12 shadow  pb-1 mt-4">
-                                        <div class="warp_img">
-                                          <a href="{{route('EditProduct_show', ['key' =>$product->pic_url ])}}"><img src="{{$product->pic_url }}"></a>
+                                        <div class="card-img-top p-4 ">
+                                            <div class="imgwarp_pro" style="background: url('{{$product->pic_url }}');"  onclick="location.href='{{route('EditProduct_show', ['key' =>$product->pic_url ])}}';">                                        </div>
                                         </div>
-                                        <P class="pt-2">
-                                            {{$product->goods_name}}
-                                        </P>
-                                        <P class="now_page">
-                                            $ {{$product->goods_price}}
-                                        </P>
-                                        <div class="row">
-                                            <small class="col-md-12">
-                                                <small class="float-left">
+                                        <div class="card-body">
+                                            <P>
+                                                {{$product->goods_name}}
+                                            </P>
+                                            <P class="now_page">
+                                              $ {{$product->goods_price}}
+                                            </P>
+                                        </div>
+                                        <P>
+                                            <sapn class="float-left">
+                                                <samll>
                                                     <i class="icofont icofont-heart-alt text-danger"></i> 520
-                                                </small>
-                                                <small class="float-right">
+                                                </samll>
+                                            </sapn>
+                                            <sapn class="float-right">
+                                                <samll>
                                                     <i class="icofont icofont-star text-info"></i>
                                                     <i class="icofont icofont-star text-info"></i>
                                                     <i class="icofont icofont-star text-info"></i>
                                                     <i class="icofont icofont-star text-info"></i>
                                                     <i class="icofont icofont-star"></i> (573)
-                                                </small>
-                                            </small>
-                                        </div>
-                                        <div class="row">
-                                            <small class="col-md-12">
-                                                <small class="float-left">
-                                                    剩餘數量：2
-                                                </small>
-                                                <small class="float-right">
-                                                    銷售數量：68
-                                                </small>
-                                            </small>
-                                        </div>
+                                                </samll>
+                                            </sapn>
+                                        </P>
+                                        <P>
+                                             <sapn class="float-left"><samll>剩餘數量：2</samll></sapn>
+                                             <sapn class="float-right"><samll>銷售數量：68</samll></sapn>
+                                        </P>
                                     </div>
                                 </div>
 

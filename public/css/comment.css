@@ -787,3 +787,11 @@ tfoot .input-group input{
   max-height: 18vh;
 }
 
+.imgwarp_pro{
+  height: 25rem; 
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-size: 100%; 
+  background-position: center ;
+}
+
