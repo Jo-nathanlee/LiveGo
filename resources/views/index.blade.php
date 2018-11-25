@@ -301,9 +301,6 @@
             $("#time_end").removeClass("d-block").addClass("d-none");
             $("#time_start").removeClass("d-none").addClass("d-block");
             $("#goods_name").attr("disabled", false);
-            $("#goods_name").val("");
-            $("#note").val("");
-            $("#goods_price").val("");
             $("#type").attr("disabled", false);
         });
         
@@ -367,6 +364,9 @@
                         }
                 });
             }
+            $("#goods_name").val("");
+            $("#note").val("");
+            $("#goods_price").val("");
         });
     });
 
