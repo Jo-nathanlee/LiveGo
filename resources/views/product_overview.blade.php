@@ -78,7 +78,7 @@
                                 <div class="col-lg-2 col-md-3 col-sm-6">
                                     <div class="col-md-12 shadow  pb-1 mt-4">
                                         <div class="card-img-top p-4 ">
-                                            <div class="imgwarp_pro" style="background: url('{{$product->pic_url }}');"  onclick="location.href='{{route('EditProduct_show', ['key' =>$product->pic_url ])}}';">                                        </div>
+                                            <div  style="background: url('{{$product->pic_url }}');height: 25rem; background-repeat: no-repeat;background-size: cover;  background-position: center ;background-size: 100%;"  onclick="location.href='{{route('EditProduct_show', ['key' =>$product->pic_url ])}}';">                                        </div>
                                         </div>
                                         <div class="card-body">
                                             <P>
@@ -88,14 +88,14 @@
                                               $ {{$product->goods_price}}
                                             </P>
                                         </div>
-                                        <P>
+                                        <P style="font-size:0.75rem">
                                             <sapn class="float-left">
                                                 <samll>
                                                     <i class="icofont icofont-heart-alt text-danger"></i> 520
                                                 </samll>
                                             </sapn>
                                             <sapn class="float-right">
-                                                <samll>
+                                                <samll style="font-size:0.5rem">
                                                     <i class="icofont icofont-star text-info"></i>
                                                     <i class="icofont icofont-star text-info"></i>
                                                     <i class="icofont icofont-star text-info"></i>
@@ -104,9 +104,9 @@
                                                 </samll>
                                             </sapn>
                                         </P>
-                                        <P>
-                                             <sapn class="float-left"><samll>剩餘數量：2</samll></sapn>
-                                             <sapn class="float-right"><samll>銷售數量：68</samll></sapn>
+                                        <P style="font-size:0.75rem">
+                                             <sapn><samll>剩餘數量：2</samll></sapn>
+                                             <sapn><samll>銷售數量：68</samll></sapn>
                                         </P>
                                     </div>
                                 </div>

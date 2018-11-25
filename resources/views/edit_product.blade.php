@@ -30,8 +30,9 @@
                 <form action="{{ route('edit_product') }}" enctype="multipart/form-data" method="POST">
                     <div class="row mb-2">
                         <div class="col-md-5 ml-3 d-flex " id="pictureEdit">
+                        <input type="file" class="custom-file-input" name="image" id="imgInp" required>
                             <img src="img/59891.jpg" id="pictureEdit_upload" class="img-fluid img mh-100 m-auto" />
-                            <input type="hidden" value="{{$product->pic_url  }}">
+                            <input type="hidden" name="primary_key" value="{{$product->pic_url  }}">
                         </div>
                         <div class="pictureEdit_item invisible">
                             <i class="icofont icofont-edit"></i>
@@ -41,48 +42,32 @@
                     <h4>商品資訊</h4>
                     <div class="form-group">
                         <label for="exampleFormControlInput1"> 商品名稱</label>
-                        <input type="text" class="form-control form-control-sm">
+                        <input type="text" name="name" class="form-control form-control-sm">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1"> 商品分類</label>
-                        <select class="form-control form-control-sm" id="exampleFormControlSelect1">
-                            <option>運動用品</option>
-                            <option>男生衣著</option>
-                            <option>球類衣著</option>
-                            <option>球類用品</option>
-                            <option>?</option>
+                        <select class="form-control form-control-sm" name="category" id="exampleFormControlSelect1">
+                        @foreach($categories as $category)
+                            <option>{{$category->category}}</option>
+                        @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1"> 商品描述</label>
-                        <textarea class="form-control form-control-sm" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control form-control-sm" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
                     <h4>價格與庫存</h4>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">商品價格</label>
-                        <input type="text" class="form-control form-control-sm">
+                        <input type="text" name="price" class="form-control form-control-sm">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">商品數量</label>
-                        <input type="text" class="form-control form-control-sm">
+                        <input type="text" name="num" class="form-control form-control-sm">
                     </div>
-                    <h4>狀態</h4>
-                    <div class="form-group">
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-sm btn-secondary  active">
-                                <input type="radio" name="options" id="option1" autocomplete="off" checked>已上架
-                            </label>
-                            <label class="btn btn-sm btn-secondary">
-                                <input type="radio" name="options" id="option2" autocomplete="off" checked>已售完
-                            </label>
-                            <label class="btn btn-sm btn-secondary">
-                                <input type="radio" name="options" id="option3" autocomplete="off">暫停出售
-                            </label>
-                        </div>
-                    </div>
-                    <input class="btn btn-danger float-right ml-2" type="submit" value="刪除">
                     <input class="btn btn-info float-right" type="submit" value="送出">
                 </form>
+                <input class="btn btn-danger float-right ml-2" type="submit" value="刪除">
             </div>
         </div>
     </div>

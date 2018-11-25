@@ -72,17 +72,6 @@
                             <label for="exampleFormControlInput1">商品數量</label>
                             <input type="number" name="num" class="form-control form-control-sm">
                         </div>
-                        <h4>狀態</h4>
-                        <div class="form-group">
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-sm btn-secondary  active">
-                                    <input type="radio" name="status" id="option1" autocomplete="off" value="launched" checked >已上架
-                                </label>
-                                <label class="btn btn-sm btn-secondary">
-                                    <input type="radio" name="status" id="option2" autocomplete="off" value="sold" >已售完
-                                </label>
-                            </div>
-                        </div>
                         <input class="btn btn-info " type="submit" value="送出">
                     </form>
                     {!! Uploadcare::scriptTag() !!}

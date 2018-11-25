@@ -42,12 +42,18 @@ class MallProductController extends Controller
     public function EditProduct_show(Request $request)
     {
         if (Gate::allows('seller-only',  Auth::user())) {
+            $page = Page::where('fb_id', Auth::user()->fb_id)->first();
+            $page_id = $page->page_id;
+
+            $categories = ProductCategories::where('page_id', '=', $page_id)
+            ->get();
+
             $pic_url=$request->input('key');
 
             $query = Shop::where('pic_url', '=', $pic_url)
                     ->get();
             
-            return view('edit_product', ['product' => $query]);
+            return view('edit_product', ['product' => $query,'categories' => $categories]);
         }
         else
         {
@@ -59,7 +65,7 @@ class MallProductController extends Controller
     public function EditProduct(Request $request)
     {
         if (Gate::allows('seller-only',  Auth::user())) {
-            $pic_url=$request->input('key');
+            $pic_url=$request->input('primary_key');
 
             $query = Shop::where('pic_url', '=', $pic_url)
                     ->get();
