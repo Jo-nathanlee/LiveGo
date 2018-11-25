@@ -93,7 +93,7 @@
                     $.each(data, function(i, comment) {
                         $( "#tbody" ).append(
                         "<tr class='border-bottom'> <td>\
-                                    <img src='https://graph.facebook.com/"+comment.from.id+"/picture?type=small' />\
+                                    <img class='fb_pic' src='https://graph.facebook.com/"+comment.from.id+"/picture?type=small' />\
                                 </td>\
                                 <td><h6>"+comment.from.name+
                             "</h6>\
@@ -148,9 +148,10 @@
                             
                         },
                         error: function(xhr, status, error) {
-                            alert(error);
-                            alert(XMLHttpRequest.status);
-                            alert(XMLHttpRequest.responseText);
+                            // alert(error);
+                            // alert(XMLHttpRequest.status);
+                            // alert(XMLHttpRequest.responseText);
+                            alertify.alert("連線錯誤！請稍後再試！");
                         }
                 });
                 });
@@ -222,9 +223,10 @@
                             }
                         },
                         error: function(xhr, status, error) {
-                            alert(error);
-                            alert(XMLHttpRequest.status);
-                            alert(XMLHttpRequest.responseText);
+                            // alert(error);
+                            // alert(XMLHttpRequest.status);
+                            // alert(XMLHttpRequest.responseText);
+                            alertify.alert("連線錯誤！請稍後再試！");
                         }
                 });
             }
@@ -289,15 +291,19 @@
                             
                         },
                         error: function(xhr, status, error) {
-                            alert(error);
-                            alert(XMLHttpRequest.status);
-                            alert(XMLHttpRequest.responseText);
+                            // alert(error);
+                            // alert(XMLHttpRequest.status);
+                            // alert(XMLHttpRequest.responseText);
+                            alertify.alert("連線錯誤！請稍後再試！");
                         }
                 });
             }
             $("#time_end").removeClass("d-block").addClass("d-none");
             $("#time_start").removeClass("d-none").addClass("d-block");
             $("#goods_name").attr("disabled", false);
+            $("#goods_name").val("");
+            $("#note").val("");
+            $("#goods_price").val("");
             $("#type").attr("disabled", false);
         });
         
@@ -351,12 +357,13 @@
                             </li>");
                                 $("#goods_name").attr("disabled", false);
                             $("#type").attr("disabled", false);
-                            alert("得標訊息已私訊得標者!");
+                            alertify.alert("得標訊息已私訊得標者!");
                         },
                         error: function(XMLHttpRequest, status, error) {
-                            alert(error);
-                            alert(XMLHttpRequest.status);
-                            alert(XMLHttpRequest.responseText);
+                            // alert(error);
+                            // alert(XMLHttpRequest.status);
+                            // alert(XMLHttpRequest.responseText);
+                            alertify.alert("連線錯誤！請稍後再試！");
                         }
                 });
             }
@@ -382,9 +389,10 @@
                             //alert('回覆成功！');
                     },
                     error: function(xhr, status, error) {
-                        alert(error);
-                        alert(XMLHttpRequest.status);
-                        alert(XMLHttpRequest.responseText);
+                        // alert(error);
+                        // alert(XMLHttpRequest.status);
+                        // alert(XMLHttpRequest.responseText);
+                        alertify.alert("連線錯誤！請稍後再試！");
                     }
             });
     });
@@ -500,9 +508,10 @@
                 },
                 error: function(XMLHttpRequest, status, error) {
                     $(".emojionearea-editor").html("");
-                    alert(error);
-                    alert(XMLHttpRequest.status);
-                    alert(XMLHttpRequest.responseText);
+                    // alert(error);
+                    // alert(XMLHttpRequest.status);
+                    // alert(XMLHttpRequest.responseText);
+                    alertify.alert("連線錯誤！請稍後再試！");
                 }
             });
         }

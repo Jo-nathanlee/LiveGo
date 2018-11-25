@@ -14,9 +14,12 @@
 @stop
 @section('content')     
 @if (session('alert'))
-    <div class="alert alert-success">
+    <!-- <div class="alert alert-success">
         {{ session('alert') }}
-    </div>
+    </div> -->
+    <script>
+        message_danger();
+    </script>
 @endif       
         <div id="main" class="row">
             <div class="col-md-12">

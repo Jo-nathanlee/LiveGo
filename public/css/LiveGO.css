@@ -23,6 +23,12 @@
     margin-left: 25%;
 }
 
+.fb_pic
+{
+    width:80px;
+    height:80px;
+}
+
 .show_msg_center {
     position: fixed;
     top: 50%;
