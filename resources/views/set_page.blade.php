@@ -62,4 +62,6 @@
         crossorigin="anonymous"></script>
     <!-- My JS -->
     <script src="js/Live_go.js"></script>
+    <script defer src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 @stop
