@@ -105,8 +105,8 @@
                                             </sapn>
                                         </P>
                                         <P style="font-size:0.75rem">
-                                             <sapn><samll>剩餘數量：2</samll></sapn><br>
-                                             <sapn><samll>銷售數量：68</samll></sapn>
+                                            <br><sapn><samll>剩餘數量：2</samll></sapn>
+                                            <br><sapn><samll>銷售數量：68</samll></sapn>
                                         </P>
                                     </div>
                                 </div>
