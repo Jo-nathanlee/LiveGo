@@ -77,8 +77,8 @@
                                 <!-- ------------- -->
                                 <div class="col-lg-2 col-md-3 col-sm-6">
                                     <div class="col-md-12 shadow  pb-1 mt-4">
-                                        <div class="card-img-top p-4 ">
-                                            <div  style="background: url('{{$product->pic_url }}');height: 25rem; background-repeat: no-repeat;background-size: cover;  background-position: center ;background-size: 100%;"  onclick="location.href='{{route('EditProduct_show', ['key' =>$product->pic_url ])}}';">                                        </div>
+                                        <div class="card-img-top ">
+                                            <div  style="background: url('{{$product->pic_url }}');height: 12rem; background-repeat: no-repeat;background-size: cover;  background-position: center ;background-size: 100%;"  onclick="location.href='{{route('EditProduct_show', ['key' =>$product->pic_url ])}}';">                                        </div>
                                         </div>
                                         <div class="card-body">
                                             <P>
@@ -105,7 +105,7 @@
                                             </sapn>
                                         </P>
                                         <P style="font-size:0.75rem">
-                                             <sapn><samll>剩餘數量：2</samll></sapn>
+                                             <sapn><samll>剩餘數量：2</samll></sapn><br>
                                              <sapn><samll>銷售數量：68</samll></sapn>
                                         </P>
                                     </div>
