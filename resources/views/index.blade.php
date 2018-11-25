@@ -120,8 +120,8 @@
             var goods_name=$("#goods_name").val();
             if(goods_name!="")
             {
-                alertify.prompt('系統訊息','請確認商品名稱是否為'+goods_name+'?'
-                , function (evt, value) {
+                alertify.confirm('請確認商品名稱是否為'+goods_name+'?'
+                , function () {
                             //禁止修改名稱及+1最高價制
                             $("#goods_name").attr("disabled", true);
                             $("#type").attr("disabled", true);

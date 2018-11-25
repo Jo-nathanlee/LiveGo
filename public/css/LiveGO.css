@@ -23,6 +23,15 @@
     margin-left: 25%;
 }
 
+.show_msg_center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-family: Microsoft JhengHei;
+}
+
 .opacity9{
   opacity:.9;
 }
