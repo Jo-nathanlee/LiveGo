@@ -96,11 +96,11 @@
                     <div id="order_list" class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
-                            <hr>
                             @if(count($order)==0)
                                 <table id="table_nocontroler" class="table">
                                     <thead>
                                         <tr>
+                                            <th></th>
                                             <th>商品名稱</th>
                                             <th>商品價錢</th>
                                             <th>商品數量</th>
@@ -119,10 +119,11 @@
                             $total_amount='';
                             ?>
                             @foreach($order as $orderid => $collection)
-                            訂單編號：{{$orderid}}<hr> 
+                            訂單編號：{{$orderid}}
                                 <table id="table_nocontroler" class="table">
                                     <thead>
                                         <tr>
+                                            <th></th>
                                             <th>商品名稱</th>
                                             <th>商品價錢</th>
                                             <th>商品數量</th>
@@ -144,8 +145,8 @@
                                         $total_amount=$order_detail->total_price;
                                         ?>
                                     @endforeach
-                                    <hr>
                                     訂單成立時間：{{$created_time}}            總金額：{{$total_amount}} 
+                                    <hr>
                                     </tbody>
                                 </table>
                             @endforeach                          
