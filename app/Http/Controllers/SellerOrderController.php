@@ -142,9 +142,9 @@ class SellerOrderController extends Controller
      }
      //------------------------------------------------------------------------------------------------------------
 
-     public function downloadPDF($order)
+     public function downloadPDF(Request $request)
      {
-         
+         $order = $request->input('pdf_order');
          dd($order);
          $output = '';
          $order_status='';
