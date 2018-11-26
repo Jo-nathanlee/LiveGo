@@ -132,10 +132,16 @@ class ECPayController extends Controller
     {
         $arFeedback = Ecpay::i()->CheckOutFeedback($request->all());
         $response = Ecpay::i()->getResponse($arFeedback);
+        $order_id = $request->MerchantTradeNo;
         if($response=='0|fail')
         {
-            $update_StreamingOrder_OrderId = StreamingOrder::where('uid', '=', $uid)->update(['order_id' => null]);
-            $update_ShopOrder_OrderId = ShopOrder::where('uid', '=', $uid)->update(['order_id' => null]);
+            $cancel_CheckoutOrder = CheckoutOrder::where('order_id', '=', $order_id)->update(['order_status' => 'canceled']);
+            $update_StreamingOrder_OrderId = StreamingOrder::where('order_id', '=', $order_id)->update(['order_id' => null]);
+            $update_ShopOrder_OrderId = ShopOrder::where('order_id', '=', $order_id)->update(['order_id' => null]);
+        }
+        else
+        {
+            $update_CheckoutOrder = CheckoutOrder::where('order_id', '=', $order_id)->update(['order_status' => 'undelivered']);
         }
         echo $response;
 

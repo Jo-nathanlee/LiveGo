@@ -24,21 +24,27 @@ class SellerOrderController extends Controller
                     ->groupBy('order_id')
                     ->get();
             $countAllOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            ->distinct()
             ->count();
             $countUnpaidOrder=CheckoutOrder::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'unpaid')
+            ->distinct()
             ->count();
             $countUndeliveredOrder=CheckoutOrder::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'undelivered')
+            ->distinct()
             ->count();   
             $countDeliveredOrder=CheckoutOrder::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'delivered')
+            ->distinct()
             ->count();     
             $countFinishedOrder=CheckoutOrder::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'finished')
+            ->distinct()
             ->count();  
             $countCanceledOrder=CheckoutOrder::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'canceled')
+            ->distinct()
             ->count();          
                         
     
