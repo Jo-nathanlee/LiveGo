@@ -21,7 +21,7 @@ Route::get('/ecpayCheckout', 'ECPayController@checkout');
 Route::post('/OrderResult', 'ECPayController@payReturn');
 Route::get('/OrderResult', 'ECPayController@payReturn');
 
-Route::get('/downloadPDF','SellerOrderController@downloadPDF')->name('download');
+
 
 
 
@@ -101,6 +101,8 @@ Route::group(['middleware' => [
     Route::get('/seller_order_delivered', 'SellerOrderController@SellerOrderDelivered')->name('seller_order_delivered');
     Route::get('/seller_order_finished', 'SellerOrderController@SellerOrderFinished')->name('seller_order_finished');
     Route::get('/seller_order_canceled', 'SellerOrderController@SellerOrderCanceled')->name('seller_order_canceled');
+    //訂單PDF
+    Route::get('/downloadPDF','SellerOrderController@downloadPDF')->name('download');
    
     //設定直播拍賣商品
     Route::get('/SetProduct_show', 'StreamingProductController@SetStreamingProduct_show')->name('SetProduct_show');
