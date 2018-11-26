@@ -21,8 +21,7 @@ class SellerOrderController extends Controller
             $page_id = $page->page_id;
             $query = CheckoutOrder::all()
                     ->where('page_id', '=', $page_id)
-                    ->groupBy('order_id')
-                    ->get();
+                    ->groupBy('order_id');
             $countAllOrder=CheckoutOrder::where('page_id', '=', $page_id)
             ->distinct()
             ->count();
@@ -63,8 +62,7 @@ class SellerOrderController extends Controller
             $page_id = $page->page_id;
             $query = CheckoutOrder::all()
                     ->where('page_id', '=', $page_id)
-                    ->where('order_status', '=', 'unpaid')
-                    ->get();
+                    ->where('order_status', '=', 'unpaid');
     
             return view('seller_order', ['order' => $query]);
         }
@@ -81,8 +79,7 @@ class SellerOrderController extends Controller
             $page_id = $page->page_id;
             $query = CheckoutOrder::all()
                     ->where('page_id', '=', $page_id)
-                    ->where('order_status', '=', 'undelivered')
-                    ->get();
+                    ->where('order_status', '=', 'undelivered');
     
             return view('seller_order', ['order' => $query]);
         }
@@ -99,8 +96,7 @@ class SellerOrderController extends Controller
             $page_id = $page->page_id;
             $query = CheckoutOrder::all()
                     ->where('page_id', '=', $page_id)
-                    ->where('order_status', '=', 'delivered')
-                    ->get();
+                    ->where('order_status', '=', 'delivered');
     
             return view('seller_order', ['order' => $query]);
         }
@@ -117,8 +113,7 @@ class SellerOrderController extends Controller
             $page_id = $page->page_id;
             $query = CheckoutOrder::all()
                     ->where('page_id', '=', $page_id)
-                    ->where('order_status', '=', 'finished')
-                    ->get();
+                    ->where('order_status', '=', 'finished');
     
             return view('seller_order', ['order' => $query]);
         }
@@ -135,8 +130,7 @@ class SellerOrderController extends Controller
             $page_id = $page->page_id;
             $query = CheckoutOrder::all()
                     ->where('page_id', '=', $page_id)
-                    ->where('order_status', '=', 'canceled')
-                    ->get();
+                    ->where('order_status', '=', 'canceled');
     
             return view('seller_order', ['order' => $query]);
         }
