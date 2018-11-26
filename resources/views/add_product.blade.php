@@ -3,6 +3,30 @@
 @section('title','Live GO 新增商城商品')
 @section('heads')
 <script src="js/add_product.js"></script>
+<script>
+    function message_danger() {
+        // error_code 接收錯誤代碼 error_msg 接收錯誤提示訊息
+        var alert_div = document.createElement("div");
+        alert_div.setAttribute('id', 'data_info');
+        alert_div.setAttribute("class", "card-body align-middle h5 text-center bg-light");
+        alert_div.innerHTML =
+            "<strong><i class='icofont icofont-exclamation-circle h1'></i> </strong><div class='mt-4'>  {{ session('alert') }}</div>";
+        var warp_div = document.createElement("div");
+
+        warp_div.setAttribute("class", "card shadow show_msg_center  w-25 bg-light")
+        warp_div.append(alert_div);
+        $("html").append(warp_div);
+
+        setTimeout(
+            function () {
+                $("#data_info").fadeToggle(1000);
+            }, 2000);
+        setTimeout(
+            function () {
+                $("#data_info").parent().remove();
+            }, 3000);
+    }
+</script>
 @stop
 
 @section('wrapper')
@@ -17,9 +41,9 @@
 @stop
 @section('content')
 @if (session('alert'))
-    <div class="alert alert-success">
-        {{ session('alert') }}
-    </div>
+<script>
+    message_danger();
+</script>
 @endif
         <div class="main bg-light shadow">
             <h3 class="m-3">新增商城商品</h3>

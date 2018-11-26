@@ -20,7 +20,8 @@ class SellerOrderController extends Controller
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
             $query = CheckoutOrder::where('page_id', '=', $page_id)
-                    ->select('fb_id','name','goods_name','goods_price','goods_num','total_price','order_status')
+                    ->select('order_id','created_time','fb_id','name','goods_name','goods_price','goods_num','total_price','order_status')
+                    ->groupBy('order_id')
                     ->get();
             $countAllOrder=CheckoutOrder::where('page_id', '=', $page_id)
             ->count();

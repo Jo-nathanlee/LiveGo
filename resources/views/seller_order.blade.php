@@ -37,22 +37,22 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <nav class="nav nav-tabs">
-                                        <a class="nav-link selected" href="#!">全部</a>
-                                        <a class="nav-link tip" href="#!">
+                                        <a class="nav-link selected" href="{{ route('seller_order') }}">全部</a>
+                                        <a class="nav-link tip" href="{{ route('seller_order_unpaid') }}">
                                             <span data-tooltip="{{$countUnpaidOrder}}筆新訂單"> 未付款
                                                 <sub>{{$countUnpaidOrder}}</sub>
                                         </a>
-                                        <a class="nav-link tip" href="#!">
+                                        <a class="nav-link tip" href="{{ route('seller_order_undelivered') }}">
                                             <span data-tooltip="{{$countUndeliveredOrder}}筆新訂單">等待出貨
                                                 <sub>{{$countUndeliveredOrder}}</sub>
                                         </a>
-                                        <a class="nav-link tip" href="#!">
+                                        <a class="nav-link tip" href="{{ route('seller_order_delivered') }}">
                                             <span data-tooltip="{{$countDeliveredOrder}}筆新訂單">運送中
                                                 <sub>{{$countDeliveredOrder}}</sub>
                                         </a>
-                                        <a class="nav-link tip" href="#!">
+                                        <a class="nav-link tip" href="{{ route('seller_order_finished') }}">
                                             <span data-tooltip="{{$countFinishedOrder}}筆新訂單">已完成</a>
-                                        <a class="nav-link tip" href="#!">
+                                        <a class="nav-link tip" href="{{ route('seller_order_canceled') }}">
                                             <span data-tooltip="{{$countCanceledOrder}}筆新訂單">已取消
                                                 <sub>{{$countCanceledOrder}}</sub>
                                         </a>
@@ -68,18 +68,18 @@
                                         aria-controls="order_st_nav_md_list">訂單狀態</a>
                                     <div id="order_st_nav_md_list" class="collapse multi-collapse st_nav_md_list">
                                         <nav class="nav flex-column">
-                                            <a class="btn btn-block btn-light" href="#!">全部</a>
-                                            <a class="btn btn-block btn-light" href="#!">未付款
+                                            <a class="btn btn-block btn-light" href="{{ route('seller_order') }}">全部</a>
+                                            <a class="btn btn-block btn-light" href="{{ route('seller_order_unpaid') }}">未付款
                                                 <sub>{{$countUnpaidOrder}}</sub>
                                             </a>
-                                            <a class="btn btn-block btn-light" href="#!">等待出貨
+                                            <a class="btn btn-block btn-light" href="{{ route('seller_order_undelivered') }}">等待出貨
                                                 <sub>{{$countUndeliveredOrder}}</sub>
                                             </a>
-                                            <a class="btn btn-block btn-light" href="#!">運送中
+                                            <a class="btn btn-block btn-light" href="{{ route('seller_order_delivered') }}">運送中
                                                 <sub>{{$countDeliveredOrder}}</sub>
                                             </a>
-                                            <a class="btn btn-block btn-light" href="#!">已完成 </a>
-                                            <a class="btn btn-block btn-light" href="#!">已取消
+                                            <a class="btn btn-block btn-light" href="{{ route('seller_order_finished') }}">已完成 </a>
+                                            <a class="btn btn-block btn-light" href="{{ route('seller_order_canceled') }}">已取消
                                                 <sub>{{$countCanceledOrder}}</sub>
                                             </a>
                                         </nav>
@@ -96,33 +96,63 @@
                     <div id="order_list" class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
+                            <hr>
+                            @if(count($order)==0)
                                 <table id="table_nocontroler" class="table">
                                     <thead>
                                         <tr>
-                                            <th></th>
-                                            <th>訂單編號</th>
-                                            <th>訂單產生時間</th>
-                                            <th>物流</th>
-                                            <th>金額</th>
-                                            <th>狀態</th>
+                                            <th>商品名稱</th>
+                                            <th>商品價錢</th>
+                                            <th>商品數量</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <tr>
+                                            <td colspan="3">無資料</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            @else
+                            <?php 
+                            $order_status='';
+                            $created_time='';
+                            $total_amount='';
+                            ?>
+                            @foreach($order as $orderid => $collection)
+                            訂單編號：{{$orderid}}<hr> 
+                                <table id="table_nocontroler" class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>商品名稱</th>
+                                            <th>商品價錢</th>
+                                            <th>商品數量</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($collection as $order_detail)
                                         <tr id="order_item">
                                             <td scope="row">
                                                 <img id="order_img" src="img/livego.png" class="img-fluid img" alt="Responsive image">
                                             </td>
-                                            <td>10344250</td>
-                                            <td>8/7哭誒機壞逮</td>
-                                            <td>2018-08-07-19:50:51</td>
-                                            <td>87,877$</td>
-                                            <td>等待出貨</td>
+                                            <td>{{$order_detail->goods_name}}</td>
+                                            <td>{{$order_detail->goods_price}}</td>
+                                            <td>{{$order_detail->goods_num}}</td>
                                         </tr>
+                                        <?php 
+                                        $order_status=$order_detail->order_status;
+                                        $created_time=$order_detail->created_time;
+                                        $total_amount=$order_detail->total_price;
+                                        ?>
+                                    @endforeach
+                                    <hr>
+                                    訂單成立時間：{{$created_time}}            總金額：{{$total_amount}} 
                                     </tbody>
                                 </table>
-                                <!-- 頁碼 -->
-                                <span id="list_table_page" class="list_table_page"></span>
-                                <!-- 頁碼end -->
+                            @endforeach                          
+                            @endif
+                            <!-- 頁碼 -->
+                            <span id="list_table_page" class="list_table_page"></span>
+                            <!-- 頁碼end -->
                             </div>
                         </div>
                     </div>
