@@ -145,8 +145,10 @@
                                         $total_amount=$order_detail->total_price;
                                         ?>
                                     @endforeach
-                                    訂單成立時間：{{$created_time}}            總金額：{{$total_amount}} 
-                                    <hr>
+                                        <tr>
+                                            <td>訂單成立時間：{{$created_time}}</td>
+                                            <td>總金額：{{$total_amount}} </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             @endforeach                          
