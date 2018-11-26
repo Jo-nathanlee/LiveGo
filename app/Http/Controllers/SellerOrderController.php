@@ -149,7 +149,7 @@ class SellerOrderController extends Controller
          $order_status='';
          $created_time='';
          $total_amount='';
-         foreach($order as $orderid -> $collection)
+         foreach($order as $orderid => $collection)
          {
             $output .= '<table>
                            <thead>
