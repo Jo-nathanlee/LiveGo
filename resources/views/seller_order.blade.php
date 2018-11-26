@@ -155,7 +155,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <br><br>
+                                <hr><br><br>
                             @endforeach                          
                             @endif
                             <!-- 頁碼 -->
