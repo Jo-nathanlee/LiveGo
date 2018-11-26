@@ -118,6 +118,7 @@
                             $created_time='';
                             $total_amount='';
                             ?>
+                            <br>
                             @foreach($order as $orderid => $collection)
                             
                                 <table id="table_nocontroler" class="table">
@@ -154,7 +155,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <br>
+                                <br><br>
                             @endforeach                          
                             @endif
                             <!-- 頁碼 -->
