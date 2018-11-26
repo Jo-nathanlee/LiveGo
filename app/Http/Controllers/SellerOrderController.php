@@ -19,8 +19,8 @@ class SellerOrderController extends Controller
         if (Gate::allows('seller-only',  Auth::user())) {
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
-            $query = CheckoutOrder::where('page_id', '=', $page_id)
-                    ->select('order_id','created_time','fb_id','name','goods_name','goods_price','goods_num','total_price','order_status')
+            $query = CheckoutOrder::all()
+                    ->where('page_id', '=', $page_id)
                     ->groupBy('order_id')
                     ->get();
             $countAllOrder=CheckoutOrder::where('page_id', '=', $page_id)
@@ -61,9 +61,9 @@ class SellerOrderController extends Controller
         if (Gate::allows('seller-only',  Auth::user())) {
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
-            $query = CheckoutOrder::where('page_id', '=', $page_id)
-                    ->where()
-                    ->select('fb_id','name','goods_name','goods_price','goods_num','total_price','order_status')
+            $query = CheckoutOrder::all()
+                    ->where('page_id', '=', $page_id)
+                    ->where('order_status', '=', 'unpaid')
                     ->get();
     
             return view('seller_order', ['order' => $query]);
@@ -79,9 +79,9 @@ class SellerOrderController extends Controller
         if (Gate::allows('seller-only',  Auth::user())) {
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
-            $query = CheckoutOrder::where('page_id', '=', $page_id)
-                    ->where()
-                    ->select('fb_id','name','goods_name','goods_price','goods_num','total_price','order_status')
+            $query = CheckoutOrder::all()
+                    ->where('page_id', '=', $page_id)
+                    ->where('order_status', '=', 'undelivered')
                     ->get();
     
             return view('seller_order', ['order' => $query]);
@@ -97,9 +97,9 @@ class SellerOrderController extends Controller
         if (Gate::allows('seller-only',  Auth::user())) {
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
-            $query = CheckoutOrder::where('page_id', '=', $page_id)
-                    ->where()
-                    ->select('fb_id','name','goods_name','goods_price','goods_num','total_price','order_status')
+            $query = CheckoutOrder::all()
+                    ->where('page_id', '=', $page_id)
+                    ->where('order_status', '=', 'delivered')
                     ->get();
     
             return view('seller_order', ['order' => $query]);
@@ -115,9 +115,9 @@ class SellerOrderController extends Controller
         if (Gate::allows('seller-only',  Auth::user())) {
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
-            $query = CheckoutOrder::where('page_id', '=', $page_id)
-                    ->where()
-                    ->select('fb_id','name','goods_name','goods_price','goods_num','total_price','order_status')
+            $query = CheckoutOrder::all()
+                    ->where('page_id', '=', $page_id)
+                    ->where('order_status', '=', 'finished')
                     ->get();
     
             return view('seller_order', ['order' => $query]);
@@ -133,9 +133,9 @@ class SellerOrderController extends Controller
         if (Gate::allows('seller-only',  Auth::user())) {
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
-            $query = CheckoutOrder::where('page_id', '=', $page_id)
-                    ->where()
-                    ->select('fb_id','name','goods_name','goods_price','goods_num','total_price','order_status')
+            $query = CheckoutOrder::all()
+                    ->where('page_id', '=', $page_id)
+                    ->where('order_status', '=', 'canceled')
                     ->get();
     
             return view('seller_order', ['order' => $query]);

@@ -144,8 +144,6 @@ class ECPayController extends Controller
             $update_CheckoutOrder = CheckoutOrder::where('order_id', '=', $order_id)->update(['order_status' => 'undelivered']);
         }
         echo $response;
-
-        
     }  
 }
 
