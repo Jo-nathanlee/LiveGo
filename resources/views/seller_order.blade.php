@@ -151,7 +151,7 @@
                                     @endforeach
                                         <tr>
                                             <td>訂單成立時間：{{$created_time}}</td>
-                                            <td align="right">總金額：{{$total_amount}} </td>
+                                            <td colspan="3" align="right" >總金額：{{$total_amount}} </td>
                                         </tr>
                                     </tbody>
                                 </table>
