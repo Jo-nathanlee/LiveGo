@@ -21,6 +21,8 @@ Route::get('/ecpayCheckout', 'ECPayController@checkout');
 Route::post('/OrderResult', 'ECPayController@payReturn');
 Route::get('/OrderResult', 'ECPayController@payReturn');
 
+Route::get('/downloadPDF','SellerOrderController@downloadPDF')->name('download');
+
 
 
 

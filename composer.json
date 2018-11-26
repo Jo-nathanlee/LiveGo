@@ -16,6 +16,7 @@
         "laravel/tinker": "^1.0",
         "yish/imgur": "^1.0",
         "dompdf/dompdf": "^0.8"
+
     },
     "require-dev": {
         "filp/whoops": "^2.0",
