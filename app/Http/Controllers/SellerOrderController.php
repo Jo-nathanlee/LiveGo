@@ -151,7 +151,8 @@ class SellerOrderController extends Controller
          $total_amount='';
          foreach($order as $orderid => $collection)
          {
-            $output .= '<table>
+            $output .= '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                        <table>
                            <thead>
                            <tr>
                               <th>訂單編號：'.$orderid.'</th>
@@ -192,7 +193,7 @@ class SellerOrderController extends Controller
 
 
          $pdf = \App::make('dompdf.wrapper');
-         $pdf->loadHTML($output);
+         $pdf->loadHTML($output,'UTF-8');
          return $pdf->stream();
      }
 }
