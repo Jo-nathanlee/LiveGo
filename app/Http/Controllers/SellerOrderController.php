@@ -207,11 +207,11 @@ class SellerOrderController extends Controller
 
          $output .= '
          <tr>
-          <td style="border: 1px solid; padding:12px;">'.$customer->CustomerName.'</td>
-          <td style="border: 1px solid; padding:12px;">'.$customer->Address.'</td>
-          <td style="border: 1px solid; padding:12px;">'.$customer->City.'</td>
-          <td style="border: 1px solid; padding:12px;">'.$customer->PostalCode.'</td>
-          <td style="border: 1px solid; padding:12px;">'.$customer->Country.'</td>
+          <td style="border: 1px solid; padding:12px;">1</td>
+          <td style="border: 1px solid; padding:12px;">1</td>
+          <td style="border: 1px solid; padding:12px;">1</td>
+          <td style="border: 1px solid; padding:12px;">1</td>
+          <td style="border: 1px solid; padding:12px;">1</td>
          </tr>
          ';
 
