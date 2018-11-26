@@ -145,7 +145,6 @@ class SellerOrderController extends Controller
      public function downloadPDF(Request $request)
      {
          $order = $request->order;
-         dd($order);
          $output = '';
          $order_status='';
          $created_time='';
