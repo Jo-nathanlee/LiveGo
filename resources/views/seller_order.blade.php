@@ -167,7 +167,7 @@
                             </div>
                         </div>
                     </div>
-                    <a class="btn btn-secondary"  href="{{ route('download') }}">PDF</a>
+                    <!-- <a class="btn btn-secondary"  href="{{ route('download') }}">PDF</a> -->
                     <!-- 訂單列表end -->
                 </div>
             </div>
