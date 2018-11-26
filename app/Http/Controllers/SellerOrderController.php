@@ -144,78 +144,51 @@ class SellerOrderController extends Controller
 
      public function downloadPDF(Request $request)
      {
-         // $order = json_decode($request->input('pdf_order'));
-         // $output = '';
-         // $order_status='';
-         // $created_time='';
-         // $total_amount='';
-         // foreach($order as $orderid => $collection)
-         // {
-         //    $output .= '<table>
-         //                   <thead>
-         //                   <tr>
-         //                      <th>訂單編號：'.$orderid.'</th>
-         //                      <th></th>
-         //                      <th></th>
-         //                      <th></th>
-         //                   </tr>
-         //                   </thead>
-         //                   <tbody>
-         //                      <tr>
-         //                         <td></td>
-         //                         <td>商品名稱</td>
-         //                         <td>商品價錢</td>
-         //                         <td>商品數量</td>
-         //                      </tr>';
+         $order = json_decode($request->input('pdf_order'));
+         $output = '';
+         $order_status='';
+         $created_time='';
+         $total_amount='';
+         foreach($order as $orderid => $collection)
+         {
+            $output .= '<table>
+                           <thead>
+                           <tr>
+                              <th>訂單編號：'.$orderid.'</th>
+                              <th></th>
+                              <th></th>
+                           </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>商品名稱</td>
+                                 <td>商品價錢</td>
+                                 <td>商品數量</td>
+                              </tr>';
 
-         //    foreach($collection as $order_detail)
-         //    {
-         //       $output .= '<tr id="order_item">
-         //                      <td scope="row">
-         //                         <img id="order_img" src="'.$order_detail->pic_path.'" class="img-fluid img" alt="Responsive image">
-         //                      </td>
-         //                      <td>'.$order_detail->goods_name.'</td>
-         //                      <td>'.$order_detail->goods_price.'</td>
-         //                      <td>'.$order_detail->goods_num.'</td>
-         //                   </tr>';
+            foreach($collection as $order_detail)
+            {
+               $output .= '<tr id="order_item">
+                              <td>'.$order_detail->goods_name.'</td>
+                              <td>'.$order_detail->goods_price.'</td>
+                              <td>'.$order_detail->goods_num.'</td>
+                           </tr>';
 
-         //       $order_status=$order_detail->order_status;
-         //       $created_time=$order_detail->created_time;
-         //       $total_amount=$order_detail->total_price;
-         //    }
+               $order_status=$order_detail->order_status;
+               $created_time=$order_detail->created_time;
+               $total_amount=$order_detail->total_price;
+            }
 
-         //    $output .= ' <tr>
-         //                   <td>訂單成立時間：'.$created_time.'</td>
-         //                   <td colspan="3" align="right" >總金額：'.$total_amount.' </td>
-         //                 </tr>
-         //              </tbody>
-         //           </table>
-         //           <hr><br><br>';
-         // }
+            $output .= ' <tr>
+                           <td>訂單成立時間：'.$created_time.'</td>
+                           <td colspan="2" align="right" >總金額：'.$total_amount.' </td>
+                         </tr>
+                      </tbody>
+                   </table>
+                   <hr><br><br>';
+         }
         
-         $output = '
-         <h3 align="center">Customer Data</h3>
-         <table width="100%" style="border-collapse: collapse; border: 0px;">
-          <tr>
-        <th style="border: 1px solid; padding:12px;" width="20%">Name</th>
-        <th style="border: 1px solid; padding:12px;" width="30%">Address</th>
-        <th style="border: 1px solid; padding:12px;" width="15%">City</th>
-        <th style="border: 1px solid; padding:12px;" width="15%">Postal Code</th>
-        <th style="border: 1px solid; padding:12px;" width="20%">Country</th>
-       </tr>
-         ';  
 
-         $output .= '
-         <tr>
-          <td style="border: 1px solid; padding:12px;">1</td>
-          <td style="border: 1px solid; padding:12px;">1</td>
-          <td style="border: 1px solid; padding:12px;">1</td>
-          <td style="border: 1px solid; padding:12px;">1</td>
-          <td style="border: 1px solid; padding:12px;">1</td>
-         </tr>
-         ';
-
-         $output .= '</table>';
 
 
          $pdf = \App::make('dompdf.wrapper');
