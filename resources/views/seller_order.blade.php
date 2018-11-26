@@ -140,7 +140,7 @@
                                     @foreach($collection as $order_detail)
                                         <tr id="order_item">
                                             <td scope="row">
-                                                <img id="order_img" src="{{$order_detail->pic_path}}" class="img-fluid img" alt="Responsive image">
+                                                <img id="order_img" src="{{ $order_detail->pic_path }}" class="img-fluid img" alt="Responsive image">
                                             </td>
                                             <td>{{$order_detail->goods_name}}</td>
                                             <td>{{$order_detail->goods_price}}</td>
@@ -167,7 +167,7 @@
                             </div>
                         </div>
                     </div>
-                    <a class="btn btn-secondary"  href="{{ route('download','order'=>$order) }}">PDF</a>
+                    <a class="btn btn-secondary"  href="{{ route('download') }}">PDF</a>
                     <!-- 訂單列表end -->
                 </div>
             </div>
