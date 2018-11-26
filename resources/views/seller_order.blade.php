@@ -124,15 +124,18 @@
                                 <table id="table_nocontroler" class="table">
                                     <thead>
                                         <tr>
+                                            <th>訂單編號：{{$orderid}}</th>
                                             <th></th>
-                                            <th>商品名稱</th>
-                                            <th>商品價錢</th>
-                                            <th>商品數量</th>
+                                            <th></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>訂單編號：{{$orderid}}</td>
+                                            <td></td>
+                                            <td>商品名稱</td>
+                                            <td>商品價錢</td>
+                                            <td>商品數量</td>
                                         </tr>
                                     @foreach($collection as $order_detail)
                                         <tr id="order_item">
