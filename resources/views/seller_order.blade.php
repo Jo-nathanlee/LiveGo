@@ -119,7 +119,7 @@
                             $total_amount='';
                             ?>
                             @foreach($order as $orderid => $collection)
-                            訂單編號：{{$orderid}}
+                            
                                 <table id="table_nocontroler" class="table">
                                     <thead>
                                         <tr>
@@ -130,6 +130,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <tr>
+                                            <td>訂單編號：{{$orderid}}</td>
+                                        </tr>
                                     @foreach($collection as $order_detail)
                                         <tr id="order_item">
                                             <td scope="row">
@@ -147,7 +150,7 @@
                                     @endforeach
                                         <tr>
                                             <td>訂單成立時間：{{$created_time}}</td>
-                                            <td>總金額：{{$total_amount}} </td>
+                                            <td align="right">總金額：{{$total_amount}} </td>
                                         </tr>
                                     </tbody>
                                 </table>
