@@ -274,7 +274,7 @@ class SellerOrderController extends Controller
             $output .= '<table >
                            <thead>
                            <tr >
-                              <td colspan="3">訂單編號：'.$orderid.'</th>
+                              <th colspan="3">訂單編號：'.$orderid.'</th>
                            </tr>
                            </thead>
                            <tbody>
