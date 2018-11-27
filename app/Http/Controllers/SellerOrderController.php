@@ -311,7 +311,7 @@ class SellerOrderController extends Controller
 
 
          $pdf = new \TCPDF();
-         $pdf->SetCreator('懒人开发网');
+         $pdf->SetCreator('abc');
          $pdf->SetAuthor('懒人开发网');
          $pdf->SetTitle('TCPDF示例');
          $pdf->SetSubject('TCPDF示例');
@@ -349,8 +349,7 @@ class SellerOrderController extends Controller
          $pdf->writeHTML('<p style="color: red">我是第二行内容</p>');
          $pdf->writeHTML('<p>我是第三行内容</p>');
          $pdf->Ln(5);//换行符
-         $pdf->writeHTML('<p><a href="http://www.lanrenkaifa.com/" title="">懒人开发网</a></p>');
  
-         return $pdf->Output('t.pdf', 'I');
+         return $pdf->Output('t.pdf', 'D');
      }
 }
