@@ -345,6 +345,6 @@ class SellerOrderController extends Controller
          //$pdf->Write(0, $output, '', 0, 'L', true, 0, false, false, 0);
          // ---------------------------------------------------------
  
-         return $pdf->Output('訂單.pdf', 'D');
+         return $pdf->Output('訂單.pdf', 'I');
      }
 }
