@@ -77,10 +77,10 @@
     'italic' => $rootDir . '\lib\fonts\DejaVuSerif-Italic',
     'normal' => $rootDir . '\lib\fonts\DejaVuSerif',
   ),
-  'chinesefont' => array(
-    'normal' => $fontDir . '/ChineseFont',
-    'bold' => $fontDir . '/ChineseFont',
-    'italic' => $fontDir . '/ChineseFont',
-    'bold_italic' => $fontDir . '/ChineseFont',
+  '\'wt011\'' => array(
+    'normal' => $fontDir . '/wt011',
+    'bold' => $fontDir . '/wt011',
+    'italic' => $fontDir . '/wt011',
+    'bold_italic' => $fontDir . '/wt011',
   ),
 ) ?>

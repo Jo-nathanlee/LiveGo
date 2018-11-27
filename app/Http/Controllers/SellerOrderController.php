@@ -154,7 +154,7 @@ class SellerOrderController extends Controller
             $output .= '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
                         <style>
                         .font-zh {
-                           font-family: "sans-serif"
+                           font-family: "wt011"
                         }
                         </style>
                         <table class="font-zh">
