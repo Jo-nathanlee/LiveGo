@@ -199,7 +199,9 @@ class SellerOrderController extends Controller
 
          //$pdf = \App::make('dompdf.wrapper');
          $dompdf->loadHTML($output);
+         $dompdf->setPaper('A4', 'landscape');
+         $dompdf->set_option('defaultFont', 'Courier'); 
          $dompdf->render();
-         return $dompdf->stream(null, ['Attachment' => 0]);
+         return $dompdf->stream(null, ['Attachment' => 1]);
      }
 }
