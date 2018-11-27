@@ -92,7 +92,6 @@
 
                     </div>
                     <!-- 訂單列表 -->
-                    <a style="display: block;text-align: right;" class="btn btn-secondary"  href="{{ route('download',['pdf_order' => json_encode($order)]) }}">PDF</a>
                     <div id="order_list" class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
@@ -164,6 +163,7 @@
                             <!-- 頁碼 -->
                             <span id="list_table_page" class="list_table_page"></span>
                             <!-- 頁碼end -->
+                            <center><a class="btn btn-secondary"  href="{{ route('download',['pdf_order' => json_encode($order)]) }}">PDF</a></center>
                             </div>
                         </div>
                     </div>
