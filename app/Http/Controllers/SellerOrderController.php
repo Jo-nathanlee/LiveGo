@@ -63,7 +63,8 @@ class SellerOrderController extends Controller
             $page_id = $page->page_id;
             $query = CheckoutOrder::all()
                     ->where('page_id', '=', $page_id)
-                    ->where('order_status', '=', 'unpaid');
+                    ->where('order_status', '=', 'unpaid')
+                    ->groupBy('order_id');
 
             $countAllOrder=CheckoutOrder::where('page_id', '=', $page_id)
             ->distinct()
@@ -104,7 +105,8 @@ class SellerOrderController extends Controller
             $page_id = $page->page_id;
             $query = CheckoutOrder::all()
                     ->where('page_id', '=', $page_id)
-                    ->where('order_status', '=', 'undelivered');
+                    ->where('order_status', '=', 'undelivered')
+                    ->groupBy('order_id');
             
             $countAllOrder=CheckoutOrder::where('page_id', '=', $page_id)
             ->distinct()
@@ -145,7 +147,8 @@ class SellerOrderController extends Controller
             $page_id = $page->page_id;
             $query = CheckoutOrder::all()
                     ->where('page_id', '=', $page_id)
-                    ->where('order_status', '=', 'delivered');
+                    ->where('order_status', '=', 'delivered')
+                    ->groupBy('order_id');
             
             $countAllOrder=CheckoutOrder::where('page_id', '=', $page_id)
             ->distinct()
@@ -186,7 +189,8 @@ class SellerOrderController extends Controller
             $page_id = $page->page_id;
             $query = CheckoutOrder::all()
                     ->where('page_id', '=', $page_id)
-                    ->where('order_status', '=', 'finished');
+                    ->where('order_status', '=', 'finished')
+                    ->groupBy('order_id');
 
             $countAllOrder=CheckoutOrder::where('page_id', '=', $page_id)
             ->distinct()
@@ -227,7 +231,8 @@ class SellerOrderController extends Controller
             $page_id = $page->page_id;
             $query = CheckoutOrder::all()
                     ->where('page_id', '=', $page_id)
-                    ->where('order_status', '=', 'canceled');
+                    ->where('order_status', '=', 'canceled')
+                    ->groupBy('order_id');
 
             $countAllOrder=CheckoutOrder::where('page_id', '=', $page_id)
             ->distinct()
