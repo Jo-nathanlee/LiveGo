@@ -68,7 +68,7 @@
                             <div class="row">
                                 <div id="blacklist_search" class="col-10 col-md-10 -secondary form-group search">
                                     <div class="input-group mb-2 mr-sm-2">
-                                        <input class="form-control" type="text" placeholder="黑名單搜尋 ex:黃文怡">
+                                        <input class="form-control" type="text" placeholder="">
                                         <div class="input-group-append">
                                             <div class="input-group-text btn">
                                                 <i class="icofont icofont-search"></i>
@@ -177,13 +177,13 @@
                                     <tbody>
                                         <tr id="blacklist_item">
                                             <td scope="row">
-                                                <img id="blacklist_img" src="img/livego.png" class="img-fluid img" alt="Responsive image">
+                                                <img id="blacklist_img" src="img/livego.png" class="img-fluid img" style="height:64px;width:64px">
                                             </td>
                                             <td>10344250</td>
                                             <td>黃文怡</td>
-                                            <td>2017-10-27-22:00:27</td>
-                                            <td>2018-08-07-19:50:51</td>
-                                            <td>噁男</td>
+                                            <td><small>2017-10-27-22:00:27</small></td>
+                                            <td><small>2018-08-07-19:50:51</small></td>
+                                            <td>惡意棄標</td>
                                             <td>12次</td>
                                             <td>列入</td>
                                             <td><button class="btn btn-light">解除</button></td>

@@ -63,7 +63,7 @@
                             @foreach($winner as $winner)
                                 <tr>
                                     <td>{{$winner->name}}</td>
-                                    <td> <img id="order_img" src="{{$winner->pic_path}}" style="height:64px;width:64px" ></td>
+                                    <td> <img id="order_img" src="{{$winner->pic_path}}" style="height:50px;width:50px" ></td>
                                     <td>{{$winner->goods_name}}</td>
                                     <td>{{$winner->goods_price}}</td>
                                     <td>{{$winner->goods_num}}</td>
