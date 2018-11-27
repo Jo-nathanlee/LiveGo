@@ -383,13 +383,16 @@ class SellerOrderController extends Controller
                               </tr>';
          foreach($query as $order => $collection)
          {
-            $output .= '<tr>
-            <td >'.$collection->name.'</td>
-            <td >'.$collection->goods_name.'</td>
-            <td>'.$collection->goods_price.'</td>
-            <td>'.$collection->goods_num.'</td>
-            </tr>';
-            $total_amount+=(int)($collection->total_price);
+            foreach($collection as $order_detail)
+            {
+               $output .= '<tr>
+               <td >'.$order_detail->name.'</td>
+               <td >'.$order_detail->goods_name.'</td>
+               <td>'.$order_detail->goods_price.'</td>
+               <td>'.$order_detail->goods_num.'</td>
+               </tr>';
+               $total_amount+=(int)($order_detail->total_price);
+            }
          }
 
          $output .= ' <tr >
