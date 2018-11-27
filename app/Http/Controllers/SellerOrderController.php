@@ -363,7 +363,7 @@ class SellerOrderController extends Controller
          $query = CheckoutOrder::all()
          ->where('order_id', '=', $orderid);
 
-         dd($query);
+        
 
          $output = '';
          $order_status='';
@@ -386,12 +386,12 @@ class SellerOrderController extends Controller
          foreach($query as $order)
          {
             $output .= '<tr>
-            <td >'.$order_detail->name.'</td>
-            <td >'.$order_detail->goods_name.'</td>
-            <td>'.$order_detail->goods_price.'</td>
-            <td>'.$order_detail->goods_num.'</td>
+            <td >'.$order->name.'</td>
+            <td >'.$order->goods_name.'</td>
+            <td>'.$order->goods_price.'</td>
+            <td>'.$order->goods_num.'</td>
             </tr>';
-            $total_amount+=(int)($order_detail->total_price);
+            $total_amount+=(int)($order->total_price);
          }
 
          $output .= ' <tr >
