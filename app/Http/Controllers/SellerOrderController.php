@@ -8,6 +8,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use TCPDF;
 
 
 
@@ -310,7 +311,7 @@ class SellerOrderController extends Controller
 
 
 
-         $pdf = new \TCPDF();
+         $pdf = new TCPDF();
          $pdf->SetCreator('abc');
          $pdf->SetAuthor('懒人开发网');
          $pdf->SetTitle('TCPDF示例');
@@ -339,8 +340,7 @@ class SellerOrderController extends Controller
          // set default font subsetting mode
          $pdf->setFontSubsetting(true);
  
-         //设置字体 stsongstdlight支持中文
-         $pdf->SetFont('stsongstdlight', '', 14);
+         $pdf->setFont('cid0cs', '', 14);
  
          //第一页
          $pdf->AddPage();
