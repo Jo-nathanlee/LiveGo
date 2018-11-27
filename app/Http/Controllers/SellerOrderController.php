@@ -311,45 +311,49 @@ class SellerOrderController extends Controller
 
 
 
-         $pdf = new TCPDF();
-         $pdf->SetCreator('abc');
-         $pdf->SetAuthor('懒人开发网');
-         $pdf->SetTitle('TCPDF示例');
-         $pdf->SetSubject('TCPDF示例');
-         $pdf->SetKeywords('TCPDF, PDF, PHP');
- 
-         // 设置页眉和页脚信息
-         $pdf->SetHeaderData('tcpdf_logo.jpg', 30, 'LanRenKaiFA.com', '学会偷懒，并懒出效率！', [0, 64, 255], [0, 64, 128]);
-         $pdf->setFooterData([0, 64, 0], [0, 64, 128]);
- 
-         // 设置页眉和页脚字体
-         $pdf->setHeaderFont(['stsongstdlight', '', '10']);
-         $pdf->setFooterFont(['helvetica', '', '8']);
- 
-         // 设置默认等宽字体
-         $pdf->SetDefaultMonospacedFont('courier');
- 
-         // 设置间距
-         $pdf->SetMargins(15, 15, 15);//页面间隔
-         $pdf->SetHeaderMargin(5);//页眉top间隔
-         $pdf->SetFooterMargin(10);//页脚bottom间隔
- 
-         // 设置分页
-         $pdf->SetAutoPageBreak(true, 25);
- 
-         // set default font subsetting mode
-         $pdf->setFontSubsetting(true);
- 
-         $pdf->setFont('cid0cs', '', 14);
- 
-         //第一页
+         $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+         // set document information
+         $pdf->SetCreator(PDF_CREATOR);
+         $pdf->SetAuthor('Nicola Asuni');
+         $pdf->SetTitle('TCPDF Example 038');
+         $pdf->SetSubject('TCPDF Tutorial');
+         $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+         // set default header data
+         $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 038', PDF_HEADER_STRING);
+         // set header and footer fonts
+         $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+         $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+         // set default monospaced font
+         $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+         // set margins
+         $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+         $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+         $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+         // set auto page breaks
+         $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+         // set image scale factor
+         $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+         // set some language-dependent strings (optional)
+         if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
+            require_once(dirname(__FILE__).'/lang/eng.php');
+            $pdf->setLanguageArray($l);
+         }
+         // ---------------------------------------------------------
+         // set font
+         $pdf->SetFont('helvetica', '', 20);
+         // add a page
          $pdf->AddPage();
-         $pdf->writeHTML('<div style="text-align: center"><h1>第一页内容</h1></div>');
-         $pdf->writeHTML('<p>我是第一行内容</p>');
-         $pdf->writeHTML('<p style="color: red">我是第二行内容</p>');
-         $pdf->writeHTML('<p>我是第三行内容</p>');
-         $pdf->Ln(5);//换行符
+         $txt = 'Example of CID-0 CJK unembedded font.
+         To display extended text you must have CJK fonts installed for your PDF reader:';
+         $pdf->Write(0, $txt, '', 0, 'L', true, 0, false, false, 0);
+         // set font
+         $pdf->SetFont('cid0jp', '', 40);
+         $txt = 'こんにちは世界';
+         $pdf->Write(0, $txt, '', 0, 'L', true, 0, false, false, 0);
+         // ---------------------------------------------------------
+         //Close and output PDF document
+         $pdf->Output('example_038.pdf', 'I');
  
-         return $pdf->Output('t.pdf', 'D');
+         return $pdf->Output('t.pdf', 'I');
      }
 }
