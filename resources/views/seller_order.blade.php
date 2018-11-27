@@ -120,7 +120,7 @@
                           
                             @foreach($order as $orderid => $collection)
                                 <br><br>
-                                <table id="table_nocontroler" class="table" style="border-bottom-width:10px;border-top-width:10px;">
+                                <table id="table_nocontroler" class="table">
                                     <thead>
                                         <tr>
                                             <th>訂單編號：{{$orderid}}</th>
@@ -157,7 +157,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <hr width="50px">
+                                <hr>
                             @endforeach                          
                             @endif
                             <!-- 頁碼 -->
