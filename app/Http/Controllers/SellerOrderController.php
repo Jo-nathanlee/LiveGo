@@ -364,6 +364,8 @@ class SellerOrderController extends Controller
          ->where('order_id', '=', $orderid)
          ->where('page_id', '=', $page_id);
 
+         dd($query);
+
          $output = '';
          $order_status='';
          $created_time='';
