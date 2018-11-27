@@ -121,7 +121,8 @@
                                 <table id="table_nocontroler" class="table">
                                     <thead>
                                         <tr>
-                                            <th></th>
+                                            <th>得標者姓名</th>
+                                            <th>商品圖片</th>
                                             <th>商品名稱</th>
                                             <th>商品價錢</th>
                                             <th>商品數量</th>
@@ -129,7 +130,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td align="center" colspan="3">無資料</td>
+                                            <td align="center" colspan="5">無資料</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -137,10 +138,13 @@
                             <?php 
                             $order_status='';
                             $created_time='';
-                            $total_amount='';
+                            
                             ?>
                           
                             @foreach($order as $orderid => $collection)
+                            <?php
+                            $total_amount=0;
+                            ?>
                                 <br><br>
                                 <table id="table_nocontroler" class="table">
                                     <thead>
@@ -153,13 +157,17 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td></td>
+                                            <td>得標者姓名</td>
+                                            <td>商品圖片</td>
                                             <td>商品名稱</td>
                                             <td>商品價錢</td>
                                             <td>商品數量</td>
                                         </tr>
                                     @foreach($collection as $order_detail)
                                         <tr id="order_item">
+                                            <td>
+                                                {{$order_detail->name}}
+                                            </td>
                                             <td scope="row">
                                                 <img id="order_img" src="{{ $order_detail->pic_path }}" class="img-fluid img" alt="Responsive image">
                                             </td>
@@ -170,11 +178,11 @@
                                         <?php 
                                         $order_status=$order_detail->order_status;
                                         $created_time=$order_detail->created_time;
-                                        $total_amount=$order_detail->total_price;
+                                        $total_amount+=(int)($order_detail->total_price);
                                         ?>
                                     @endforeach
                                         <tr>
-                                            <td>訂單成立時間：{{$created_time}}</td>
+                                            <td colspan="2">訂單成立時間：{{$created_time}}</td>
                                             <td colspan="3" align="right" >總金額：{{$total_amount}} </td>
                                         </tr>
                                     </tbody>
