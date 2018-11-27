@@ -271,7 +271,7 @@ class SellerOrderController extends Controller
          $total_amount='';
          foreach($order as $orderid => $collection)
          {
-            $output .= '<table >
+            $output .= '<hr><table >
                            <thead>
                            <tr >
                               <th colspan="3">訂單編號：'.$orderid.'</th>
@@ -311,6 +311,8 @@ class SellerOrderController extends Controller
 
          $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
          // set document information
+         $pdf->SetTitle('訂單');
+         $pdf->SetHeaderData('', '', '訂單'.'', '訂單');
          // set header and footer fonts
          $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
          $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
