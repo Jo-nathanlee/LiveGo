@@ -317,7 +317,7 @@ class SellerOrderController extends Controller
          $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
          // set document information
          $pdf->SetTitle('訂單');
-         $pdf->SetHeaderData('', 14,'訂單', '');
+         $pdf->SetHeaderData('', 20,'訂單', '');
          // set header and footer fonts
          $pdf->setHeaderFont(Array('msungstdlight', '', PDF_FONT_SIZE_MAIN));
          $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
@@ -345,6 +345,6 @@ class SellerOrderController extends Controller
          //$pdf->Write(0, $output, '', 0, 'L', true, 0, false, false, 0);
          // ---------------------------------------------------------
  
-         return $pdf->Output('訂單.pdf', 'I');
+         return $pdf->Output('order.pdf', 'I');
      }
 }
