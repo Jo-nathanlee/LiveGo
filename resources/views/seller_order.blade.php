@@ -150,7 +150,7 @@
                                     <thead>
                                         <tr>
                                             <th colspan="4">訂單編號：{{$orderid}}</th>
-                                            <th><a class="btn btn-secondary"  href="{{ route('download_pdf',['order_id' => $orderid]) }}">PDF下載</a></th>
+                                            <th><a class="btn btn-secondary"  href="{{ route('download_pdf',['order_id' => json_encode($orderid)]) }}">PDF下載</a></th>
                                         </tr>
                                     </thead>
                                     <tbody>

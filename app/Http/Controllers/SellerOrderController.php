@@ -355,8 +355,7 @@ class SellerOrderController extends Controller
      //個別PDF
      public function download_pdf(Request $request)
      {
-         dd($request->input('$order_id'));
-         $orderid = $request->input('$order_id');
+         $orderid = json_decode($request->input('$order_id'));
 
          $page = Page::where('fb_id', Auth::user()->fb_id)->first();
          $page_id = $page->page_id;
