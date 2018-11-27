@@ -392,6 +392,7 @@ class SellerOrderController extends Controller
                <td>'.$order->goods_price.'</td>
                <td>'.$order->goods_num.'</td>
                </tr>';
+               $created_time=$order->created_time;
                $total_amount+=(int)($order->total_price);
             
          }
