@@ -365,8 +365,7 @@ class SellerOrderController extends Controller
          ->where('order_id', '=', $orderid);
 
          echo $query;
-         echo $query[0];
-         echo $query[0]->name;
+
 
          $output = '';
          $order_status='';
