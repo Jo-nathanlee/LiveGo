@@ -55,7 +55,7 @@ class SellerOrderController extends Controller
            return redirect('/')->with('alert', '您尚未開通，請聯繫我們！');
         }
      }
- 
+     
      public function SellerOrderUnpaid(Request $request)//未付款訂單
      {
         if (Gate::allows('seller-only',  Auth::user())) {
@@ -340,6 +340,6 @@ class SellerOrderController extends Controller
          //$pdf->Write(0, $output, '', 0, 'L', true, 0, false, false, 0);
          // ---------------------------------------------------------
  
-         return $pdf->Output('t.pdf', 'I');
+         return $pdf->Output('訂單.pdf', 'D');
      }
 }

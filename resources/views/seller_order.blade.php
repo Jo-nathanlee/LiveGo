@@ -37,12 +37,12 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <nav class="nav nav-tabs">
-                                        <a class="nav-link selected" href="{{ route('seller_order') }}">全部</a>
-                                        <a class="nav-link tip" href="{{ route('seller_order_unpaid') }}">
+                                        <a class="nav-link selected"  href="{{ route('seller_order') }}">全部</a>
+                                        <a class="nav-link tip" id="order_unpaid" href="{{ route('seller_order_unpaid') }}">
                                             <span data-tooltip="{{$countUnpaidOrder}}筆新訂單"> 未付款
                                                 <sub>{{$countUnpaidOrder}}</sub>
                                         </a>
-                                        <a class="nav-link tip" href="{{ route('seller_order_undelivered') }}">
+                                        <a class="nav-link tip"  href="{{ route('seller_order_undelivered') }}">
                                             <span data-tooltip="{{$countUndeliveredOrder}}筆新訂單">等待出貨
                                                 <sub>{{$countUndeliveredOrder}}</sub>
                                         </a>
@@ -50,7 +50,7 @@
                                             <span data-tooltip="{{$countDeliveredOrder}}筆新訂單">運送中
                                                 <sub>{{$countDeliveredOrder}}</sub>
                                         </a>
-                                        <a class="nav-link tip" href="{{ route('seller_order_finished') }}">
+                                        <a class="nav-link tip"  href="{{ route('seller_order_finished') }}">
                                             <span data-tooltip="{{$countFinishedOrder}}筆新訂單">已完成</a>
                                         <a class="nav-link tip" href="{{ route('seller_order_canceled') }}">
                                             <span data-tooltip="{{$countCanceledOrder}}筆新訂單">已取消
@@ -68,18 +68,18 @@
                                         aria-controls="order_st_nav_md_list">訂單狀態</a>
                                     <div id="order_st_nav_md_list" class="collapse multi-collapse st_nav_md_list">
                                         <nav class="nav flex-column">
-                                            <a class="btn btn-block btn-light" href="{{ route('seller_order') }}">全部</a>
-                                            <a class="btn btn-block btn-light" href="{{ route('seller_order_unpaid') }}">未付款
+                                            <a class="btn btn-block btn-light"  href="{{ route('seller_order') }}">全部</a>
+                                            <a class="btn btn-block btn-light"  href="{{ route('seller_order_unpaid') }}">未付款
                                                 <sub>{{$countUnpaidOrder}}</sub>
                                             </a>
-                                            <a class="btn btn-block btn-light" href="{{ route('seller_order_undelivered') }}">等待出貨
+                                            <a class="btn btn-block btn-light"  href="{{ route('seller_order_undelivered') }}">等待出貨
                                                 <sub>{{$countUndeliveredOrder}}</sub>
                                             </a>
-                                            <a class="btn btn-block btn-light" href="{{ route('seller_order_delivered') }}">運送中
+                                            <a class="btn btn-block btn-light"  href="{{ route('seller_order_delivered') }}">運送中
                                                 <sub>{{$countDeliveredOrder}}</sub>
                                             </a>
-                                            <a class="btn btn-block btn-light" href="{{ route('seller_order_finished') }}">已完成 </a>
-                                            <a class="btn btn-block btn-light" href="{{ route('seller_order_canceled') }}">已取消
+                                            <a class="btn btn-block btn-light"  href="{{ route('seller_order_finished') }}">已完成 </a>
+                                            <a class="btn btn-block btn-light"  href="{{ route('seller_order_canceled') }}">已取消
                                                 <sub>{{$countCanceledOrder}}</sub>
                                             </a>
                                         </nav>
@@ -94,7 +94,7 @@
                     <!-- 訂單列表 -->
                     <div id="order_list" class="container-fluid">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-12" id="table_div">
                             @if(count($order)==0)
                                 <table id="table_nocontroler" class="table">
                                     <thead>
@@ -158,12 +158,12 @@
                                     </tbody>
                                 </table>
                                 <hr>
-                            @endforeach                          
-                            @endif
+                            @endforeach     
                             <!-- 頁碼 -->
-                            <span id="list_table_page" class="list_table_page"></span>
+                            <span id="list_table_page" class="list_table_page"></span>   
                             <!-- 頁碼end -->
-                            <center><a class="btn btn-secondary"  href="{{ route('download',['pdf_order' => json_encode($order)]) }}">PDF</a></center>
+                            <center><a class="btn btn-secondary"  href="{{ route('download',['pdf_order' => json_encode($order)]) }}">PDF下載</a></center>                  
+                            @endif
                             </div>
                         </div>
                     </div>
