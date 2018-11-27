@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PDF;
+use SnappyImage;
 
 
 
@@ -197,9 +198,9 @@ class SellerOrderController extends Controller
 
 
 
-         $pdf = \App::make('dompdf.wrapper');
+         $pdf = App::make('snappy.pdf.wrapper');
          $pdf->loadHTML($output);
          //$pdf->render();
-         return $pdf->stream();
+         return $pdf->download('test.pdf');;
      }
 }
