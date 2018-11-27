@@ -15,6 +15,7 @@
         "laravel/framework": "5.6.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "^1.0",
+        "tecnickcom/tcpdf": "^6.2",
         "yish/imgur": "^1.0"
     },
     "require-dev": {

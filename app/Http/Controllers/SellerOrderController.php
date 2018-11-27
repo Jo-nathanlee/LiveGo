@@ -8,8 +8,6 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use PDF;
-use SnappyImage;
 
 
 
@@ -318,9 +316,16 @@ class SellerOrderController extends Controller
 
 
 
-         $pdf = \App::make('snappy.pdf.wrapper');
-         $pdf->loadHTML($output);
-         //$pdf->render();
-         return $pdf->download('test.pdf');;
+         $pdf = new \TCPDF();
+         $pdf->SetTitle('訂單資訊');
+         $pdf->SetDefaultMonospacedFont('courier');
+         $pdf->SetMargins(15, 15, 15);
+         //$pdf->SetAutoPageBreak(true, 25);
+         $pdf->setFontSubsetting(true);
+         $pdf->SetFont('stsongstdlight', '', 14);
+         $pdf->AddPage();
+         $pdf->writeHTML($output);
+
+         return $pdf->Output('t.pdf', 'I');
      }
 }
