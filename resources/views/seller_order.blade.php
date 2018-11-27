@@ -71,8 +71,9 @@
                                                 <sub>{{$countDeliveredOrder}}</sub>
                                         </a>
                                         <a class="nav-link tip" id="finished"  href="{{ route('seller_order_finished') }}">
-                                            <span data-tooltip="{{$countFinishedOrder}}筆新訂單">已完成</a>
+                                            <span data-tooltip="{{$countFinishedOrder}}筆新訂單">已完成
                                                 <sub>{{$countFinishedOrder}}</sub>
+                                        </a>
                                         <a class="nav-link tip" id="canceled" href="{{ route('seller_order_canceled') }}">
                                             <span data-tooltip="{{$countCanceledOrder}}筆新訂單">已取消
                                                 <sub>{{$countCanceledOrder}}</sub>
