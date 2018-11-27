@@ -149,10 +149,7 @@
                                 <table id="table_nocontroler" class="table">
                                     <thead>
                                         <tr>
-                                            <th>訂單編號：{{$orderid}}</th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
+                                            <th colspan="5">訂單編號：{{$orderid}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
