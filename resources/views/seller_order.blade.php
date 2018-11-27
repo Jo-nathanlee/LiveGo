@@ -28,10 +28,12 @@
             $('#delivered').addClass('selected');
         @endif
         @if($click=='undelivered')
+        alert("a");
             $('#all').removeClass('selected');
             $('#undelivered').addClass('selected');
         @endif
         @if($click=='unpaid')
+        alert("b");
             $('#all').removeClass('selected');
             $('#unpaid').addClass('selected');
         @endif
