@@ -274,9 +274,7 @@ class SellerOrderController extends Controller
             $output .= '<table >
                            <thead>
                            <tr >
-                              <th >訂單編號：'.$orderid.'</th>
-                              <th></th>
-                              <th></th>
+                              <td colspan="3">訂單編號：'.$orderid.'</th>
                            </tr>
                            </thead>
                            <tbody>
@@ -300,8 +298,8 @@ class SellerOrderController extends Controller
             }
 
             $output .= ' <tr >
-                           <td >訂單成立時間：'.$created_time.'</td>
-                           <td colspan="2" align="right" >總金額：'.$total_amount.' </td>
+                           <td colspan="2">訂單成立時間：'.$created_time.'</td>
+                           <td align="right" >總金額：'.$total_amount.' </td>
                          </tr>
                       </tbody>
                    </table>
@@ -334,7 +332,7 @@ class SellerOrderController extends Controller
          // add a page
          $pdf->AddPage();
 
-         $pdf->SetFont('msungstdlight', '', 20);
+         $pdf->SetFont('msungstdlight', '', 14);
 
          $pdf->writeHTML($output, true, false, true, false, '');
          //$pdf->Write(0, $output, '', 0, 'L', true, 0, false, false, 0);
