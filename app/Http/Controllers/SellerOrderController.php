@@ -367,6 +367,7 @@ class SellerOrderController extends Controller
          $output = '';
          $order_status='';
          $created_time='';
+         $total_amount = 0;
          
          $output .= '<hr><table >
                            <thead>
@@ -389,6 +390,7 @@ class SellerOrderController extends Controller
             <td>'.$order_detail->goods_price.'</td>
             <td>'.$order_detail->goods_num.'</td>
             </tr>';
+            $total_amount+=(int)($order_detail->total_price);
          }
 
          $output .= ' <tr >
