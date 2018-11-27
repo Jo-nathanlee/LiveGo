@@ -15,6 +15,26 @@
             $('.nav a').removeClass('selected');
             $(this).addClass('selected');
         });
+        @if($click=='canceled')
+            $('#all').removeClass('selected');
+            $('#canceled').addClass('selected');
+        @endif
+        @if($click=='finished')
+            $('#all').removeClass('selected');
+            $('#finished').addClass('selected');
+        @endif
+        @if($click=='delivered')
+            $('#all').removeClass('selected');
+            $('#delivered').addClass('selected');
+        @endif
+        @if($click=='undelivered')
+            $('#all').removeClass('selected');
+            $('#undelivered').addClass('selected');
+        @endif
+        @if($click=='unpaid')
+            $('#all').removeClass('selected');
+            $('#unpaid').addClass('selected');
+        @endif
     });
 </script>
 @stop
@@ -37,22 +57,23 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <nav class="nav nav-tabs">
-                                        <a class="nav-link selected"  href="{{ route('seller_order') }}">全部</a>
+                                        <a class="nav-link selected" id="all"  href="{{ route('seller_order') }}">全部</a>
                                         <a class="nav-link tip" id="order_unpaid" href="{{ route('seller_order_unpaid') }}">
                                             <span data-tooltip="{{$countUnpaidOrder}}筆新訂單"> 未付款
                                                 <sub>{{$countUnpaidOrder}}</sub>
                                         </a>
-                                        <a class="nav-link tip"  href="{{ route('seller_order_undelivered') }}">
+                                        <a class="nav-link tip" id="undelivered"  href="{{ route('seller_order_undelivered') }}">
                                             <span data-tooltip="{{$countUndeliveredOrder}}筆新訂單">等待出貨
                                                 <sub>{{$countUndeliveredOrder}}</sub>
                                         </a>
-                                        <a class="nav-link tip" href="{{ route('seller_order_delivered') }}">
+                                        <a class="nav-link tip" id="delivered" href="{{ route('seller_order_delivered') }}">
                                             <span data-tooltip="{{$countDeliveredOrder}}筆新訂單">運送中
                                                 <sub>{{$countDeliveredOrder}}</sub>
                                         </a>
-                                        <a class="nav-link tip"  href="{{ route('seller_order_finished') }}">
+                                        <a class="nav-link tip" id="finished"  href="{{ route('seller_order_finished') }}">
                                             <span data-tooltip="{{$countFinishedOrder}}筆新訂單">已完成</a>
-                                        <a class="nav-link tip" href="{{ route('seller_order_canceled') }}">
+                                                <sub>{{$countFinishedOrder}}</sub>
+                                        <a class="nav-link tip" id="canceled" href="{{ route('seller_order_canceled') }}">
                                             <span data-tooltip="{{$countCanceledOrder}}筆新訂單">已取消
                                                 <sub>{{$countCanceledOrder}}</sub>
                                         </a>
