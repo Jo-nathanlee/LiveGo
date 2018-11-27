@@ -356,12 +356,17 @@ class SellerOrderController extends Controller
      public function download_pdf(Request $request)
      {
          $orderid = json_decode($request->input('$order_id'));
+         echo $orderid;
 
          $page = Page::where('fb_id', Auth::user()->fb_id)->first();
          $page_id = $page->page_id;
 
          $query = CheckoutOrder::all()
          ->where('order_id', '=', $orderid);
+
+         echo $query;
+         echo $query[0];
+         echo $query[0]->name;
 
          $output = '';
          $order_status='';
@@ -434,7 +439,7 @@ class SellerOrderController extends Controller
          //$pdf->Write(0, $output, '', 0, 'L', true, 0, false, false, 0);
          // ---------------------------------------------------------
    
-         return $pdf->Output('order.pdf', 'I');
+         //return $pdf->Output('order.pdf', 'I');
 
      }
      
