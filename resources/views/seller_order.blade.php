@@ -129,7 +129,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td colspan="3">無資料</td>
+                                            <td align="center" colspan="3">無資料</td>
                                         </tr>
                                     </tbody>
                                 </table>

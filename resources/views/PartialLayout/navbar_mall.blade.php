@@ -22,7 +22,7 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         <a class="dropdown-item" href="#!"><i class="icofont icofont-social-kakaotalk mr-1"></i> 提醒</a>
-                        <a class="dropdown-item" href="#!"><i class="icofont icofont-list mr-1"></i> 歷史訂單</a>
+                        <a class="dropdown-item" href="{{ route('buyer_order') }}"><i class="icofont icofont-list mr-1"></i> 歷史訂單</a>
                         <a class="dropdown-item" href="#!"><i class="icofont icofont-ui-video-play mr-1"></i> 節目表</a>
                         <a class="dropdown-item" href="{{ route('buyer_index') }}"><i class="icofont icofont-cart-alt mr-1"></i> 購物車</a>
                         <a class="dropdown-item" href="#!"><i class="icofont icofont-home  mr-1"></i>首頁</a>
@@ -43,7 +43,7 @@
                         <i class="icofont icofont-ui-video-play"></i> 節目表</a>
                 </li>
                 <li class="nav-item-shop com_nav_none">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('buyer_order') }}">
                         <i class="icofont icofont-list"></i> 歷史訂單</a>
                 </li>
                 <li class="nav-item-shop com_nav_none">

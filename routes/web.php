@@ -103,6 +103,14 @@ Route::group(['middleware' => [
     Route::get('/seller_order_canceled', 'SellerOrderController@SellerOrderCanceled')->name('seller_order_canceled');
     //訂單PDF
     Route::get('/downloadPDF','SellerOrderController@downloadPDF')->name('download');
+
+    //買家訂單查看
+    Route::get('/buyer_order', 'BuyerOrderController@BuyerOrderAll')->name('buyer_order');
+    Route::get('/buyer_order_unpaid', 'BuyerOrderController@BuyerOrderUnpaid')->name('buyer_order_unpaid');
+    Route::get('/buyer_order_undelivered', 'BuyerOrderController@BuyerOrderUndelivered')->name('buyer_order_undelivered');
+    Route::get('/buyer_order_delivered', 'BuyerOrderController@BuyerOrderDelivered')->name('buyer_order_delivered');
+    Route::get('/buyer_order_finished', 'BuyerOrderController@BuyerOrderFinished')->name('buyer_order_finished');
+    Route::get('/buyer_order_canceled', 'BuyerOrderController@BuyerOrderCanceled')->name('buyer_order_canceled');
    
     //設定直播拍賣商品
     Route::get('/SetProduct_show', 'StreamingProductController@SetStreamingProduct_show')->name('SetProduct_show');
