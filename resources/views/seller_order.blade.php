@@ -167,7 +167,7 @@
                             </div>
                         </div>
                     </div>
-                    <div style="text-align: center"><a class="btn btn-secondary"  href="{{ route('download',['pdf_order' => json_encode($order)]) }}">PDF</a></div>
+                    <a style="display: block;text-align: center;" class="btn btn-secondary"  href="{{ route('download',['pdf_order' => json_encode($order)]) }}">PDF</a>
                     <!-- 訂單列表end -->
                 </div>
             </div>
