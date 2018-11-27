@@ -195,11 +195,11 @@ class SellerOrderController extends Controller
          }
         
 
+         $dompdf = new Dompdf();
 
-
-         $pdf = \App::make('dompdf.wrapper');
-         $pdf->loadHTML($output);
-         $pdf->render();
-         return $pdf->stream();
+         //$pdf = \App::make('dompdf.wrapper');
+         $dompdf->loadHTML($output);
+         $dompdf->render();
+         return $dompdf->stream(null, ['Attachment' => 0]);
      }
 }
