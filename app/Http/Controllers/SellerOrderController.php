@@ -198,7 +198,8 @@ class SellerOrderController extends Controller
 
 
          $pdf = \App::make('dompdf.wrapper');
-         $pdf->loadHTML($output,'UTF-8');
+         $pdf->loadHTML($output);
+         $pdf->render();
          return $pdf->stream();
      }
 }
