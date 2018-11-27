@@ -15,6 +15,10 @@
                 <i class="icofont icofont-list"></i>得標者清單</a>
         </li>
         <li>
+            <a href="{{ route('seller_order') }}" >
+                <i class="icofont icofont-paper"></i>我的訂單</a>
+        </li>
+        <li>
             <a href="{{ route('bid_blacklist') }}" >
                 <i class="icofont icofont-investigator"></i>棄標黑名單</a>
         </li>
