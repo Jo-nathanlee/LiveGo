@@ -363,8 +363,6 @@ class SellerOrderController extends Controller
          $query = CheckoutOrder::all()
          ->where('order_id', '=', $orderid);
 
-         dd($query);
-
          $output = '';
          $order_status='';
          $created_time='';
