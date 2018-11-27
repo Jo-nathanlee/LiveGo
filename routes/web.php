@@ -103,6 +103,8 @@ Route::group(['middleware' => [
     Route::get('/seller_order_canceled', 'SellerOrderController@SellerOrderCanceled')->name('seller_order_canceled');
     //訂單PDF
     Route::get('/downloadPDF','SellerOrderController@downloadPDF')->name('download');
+    Route::get('/download_pdf','SellerOrderController@download_pdf')->name('download_pdf');
+    
 
     //買家訂單查看
     Route::get('/buyer_order', 'BuyerOrderController@BuyerOrderAll')->name('buyer_order');

@@ -267,24 +267,27 @@ class SellerOrderController extends Controller
      }
      //------------------------------------------------------------------------------------------------------------
 
+     //總PDF
      public function downloadPDF(Request $request)
      {
          $order = json_decode($request->input('pdf_order'));
          $output = '';
          $order_status='';
          $created_time='';
-         $total_amount='';
+         
          foreach($order as $orderid => $collection)
          {
+            $total_amount=0;
             $output .= '<hr><table >
                            <thead>
                            <tr >
-                              <th colspan="3">訂單編號：'.$orderid.'</th>
+                              <th colspan="4">訂單編號：'.$orderid.'</th>
                            </tr>
                            </thead>
                            <tbody>
-                              <tr >
-                                 <td >商品名稱</td>
+                              <tr>
+                                 <td>得標者姓名</td>
+                                 <td>商品名稱</td>
                                  <td>商品價錢</td>
                                  <td>商品數量</td>
                               </tr>';
@@ -292,6 +295,7 @@ class SellerOrderController extends Controller
             foreach($collection as $order_detail)
             {
                $output .= '<tr id="order_item" >
+                              <td >'.$order_detail->name.'</td>
                               <td >'.$order_detail->goods_name.'</td>
                               <td>'.$order_detail->goods_price.'</td>
                               <td>'.$order_detail->goods_num.'</td>
@@ -299,11 +303,11 @@ class SellerOrderController extends Controller
 
                $order_status=$order_detail->order_status;
                $created_time=$order_detail->created_time;
-               $total_amount=$order_detail->total_price;
+               $total_amount+=(int)($order_detail->total_price);
             }
 
             $output .= ' <tr >
-                           <td colspan="2">訂單成立時間：'.$created_time.'</td>
+                           <td colspan="3">訂單成立時間：'.$created_time.'</td>
                            <td align="right" >總金額：'.$total_amount.' </td>
                          </tr>
                       </tbody>
@@ -347,4 +351,87 @@ class SellerOrderController extends Controller
  
          return $pdf->Output('order.pdf', 'I');
      }
+
+     //個別PDF
+     public function download_pdf(Request $request)
+     {
+         $orderid = json_decode($request->input('$order_id'));
+
+         $page = Page::where('fb_id', Auth::user()->fb_id)->first();
+         $page_id = $page->page_id;
+
+         $query = CheckoutOrder::all()
+         ->where('order_id', '=', $orderid)
+         ->where('page_id', '=', $page_id);
+
+         $output = '';
+         $order_status='';
+         $created_time='';
+         
+         $output .= '<hr><table >
+                           <thead>
+                           <tr >
+                              <th colspan="4">訂單編號：'.$orderid.'</th>
+                           </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>得標者姓名</td>
+                                 <td>商品名稱</td>
+                                 <td>商品價錢</td>
+                                 <td>商品數量</td>
+                              </tr>';
+         foreach($query as $order)
+         {
+            $output .= '<tr>
+            <td >'.$order_detail->name.'</td>
+            <td >'.$order_detail->goods_name.'</td>
+            <td>'.$order_detail->goods_price.'</td>
+            <td>'.$order_detail->goods_num.'</td>
+            </tr>';
+         }
+
+         $output .= ' <tr >
+                              <td colspan="3">訂單成立時間：'.$created_time.'</td>
+                              <td align="right" >總金額：'.$total_amount.' </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                     <hr>';
+
+         $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+         // set document information
+         $pdf->SetTitle('訂單');
+         $pdf->SetHeaderData('', 20,'訂單', '');
+         // set header and footer fonts
+         $pdf->setHeaderFont(Array('msungstdlight', '', PDF_FONT_SIZE_MAIN));
+         $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+         // set default monospaced font
+         $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+         // set margins
+         $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+         $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+         $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+         // set auto page breaks
+         $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+         
+         // set some language-dependent strings (optional)
+         if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
+            require_once(dirname(__FILE__).'/lang/eng.php');
+            $pdf->setLanguageArray($l);
+         }
+         // ---------------------------------------------------------
+         // add a page
+         $pdf->AddPage();
+
+         $pdf->SetFont('msungstdlight', '', 14);
+
+         $pdf->writeHTML($output, true, false, true, false, '');
+         //$pdf->Write(0, $output, '', 0, 'L', true, 0, false, false, 0);
+         // ---------------------------------------------------------
+   
+         return $pdf->Output('order.pdf', 'I');
+
+     }
+     
 }
