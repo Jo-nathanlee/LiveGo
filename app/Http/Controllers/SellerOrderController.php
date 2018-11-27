@@ -198,7 +198,7 @@ class SellerOrderController extends Controller
 
 
 
-         $pdf = App::make('snappy.pdf.wrapper');
+         $pdf = \App::make('snappy.pdf.wrapper');
          $pdf->loadHTML($output);
          //$pdf->render();
          return $pdf->download('test.pdf');;
