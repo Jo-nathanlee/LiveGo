@@ -270,31 +270,25 @@ class SellerOrderController extends Controller
          $total_amount='';
          foreach($order as $orderid => $collection)
          {
-            $output .= '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-                        <style>
-                        .font-zh {
-                           font-family: "wt011"
-                        }
-                        </style>
-                        <table class="font-zh">
+            $output .= '<table >
                            <thead>
-                           <tr class="font-zh">
-                              <th class="font-zh">訂單編號：'.$orderid.'</th>
+                           <tr >
+                              <th >訂單編號：'.$orderid.'</th>
                               <th></th>
                               <th></th>
                            </tr>
                            </thead>
                            <tbody>
-                              <tr class="font-zh">
-                                 <td class="font-zh">商品名稱</td>
+                              <tr >
+                                 <td >商品名稱</td>
                                  <td>商品價錢</td>
                                  <td>商品數量</td>
                               </tr>';
 
             foreach($collection as $order_detail)
             {
-               $output .= '<tr id="order_item" class="font-zh">
-                              <td class="font-zh">'.$order_detail->goods_name.'</td>
+               $output .= '<tr id="order_item" >
+                              <td >'.$order_detail->goods_name.'</td>
                               <td>'.$order_detail->goods_price.'</td>
                               <td>'.$order_detail->goods_num.'</td>
                            </tr>';
@@ -304,8 +298,8 @@ class SellerOrderController extends Controller
                $total_amount=$order_detail->total_price;
             }
 
-            $output .= ' <tr class="font-zh">
-                           <td class="font-zh">訂單成立時間：'.$created_time.'</td>
+            $output .= ' <tr >
+                           <td >訂單成立時間：'.$created_time.'</td>
                            <td colspan="2" align="right" >總金額：'.$total_amount.' </td>
                          </tr>
                       </tbody>
