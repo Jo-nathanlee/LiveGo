@@ -383,15 +383,15 @@ class SellerOrderController extends Controller
                                  <td>商品價錢</td>
                                  <td>商品數量</td>
                               </tr>';
-         foreach($query as $order)
+         foreach($query as $order => $collection)
          {
             $output .= '<tr>
-            <td >'.$order->name.'</td>
-            <td >'.$order->goods_name.'</td>
-            <td>'.$order->goods_price.'</td>
-            <td>'.$order->goods_num.'</td>
+            <td >'.$collection->name.'</td>
+            <td >'.$collection->goods_name.'</td>
+            <td>'.$collection->goods_price.'</td>
+            <td>'.$collection->goods_num.'</td>
             </tr>';
-            $total_amount+=(int)($order->total_price);
+            $total_amount+=(int)($collection->total_price);
          }
 
          $output .= ' <tr >
