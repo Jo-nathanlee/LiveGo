@@ -117,10 +117,10 @@
                             $created_time='';
                             $total_amount='';
                             ?>
-                            <br>
+                          
                             @foreach($order as $orderid => $collection)
-                            
-                                <table id="table_nocontroler" class="table">
+                                <br><br>
+                                <table id="table_nocontroler" class="table" style="border-bottom-width:10px;border-top-width:10px;">
                                     <thead>
                                         <tr>
                                             <th>訂單編號：{{$orderid}}</th>
@@ -157,7 +157,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <hr><br><br>
+                                <hr width="50px">
                             @endforeach                          
                             @endif
                             <!-- 頁碼 -->
