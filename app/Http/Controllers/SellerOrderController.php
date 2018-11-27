@@ -361,8 +361,7 @@ class SellerOrderController extends Controller
          $page_id = $page->page_id;
 
          $query = CheckoutOrder::all()
-         ->where('order_id', '=', $orderid)
-         ->where('page_id', '=', $page_id);
+         ->where('order_id', '=', $orderid);
 
          dd($query);
 
