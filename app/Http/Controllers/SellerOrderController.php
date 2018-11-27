@@ -8,7 +8,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Dompdf\Dompdf;
+use PDF;
 
 
 
@@ -195,13 +195,11 @@ class SellerOrderController extends Controller
          }
         
 
-         $dompdf = new Dompdf();
 
-         //$pdf = \App::make('dompdf.wrapper');
-         $dompdf->loadHTML($output);
-         $dompdf->setPaper('A4', 'landscape');
-         $dompdf->set_option('defaultFont', 'Courier'); 
-         $dompdf->render();
-         return $dompdf->stream(null, ['Attachment' => 1]);
+
+         $pdf = \App::make('dompdf.wrapper');
+         $pdf->loadHTML($output);
+         //$pdf->render();
+         return $pdf->stream();
      }
 }
