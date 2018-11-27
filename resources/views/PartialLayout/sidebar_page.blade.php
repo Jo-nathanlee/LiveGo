@@ -7,12 +7,20 @@
     <ul class="list-unstyled components">
         <p></p>
         <li>
-            <a href="{{ route('set_page') }}" >
-                <i class="icofont icofont-home"></i>粉絲團設定</a>
-        </li>
-        <li>
             <a href="{{ route('index_load') }}">
                 <i class="icofont icofont-video-cam"></i>開啟直播</a>
+        </li>
+        <li>
+            <a href="{{ route('bid_winner') }}" >
+                <i class="icofont icofont-list"></i>得標者清單</a>
+        </li>
+        <li>
+            <a href="{{ route('bid_blacklist') }}" >
+                <i class="icofont icofont-investigator"></i>棄標黑名單</a>
+        </li>
+        <li>
+            <a href="{{ route('set_page') }}" >
+                <i class="icofont icofont-home"></i>粉絲團設定</a>
         </li>
         <li>
             <a href="{{ route('SetProduct_show') }}">

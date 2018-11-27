@@ -21,8 +21,7 @@ class BidWinnerController extends Controller
             $page_id = $page->page_id;
 
             $query = StreamingOrder::where('page_id', '=', $page_id)
-                    ->whereNull('streaming_order.order_id')
-                    ->select('name','goods_name','goods_price','goods_num','total_price','comment','created_time','note')
+                    ->select('name','goods_name','pic_path','goods_price','goods_num','total_price','comment','created_time','note')
                     ->get();
 
             return view('bid_winner', ['winner' => $query]);
@@ -32,4 +31,19 @@ class BidWinnerController extends Controller
             return redirect('/')->with('alert', '您尚未開通，請聯繫我們！');
         }
     }
+
+    //黑名單
+    public function Blacklist(Request $request)
+    {
+        if (Gate::allows('seller-only',  Auth::user())) {
+           
+
+            return view('blacklist');
+        }
+        else
+        {
+            return redirect('/')->with('alert', '您尚未開通，請聯繫我們！');
+        }
+    }
+    
 }
