@@ -152,7 +152,12 @@ class SellerOrderController extends Controller
          foreach($order as $orderid => $collection)
          {
             $output .= '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-                        <table>
+                        <style>
+                        .font-zh {
+                           font-family: "sans-serif"
+                        }
+                        </style>
+                        <table class="font-zh">
                            <thead>
                            <tr>
                               <th>訂單編號：'.$orderid.'</th>
