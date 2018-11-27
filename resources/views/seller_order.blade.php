@@ -28,12 +28,10 @@
             $('#delivered').addClass('selected');
         @endif
         @if($click=='undelivered')
-        alert("a");
             $('#all').removeClass('selected');
             $('#undelivered').addClass('selected');
         @endif
         @if($click=='unpaid')
-        alert("b");
             $('#all').removeClass('selected');
             $('#unpaid').addClass('selected');
         @endif
@@ -60,7 +58,7 @@
                                 <div class="col-md-12">
                                     <nav class="nav nav-tabs">
                                         <a class="nav-link selected" id="all"  href="{{ route('seller_order') }}">全部</a>
-                                        <a class="nav-link tip" id="order_unpaid" href="{{ route('seller_order_unpaid') }}">
+                                        <a class="nav-link tip" id="unpaid" href="{{ route('seller_order_unpaid') }}">
                                             <span data-tooltip="{{$countUnpaidOrder}}筆新訂單"> 未付款
                                                 <sub>{{$countUnpaidOrder}}</sub>
                                         </a>
