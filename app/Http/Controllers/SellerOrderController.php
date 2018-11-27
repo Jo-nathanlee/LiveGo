@@ -159,23 +159,23 @@ class SellerOrderController extends Controller
                         </style>
                         <table class="font-zh">
                            <thead>
-                           <tr>
-                              <th>訂單編號：'.$orderid.'</th>
+                           <tr class="font-zh">
+                              <th class="font-zh">訂單編號：'.$orderid.'</th>
                               <th></th>
                               <th></th>
                            </tr>
                            </thead>
                            <tbody>
-                              <tr>
-                                 <td>商品名稱</td>
+                              <tr class="font-zh">
+                                 <td class="font-zh">商品名稱</td>
                                  <td>商品價錢</td>
                                  <td>商品數量</td>
                               </tr>';
 
             foreach($collection as $order_detail)
             {
-               $output .= '<tr id="order_item">
-                              <td>'.$order_detail->goods_name.'</td>
+               $output .= '<tr id="order_item" class="font-zh">
+                              <td class="font-zh">'.$order_detail->goods_name.'</td>
                               <td>'.$order_detail->goods_price.'</td>
                               <td>'.$order_detail->goods_num.'</td>
                            </tr>';
@@ -185,8 +185,8 @@ class SellerOrderController extends Controller
                $total_amount=$order_detail->total_price;
             }
 
-            $output .= ' <tr>
-                           <td>訂單成立時間：'.$created_time.'</td>
+            $output .= ' <tr class="font-zh">
+                           <td class="font-zh">訂單成立時間：'.$created_time.'</td>
                            <td colspan="2" align="right" >總金額：'.$total_amount.' </td>
                          </tr>
                       </tbody>
