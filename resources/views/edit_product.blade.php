@@ -55,7 +55,7 @@
                     <div class="row mb-2">
                         <div class="col-md-5 ml-3 d-flex " id="pictureEdit">
                         <input type="file" class="custom-file-input" name="image" id="imgInp" required>
-                            <img src="img/59891.jpg" id="pictureEdit_upload" class="img-fluid img mh-100 m-auto" />
+                            <img src="{{$product->pic_url  }}" id="pictureEdit_upload" class="img-fluid img mh-100 m-auto" />
                             <input type="hidden" name="primary_key" value="{{$product->pic_url  }}">
                         </div>
                         <div class="pictureEdit_item invisible">
