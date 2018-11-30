@@ -224,9 +224,9 @@
                             }
                         },
                         error: function(xhr, status, error) {
-                            alert(error);
-                            alert(XMLHttpRequest.status);
-                            alert(XMLHttpRequest.responseText);
+                            // alert(error);
+                            // alert(XMLHttpRequest.status);
+                            // alert(XMLHttpRequest.responseText);
                             alertify.alert("連線錯誤！請稍後再試！");
                         }
                 });

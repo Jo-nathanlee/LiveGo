@@ -168,10 +168,10 @@ class StreamingIndexController extends Controller
         $getter='';
         $goods_name = $request->input('goods_name');
         //剩餘的數量
-        // $left_num=StreamingProduct::where('goods_name', '=', $goods_name)
-        //         ->select('goods_num')
-        //         ->get();
-        $left_num=1;
+        $left_num_query=StreamingProduct::where('goods_name', '=', $goods_name)
+                ->first();
+        $left_num=$left_num_query->goods_num;
+        
         
 
          //留言結束競標---------------------------------------------------------------------
