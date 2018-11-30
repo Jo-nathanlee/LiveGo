@@ -166,10 +166,15 @@ class StreamingIndexController extends Controller
         $end_time = $request->input('end_time');
         $start_time = Session::get('start_time');
         $getter='';
+        $goods_name = $request->input('goods_name');
+        //剩餘的數量
+        $left_num=StreamingProduct::where('goods_name', '=', $goods_name)
+                ->select('goods_num')
+                ->get();
+        
 
          //留言結束競標---------------------------------------------------------------------
          $post_video_id = $request->input('post_video_id');
-         $goods_name = $request->input('goods_name');
          $comment=$goods_name." 拍賣結束------------------------------";
          $query = '/' . $post_video_id . '/comments';
          $response = $this->api->post($query, array('message' => $comment), $token);
@@ -200,15 +205,45 @@ class StreamingIndexController extends Controller
                             if (is_numeric($num)) {
                                 if($num>0)
                                 {
-                                    $getter=$getter.' '.$key['from']['name'];
-                                    $temp[$item] = array(
-                                        'name' => $key['from']['name'],
-                                        'id' => $key['from']['id'],
-                                        'num' => $num,
-                                        'message' => $key['message'],
-                                        'message_time' => $time,
-                                        'message_id' => $key['id'],
-                                    );
+                                    if($left_num>=$num)
+                                    {
+                                        $getter=$getter.' '.$key['from']['name'];
+                                        $temp[$item] = array(
+                                            'name' => $key['from']['name'],
+                                            'id' => $key['from']['id'],
+                                            'num' => $num,
+                                            'message' => $key['message'],
+                                            'message_time' => $time,
+                                            'message_id' => $key['id'],
+                                            'messenger_text' =>'',
+                                        );
+                                    }
+                                    else if($left_num>0&&$left_num<$num)
+                                    {
+                                        $getter=$getter.' '.$key['from']['name'];
+                                        $temp[$item] = array(
+                                            'name' => $key['from']['name'],
+                                            'id' => $key['from']['id'],
+                                            'num' => $left_num,
+                                            'message' => $key['message'],
+                                            'message_time' => $time,
+                                            'message_id' => $key['id'],
+                                            'messenger_text' =>'insufficient',
+                                        );
+                                    }
+                                    else
+                                    {
+                                        $temp[$item] = array(
+                                            'name' => $key['from']['name'],
+                                            'id' => $key['from']['id'],
+                                            'num' => 0,
+                                            'message' => $key['message'],
+                                            'message_time' => $time,
+                                            'message_id' => $key['id'],
+                                            'messenger_text' =>'fail',
+                                        );
+                                    }
+                                    $left_num-=$num;
                                 }
                             }
                         }
@@ -367,38 +402,55 @@ class StreamingIndexController extends Controller
             foreach ($buyer as $buyers){
                     $fb_id=$buyers['id'];
                     //產生uid
-                     $time_stamp=time();
-                     $random_num=rand(100,999);
-                     $uid=$fb_id.time().$random_num;
-                     //將留言+拿掉
-                     $num = $buyers['num'];
-                     $total_price=(int)($num)*(int)($goods_price);
-                     //存入資料庫
-                     $page_store = new StreamingOrder;
-                     $page_store->page_id = $page_id;
-                     $page_store->page_name = $page_name;
-                     $page_store->fb_id = $buyers['id'];
-                     $page_store->name = $buyers['name'];
-                     $page_store->goods_name =  $goods_name;
-                     $page_store->goods_price =  $goods_price;
-                     $page_store->goods_num =  $num;
-                     $page_store->total_price =  (string)$total_price;
-                     $page_store->note =  $note;
-                     $page_store->comment =  $buyers['comment'];
-                     $page_store->created_time =  date("Y-m-d H:i:s");
-                     $page_store->uid = $uid;
-                     $page_store->pic_path = $pic_url;
-                     $page_store->save();
-     
-                     //私訊
-                     try {
-                         $url='請至 '.'http://livego.herokuapp.com/buyer_index'.' 結帳，謝謝！';
-                         $query = '/' . $buyers['message_id'] . '/private_replies';
-                         $post = $this->api->post($query, array('message' => $url), $token);
-                         $post2 = $post->getGraphNode()->asArray();
-                     } catch (FacebookSDKException $e) {
-                        return json_encode($e, true);
-                     }
+                    $time_stamp=time();
+                    $random_num=rand(100,999);
+                    $uid=$fb_id.time().$random_num;
+                    //將留言+拿掉
+                    $num = $buyers['num'];
+                    $total_price=(int)($num)*(int)($goods_price);
+                    //存入資料庫
+                    $page_store = new StreamingOrder;
+                    $page_store->page_id = $page_id;
+                    $page_store->page_name = $page_name;
+                    $page_store->fb_id = $buyers['id'];
+                    $page_store->name = $buyers['name'];
+                    $page_store->goods_name =  $goods_name;
+                    $page_store->goods_price =  $goods_price;
+                    $page_store->goods_num =  $num;
+                    $page_store->total_price =  (string)$total_price;
+                    $page_store->note =  $note;
+                    $page_store->comment =  $buyers['comment'];
+                    $page_store->created_time =  date("Y-m-d H:i:s");
+                    $page_store->uid = $uid;
+                    $page_store->pic_path = $pic_url;
+                    $page_store->save();
+                     
+                    //是否有庫存不足問題
+                    $messenger_text=$buyers['messenger_text'];
+                    $private_replies='';
+
+                    if($messenger_text=='insufficient')
+                    {
+                        $private_replies='很抱歉！由於商品庫存不足，得標數量改為'.$num;
+                        $private_replies.='。結帳請至 '.'http://livego.herokuapp.com/buyer_index'.' ，謝謝！';
+                    }
+                    else if($messenger_text=='fail')
+                    {
+                        $private_replies='很抱歉！由於商品庫存不足，得標失敗！';
+                    }
+                    else
+                    {
+                        $private_replies.='結帳請至 '.'http://livego.herokuapp.com/buyer_index'.' ，謝謝！';
+                    }
+                    //私訊
+                    try {
+                        $url=$private_replies;
+                        $query = '/' . $buyers['message_id'] . '/private_replies';
+                        $post = $this->api->post($query, array('message' => $url), $token);
+                        $post2 = $post->getGraphNode()->asArray();
+                    } catch (FacebookSDKException $e) {
+                    return json_encode($e, true);
+                    }
             }
         }
         return json_encode(count($buyer),true);

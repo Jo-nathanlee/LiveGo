@@ -204,6 +204,7 @@
                                                 <input type='hidden' id='message_id' value='"+comment.message_id+"'>\
                                                 <input type='hidden' id='message_content' value='"+comment.message+"'>\
                                                 <input type='hidden' id='message_num' value='"+comment.num+"'>\
+                                                <input type='hidden' id='messenger_text' value='"+comment.messenger_text+"'>\
                                     </a>\
                                 </div>\
                             </li>");
@@ -306,6 +307,7 @@
         
         //點擊確認後，將得標清單轉成array or json傳至後台存入資料庫
         $('#buyer_list').on('click','#confirm', function(){
+            var type=$("#type").find("option:selected").val();
             var buyer = [];
 
             for (i = 2; i < $("#buyer_list>li").length; i++) {
@@ -314,18 +316,25 @@
                 var comment = $("ul li:nth-child("+i+")").find("#message_content").val();
                 var id=$("ul li:nth-child("+i+")").find("#fb_id").val();
                 var message_id=$("ul li:nth-child("+i+")").find("#message_id").val();
+                var messenger_text="";
+
+                if(type==1)
+                {
+                    messenger_text=$("ul li:nth-child("+i+")").find("#messenger_text").val();
+                }
                 tmp = {
                     'name': name,
                     'comment': comment,
                     'num':num,
                     'id':id,
                     'message_id':message_id,
+                    'messenger_text':messenger_text,
                 };
 
                 buyer.push(tmp);
             }
             
-            var type=$("#type").find("option:selected").val();
+           
             var goods_name=$("#goods_name").val();
             var note=$("#note").val();
             var goods_price=$("#goods_price").val();
