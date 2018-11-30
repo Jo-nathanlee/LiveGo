@@ -111,10 +111,11 @@ class ECPayController extends Controller
         $OrderDetail->buyer_name = $buyer_name;
         $OrderDetail->order_id = $order_id;
         $OrderDetail->transaction_date = $MerchantTradeDate;
-        $OrderDetail->note = $note;
+        $OrderDetail->status = 'unpaid';
         $OrderDetail->total_price = $TotalAmount;
         $OrderDetail->buyer_address = $address;
         $OrderDetail->buyer_phone = $phone;
+        $OrderDetail->note = $note; 
         $OrderDetail->save();
 
 
@@ -136,11 +137,13 @@ class ECPayController extends Controller
         if($response=='0|fail')
         {
             $cancel_CheckoutOrder = CheckoutOrder::where('order_id', '=', $order_id)->update(['order_status' => 'canceled']);
+            $cancel_OrderDetail = OrderDetail::where('order_id', '=', $order_id)->update(['order_status' => 'canceled']);
             $update_StreamingOrder_OrderId = StreamingOrder::where('order_id', '=', $order_id)->update(['order_id' => null]);
             $update_ShopOrder_OrderId = ShopOrder::where('order_id', '=', $order_id)->update(['order_id' => null]);
         }
         else
         {
+            $update_OrderDetail = OrderDetail::where('order_id', '=', $order_id)->update(['order_status' => 'undelivered']);
             $update_CheckoutOrder = CheckoutOrder::where('order_id', '=', $order_id)->update(['order_status' => 'undelivered']);
         }
         echo $response;
