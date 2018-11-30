@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','Live GO 商城商品總覽')
+@section('title','Live GO 直播商品總覽')
 
 @section('wrapper')
 <div class="wrapper">
@@ -13,7 +13,7 @@
         <!--Nav bar end-->
 @stop
 @section('content')
-        <div id="product_mgnt" class="container-fluid main">
+<div id="product_mgnt" class="container-fluid main">
             <div class="row">
                 <div class="col-md-12">
                     <!-- 狀態列 -->
@@ -74,7 +74,7 @@
                                 <div class="col-lg-2 col-md-3 col-sm-6">
                                     <div class="col-md-12 shadow  pb-1 mt-4">
                                         <div class="card-img-top ">
-                                            <div  style="background: url('{{$product->pic_url }}');height: 12rem; background-repeat: no-repeat;background-size: cover;  background-position: center ;background-size: 100%;"  onclick="location.href='{{route('EditProduct_show', ['key' =>$product->pic_url ])}}';">                                        </div>
+                                            <div  style="background: url('{{$product->pic_url }}');height: 12rem; background-repeat: no-repeat;background-size: cover;  background-position: center ;background-size: 100%;"  onclick="location.href='{{route('EditStreamingProduct_show', ['key' =>$product->pic_url ])}}';">                                        </div>
                                         </div>
                                         <div class="card-body">
                                             <P>

@@ -120,6 +120,7 @@ Route::group(['middleware' => [
     //設定直播拍賣商品
     Route::get('/SetProduct_show', 'StreamingProductController@SetStreamingProduct_show')->name('SetProduct_show');
     Route::post('/set_product', 'StreamingProductController@SetStreamingProduct')->name('set_product');
+    Route::get('/EditStreamingProduct_show', 'StreamingProductController@EditStreamingProduct_show')->name('EditStreamingProduct_show');
 });
 
 

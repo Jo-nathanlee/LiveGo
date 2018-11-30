@@ -51,7 +51,7 @@ class MallProductController extends Controller
             $pic_url=$request->input('key');
 
             $query = Shop::where('pic_url', '=', $pic_url)
-                    ->get();
+                    ->first();
             
             return view('edit_product', ['product' => $query,'categories' => $categories]);
         }
@@ -132,8 +132,19 @@ class MallProductController extends Controller
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
             $query = Shop::where('page_id', '=', $page_id)->get();
+
+            $countAllProduct=Shop::where('page_id', '=', $page_id)
+            ->count();
+
+            $countOnProduct=Shop::where('page_id', '=', $page_id)
+            ->where('goods_num','>',0 )
+            ->count();
+
+            $countOutProduct=Shop::where('page_id', '=', $page_id)
+            ->where('goods_num','=',0 )
+            ->count();
             
-            return view('product_overview', ['products' => $query]);
+            return view('product_overview', ['products' => $query,'countAllProduct' => $countAllProduct,'countOnProduct' => $countOnProduct,'countOutProduct' => $countOutProduct]);
         }
         else
         {
