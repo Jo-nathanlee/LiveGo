@@ -66,9 +66,28 @@ class MallProductController extends Controller
     {
         if (Gate::allows('seller-only',  Auth::user())) {
             $pic_url=$request->input('primary_key');
+            $goods_name=$request->input('name');
+            $description=$request->input('description');
+            $category=$request->input('category');
+            $goods_price=$request->input('price');
+            $goods_num=$request->input('num');
 
-            $query = Shop::where('pic_url', '=', $pic_url)
-                    ->get();
+            $this->validate($request, [
+                'image' => 'required|image|mimes:jpeg,dng,png,jpg,gif,svg|max:10000',
+            ]);
+            
+            if($request->hasFile('image'))
+            {
+                $image=Imgur::upload($request->image);
+                Shop::where('pic_url', '=', $pic_url)->update(['pic_url' => $image->link() ]);
+            }
+
+            Shop::where('pic_url', '=', $pic_url)->update([
+            'goods_name' => $goods_name,
+            'description' => $description,
+            'category' => $category,
+            'goods_price' => $goods_price,
+            'goods_num' => $goods_num ]);
  
             return redirect()->back()->with('alert', '成功!');
         }

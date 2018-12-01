@@ -66,28 +66,32 @@
                     <h4>商品資訊</h4>
                     <div class="form-group">
                         <label for="exampleFormControlInput1"> 商品名稱</label>
-                        <input type="text" name="name" class="form-control form-control-sm">
+                        <input type="text" name="name" class="form-control form-control-sm" value="{{ $product->goods_name }}">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1"> 商品分類</label>
                         <select class="form-control form-control-sm" name="category" id="exampleFormControlSelect1">
                         @foreach($categories as $category)
-                            <option>{{$category->category}}</option>
+                            @if($product->category == $category->category)
+                            <option selected value="{{$category->category}}">{{$category->category}}</option>
+                            @else
+                            <option value="{{$category->category}}">{{$category->category}}</option>
+                            @endif
                         @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1"> 商品描述</label>
-                        <textarea class="form-control form-control-sm" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control form-control-sm" name="description" id="exampleFormControlTextarea1" rows="3">{{ $product->description }}</textarea>
                     </div>
                     <h4>價格與庫存</h4>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">商品價格</label>
-                        <input type="text" name="price" class="form-control form-control-sm">
+                        <input type="text" name="price" class="form-control form-control-sm" value="{{ $product->goods_price }}">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">商品數量</label>
-                        <input type="text" name="num" class="form-control form-control-sm">
+                        <input type="text" name="num" class="form-control form-control-sm" value="{{ $product->goods_num }}">
                     </div>
                     <input class="btn btn-info float-right" type="submit" value="送出">
                 </form>

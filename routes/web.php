@@ -121,6 +121,7 @@ Route::group(['middleware' => [
     Route::get('/SetProduct_show', 'StreamingProductController@SetStreamingProduct_show')->name('SetProduct_show');
     Route::post('/set_product', 'StreamingProductController@SetStreamingProduct')->name('set_product');
     Route::get('/EditStreamingProduct_show', 'StreamingProductController@EditStreamingProduct_show')->name('EditStreamingProduct_show');
+    Route::post('/edit_streaming_product', 'StreamingProductController@EditProduct')->name('edit_streaming_product');
 });
 
 
