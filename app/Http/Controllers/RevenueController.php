@@ -81,7 +81,7 @@ class RevenueController extends Controller
             {
                 $temp2="date".(string)$i."_amount";
                 $temp="date".(string)$i;
-                array_push($date, (string)($$temp));
+                array_push($date, $$temp);
                 array_push($amount, $$temp2);
             }
 
