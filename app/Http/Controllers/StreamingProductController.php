@@ -109,7 +109,7 @@ class StreamingProductController extends Controller
             $query = StreamingProduct::where('pic_url', '=', $pic_url)
                     ->get();
             
-            return view('edit_product', ['product' => $query]);
+            return view('streaming_product_edit', ['product' => $query]);
         }
         else
         {
