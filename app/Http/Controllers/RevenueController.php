@@ -21,6 +21,7 @@ class RevenueController extends Controller
             $date5 = date('Y-m-d', strtotime('-3 days'));
             $date6 = date('Y-m-d', strtotime('-2 days'));
             $date7 = date('Y-m-d', strtotime('-1 days'));
+            dd($date1);
 
             $date1_query = OrderDetail::where('transaction_date', 'like', '%'.$date1.'%')
             ->where('status', '=', 'finished')
