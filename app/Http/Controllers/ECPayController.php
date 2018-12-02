@@ -131,6 +131,7 @@ class ECPayController extends Controller
 
     public function payReturn(Request $request)
     {
+        $payment_time = date("Y-m-d H:i:s");
         $arFeedback = Ecpay::i()->CheckOutFeedback($request->all());
         $response = Ecpay::i()->getResponse($arFeedback);
         $order_id = $request->MerchantTradeNo;
@@ -143,7 +144,7 @@ class ECPayController extends Controller
         }
         else
         {
-            $update_OrderDetail = OrderDetail::where('order_id', '=', $order_id)->update(['order_status' => 'undelivered']);
+            $update_OrderDetail = OrderDetail::where('order_id', '=', $order_id)->update(['order_status' => 'undelivered','transaction_date' => $payment_time]);
             $update_CheckoutOrder = CheckoutOrder::where('order_id', '=', $order_id)->update(['order_status' => 'undelivered']);
         }
         echo $response;
