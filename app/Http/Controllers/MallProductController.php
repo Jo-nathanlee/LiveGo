@@ -97,6 +97,25 @@ class MallProductController extends Controller
         }
     }
 
+    //刪除商品
+    public function DeleteProduct(Request $request)
+    {
+        if (Gate::allows('seller-only',  Auth::user())) {
+            $pic_url=$request->input('primary_key');
+           
+
+            Shop::where('pic_url', '=', $pic_url)->delete();
+ 
+            return redirect()->back()->with('alert', '成功!');
+        }
+        else
+        {
+           return redirect('/')->with('alert', '您尚未開通，請聯繫我們！');
+        }
+    }
+
+    
+
     //Insert商城商品
     public function AddNewProduct(Request $request)
     {

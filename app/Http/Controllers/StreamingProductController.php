@@ -152,5 +152,23 @@ class StreamingProductController extends Controller
         }
     }
 
+    //直播商品刪除
+    public function DeleteProduct(Request $request)
+    {
+        if (Gate::allows('seller-only',  Auth::user())) {
+            $pic_url=$request->input('primary_key');
+            
+
+            StreamingProduct::where('pic_url', '=', $pic_url)->delete();
+ 
+            return redirect()->back()->with('alert', '成功!');
+        }
+        else
+        {
+           return redirect('/')->with('alert', '您尚未開通，請聯繫我們！');
+        }
+    }
+    
+
 
 }

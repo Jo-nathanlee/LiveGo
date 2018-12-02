@@ -51,7 +51,7 @@
         <hr>
         <div class="row main">
             <div class="col-12 col-md-6">
-                <form action="{{ route('edit_product') }}" enctype="multipart/form-data" method="POST">
+                <form action="{{ route('edit_streaming_product') }}" enctype="multipart/form-data" method="POST">
                     <div class="row mb-2">
                         <div class="col-md-5 ml-3 d-flex " id="pictureEdit">
                         <input type="file" class="custom-file-input" name="image" id="imgInp" required>
@@ -83,7 +83,9 @@
                     </div>
                     <input class="btn btn-info float-right" type="submit" value="送出">
                 </form>
+                <form action="{{ route('delete_streaming_product') }}" enctype="multipart/form-data" method="POST">
                 <input class="btn btn-danger float-right ml-2" type="submit" value="刪除">
+                </form>
             </div>
         </div>
     </div>

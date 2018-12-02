@@ -94,6 +94,9 @@ Route::group(['middleware' => [
     Route::get('/shopping_mall', 'MallProductController@ShowMall')->name('shopping_mall');
     Route::post('/add_product', 'MallProductController@AddNewProduct')->name('add_product');
     Route::post('/edit_product', 'MallProductController@EditProduct')->name('edit_product');
+    Route::post('/delete_product', 'MallProductController@DeleteProduct')->name('delete_product');
+
+    
     //賣家訂單查看
     Route::get('/seller_order', 'SellerOrderController@SellerOrderAll')->name('seller_order');
     Route::get('/seller_order_unpaid', 'SellerOrderController@SellerOrderUnpaid')->name('seller_order_unpaid');
@@ -123,6 +126,7 @@ Route::group(['middleware' => [
     Route::get('/EditStreamingProduct_show', 'StreamingProductController@EditStreamingProduct_show')->name('EditStreamingProduct_show');
     Route::post('/edit_streaming_product', 'StreamingProductController@EditProduct')->name('edit_streaming_product');
     Route::get('/StreamingProductOverview', 'StreamingProductController@ProductOverview')->name('StreamingProductOverview');
+    Route::post('/delete_streaming_product', 'StreamingProductController@DeleteProduct')->name('delete_streaming_product');
     
 });
 
