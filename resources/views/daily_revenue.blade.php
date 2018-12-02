@@ -79,6 +79,8 @@
             day_income_data.push( {{ $amount[$i] }} );
         @endfor
 
+        alert(daily_date);
+
         for(var i =0;i<day_income_data.length;i++){
             average_income_data.push(5);    // 5 取代 平均值
         }
