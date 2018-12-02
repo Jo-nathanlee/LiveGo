@@ -75,7 +75,7 @@
         
         var daily_date=[];
         alert( {{ $date[0]  }}   );
-        alert( {{ date("m-d", strtotime($date[0]))  }} )
+        alert( {{ date("m-d", strtotime($date[0]))  }} );
         @for ($i = 0; $i <7; $i++)
             daily_date.push( {{ date("m-d", strtotime($date[$i]))  }} );
             day_income_data.push( {{ $amount[$i] }} );
