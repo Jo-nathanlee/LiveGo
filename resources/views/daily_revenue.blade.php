@@ -54,7 +54,6 @@
                             </td>
                         </tr>
                        @endfor
-                       <?php echo $date[0];?>
                     </tbody>
 
                 </table>
@@ -75,9 +74,9 @@
 
         
         var daily_date=[];
-        console.log(<?php echo $date[0];?>);
+        console.log(<?php echo (string)$date[0];?>);
         @for($i=0;$i<(count($date));$i++)
-            daily_date.push( {{ date("m-d", strtotime($date[$i]))  }} );
+            daily_date.push( {{ date("m-d", strtotime( (string)$date[$i]))  }} );
             day_income_data.push( {{ $amount[$i] }} );
         @endfor
 
