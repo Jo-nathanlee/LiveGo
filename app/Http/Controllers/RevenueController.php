@@ -85,7 +85,7 @@ class RevenueController extends Controller
                 array_push($amount, $$temp2);
             }
 
-            dd($date[0]);
+    
 
             return view('daily_revenue', ['date' => $date,'amount' => $amount]);
         }   
