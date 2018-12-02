@@ -97,4 +97,89 @@ class RevenueController extends Controller
         
 
     }
+
+    public function MonthlyRevenue(Request $request)
+    {
+        if (Gate::allows('seller-only',  Auth::user())) {
+            $month1 = date('Y-m', strtotime('-7 months'));
+            $month2 = date('Y-m', strtotime('-6 months'));
+            $month3 = date('Y-m', strtotime('-5 months'));
+            $month4 = date('Y-m', strtotime('-4 months'));
+            $month5 = date('Y-m', strtotime('-3 months'));
+            $month6 = date('Y-m', strtotime('-2 months'));
+            $month7 = date('Y-m', strtotime('-1 months'));
+
+            $month1_query = OrderDetail::where('transaction_date', 'like', '%'.$month1.'%')
+            ->where('status', '=', 'finished')
+            ->get();
+            $month2_query = OrderDetail::where('transaction_date', 'like', '%'.$month2.'%')
+            ->where('status', '=', 'finished')
+            ->get();
+            $month3_query = OrderDetail::where('transaction_date', 'like', '%'.$month3.'%')
+            ->where('status', '=', 'finished')
+            ->get();
+            $month4_query = OrderDetail::where('transaction_date', 'like', '%'.$month4.'%')
+            ->where('status', '=', 'finished')
+            ->get();
+            $month5_query = OrderDetail::where('transaction_date', 'like', '%'.$month5.'%')
+            ->where('status', '=', 'finished')
+            ->get();
+            $month6_query = OrderDetail::where('transaction_date', 'like', '%'.$month6.'%')
+            ->where('status', '=', 'finished')
+            ->get();
+            $month7_query = OrderDetail::where('transaction_date', 'like', '%'.$month7.'%')
+            ->where('status', '=', 'finished')
+            ->get();
+
+            $month1_amount = 0;
+            $month2_amount = 0;
+            $month3_amount = 0;
+            $month4_amount = 0;
+            $month5_amount = 0;
+            $month6_amount = 0;
+            $month7_amount = 0;
+
+            foreach ($month1_query as $order) {
+                $month1_amount += (int)($order->total_price);
+            }
+            foreach ($month2_query as $order) {
+                $month2_amount += (int)($order->total_price);
+            }
+            foreach ($month3_query as $order) {
+                $month3_amount += (int)($order->total_price);
+            }
+            foreach ($month4_query as $order) {
+                $month4_amount += (int)($order->total_price);
+            }
+            foreach ($month5_query as $order) {
+                $month5_amount += (int)($order->total_price);
+            }
+            foreach ($month6_query as $order) {
+                $month6_amount += (int)($order->total_price);
+            }
+            foreach ($month7_query as $order) {
+                $month7_amount += (int)($order->total_price);
+            }
+
+            $amount = array();
+            $month = array();
+
+            for($i=1;$i<8;$i++)
+            {
+                $temp2="month".(string)$i."_amount";
+                $temp="month".(string)$i;
+                array_push($date, $$temp);
+                array_push($amount, $$temp2);
+            }
+            return view('monthly_revenue', ['month' => $month,'amount' => $amount]);
+
+
+
+            
+        }
+        else
+        {
+           return redirect('/')->with('alert', '您尚未開通，請聯繫我們！');
+        }
+    }
 }

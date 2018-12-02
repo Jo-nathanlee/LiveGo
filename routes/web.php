@@ -130,6 +130,7 @@ Route::group(['middleware' => [
 
     //營收
     Route::get('/daily_revenue', 'RevenueController@DailyRevenue')->name('daily_revenue');
+    Route::get('/monthly_revenue', 'RevenueController@MonthlyRevenue')->name('monthly_revenue');
     
 });
 

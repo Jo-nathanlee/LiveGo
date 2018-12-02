@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','日營收')
+@section('title','月營收')
 @section('heads')
     <!-- datatable + bootstrap 4  -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
@@ -34,19 +34,19 @@
                 <canvas id="canvas"></canvas>
             </div>
             <div class="col-offset-1 col-md-10 charttable mb-4">
-                <table class="table table-striped " id="table_source">
+                <table class="table table-striped " id="table_normal">
                     <thead>
                         <tr>
-                            <th scope="col">日期</th>
-                            <th scope="col">日收益</th>
-                            <th scope="col">日成長額</th>
+                            <th scope="col">月份</th>
+                            <th scope="col">月收益</th>
+                            <th scope="col">月成長額</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @for($i=0;$i<(count($date));$i++)
+                    @for($i=0;$i<(count($month));$i++)
                         <tr>
-                            <th scope="row">{{ $date[$i] }}</th>
+                            <th scope="row">{{ $month[$i] }}</th>
                             <td>{{ $amount[$i] }}</td>
                             @if($i!=0)
                             <td>{{ (int)($amount[$i])-(int)($amount[$i-1]) }}</td>
@@ -57,9 +57,8 @@
                                 <button type="button" class="btn btn-info">列印</button>
                             </td>
                         </tr>
-                       @endfor
+                    @endfor
                     </tbody>
-
                 </table>
             </div>
         </div>
@@ -69,89 +68,64 @@
 @stop
 
 @section('footer')
+ <!-- chart data -->
     <script>
-
-        var day_income_data = [];
-        var average_income_data = [];
         var chart_title = '2018 強大體育用品 - 月成長報表';
+        // 月份(如十月辯十一月時 自動產生 '十一月'))
+        var month_data = [];
+        // 每個月的總收益
+        var month_income_data = [];
 
-
-        
-        var daily_date=[];
-        @for($i=0;$i<(count($date));$i++)
-            daily_date.push('{{ date("m-d", strtotime( (string)$date[$i]))  }} ');
-            day_income_data.push( {{ $amount[$i] }} );
+        @for($i=0;$i<(count($month));$i++)
+            month_data.push('{{ date("Y-m", strtotime( (string)$month[$i]))  }} ');
+            month_income_data.push( {{ $amount[$i] }} );
         @endfor
 
-        var average_income=0;
-        for(var i =0;i<day_income_data.length;i++){
-            average_income+=parseInt(day_income_data[i]);
-        }
-        for(var i =0;i<day_income_data.length;i++){
-            average_income_data.push(average_income/(day_income_data.length));
-        }
-        
-            // 5 取代 平均值
 
-
-        var config = {
-            type: 'line',
-            data: {
-                labels: daily_date,
-                datasets: [{
-                    label: '平均收益',
-                    backgroundColor: window.chartColors.gray,
-                    borderColor: window.chartColors.gray,
-                    data: average_income_data,
-                    fill: false,
-                    borderDash: [5, 5],
-                }, {
-                    label: '當天收益',
-                    fill: false,
-                    backgroundColor: window.chartColors.blue,
-                    borderColor: window.chartColors.blue,
-                    data: day_income_data,
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                responsive: true,
-                title: {
-                    display: true,
-                    text: chart_title
-                },
-                tooltips: {
-                    mode: 'index',
-                    intersect: false,
-                },
-                hover: {
-                    mode: 'nearest',
-                    intersect: true
-                },
-                scales: {
-                    xAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: '日期'
-                        }
-                    }],
-                    yAxes: [{
-                        display: true,
-                        scaleLabel: {
-                            display: true,
-                            labelString: '收益'
-                        }
-                    }]
-                }
-            }
+        var barChartData = {
+            labels: month_data,
+            datasets: [{
+                label: '月收入',
+                backgroundColor: [
+                    window.chartColors.red,
+                    window.chartColors.orange,
+                    window.chartColors.yellow,
+                    window.chartColors.green,
+                    window.chartColors.blue,
+                    window.chartColors.purple,
+                    window.chartColors.red
+                ],
+                yAxisID: 'y-axis-1',
+                data: month_income_data 
+            }]
         };
-
         window.onload = function () {
             var ctx = document.getElementById('canvas').getContext('2d');
-            window.myLine = new Chart(ctx, config);
+            window.myBar = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: chart_title
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: true
+                    },
+                    scales: {
+                        yAxes: [{
+                            type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                            display: true,
+                            position: 'left',
+                            id: 'y-axis-1',
+                        }],
+                    }
+                }
+            });
         };
-
     </script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
@@ -165,4 +139,4 @@
     <!-- DataTable + Bootstrap 4  cdn引用-->
     <script defer src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script defer src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-@stop            
+@stop  
