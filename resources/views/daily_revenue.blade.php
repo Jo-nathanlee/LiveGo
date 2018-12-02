@@ -74,6 +74,7 @@
 
         
         var daily_date=[];
+        alert(daily_date);
         @for ($i = 0; $i <7; $i++)
             daily_date.push( {{ $date[$i] }} );
             day_income_data.push( {{ $amount[$i] }} );
