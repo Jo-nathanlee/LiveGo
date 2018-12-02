@@ -127,6 +127,9 @@ Route::group(['middleware' => [
     Route::post('/edit_streaming_product', 'StreamingProductController@EditProduct')->name('edit_streaming_product');
     Route::get('/StreamingProductOverview', 'StreamingProductController@ProductOverview')->name('StreamingProductOverview');
     Route::post('/delete_streaming_product', 'StreamingProductController@DeleteProduct')->name('delete_streaming_product');
+
+    //營收
+    Route::get('/daily_revenue', 'RevenueController@DailyRevenue')->name('daily_revenue');
     
 });
 
