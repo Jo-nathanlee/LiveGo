@@ -106,7 +106,7 @@ class MallProductController extends Controller
 
             Shop::where('pic_url', '=', $pic_url)->delete();
  
-            return redirect()->back()->with('alert', '成功!');
+            return redirect()->route('product_overview')->with('alert', '成功!');
         }
         else
         {

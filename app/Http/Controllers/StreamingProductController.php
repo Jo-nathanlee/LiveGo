@@ -161,7 +161,7 @@ class StreamingProductController extends Controller
 
             StreamingProduct::where('pic_url', '=', $pic_url)->delete();
  
-            return redirect()->back()->with('alert', '成功!');
+            return redirect()->route('StreamingProductOverview')->with('alert', '成功!');
         }
         else
         {
