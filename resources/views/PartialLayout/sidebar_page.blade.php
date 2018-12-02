@@ -27,7 +27,7 @@
                 <i class="icofont icofont-home"></i>粉絲團設定</a>
         </li>
         <li>
-            <a href="{{ route('SetProduct_show') }}">
+            <a href="{{ route('StreamingProductOverview') }}">
                 <i class="icofont icofont-settings-alt"></i>直播商品設定</a>
         </li>
         <li>
