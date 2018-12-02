@@ -84,6 +84,7 @@
                     <input class="btn btn-info float-right" type="submit" value="送出">
                 </form>
                 <form action="{{ route('delete_streaming_product') }}" enctype="multipart/form-data" method="POST">
+                <input type="hidden" name="primary_key" value="{{$product->pic_url  }}">
                 <input class="btn btn-danger float-right ml-2" type="submit" value="刪除">
                 </form>
             </div>
