@@ -81,8 +81,6 @@
             month_income_data.push( {{ $amount[$i] }} );
         @endfor
 
-        alert(month_income_data);
-
 
         var barChartData = {
             labels: month_data,
