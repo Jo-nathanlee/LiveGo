@@ -168,7 +168,7 @@ class RevenueController extends Controller
             {
                 $temp2="month".(string)$i."_amount";
                 $temp="month".(string)$i;
-                array_push($date, $$temp);
+                array_push($month, $$temp);
                 array_push($amount, $$temp2);
             }
             return view('monthly_revenue', ['month' => $month,'amount' => $amount]);
