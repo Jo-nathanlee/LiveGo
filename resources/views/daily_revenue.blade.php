@@ -74,13 +74,11 @@
 
         
         var daily_date=[];
-        alert(daily_date);
         @for ($i = 0; $i <7; $i++)
-            daily_date.push( {{ $date[$i] }} );
+            daily_date.push( {{ date("m-d", strtotime($date[$i]))  }} );
             day_income_data.push( {{ $amount[$i] }} );
         @endfor
-
-        alert(daily_date);
+        alert(day_income_data);
 
         for(var i =0;i<day_income_data.length;i++){
             average_income_data.push(5);    // 5 取代 平均值
