@@ -107,7 +107,7 @@ class StreamingProductController extends Controller
             $pic_url=$request->input('key');
 
             $query = StreamingProduct::where('pic_url', '=', $pic_url)
-                    ->get();
+                    ->first();
             
             return view('streaming_product_edit', ['product' => $query]);
         }
