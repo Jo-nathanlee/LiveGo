@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
-class MallProductController extends Controller
+class RevenueController extends Controller
 {
     public function DailyRevenue(Request $request)
     {
