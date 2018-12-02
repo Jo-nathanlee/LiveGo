@@ -74,15 +74,23 @@
 
         
         var daily_date=[];
+        alert( {{ $date[0]  }}   );
+        alert( {{ date("m-d", strtotime($date[0]))  }} )
         @for ($i = 0; $i <7; $i++)
             daily_date.push( {{ date("m-d", strtotime($date[$i]))  }} );
             day_income_data.push( {{ $amount[$i] }} );
         @endfor
-        alert(day_income_data);
 
+        var average_income=0;
         for(var i =0;i<day_income_data.length;i++){
-            average_income_data.push(5);    // 5 取代 平均值
+            average_income+=parseInt(day_income_data[i]);
         }
+        for(var i =0;i<day_income_data.length;i++){
+            average_income_data.push(average_income/(day_income_data.length));
+        }
+        
+            // 5 取代 平均值
+
 
         var config = {
             type: 'line',
