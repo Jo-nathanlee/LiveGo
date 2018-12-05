@@ -155,11 +155,11 @@
                                             <td scope="row">
                                                 <img id="order_img" src="https://graph.facebook.com/{{ $order_detail->buyer_fbid }}/picture" class="img-fluid img" alt="Responsive image">
                                             </td>
-                                            <td>{{$order_detail->name}}</td>
+                                            <td>{{$order_detail->buyer_fbname}}</td>
                                             <td>{{$order_detail->order_id}}</td>
                                             <td>{{$order_detail->total_price}}</td>
                                             <td>{{$order_detail->status}}</td>
-                                            <td><button href="{{ route('seller_order_detail',['order_id' => json_encode($order_detail->order_id)]) }}" type="button" class="btn btn-outline-dark">查看詳情</button></td>
+                                            <td><a href="{{ route('seller_order_detail',['order_id' => json_encode($order_detail->order_id)]) }}"><button  type="button" class="btn btn-outline-dark">查看詳情</button></a></td>
                                         </tr>
                                 @endforeach
                                     </tbody>
