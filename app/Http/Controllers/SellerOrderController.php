@@ -27,19 +27,19 @@ class SellerOrderController extends Controller
             $countAllOrder=OrderDetail::where('page_id', '=', $page_id)
             ->count();
             $countUnpaidOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'unpaid')
+            ->where('status', '=', 'unpaid')
             ->count();
             $countUndeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'undelivered')
+            ->where('status', '=', 'undelivered')
             ->count();   
             $countDeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'delivered')
+            ->where('status', '=', 'delivered')
             ->count();     
             $countFinishedOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'finished')
+            ->where('status', '=', 'finished')
             ->count();  
             $countCanceledOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'canceled')
+            ->where('status', '=', 'canceled')
             ->count();          
                         
     
@@ -57,25 +57,25 @@ class SellerOrderController extends Controller
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
             $query = OrderDetail::where('page_id', '=', $page_id)
-                    ->where('order_status', '=', 'unpaid')
+                    ->where('status', '=', 'unpaid')
                     ->get();
 
             $countAllOrder=OrderDetail::where('page_id', '=', $page_id)
             ->count();
             $countUnpaidOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'unpaid')
+            ->where('status', '=', 'unpaid')
             ->count();
             $countUndeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'undelivered')
+            ->where('status', '=', 'undelivered')
             ->count();   
             $countDeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'delivered')
+            ->where('status', '=', 'delivered')
             ->count();     
             $countFinishedOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'finished')
+            ->where('status', '=', 'finished')
             ->count();  
             $countCanceledOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'canceled')
+            ->where('status', '=', 'canceled')
             ->count();          
     
             return view('seller_order', ['order' => $query,'click' => 'unpaid' ,'countAllOrder' => $countAllOrder,'countUnpaidOrder' => $countUnpaidOrder,'countUndeliveredOrder' => $countUndeliveredOrder,'countDeliveredOrder' => $countDeliveredOrder,'countFinishedOrder' => $countFinishedOrder,'countCanceledOrder' => $countCanceledOrder]);
@@ -92,25 +92,25 @@ class SellerOrderController extends Controller
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
             $query = OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'undelivered')
+            ->where('status', '=', 'undelivered')
             ->get();
             
             $countAllOrder=OrderDetail::where('page_id', '=', $page_id)
             ->count();
             $countUnpaidOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'unpaid')
+            ->where('status', '=', 'unpaid')
             ->count();
             $countUndeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'undelivered')
+            ->where('status', '=', 'undelivered')
             ->count();   
             $countDeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'delivered')
+            ->where('status', '=', 'delivered')
             ->count();     
             $countFinishedOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'finished')
+            ->where('status', '=', 'finished')
             ->count();  
             $countCanceledOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'canceled')
+            ->where('status', '=', 'canceled')
             ->count();          
     
             return view('seller_order', ['order' => $query,'click' => 'undelivered' ,'countAllOrder' => $countAllOrder,'countUnpaidOrder' => $countUnpaidOrder,'countUndeliveredOrder' => $countUndeliveredOrder,'countDeliveredOrder' => $countDeliveredOrder,'countFinishedOrder' => $countFinishedOrder,'countCanceledOrder' => $countCanceledOrder]);
@@ -127,25 +127,25 @@ class SellerOrderController extends Controller
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
             $query = OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'delivered')
+            ->where('status', '=', 'delivered')
             ->get();
             
             $countAllOrder=OrderDetail::where('page_id', '=', $page_id)
             ->count();
             $countUnpaidOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'unpaid')
+            ->where('status', '=', 'unpaid')
             ->count();
             $countUndeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'undelivered')
+            ->where('status', '=', 'undelivered')
             ->count();   
             $countDeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'delivered')
+            ->where('status', '=', 'delivered')
             ->count();     
             $countFinishedOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'finished')
+            ->where('status', '=', 'finished')
             ->count();  
             $countCanceledOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'canceled')
+            ->where('status', '=', 'canceled')
             ->count();          
     
             return view('seller_order', ['order' => $query,'click' => 'delivered' ,'countAllOrder' => $countAllOrder,'countUnpaidOrder' => $countUnpaidOrder,'countUndeliveredOrder' => $countUndeliveredOrder,'countDeliveredOrder' => $countDeliveredOrder,'countFinishedOrder' => $countFinishedOrder,'countCanceledOrder' => $countCanceledOrder]);
@@ -162,25 +162,25 @@ class SellerOrderController extends Controller
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
             $query = OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'finished')
+            ->where('status', '=', 'finished')
             ->get();
 
             $countAllOrder=OrderDetail::where('page_id', '=', $page_id)
             ->count();
             $countUnpaidOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'unpaid')
+            ->where('status', '=', 'unpaid')
             ->count();
             $countUndeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'undelivered')
+            ->where('status', '=', 'undelivered')
             ->count();   
             $countDeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'delivered')
+            ->where('status', '=', 'delivered')
             ->count();     
             $countFinishedOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'finished')
+            ->where('status', '=', 'finished')
             ->count();  
             $countCanceledOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'canceled')
+            ->where('status', '=', 'canceled')
             ->count();          
     
             return view('seller_order', ['order' => $query,'click' => 'finished' ,'countAllOrder' => $countAllOrder,'countUnpaidOrder' => $countUnpaidOrder,'countUndeliveredOrder' => $countUndeliveredOrder,'countDeliveredOrder' => $countDeliveredOrder,'countFinishedOrder' => $countFinishedOrder,'countCanceledOrder' => $countCanceledOrder]);
@@ -197,25 +197,25 @@ class SellerOrderController extends Controller
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
             $query = OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'canceled')
+            ->where('status', '=', 'canceled')
             ->get();
 
             $countAllOrder=OrderDetail::where('page_id', '=', $page_id)
             ->count();
             $countUnpaidOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'unpaid')
+            ->where('status', '=', 'unpaid')
             ->count();
             $countUndeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'undelivered')
+            ->where('status', '=', 'undelivered')
             ->count();   
             $countDeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'delivered')
+            ->where('status', '=', 'delivered')
             ->count();     
             $countFinishedOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'finished')
+            ->where('status', '=', 'finished')
             ->count();  
             $countCanceledOrder=OrderDetail::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'canceled')
+            ->where('status', '=', 'canceled')
             ->count();          
     
             return view('seller_order', ['order' => $query,'click' => 'canceled' ,'countAllOrder' => $countAllOrder,'countUnpaidOrder' => $countUnpaidOrder,'countUndeliveredOrder' => $countUndeliveredOrder,'countDeliveredOrder' => $countDeliveredOrder,'countFinishedOrder' => $countFinishedOrder,'countCanceledOrder' => $countCanceledOrder]);
@@ -251,7 +251,7 @@ class SellerOrderController extends Controller
      {
          $order = json_decode($request->input('pdf_order'));
          $output = '';
-         $order_status='';
+         $status='';
          $created_time='';
          
          foreach($order as $orderid => $collection)
@@ -280,7 +280,7 @@ class SellerOrderController extends Controller
                               <td>'.$order_detail->goods_num.'</td>
                            </tr>';
 
-               $order_status=$order_detail->order_status;
+               $status=$order_detail->status;
                $created_time=$order_detail->created_time;
                $total_amount+=(int)($order_detail->total_price);
             }
@@ -345,7 +345,7 @@ class SellerOrderController extends Controller
 
 
          $output = '';
-         $order_status='';
+         $status='';
          $created_time='';
          $total_amount = 0;
          
