@@ -151,7 +151,6 @@
                                     </thead>
                                     <tbody>
                                 @foreach($order as $order_detail)
-                                            <!-- <th><a class="btn btn-secondary"  href="{{ route('download_pdf',['order_id' => json_encode($orderid)]) }}">PDF下載</a></th> -->
                                         <tr id="order_item">
                                             <td scope="row">
                                                 <img id="order_img" src="https://graph.facebook.com/{{ $order_detail->buyer_fbid }}/picture" class="img-fluid img" alt="Responsive image">
