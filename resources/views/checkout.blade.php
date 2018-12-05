@@ -169,17 +169,17 @@
                         $all_total=$freight+$goods_total;
                         ?>
                         <tr>
-                            <td colspan="5" class="text_right">
+                            <td colspan="5" style="text-align: right;">
                                 <small>總金額 : {{ $goods_total }}</small>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="5" class="text_right">
+                            <td colspan="5" style="text-align: right;">
                                 <small>運費 : {{ $freight }}</small>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="5" class="text_right">
+                            <td colspan="5" style="text-align: right;">
                                 <small> {{ $all_total }}</small>
                             </td>
                         </tr>
@@ -191,7 +191,7 @@
                 {{ csrf_field() }}
                     <diV class="col-md-6">
                         <div class="form-group">
-                            <label for="formGroupExampleInput"收件人</label>
+                            <label for="formGroupExampleInput">收件人</label>
                             <input type="text" class="form-control" id="formGroupExampleInput" name="buyer_name" value="{{$name}}">
                             <input type="hidden"  name="buyer_fbname" value="{{$name}}">
                         </div>
