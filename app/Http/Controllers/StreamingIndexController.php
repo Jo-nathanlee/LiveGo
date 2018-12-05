@@ -104,9 +104,9 @@ class StreamingIndexController extends Controller
                 }
                 //下拉式商品選擇
                 $drp_product = StreamingProduct::where('page_id', '=', $page_id)
-                            ->where('goods_num', '>', 10)
+                            ->where('goods_num', '>', 0)
                             ->get();
-                $encoded_drpProduct=json_encode($drp_product, true);
+               
         
 
                 return view('index', ['page_id' => $page_id,'url' => $url, 'comments' => $comments, 'video_id' => $video_id,'post_video_id' => $post_video_id,'drp_product' => $drp_product, 'token' => $token]);
@@ -357,6 +357,10 @@ class StreamingIndexController extends Controller
         $note = $request->input('note');
         $buyer = $request->input('buyer');
         $type = $request->input('type');
+        //剩餘的數量
+        $left_num_query=StreamingProduct::where('goods_name', '=', $goods_name)
+        ->first();
+        $left_num=$left_num_query->goods_num;
 
         $pic=$query = StreamingProduct::where('page_id', '=', $page_id)
         ->where('goods_name', '=', $goods_name)
@@ -389,6 +393,8 @@ class StreamingIndexController extends Controller
             $page_store->uid = $uid;
             $page_store->pic_path = $pic_url;
             $page_store->save();
+
+            $left_num-=1;
 
             //私訊
             try {
@@ -426,6 +432,8 @@ class StreamingIndexController extends Controller
                     $page_store->uid = $uid;
                     $page_store->pic_path = $pic_url;
                     $page_store->save();
+
+                    
                      
                     //是否有庫存不足問題
                     $messenger_text=$buyers['messenger_text'];
@@ -433,6 +441,8 @@ class StreamingIndexController extends Controller
 
                     if($messenger_text=='insufficient')
                     {
+                        //剩餘數量扣除
+                        $left_num-=$num;
                         $private_replies='很抱歉！由於商品庫存不足，得標數量改為'.$num;
                         $private_replies.='。結帳請至 '.'http://livego.herokuapp.com/buyer_index'.' ，謝謝！';
                     }
@@ -442,6 +452,8 @@ class StreamingIndexController extends Controller
                     }
                     else
                     {
+                        //剩餘數量扣除
+                        $left_num-=$num;
                         $private_replies.='結帳請至 '.'http://livego.herokuapp.com/buyer_index'.' ，謝謝！';
                     }
                     //私訊
@@ -455,6 +467,9 @@ class StreamingIndexController extends Controller
                     }
             }
         }
+        StreamingProduct::where('goods_name', '=', $goods_name)
+            ->update(['goods_num' => $left_num ]);
+
         return json_encode(count($buyer),true);
     }
 
