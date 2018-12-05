@@ -169,17 +169,20 @@
                         $all_total=$freight+$goods_total;
                         ?>
                         <tr>
-                            <td colspan="5" style="text-align: right;">
+                            <td colspan="4"></td> 
+                            <td>
                                 <small>總金額 : {{ $goods_total }}</small>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="5" style="text-align: right;">
+                            <td colspan="4"></td> 
+                            <td>
                                 <small>運費 : {{ $freight }}</small>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="5" style="text-align: right;">
+                            <td colspan="4"></td> 
+                            <td>
                                 <small> {{ $all_total }}</small>
                             </td>
                         </tr>
