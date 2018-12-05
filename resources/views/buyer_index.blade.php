@@ -72,12 +72,15 @@
 
 
             @else
-            <?php $item=1;?>
+            <?php
+            $item=1;
+            $page_id='';
+            ?>
             @foreach($shopping_cart as $page => $collection)
                 {{$page}}<hr>
                 <form action="{{ route('checkout_form') }}" method="POST">       
                             {{ csrf_field() }}
-                            <input type="hidden"  name="page_id" value="{{ $cart->page_id }}">
+                           
                 <table class="table table-striped tablecart" id="table_cart">  
                 <thead>
                     <tr>
@@ -92,7 +95,10 @@
                 </thead>
                 <tbody>
                             @foreach($collection as $cart)
-                            <?php $item++;?>
+                            <?php
+                             $item++;
+                             $page_id = $cart->page_id;
+                             ?>
                                 <tr>
                                 <td>
                                     <div class="custom-control custom-checkbox ml-4">
@@ -114,6 +120,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="7">
+                        <input type="hidden"  name="page_id" value="{{ $page_id }}">
                         <input type="submit" value="結帳" class="btn btn-secondary">
                         </form>
                         </td>

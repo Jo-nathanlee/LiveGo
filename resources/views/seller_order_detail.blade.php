@@ -81,7 +81,7 @@
                                 <td>{{ $goods->goods_num }}</td>
                                 <td>{{ $goods->total_price }}</td>
                             </tr>
-                            @endforeac
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
