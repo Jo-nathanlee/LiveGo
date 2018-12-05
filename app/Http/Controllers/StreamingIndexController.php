@@ -104,6 +104,7 @@ class StreamingIndexController extends Controller
                 }
                 //下拉式商品選擇
                 $drp_product = StreamingProduct::where('page_id', '=', $page_id)
+                            ->where('goods_num', '>', 10)
                             ->get();
                 $encoded_drpProduct=json_encode($drp_product, true);
         

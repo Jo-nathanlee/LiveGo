@@ -96,9 +96,15 @@ class CheckoutController extends Controller
      {
          if (Gate::allows('seller-only',  Auth::user())) {
             if($request->has('goods')){
-             
+                $page_id =  $request->input('page_id');
+                $freight_query = Page::where('page_id','=',$page_id)
+                          ->first();
+                $freight = $freight_query->freight;
 
-                return view('checkout', ['order' => $request->input('goods')]);
+
+
+
+                return view('checkout', ['order' => $request->input('goods'),'freight' => $freight]);
             }
             else
             {

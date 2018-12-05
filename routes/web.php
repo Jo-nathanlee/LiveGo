@@ -99,6 +99,7 @@ Route::group(['middleware' => [
     
     //賣家訂單查看
     Route::get('/seller_order', 'SellerOrderController@SellerOrderAll')->name('seller_order');
+    Route::post('/seller_order_detail', 'SellerOrderController@SellerOrderDetail')->name('seller_order_detail');
     Route::get('/seller_order_unpaid', 'SellerOrderController@SellerOrderUnpaid')->name('seller_order_unpaid');
     Route::get('/seller_order_undelivered', 'SellerOrderController@SellerOrderUndelivered')->name('seller_order_undelivered');
     Route::get('/seller_order_delivered', 'SellerOrderController@SellerOrderDelivered')->name('seller_order_delivered');

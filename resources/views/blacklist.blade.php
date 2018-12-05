@@ -23,46 +23,6 @@
             <div class="row">
                 <div class="col-md-12">  
                     <h2 class="col-md-12">黑名單列表<hr></h2>
-                    <!-- 狀態列 -->
-                    <!-- <div id="order_st_nav" class="container-fluid st_nav">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <nav class="nav nav-tabs">
-                                    <a class="nav-link" href="#!">全部</a>
-                                    <a class="nav-link" href="#!">未付款</a>
-                                    <a class="nav-link" href="#!">等待出貨</a>
-                                    <a class="nav-link" href="#!">運送中</a>
-                                    <a class="nav-link" href="#!">已完成</a>
-                                    <a class="nav-link" href="#!">已取消</a>
-                                    <a class="nav-link" href="#!">退換貨</a>
-                                    <div id="order_st_nav_bar_hover"></div>
-                                    跑條動畫 想寫再寫
-                                </nav>
-                            </div>
-                        </div>
-                    </div> -->
-                    
-                    <!-- 手機板狀態列 -->
-                    <!-- <div id="order_st_nav_md" class="container-fluid st_nav_md">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <a id="order_st_nav_md_picker" class="btn-block btn st_nav_md_picker" data-toggle="collapse" data-target="#order_st_nav_md_list" aria-expanded="false" aria-controls="order_st_nav_md_list">訂單狀態</a>
-                                <div id="order_st_nav_md_list" class="collapse multi-collapse st_nav_md_list">
-                                    <nav class="nav flex-column">
-                                        <a class="btn btn-block btn-light" href="#!">全部</a>
-                                        <a class="btn btn-block btn-light" href="#!">未付款</a>
-                                        <a class="btn btn-block btn-light" href="#!">等待出貨</a>
-                                        <a class="btn btn-block btn-light" href="#!">運送中</a>
-                                        <a class="btn btn-block btn-light" href="#!">已完成</a>
-                                        <a class="btn btn-block btn-light" href="#!">已取消</a>
-                                        <a class="btn btn-block btn-light" href="#!">退換貨</a>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- 手機板狀態列end -->
-                    <!-- 狀態列end -->
                     <!-- 搜尋 先隱藏-->
                     <div class="container-fluid main" style="display: none;">
                             <div class="row">
@@ -114,24 +74,7 @@
                                                             <br><br>
                                                         </div>
                                                         <div class="form-inline">
-                                                            <label for="會員編號" class="col-sm-1 col-form-label"><strong>會員編號</strong></label>
-                                                            <input class="form-control form-control-sm" type="text" name="" id="">
-                                                            <br><br>
-                                                        </div>
-                                                        <div class="form-inline">
-                                                            <label for="事由" class="col-1 col-form-label"><strong>事由</strong></label>
-                                                            <!-- <input class="form-control form-control-sm" type="text" name="" id=""> -->
-                                                            <select class="custom-select form-control-sm">
-                                                                <option selected>洗頻</option>
-                                                                <option value="1">惡意棄單</option>
-                                                                <option value="2">性騷擾</option>
-                                                                <option value="2">黃文怡</option>
-                                                            </select>
-                                                            <br><br>
-                                                        </div>
-                                                        
-                                                        <div class="form-inline">
-                                                            <label for="?" class="col-1 col-form-label"><strong>?</strong></label>
+                                                            <label for="FB ID" class="col-sm-1 col-form-label"><strong>FB ID</strong></label>
                                                             <input class="form-control form-control-sm" type="text" name="" id="">
                                                             <br><br>
                                                         </div>
@@ -163,13 +106,10 @@
                                 <table id="table_source" class="table" >
                                     <thead>
                                         <tr>
-                                            <th>黑名單大頭貼</th>
-                                            <th>會員編號</th>
+                                            <th>大頭貼</th>
+                                            <th>FB ID</th>
                                             <th>姓名</th>
-                                            <th>首次列入時間</th>
-                                            <th>最後列入時間</th>
-                                            <th>事由</th>
-                                            <th>列入次數</th>
+                                            <th>棄標次數</th>
                                             <th>狀態</th>
                                             <th></th>
                                         </tr>
@@ -181,11 +121,8 @@
                                             </td>
                                             <td>10344250</td>
                                             <td>黃文怡</td>
-                                            <td><small>2017-10-27-22:00:27</small></td>
-                                            <td><small>2018-08-07-19:50:51</small></td>
-                                            <td>惡意棄標</td>
                                             <td>12次</td>
-                                            <td>列入</td>
+                                            <td>封鎖</td>
                                             <td><button class="btn btn-light">解除</button></td>
                                         </tr>
                                         

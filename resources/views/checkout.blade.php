@@ -132,7 +132,7 @@
                     </thead>
                     <tbody>
                         <?php
-                            $all_total=0;
+                            $goods_total=0;
                         ?>
                          @foreach($order as $goods )
                         <?php
@@ -159,15 +159,28 @@
                             <td>{{$goods_num}}</td>
                             <td>{{$total_price}}</td>
                             <?php
-                            $all_total+=(int)($total_price);
+                            $goods_total+=(int)($total_price);
                             ?>
                         </tr>
                         @endforeach
                     </tbody>
                     <tfoot>
+                        <?php
+                        $all_total=$freight+$goods_total;
+                        ?>
                         <tr>
                             <td colspan="5" class="text_right">
-                                <small>Total : {{$all_total}}</small>
+                                <small>總金額 : {{ $goods_total }}</small>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="text_right">
+                                <small>運費 : {{ $freight }}</small>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="text_right">
+                                <small> {{ $all_total }}</small>
                             </td>
                         </tr>
                     </tfoot>
@@ -178,8 +191,9 @@
                 {{ csrf_field() }}
                     <diV class="col-md-6">
                         <div class="form-group">
-                            <label for="formGroupExampleInput">訂購人</label>
+                            <label for="formGroupExampleInput"收件人</label>
                             <input type="text" class="form-control" id="formGroupExampleInput" name="buyer_name" value="{{$name}}">
+                            <input type="hidden"  name="buyer_fbname" value="{{$name}}">
                         </div>
                         <div class="form-group">
                             <label for="formGroupExampleInput2">電話</label>
@@ -207,7 +221,9 @@
                             <textarea class="form-control" name="note" rows="8" id="comment"></textarea>
                         </div>
                     </div>
-                    <input type="hidden" name="total_amount" value="{{$all_total}}">
+                    <input type="hidden" name="goods_total" value="{{$goods_total}}">
+                    <input type="hidden" name="freight" value="{{$freight}}">
+                    <input type="hidden" name="all_total" value="{{ $all_total }}">
                     <input type="hidden" name="page_name" value="{{$page_name}}">
                     <input type="hidden" name="goods" value="{{json_encode($order)}}">
                     <div class="col-md-12 text-center">

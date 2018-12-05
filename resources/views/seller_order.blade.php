@@ -4,51 +4,53 @@
 
    
 @section('heads')
- <!-- 我新增的 CSS -->
- <link rel="stylesheet" href="css/list_mgnt.css">
+    <!-- 我新增的 CSS -->
+    <link rel="stylesheet" href="css/list_mgnt.css">
      <!-- datatable + bootstrap 4  -->
      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
-    $(function () {
-        $('#order .row .col-md-12 .nav a').on('click', function () {
-            $('.nav a').removeClass('selected');
-            $(this).addClass('selected');
+    <script>
+        $(function () {
+            $('#order .row .col-md-12 .nav a').on('click', function () {
+                $('.nav a').removeClass('selected');
+                $(this).addClass('selected');
+            });
+            @if($click=='canceled')
+                $('#all').removeClass('selected');
+                $('#canceled').addClass('selected');
+            @endif
+            @if($click=='finished')
+                $('#all').removeClass('selected');
+                $('#finished').addClass('selected');
+            @endif
+            @if($click=='delivered')
+                $('#all').removeClass('selected');
+                $('#delivered').addClass('selected');
+            @endif
+            @if($click=='undelivered')
+                $('#all').removeClass('selected');
+                $('#undelivered').addClass('selected');
+            @endif
+            @if($click=='unpaid')
+                $('#all').removeClass('selected');
+                $('#unpaid').addClass('selected');
+            @endif
         });
-        @if($click=='canceled')
-            $('#all').removeClass('selected');
-            $('#canceled').addClass('selected');
-        @endif
-        @if($click=='finished')
-            $('#all').removeClass('selected');
-            $('#finished').addClass('selected');
-        @endif
-        @if($click=='delivered')
-            $('#all').removeClass('selected');
-            $('#delivered').addClass('selected');
-        @endif
-        @if($click=='undelivered')
-            $('#all').removeClass('selected');
-            $('#undelivered').addClass('selected');
-        @endif
-        @if($click=='unpaid')
-            $('#all').removeClass('selected');
-            $('#unpaid').addClass('selected');
-        @endif
-    });
-</script>
+    </script>
 @stop
 
 
+@section('wrapper')
+<div class="wrapper">
+    <div id="sidebar_page"></div>
+@stop
+@section('navbar')
+    <!-- Page Content  -->
+    <div id="content">
+        <div id="navbar_page"></div>
+        <!--Nav bar end-->
+@stop
 @section('content')
-    <div class="wrapper">
-        <!-- Sidebar  -->
-        <div id="sidebar_page"></div>
-        <!-- Page Content  -->
-        <div id="content">
-            <div id="navbar_page"></div>
-            <!--Nav bar end-->
-            <!-- main -->
             <div id="order" class="container-fluid main">
                 <div class="row">
                     <div class="col-md-12">
@@ -121,72 +123,50 @@
                                 <table id="table_nocontroler" class="table">
                                     <thead>
                                         <tr>
+                                            <th>得標者圖片</th>
                                             <th>得標者姓名</th>
-                                            <th>商品圖片</th>
-                                            <th>商品名稱</th>
-                                            <th>商品價錢</th>
-                                            <th>商品數量</th>
+                                            <th>訂單編號</th>
+                                            <th>總金額</th>
+                                            <th>狀態</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td align="center" colspan="5">無資料</td>
+                                            <td align="center" colspan="6">無資料</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             @else
-                            <?php 
-                            $order_status='';
-                            $created_time='';
-                            
-                            ?>
-                          
-                            @foreach($order as $orderid => $collection)
-                            <?php
-                            $total_amount=0;
-                            ?>
-                                <br><br>
                                 <table id="table_nocontroler" class="table">
                                     <thead>
                                         <tr>
-                                            <th colspan="4">訂單編號：{{$orderid}}</th>
-                                            <th><a class="btn btn-secondary"  href="{{ route('download_pdf',['order_id' => json_encode($orderid)]) }}">PDF下載</a></th>
+                                            <th>得標者圖片</th>
+                                            <th>得標者姓名</th>
+                                            <th>訂單編號</th>
+                                            <th>總金額</th>
+                                            <th>狀態</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>得標者姓名</td>
-                                            <td>商品圖片</td>
-                                            <td>商品名稱</td>
-                                            <td>商品價錢</td>
-                                            <td>商品數量</td>
-                                        </tr>
-                                    @foreach($collection as $order_detail)
+                                @foreach($order as $order_detail)
+                                            <!-- <th><a class="btn btn-secondary"  href="{{ route('download_pdf',['order_id' => json_encode($orderid)]) }}">PDF下載</a></th> -->
                                         <tr id="order_item">
-                                            <td>
-                                                {{$order_detail->name}}
-                                            </td>
                                             <td scope="row">
-                                                <img id="order_img" src="{{ $order_detail->pic_path }}" class="img-fluid img" alt="Responsive image">
+                                                <img id="order_img" src="https://graph.facebook.com/{{ $order_detail->buyer_fbid }}/picture" class="img-fluid img" alt="Responsive image">
                                             </td>
-                                            <td>{{$order_detail->goods_name}}</td>
-                                            <td>{{$order_detail->goods_price}}</td>
-                                            <td>{{$order_detail->goods_num}}</td>
+                                            <td>{{$order_detail->name}}</td>
+                                            <td>{{$order_detail->order_id}}</td>
+                                            <td>{{$order_detail->total_price}}</td>
+                                            <td>{{$order_detail->status}}</td>
+                                            <td><button href="{{ route('seller_order_detail',['order_id' => json_encode($order_detail->order_id)]) }}" type="button" class="btn btn-outline-dark">查看詳情</button></td>
                                         </tr>
-                                        <?php 
-                                        $order_status=$order_detail->order_status;
-                                        $created_time=$order_detail->created_time;
-                                        $total_amount+=(int)($order_detail->total_price);
-                                        ?>
-                                    @endforeach
-                                        <tr>
-                                            <td colspan="2">訂單成立時間：{{$created_time}}</td>
-                                            <td colspan="3" align="right" >總金額：{{$total_amount}} </td>
-                                        </tr>
+                                @endforeach
                                     </tbody>
                                 </table>
-                                <hr>
-                            @endforeach     
+                               
+                                    
                             <!-- 頁碼 -->
                             <span id="list_table_page" class="list_table_page"></span>   
                             <!-- 頁碼end -->
@@ -215,10 +195,7 @@
     <script src="js/Live_go.js"></script>
     <!-- 我新增的JS -->
     <script src="js/list_mgnt.js"></script>
-    <!-- <script src="js/jquery-tablepage-1.0.js"></script> -->
-    <!-- <script src="js/moment.js"></script> -->
     <!-- DataTable + Bootstrap 4  cdn引用-->
     <script defer src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script defer src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script> -->
 @stop

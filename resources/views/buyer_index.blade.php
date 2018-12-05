@@ -77,6 +77,7 @@
                 {{$page}}<hr>
                 <form action="{{ route('checkout_form') }}" method="POST">       
                             {{ csrf_field() }}
+                            <input type="hidden"  name="page_id" value="{{ $cart->page_id }}">
                 <table class="table table-striped tablecart" id="table_cart">  
                 <thead>
                     <tr>

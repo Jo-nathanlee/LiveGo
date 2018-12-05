@@ -23,8 +23,11 @@ class ECPayController extends Controller
         $address=$request->address;
         $phone=$request->phone;
         $note=$request->note;
+        $buyer_fbname=$request->buyer_fbname;
+        $freight=$request->freight;
         $buyer_name=$request->buyer_name;
-        $TotalAmount=$request->total_amount;
+        $goods_total=$request->goods_total;
+        $TotalAmount=$request->all_total;
         date_default_timezone_set("Asia/Taipei");
         $MerchantTradeDate=date('Y/m/d H:i:s');
 
@@ -108,20 +111,19 @@ class ECPayController extends Controller
         $OrderDetail->page_id = $page_id;
         $OrderDetail->page_name = $page_name;
         $OrderDetail->buyer_fbid = $fb_id;
+        $OrderDetail->buyer_fbname = $buyer_fbname;
         $OrderDetail->buyer_name = $buyer_name;
         $OrderDetail->order_id = $order_id;
         $OrderDetail->transaction_date = $MerchantTradeDate;
         $OrderDetail->status = 'unpaid';
-        $OrderDetail->total_price = $TotalAmount;
+        $OrderDetail->goods_total = $goods_total;
+        $OrderDetail->all_total = $TotalAmount;
+        $OrderDetail->freight = $freight;
         $OrderDetail->buyer_address = $address;
         $OrderDetail->buyer_phone = $phone;
         $OrderDetail->note = $note; 
         $OrderDetail->save();
 
-
-
-
-        
         //Go to EcPay
         echo "緑界頁面導向中...";
         echo Ecpay::i()->CheckOutString();

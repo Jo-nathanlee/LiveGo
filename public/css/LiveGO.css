@@ -23,6 +23,15 @@
     margin-left: 25%;
 }
 
+.user_pic{
+    width: 64px;
+    height: 64px;
+}
+
+.Microsoft{
+  font-family: Microsoft JhengHei;
+}
+
 .fb_pic
 {
     width:80px;

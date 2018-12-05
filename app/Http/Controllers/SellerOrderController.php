@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
 use App\Entities\Page;
 use App\Entities\CheckoutOrder;
+use App\Entities\OrderDetail;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -20,31 +21,25 @@ class SellerOrderController extends Controller
         if (Gate::allows('seller-only',  Auth::user())) {
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
-            $query = CheckoutOrder::all()
-                    ->where('page_id', '=', $page_id)
-                    ->groupBy('order_id');
-            $countAllOrder=CheckoutOrder::where('page_id', '=', $page_id)
-            ->distinct()
+            $query = OrderDetail::where('page_id', '=', $page_id)
+                    ->get();
+
+            $countAllOrder=OrderDetail::where('page_id', '=', $page_id)
             ->count();
-            $countUnpaidOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            $countUnpaidOrder=OrderDetail::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'unpaid')
-            ->distinct()
             ->count();
-            $countUndeliveredOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            $countUndeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'undelivered')
-            ->distinct()
             ->count();   
-            $countDeliveredOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            $countDeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'delivered')
-            ->distinct()
             ->count();     
-            $countFinishedOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            $countFinishedOrder=OrderDetail::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'finished')
-            ->distinct()
             ->count();  
-            $countCanceledOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            $countCanceledOrder=OrderDetail::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'canceled')
-            ->distinct()
             ->count();          
                         
     
@@ -61,33 +56,26 @@ class SellerOrderController extends Controller
         if (Gate::allows('seller-only',  Auth::user())) {
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
-            $query = CheckoutOrder::all()
-                    ->where('page_id', '=', $page_id)
+            $query = OrderDetail::where('page_id', '=', $page_id)
                     ->where('order_status', '=', 'unpaid')
-                    ->groupBy('order_id');
+                    ->get();
 
-            $countAllOrder=CheckoutOrder::where('page_id', '=', $page_id)
-            ->distinct()
+            $countAllOrder=OrderDetail::where('page_id', '=', $page_id)
             ->count();
-            $countUnpaidOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            $countUnpaidOrder=OrderDetail::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'unpaid')
-            ->distinct()
             ->count();
-            $countUndeliveredOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            $countUndeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'undelivered')
-            ->distinct()
             ->count();   
-            $countDeliveredOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            $countDeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'delivered')
-            ->distinct()
             ->count();     
-            $countFinishedOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            $countFinishedOrder=OrderDetail::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'finished')
-            ->distinct()
             ->count();  
-            $countCanceledOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            $countCanceledOrder=OrderDetail::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'canceled')
-            ->distinct()
             ->count();          
     
             return view('seller_order', ['order' => $query,'click' => 'unpaid' ,'countAllOrder' => $countAllOrder,'countUnpaidOrder' => $countUnpaidOrder,'countUndeliveredOrder' => $countUndeliveredOrder,'countDeliveredOrder' => $countDeliveredOrder,'countFinishedOrder' => $countFinishedOrder,'countCanceledOrder' => $countCanceledOrder]);
@@ -103,33 +91,26 @@ class SellerOrderController extends Controller
         if (Gate::allows('seller-only',  Auth::user())) {
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
-            $query = CheckoutOrder::all()
-                    ->where('page_id', '=', $page_id)
-                    ->where('order_status', '=', 'undelivered')
-                    ->groupBy('order_id');
-            
-            $countAllOrder=CheckoutOrder::where('page_id', '=', $page_id)
-            ->distinct()
-            ->count();
-            $countUnpaidOrder=CheckoutOrder::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'unpaid')
-            ->distinct()
-            ->count();
-            $countUndeliveredOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            $query = OrderDetail::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'undelivered')
-            ->distinct()
+            ->get();
+            
+            $countAllOrder=OrderDetail::where('page_id', '=', $page_id)
+            ->count();
+            $countUnpaidOrder=OrderDetail::where('page_id', '=', $page_id)
+            ->where('order_status', '=', 'unpaid')
+            ->count();
+            $countUndeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
+            ->where('order_status', '=', 'undelivered')
             ->count();   
-            $countDeliveredOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            $countDeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'delivered')
-            ->distinct()
             ->count();     
-            $countFinishedOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            $countFinishedOrder=OrderDetail::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'finished')
-            ->distinct()
             ->count();  
-            $countCanceledOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            $countCanceledOrder=OrderDetail::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'canceled')
-            ->distinct()
             ->count();          
     
             return view('seller_order', ['order' => $query,'click' => 'undelivered' ,'countAllOrder' => $countAllOrder,'countUnpaidOrder' => $countUnpaidOrder,'countUndeliveredOrder' => $countUndeliveredOrder,'countDeliveredOrder' => $countDeliveredOrder,'countFinishedOrder' => $countFinishedOrder,'countCanceledOrder' => $countCanceledOrder]);
@@ -145,33 +126,26 @@ class SellerOrderController extends Controller
         if (Gate::allows('seller-only',  Auth::user())) {
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
-            $query = CheckoutOrder::all()
-                    ->where('page_id', '=', $page_id)
-                    ->where('order_status', '=', 'delivered')
-                    ->groupBy('order_id');
-            
-            $countAllOrder=CheckoutOrder::where('page_id', '=', $page_id)
-            ->distinct()
-            ->count();
-            $countUnpaidOrder=CheckoutOrder::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'unpaid')
-            ->distinct()
-            ->count();
-            $countUndeliveredOrder=CheckoutOrder::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'undelivered')
-            ->distinct()
-            ->count();   
-            $countDeliveredOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            $query = OrderDetail::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'delivered')
-            ->distinct()
+            ->get();
+            
+            $countAllOrder=OrderDetail::where('page_id', '=', $page_id)
+            ->count();
+            $countUnpaidOrder=OrderDetail::where('page_id', '=', $page_id)
+            ->where('order_status', '=', 'unpaid')
+            ->count();
+            $countUndeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
+            ->where('order_status', '=', 'undelivered')
+            ->count();   
+            $countDeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
+            ->where('order_status', '=', 'delivered')
             ->count();     
-            $countFinishedOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            $countFinishedOrder=OrderDetail::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'finished')
-            ->distinct()
             ->count();  
-            $countCanceledOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            $countCanceledOrder=OrderDetail::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'canceled')
-            ->distinct()
             ->count();          
     
             return view('seller_order', ['order' => $query,'click' => 'delivered' ,'countAllOrder' => $countAllOrder,'countUnpaidOrder' => $countUnpaidOrder,'countUndeliveredOrder' => $countUndeliveredOrder,'countDeliveredOrder' => $countDeliveredOrder,'countFinishedOrder' => $countFinishedOrder,'countCanceledOrder' => $countCanceledOrder]);
@@ -187,33 +161,26 @@ class SellerOrderController extends Controller
         if (Gate::allows('seller-only',  Auth::user())) {
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
-            $query = CheckoutOrder::all()
-                    ->where('page_id', '=', $page_id)
-                    ->where('order_status', '=', 'finished')
-                    ->groupBy('order_id');
-
-            $countAllOrder=CheckoutOrder::where('page_id', '=', $page_id)
-            ->distinct()
-            ->count();
-            $countUnpaidOrder=CheckoutOrder::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'unpaid')
-            ->distinct()
-            ->count();
-            $countUndeliveredOrder=CheckoutOrder::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'undelivered')
-            ->distinct()
-            ->count();   
-            $countDeliveredOrder=CheckoutOrder::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'delivered')
-            ->distinct()
-            ->count();     
-            $countFinishedOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            $query = OrderDetail::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'finished')
-            ->distinct()
+            ->get();
+
+            $countAllOrder=OrderDetail::where('page_id', '=', $page_id)
+            ->count();
+            $countUnpaidOrder=OrderDetail::where('page_id', '=', $page_id)
+            ->where('order_status', '=', 'unpaid')
+            ->count();
+            $countUndeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
+            ->where('order_status', '=', 'undelivered')
+            ->count();   
+            $countDeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
+            ->where('order_status', '=', 'delivered')
+            ->count();     
+            $countFinishedOrder=OrderDetail::where('page_id', '=', $page_id)
+            ->where('order_status', '=', 'finished')
             ->count();  
-            $countCanceledOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            $countCanceledOrder=OrderDetail::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'canceled')
-            ->distinct()
             ->count();          
     
             return view('seller_order', ['order' => $query,'click' => 'finished' ,'countAllOrder' => $countAllOrder,'countUnpaidOrder' => $countUnpaidOrder,'countUndeliveredOrder' => $countUndeliveredOrder,'countDeliveredOrder' => $countDeliveredOrder,'countFinishedOrder' => $countFinishedOrder,'countCanceledOrder' => $countCanceledOrder]);
@@ -229,33 +196,26 @@ class SellerOrderController extends Controller
         if (Gate::allows('seller-only',  Auth::user())) {
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
-            $query = CheckoutOrder::all()
-                    ->where('page_id', '=', $page_id)
-                    ->where('order_status', '=', 'canceled')
-                    ->groupBy('order_id');
-
-            $countAllOrder=CheckoutOrder::where('page_id', '=', $page_id)
-            ->distinct()
-            ->count();
-            $countUnpaidOrder=CheckoutOrder::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'unpaid')
-            ->distinct()
-            ->count();
-            $countUndeliveredOrder=CheckoutOrder::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'undelivered')
-            ->distinct()
-            ->count();   
-            $countDeliveredOrder=CheckoutOrder::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'delivered')
-            ->distinct()
-            ->count();     
-            $countFinishedOrder=CheckoutOrder::where('page_id', '=', $page_id)
-            ->where('order_status', '=', 'finished')
-            ->distinct()
-            ->count();  
-            $countCanceledOrder=CheckoutOrder::where('page_id', '=', $page_id)
+            $query = OrderDetail::where('page_id', '=', $page_id)
             ->where('order_status', '=', 'canceled')
-            ->distinct()
+            ->get();
+
+            $countAllOrder=OrderDetail::where('page_id', '=', $page_id)
+            ->count();
+            $countUnpaidOrder=OrderDetail::where('page_id', '=', $page_id)
+            ->where('order_status', '=', 'unpaid')
+            ->count();
+            $countUndeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
+            ->where('order_status', '=', 'undelivered')
+            ->count();   
+            $countDeliveredOrder=OrderDetail::where('page_id', '=', $page_id)
+            ->where('order_status', '=', 'delivered')
+            ->count();     
+            $countFinishedOrder=OrderDetail::where('page_id', '=', $page_id)
+            ->where('order_status', '=', 'finished')
+            ->count();  
+            $countCanceledOrder=OrderDetail::where('page_id', '=', $page_id)
+            ->where('order_status', '=', 'canceled')
             ->count();          
     
             return view('seller_order', ['order' => $query,'click' => 'canceled' ,'countAllOrder' => $countAllOrder,'countUnpaidOrder' => $countUnpaidOrder,'countUndeliveredOrder' => $countUndeliveredOrder,'countDeliveredOrder' => $countDeliveredOrder,'countFinishedOrder' => $countFinishedOrder,'countCanceledOrder' => $countCanceledOrder]);
@@ -265,6 +225,25 @@ class SellerOrderController extends Controller
            return redirect('/')->with('alert', '您尚未開通，請聯繫我們！');
         }
      }
+
+     public function SellerOrderDetail(Request $request)//訂單詳情
+     {
+         if (Gate::allows('seller-only',  Auth::user())) {
+            $order_id = json_decode($request->input('order_id'));
+            $queryDetail = OrderDetail::where('order_id', '=', $order_id)
+            ->first();
+            $queryOrders = CheckoutOrder::where('order_id', '=', $order_id)
+            ->get();
+
+            return view('seller_order_detail', ['order_detail' => $queryDetail,'order_goods' => $queryOrders]);
+
+         }
+         else
+         {
+            return redirect('/')->with('alert', '您尚未開通，請聯繫我們！');
+         }
+     }
+     
      //------------------------------------------------------------------------------------------------------------
 
      //總PDF
