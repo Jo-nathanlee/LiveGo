@@ -101,6 +101,10 @@ class CheckoutController extends Controller
                           ->first();
                 $freight = $freight_query->freight;
 
+                if($freight==null)
+                {
+                    $frieght=0;
+                }
 
 
 
