@@ -170,7 +170,7 @@
                             <!-- 頁碼 -->
                             <span id="list_table_page" class="list_table_page"></span>   
                             <!-- 頁碼end -->
-                            <center><a class="btn btn-secondary"  href="{{ route('download',['pdf_order' => json_encode($order)]) }}">PDF下載</a></center>                  
+                            <!-- <center><a class="btn btn-secondary"  href="{{ route('download',['pdf_order' => json_encode($order)]) }}">PDF下載</a></center>                   -->
                             @endif
                             </div>
                         </div>
