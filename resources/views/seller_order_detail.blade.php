@@ -69,7 +69,7 @@
                             <?php 
                             $no=1;
                             ?>
-                            @foreach($order_goods as goods)
+                            @foreach($order_goods as $goods)
                             <tr id="order_item">
                                 <td>{{ $no }}</td>
                                 <!-- 流水號 -->
@@ -91,7 +91,53 @@
                 <!-- main end -->
             </div>
         </div>
-      
+        <div class="container-fluid mt-3 mb-3 ">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="media " data-toggle="collapse" href="#pirce_detail" role="button" aria-expanded="false" aria-controls="pirce_detail">
+                        <i class="icofont icofont-bill d-flex mr-3 text-success" style="font-size: 40px"></i>
+                        <div class="align-self-center">
+                            <b>總金額 : </b> {{ $order_detail->total_price }}</div>
+                        <div class="media-body text-secondary">
+                            <small class="float-right mt-2">查看詳情
+                                <i class="icofont icofont-rounded-expand"></i>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="collapse mt-3" id="pirce_detail">
+                        <div class=" p-3  border-top">
+                            <div class="media text-secondary">
+                                <i class="icofont icofont-truck-loaded d-flex mr-3" style="font-size: 20px"></i>
+                                <div class="align-self-center">
+                                    <small>
+                                        <b>訂單金額 : </b> {{ $order_detail->total_price }}</div>
+                                </small>
+                            </div>
+                        </div>
+                        <div class="p-3  border-top">
+                            <div class="media mt-3 text-secondary">
+                                <i class="icofont icofont-truck-loaded d-flex mr-3" style="font-size: 20px"></i>
+                                <div class="align-self-center">
+                                    <small>
+                                        <b>運費 : </b>{{ $order_detail->freight }}</div>
+                                </small>
+                            </div>
+                        </div>
+                        <div class=" p-3  border-top">
+                            <div class="media mt-3 text-secondary">
+                                <i class="icofont icofont-card d-flex mr-3" style="font-size: 20px"></i>
+                                <div class="align-self-center">
+                                    <small>
+                                        <b>優惠折扣 : </b> 0</div>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Cotent end-->
+    </div>
 @stop
 @section('footer')
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
