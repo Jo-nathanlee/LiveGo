@@ -14,16 +14,16 @@
 
 @section('wrapper')
 <div class="wrapper">
-    <div id="sidebar_page"></div>
+    <!-- <div id="sidebar_page"></div> -->
 @stop
 @section('navbar')
     <!-- Page Content  -->
     <div id="content" class="Microsoft">
-        <div id="navbar_page"></div>
+        <!-- <div id="navbar_page"></div> -->
         <!--Nav bar end-->
 @stop
 @section('content')
-        <!-- <div class="container-fluid mt-3 mb-3 ">
+        <div class="container-fluid mt-3 mb-3 ">
             <div class="card shadow-sm">
                 <div class="card-body">
                     <div class="media">
@@ -65,31 +65,31 @@
                                 <th>總金額</th>
                             </tr>
                         </thead>
-                        <tbody> -->
+                        <tbody>
                             <?php 
                             $no=1;
                             ?>
-                            <!-- @foreach($order_goods as goods)
+                            @foreach($order_goods as goods)
                             <tr id="order_item">
-                                <td>{{ $no }}</td> -->
+                                <td>{{ $no }}</td>
                                 <!-- 流水號 -->
-                                <!-- <td scope="row">
+                                <td scope="row">
                                     <img id="order_img" src="{{ $goods->pic_path }}" class="img-fluid img" alt="Responsive image">
                                 </td>
                                 <td>{{ $goods->goods_name }}</td>
                                 <td>{{ $goods->goods_price }}</td>
                                 <td>{{ $goods->goods_num }}</td>
                                 <td>{{ $goods->total_price }}</td>
-                            </tr> -->
+                            </tr>
                             <?php
                             $no+=1;
                             ?>
-                            <!-- @endforeach
+                            @endforeach
                         </tbody>
                     </table>
-                </div> -->
+                </div>
                 <!-- main end -->
-            <!-- </div>
+            </div>
         </div>
         <div class="container-fluid mt-3 mb-3 ">
             <div class="card shadow-sm">
@@ -135,7 +135,7 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <!-- Cotent end-->
     </div>
 @stop
