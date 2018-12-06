@@ -35,4 +35,49 @@
                             <font class="text-secondary">{{ $order_detail->buyer_fbid }}</font>
                         </div>
                     </div>
-                  
+                    <div class="media mt-3 border-top pt-3">
+                        <div class="media-body">
+                            <h5 class="mt-0">
+                                <i class="icofont icofont-numbered"></i> 
+                                <b>訂單編號</b>
+                                <font class="text-secondary">{{ $order_detail->order_id }}</font>
+                            </h5>
+                            <i class="icofont icofont-map h5"></i> 
+                            <b>買家電話/收件地址</b>
+                            <font class="text-secondary">{{ $order_detail->buyer_name }},{{ $order_detail->buyer_phone }}<br>
+                            {{ $order_detail->buyer_address }}</font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <table id="table_bid_list_detail" class="table">
+                        <thead>
+                            <tr>
+                                <th>編號</th>
+                                <th>商品圖片</th>
+                                <th>商品名稱</th>
+                                <th>單價</th>
+                                <th>數量</th>
+                                <th>總金額</th>
+                            </tr>
+                        </thead>
+        
+@stop
+@section('footer')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+            crossorigin="anonymous"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+            crossorigin="anonymous"></script>
+        <!-- My JS -->
+        <script src="js/Live_go.js"></script>
+        <!-- 我新增的JS -->
+        <script src="js/list_mgnt.js"></script>
+        <!-- DataTable + Bootstrap 4  cdn引用-->
+        <script defer src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script defer src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+@stop
