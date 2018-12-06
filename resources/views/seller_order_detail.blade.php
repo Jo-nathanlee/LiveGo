@@ -81,6 +81,9 @@
                                 <td>{{ $goods->goods_num }}</td>
                                 <td>{{ $goods->total_price }}</td>
                             </tr>
+                            <?php
+                            $no+=1;
+                            ?>
                             @endforeach
                         </tbody>
                     </table>
