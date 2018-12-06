@@ -12,3 +12,27 @@
 @stop
 
 
+@section('wrapper')
+<div class="wrapper">
+    <div id="sidebar_page"></div>
+@stop
+@section('navbar')
+    <!-- Page Content  -->
+    <div id="content" class="Microsoft">
+        <div id="navbar_page"></div>
+        <!--Nav bar end-->
+@stop
+@section('content')
+        <div class="container-fluid mt-3 mb-3 ">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="media">
+                        <img class="d-flex mr-3 rounded-circle user_pic" src="https://graph.facebook.com/{{ $order_detail->buyer_fbid }}/picture">
+                        <div class="media-body">
+                            <h5 class="mt-0">
+                                <font class="text-secondary"><b>{{ $order_detail->buyer_fbname }}</b></font>
+                            </h5>
+                            <font class="text-secondary">{{ $order_detail->buyer_fbid }}</font>
+                        </div>
+                    </div>
+                  
