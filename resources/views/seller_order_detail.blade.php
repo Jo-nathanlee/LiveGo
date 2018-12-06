@@ -65,7 +65,33 @@
                                 <th>總金額</th>
                             </tr>
                         </thead>
-        
+                        <tbody>
+                            <?php 
+                            $no=1;
+                            ?>
+                            @foreach($order_goods as goods)
+                            <tr id="order_item">
+                                <td>{{ $no }}</td>
+                                <!-- 流水號 -->
+                                <td scope="row">
+                                    <img id="order_img" src="{{ $goods->pic_path }}" class="img-fluid img" alt="Responsive image">
+                                </td>
+                                <td>{{ $goods->goods_name }}</td>
+                                <td>{{ $goods->goods_price }}</td>
+                                <td>{{ $goods->goods_num }}</td>
+                                <td>{{ $goods->total_price }}</td>
+                            </tr>
+                            <?php
+                            $no+=1;
+                            ?>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <!-- main end -->
+            </div>
+        </div>
+      
 @stop
 @section('footer')
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
