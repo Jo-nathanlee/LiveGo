@@ -97,7 +97,7 @@
                     <div class="media " data-toggle="collapse" href="#pirce_detail" role="button" aria-expanded="false" aria-controls="pirce_detail">
                         <i class="icofont icofont-bill d-flex mr-3 text-success" style="font-size: 40px"></i>
                         <div class="align-self-center">
-                            <b>總金額 : </b> {{ $order_detail->total_price }}</div>
+                            <b>總金額 : </b> {{ $order_detail->all_total }}</div>
                         <div class="media-body text-secondary">
                             <small class="float-right mt-2">查看詳情
                                 <i class="icofont icofont-rounded-expand"></i>
@@ -110,7 +110,7 @@
                                 <i class="icofont icofont-truck-loaded d-flex mr-3" style="font-size: 20px"></i>
                                 <div class="align-self-center">
                                     <small>
-                                        <b>訂單金額 : </b> {{ $order_detail->total_price }}</div>
+                                        <b>訂單金額 : </b> {{ $order_detail->goods_total }}</div>
                                 </small>
                             </div>
                         </div>
