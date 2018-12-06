@@ -120,6 +120,8 @@ Route::group(['middleware' => [
 
     //棄標黑名單
     Route::get('/bid_blacklist', 'BidWinnerController@Blacklist')->name('bid_blacklist');
+    Route::get('/catch_blacklist', 'BidWinnerController@Blacklist_check')->name('catch_blacklist');
+    
    
     //設定直播拍賣商品
     Route::get('/SetProduct_show', 'StreamingProductController@SetStreamingProduct_show')->name('SetProduct_show');

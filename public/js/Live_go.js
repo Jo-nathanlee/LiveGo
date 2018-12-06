@@ -29,6 +29,36 @@ $(document).ready(function () {
         //可以get this id
     });
 
+    //判斷棄標=========================================================================
+    $.ajax({
+        /* the route pointing to the post function */
+        url: '/catch_blacklist',
+        type: 'GET',
+        /* send the csrf-token and the input to the controller */
+        data: { goods_name:$(this).text(),_token:csrfToken},
+        dataType: 'JSON',
+        /* remind that 'data' is the response of the AjaxController */
+        success: function (data) {
+            console.log(data[0]);
+            if(data!="")
+            {
+               
+            }
+        },
+        error: function(xhr, status, error) {
+            alert(error);
+            alert(XMLHttpRequest.status);
+            alert(XMLHttpRequest.responseText);
+        }
+    });
+
+
+
+
+    //=================================================================================
+
+
+
     $('.product_size_info div').on('click', function(){
         $('.product_size_info div').removeClass('product_action');
         $('.product_size_info div').addClass('text-black-50');

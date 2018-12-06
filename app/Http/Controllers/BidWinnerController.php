@@ -36,7 +36,10 @@ class BidWinnerController extends Controller
     public function Blacklist(Request $request)
     {
         if (Gate::allows('seller-only',  Auth::user())) {
-           
+            $page = Page::where('fb_id', Auth::user()->fb_id)->first();
+            $page_id = $page->page_id;
+
+            
 
             return view('blacklist');
         }
@@ -45,5 +48,21 @@ class BidWinnerController extends Controller
             return redirect('/')->with('alert', '您尚未開通，請聯繫我們！');
         }
     }
+
+    //判斷黑名單
+    public function Blacklist_check(Request $request)
+    {
+        $time_now = date("Y-m-d H:i:s");
+        $page = Page::where('fb_id', Auth::user()->fb_id)->first();
+        $page_id = $page->page_id;
+        StreamingOrder::where('page_id', '=', $page_id)
+        ->whereNull('order_id')
+        ->where('deadline', '<',$time_now)
+        ->update(['if_valid' => 'N']);
+
+   
+    }
+
+    
     
 }

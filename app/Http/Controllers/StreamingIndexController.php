@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Gate;
 use App\Entities\Page;
 use App\Entities\StreamingOrder;
 use App\Entities\StreamingProduct;
+use App\Entities\Member;
 use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Facebook;
 use Illuminate\Http\Request;
@@ -390,9 +391,29 @@ class StreamingIndexController extends Controller
             $page_store->note =  $note;
             $page_store->comment =  $buyer[0]['comment'];
             $page_store->created_time =  date("Y-m-d H:i:s");
+            $page_store->deadline =  date('Y-m-d H:i:s', strtotime(date("Y-m-d H:i:s") . ' +1 day'));
             $page_store->uid = $uid;
             $page_store->pic_path = $pic_url;
             $page_store->save();
+
+            $if_exist = Member::where('fb_id','=',$buyer[0]['id'])->get();
+            if(count($if_exist))
+            {
+                Member::where('fb_id','=',$buyer[0]['id'])
+                ->increment('bid_times');
+            }
+            else
+            {
+                $member_store = new Member();
+                $member_store->page_id = $page_id;
+                $member_store->page_name = $page_name;
+                $member_store->fb_id = $buyer[0]['id'];
+                $member_store->fb_name = $buyer[0]['name'];
+                $member_store->bid_times = 1;
+                $member_store->save();
+            }
+
+
 
             $left_num-=1;
 

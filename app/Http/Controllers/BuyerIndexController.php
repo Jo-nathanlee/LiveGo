@@ -18,6 +18,7 @@ class BuyerIndexController extends Controller
     {
         $fb_id=Auth::user()->fb_id;
         $query = StreamingOrder::where('fb_id', '=', $fb_id)
+                ->whereNull('if_valid', '=', 'Y')
                 ->whereNull('order_id')
                 ->select('page_id','page_name','fb_id','name','goods_name','goods_price','goods_num','total_price','uid','pic_path')
                 ->get();
