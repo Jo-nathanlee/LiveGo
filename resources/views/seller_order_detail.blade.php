@@ -23,16 +23,16 @@
         <!--Nav bar end-->
 @stop
 @section('content')
-        <div class="container-fluid mt-3 mb-3 ">
+        <!-- <div class="container-fluid mt-3 mb-3 ">
             <div class="card shadow-sm">
                 <div class="card-body">
                     <div class="media">
                         <img class="d-flex mr-3 rounded-circle user_pic" src="https://graph.facebook.com/{{ $order_detail->buyer_fbid }}/picture">
                         <div class="media-body">
                             <h5 class="mt-0">
-                                <!-- <font class="text-secondary"><b>{{ $order_detail->buyer_fbname }}</b></font> -->
+                                <font class="text-secondary"><b>{{ $order_detail->buyer_fbname }}</b></font>
                             </h5>
-                            <!-- <font class="text-secondary">{{ $order_detail->buyer_fbid }}</font> -->
+                            <font class="text-secondary">{{ $order_detail->buyer_fbid }}</font>
                         </div>
                     </div>
                     <div class="media mt-3 border-top pt-3">
@@ -40,12 +40,12 @@
                             <h5 class="mt-0">
                                 <i class="icofont icofont-numbered"></i> 
                                 <b>訂單編號</b>
-                                <!-- <font class="text-secondary">{{ $order_detail->order_id }}</font> -->
+                                <font class="text-secondary">{{ $order_detail->order_id }}</font>
                             </h5>
                             <i class="icofont icofont-map h5"></i> 
                             <b>買家電話/收件地址</b>
-                            <!-- <font class="text-secondary">{{ $order_detail->buyer_name }},{{ $order_detail->buyer_phone }}<br>
-                            {{ $order_detail->buyer_address }}</font> -->
+                            <font class="text-secondary">{{ $order_detail->buyer_name }},{{ $order_detail->buyer_phone }}<br>
+                            {{ $order_detail->buyer_address }}</font>
                         </div>
                     </div>
                 </div>
@@ -65,31 +65,31 @@
                                 <th>總金額</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody> -->
                             <?php 
                             $no=1;
                             ?>
-                            @foreach($order_goods as goods)
+                            <!-- @foreach($order_goods as goods)
                             <tr id="order_item">
-                                <td>{{ $no }}</td>
+                                <td>{{ $no }}</td> -->
                                 <!-- 流水號 -->
-                                <td scope="row">
-                                    <!-- <img id="order_img" src="{{ $goods->pic_path }}" class="img-fluid img" alt="Responsive image"> -->
+                                <!-- <td scope="row">
+                                    <img id="order_img" src="{{ $goods->pic_path }}" class="img-fluid img" alt="Responsive image">
                                 </td>
-                                <!-- <td>{{ $goods->goods_name }}</td>
+                                <td>{{ $goods->goods_name }}</td>
                                 <td>{{ $goods->goods_price }}</td>
                                 <td>{{ $goods->goods_num }}</td>
-                                <td>{{ $goods->total_price }}</td> -->
-                            </tr>
+                                <td>{{ $goods->total_price }}</td>
+                            </tr> -->
                             <?php
                             $no+=1;
                             ?>
-                            @endforeach
+                            <!-- @endforeach
                         </tbody>
                     </table>
-                </div>
+                </div> -->
                 <!-- main end -->
-            </div>
+            <!-- </div>
         </div>
         <div class="container-fluid mt-3 mb-3 ">
             <div class="card shadow-sm">
@@ -97,7 +97,7 @@
                     <div class="media " data-toggle="collapse" href="#pirce_detail" role="button" aria-expanded="false" aria-controls="pirce_detail">
                         <i class="icofont icofont-bill d-flex mr-3 text-success" style="font-size: 40px"></i>
                         <div class="align-self-center">
-                            <!-- <b>總金額 : </b> {{ $order_detail->total_price }}</div> -->
+                            <b>總金額 : </b> {{ $order_detail->total_price }}</div>
                         <div class="media-body text-secondary">
                             <small class="float-right mt-2">查看詳情
                                 <i class="icofont icofont-rounded-expand"></i>
@@ -110,7 +110,7 @@
                                 <i class="icofont icofont-truck-loaded d-flex mr-3" style="font-size: 20px"></i>
                                 <div class="align-self-center">
                                     <small>
-                                        <!-- <b>訂單金額 : </b> {{ $order_detail->total_price }}</div> -->
+                                        <b>訂單金額 : </b> {{ $order_detail->total_price }}</div>
                                 </small>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                                 <i class="icofont icofont-truck-loaded d-flex mr-3" style="font-size: 20px"></i>
                                 <div class="align-self-center">
                                     <small>
-                                        <!-- <b>運費 : </b>{{ $order_detail->freight }}</div> -->
+                                        <b>運費 : </b>{{ $order_detail->freight }}</div>
                                 </small>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Cotent end-->
     </div>
 @stop
