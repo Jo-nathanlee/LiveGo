@@ -115,6 +115,10 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    @if(count($order)==0)
+                                        <tr>
+                                            <td align="center" colspan="6">無資料</td>
+                                        </tr>
                                     @foreach($blacklist as $blacklist)
                                         <tr id="blacklist_item">
                                             <td scope="row">
@@ -126,7 +130,8 @@
                                             <td>封鎖</td>
                                             <td><button class="btn btn-light">解除</button></td>
                                         </tr>
-                                        
+                                    @endforeach
+                                    @endif
                                     </tbody>
                                 </table>
                                 <!-- 頁碼 -->
