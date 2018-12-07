@@ -468,6 +468,25 @@ class StreamingIndexController extends Controller
                         $left_num-=$num;
                         $private_replies='很抱歉！由於商品庫存不足，得標數量改為'.$num;
                         $private_replies.='。結帳請至 '.'http://livego.herokuapp.com/buyer_index'.' ，謝謝！';
+
+                        $if_exist = Member::where('fb_id','=',$buyers['id'])->get();
+                        if(count($if_exist))
+                        {
+                            Member::where('fb_id','=',$buyers['id'])
+                            ->increment('bid_times');
+                        }
+                        else
+                        {
+                            $member_store = new Member();
+                            $member_store->page_id = $page_id;
+                            $member_store->page_name = $page_name;
+                            $member_store->fb_id = $buyers['id'];
+                            $member_store->fb_name = $buyers['name'];
+                            $member_store->bid_times = 1;
+                            $member_store->checkout_times = 0;
+                            $member_store->blacklist_times = 0;
+                            $member_store->save();
+                        }
                     }
                     else if($messenger_text=='fail')
                     {
@@ -475,6 +494,26 @@ class StreamingIndexController extends Controller
                     }
                     else
                     {
+                        $if_exist = Member::where('fb_id','=',$buyers['id'])->get();
+                        if(count($if_exist))
+                        {
+                            Member::where('fb_id','=',$buyers['id'])
+                            ->increment('bid_times');
+                        }
+                        else
+                        {
+                            $member_store = new Member();
+                            $member_store->page_id = $page_id;
+                            $member_store->page_name = $page_name;
+                            $member_store->fb_id = $buyers['id'];
+                            $member_store->fb_name = $buyers['name'];
+                            $member_store->bid_times = 1;
+                            $member_store->checkout_times = 0;
+                            $member_store->blacklist_times = 0;
+                            $member_store->save();
+                        }
+
+
                         //剩餘數量扣除
                         $left_num-=$num;
                         $private_replies.='結帳請至 '.'http://livego.herokuapp.com/buyer_index'.' ，謝謝！';
