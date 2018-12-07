@@ -72,7 +72,7 @@ class BidWinnerController extends Controller
             ->increment('blacklist_times');
         }
 
-        return "";
+        
     }
 
     
