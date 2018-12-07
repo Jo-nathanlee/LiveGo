@@ -33,7 +33,7 @@ $(document).ready(function () {
     $.ajax({
         /* the route pointing to the post function */
         url: '/catch_blacklist',
-        // type: 'GET',
+        type: 'GET',
         /* send the csrf-token and the input to the controller */
         data: { },
         // dataType: 'JSON',
