@@ -39,16 +39,16 @@ $(document).ready(function () {
         // dataType: 'JSON',
         /* remind that 'data' is the response of the AjaxController */
         success: function (data) {
-            console.log(data[0]);
+            //console.log(data[0]);
             if(data!="")
             {
                
             }
         },
         error: function(xhr, status, error) {
-            alert(error);
-            alert(XMLHttpRequest.status);
-            alert(XMLHttpRequest.responseText);
+            // alert(error);
+            // alert(XMLHttpRequest.status);
+            // alert(XMLHttpRequest.responseText);
         }
     });
 
