@@ -40,6 +40,8 @@ class BidWinnerController extends Controller
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
 
+            $query = Member::where('page_id', '=', $page_id)
+            ->where('blacklist_times', '>', 0)
             
 
             return view('blacklist');
