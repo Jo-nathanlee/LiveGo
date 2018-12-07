@@ -410,6 +410,8 @@ class StreamingIndexController extends Controller
                 $member_store->fb_id = $buyer[0]['id'];
                 $member_store->fb_name = $buyer[0]['name'];
                 $member_store->bid_times = 1;
+                $member_store->checkout_times = 0;
+                $member_store->blacklist_times = 0;
                 $member_store->save();
             }
 

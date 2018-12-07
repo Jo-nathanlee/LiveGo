@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
 use App\Entities\Page;
 use App\Entities\StreamingOrder;
+use App\Entities\Member;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -60,7 +61,16 @@ class BidWinnerController extends Controller
         ->where('deadline', '<',$time_now)
         ->update(['if_valid' => 'N']);
 
-   
+        $query = StreamingOrder::where('page_id', '=', $page_id)
+        ->whereNull('order_id')
+        ->where('deadline', '<',$time_now)
+        ->get();
+
+        foreach($query as $blacklist)
+        {
+            Member::where('fb_id','=',$blacklist->fb_id)
+            ->increment('blacklist_times');
+        }
     }
 
     
