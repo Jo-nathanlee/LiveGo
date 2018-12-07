@@ -42,9 +42,10 @@ class BidWinnerController extends Controller
 
             $query = Member::where('page_id', '=', $page_id)
             ->where('blacklist_times', '>', 0)
+            ->get();
             
 
-            return view('blacklist');
+            return view('blacklist', ['blacklist' => $query]);
         }
         else
         {
