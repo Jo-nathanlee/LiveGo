@@ -115,13 +115,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($blacklist as $blacklist)
                                         <tr id="blacklist_item">
                                             <td scope="row">
-                                                <img id="blacklist_img" src="img/livego.png" class="img-fluid img" style="height:64px;width:64px">
+                                                <img id="blacklist_img" src="https://graph.facebook.com/{{  $blacklist->fb_id }}/picture" class="img-fluid img" style="height:64px;width:64px">
                                             </td>
-                                            <td>10344250</td>
-                                            <td>黃文怡</td>
-                                            <td>12次</td>
+                                            <td>{{ $blacklist->fb_id }}</td>
+                                            <td>{{ $blacklist->fb_name }}</td>
+                                            <td>{{ $blacklist->blacklist_times }}</td>
                                             <td>封鎖</td>
                                             <td><button class="btn btn-light">解除</button></td>
                                         </tr>
