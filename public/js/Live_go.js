@@ -35,7 +35,7 @@ $(document).ready(function () {
         url: '/catch_blacklist',
         type: 'POST',
         /* send the csrf-token and the input to the controller */
-        data: { },
+        // data: { },
         // dataType: 'JSON',
         /* remind that 'data' is the response of the AjaxController */
         success: function (data) {
