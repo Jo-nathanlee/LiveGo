@@ -3,54 +3,34 @@ $(document).ready(function () {
     $('#drp_product .dropdown-item').on('click', function(){
         
         $('#goods_name').val($(this).text());
-        // $.ajax({
-        //     /* the route pointing to the post function */
-        //     url: '/get_streaming_productInfo',
-        //     type: 'POST',
-        //     /* send the csrf-token and the input to the controller */
-        //     data: { goods_name:$(this).text(),_token:csrfToken},
-        //     dataType: 'JSON',
-        //     /* remind that 'data' is the response of the AjaxController */
-        //     success: function (data) {
-        //         console.log(data[0]);
-        //         if(data!="")
-        //         {
-        //             $('#goods_price').val(data[0].goods_price);
-        //             $('#note').val(data[0].description);
-        //         }
-        //     },
-        //     error: function(xhr, status, error) {
-        //         // alert(error);
-        //         // alert(XMLHttpRequest.status);
-        //         // alert(XMLHttpRequest.responseText);
-        //     }
-        // });
+        $.ajax({
+            /* the route pointing to the post function */
+            url: '/get_streaming_productInfo',
+            type: 'POST',
+            /* send the csrf-token and the input to the controller */
+            data: { goods_name:$(this).text(),_token:csrfToken},
+            dataType: 'JSON',
+            /* remind that 'data' is the response of the AjaxController */
+            success: function (data) {
+                console.log(data[0]);
+                if(data!="")
+                {
+                    $('#goods_price').val(data[0].goods_price);
+                    $('#note').val(data[0].description);
+                }
+            },
+            error: function(xhr, status, error) {
+                // alert(error);
+                // alert(XMLHttpRequest.status);
+                // alert(XMLHttpRequest.responseText);
+            }
+        });
 
         //可以get this id
     });
 
     //判斷棄標=========================================================================
-    $.ajax({
-        /* the route pointing to the post function */
-        url: '/catch_blacklist',
-        type: 'POST',
-        /* send the csrf-token and the input to the controller */
-        data: { },
-        // dataType: 'JSON',
-        /* remind that 'data' is the response of the AjaxController */
-        success: function (data) {
-            console.log(data[0]);
-            if(data!="")
-            {
-               
-            }
-        },
-        error: function(xhr, status, error) {
-            alert(error);
-            alert(XMLHttpRequest.status);
-            alert(XMLHttpRequest.responseText);
-        }
-    });
+   
 
 
 
