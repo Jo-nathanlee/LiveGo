@@ -452,6 +452,7 @@ class StreamingIndexController extends Controller
                     $page_store->note =  $note;
                     $page_store->comment =  $buyers['comment'];
                     $page_store->created_time =  date("Y-m-d H:i:s");
+                    $page_store->deadline =  date('Y-m-d H:i:s', strtotime(date("Y-m-d H:i:s") . ' +1 day'));
                     $page_store->uid = $uid;
                     $page_store->pic_path = $pic_url;
                     $page_store->save();
