@@ -20,9 +20,9 @@ $(document).ready(function () {
                 }
             },
             error: function(xhr, status, error) {
-                alert(error);
-                alert(XMLHttpRequest.status);
-                alert(XMLHttpRequest.responseText);
+                // alert(error);
+                // alert(XMLHttpRequest.status);
+                // alert(XMLHttpRequest.responseText);
             }
         });
 
@@ -35,8 +35,8 @@ $(document).ready(function () {
         url: '/catch_blacklist',
         type: 'GET',
         /* send the csrf-token and the input to the controller */
-        data: { goods_name:$(this).text(),_token:csrfToken},
-        dataType: 'JSON',
+        // data: { goods_name:$(this).text(),_token:csrfToken},
+        // dataType: 'JSON',
         /* remind that 'data' is the response of the AjaxController */
         success: function (data) {
             console.log(data[0]);
