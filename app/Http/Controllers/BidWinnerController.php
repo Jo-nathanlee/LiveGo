@@ -71,6 +71,8 @@ class BidWinnerController extends Controller
             Member::where('fb_id','=',$blacklist->fb_id)
             ->increment('blacklist_times');
         }
+
+        return "";
     }
 
     

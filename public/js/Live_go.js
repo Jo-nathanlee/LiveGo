@@ -33,9 +33,9 @@ $(document).ready(function () {
     $.ajax({
         /* the route pointing to the post function */
         url: '/catch_blacklist',
-        type: 'GET',
+        type: 'POST',
         /* send the csrf-token and the input to the controller */
-        // data: { goods_name:$(this).text(),_token:csrfToken},
+        data: { },
         // dataType: 'JSON',
         /* remind that 'data' is the response of the AjaxController */
         success: function (data) {
