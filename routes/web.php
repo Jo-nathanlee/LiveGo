@@ -134,6 +134,11 @@ Route::group(['middleware' => [
     //營收
     Route::get('/daily_revenue', 'RevenueController@DailyRevenue')->name('daily_revenue');
     Route::get('/monthly_revenue', 'RevenueController@MonthlyRevenue')->name('monthly_revenue');
+
+    //會員
+    Route::get('/membership', 'MembershipController@index')->name('membership');
+    Route::get('/member_detail', 'MembershipController@detail')->name('member_detail');
+    
     
 });
 

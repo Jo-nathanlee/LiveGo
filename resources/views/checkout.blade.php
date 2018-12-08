@@ -1,6 +1,6 @@
 @extends('layouts.master_checkout')
 
-@section('title','Live GO 結帳')
+@section('title','結帳')
 
 @section('content')    
 <nav class="navbar-ft navbar-expand-sm">

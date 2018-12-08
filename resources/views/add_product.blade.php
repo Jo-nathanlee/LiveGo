@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','Live GO 新增商城商品')
+@section('title','新增商城商品')
 @section('heads')
 <script src="js/add_product.js"></script>
 <script>

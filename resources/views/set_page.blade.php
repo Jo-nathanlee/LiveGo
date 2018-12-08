@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','Live GO 綁定粉絲團')
+@section('title','綁定粉絲團')
 @section('heads')
 <script>
     function message_danger() {

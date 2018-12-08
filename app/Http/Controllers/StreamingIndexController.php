@@ -396,11 +396,16 @@ class StreamingIndexController extends Controller
             $page_store->pic_path = $pic_url;
             $page_store->save();
 
-            $if_exist = Member::where('fb_id','=',$buyer[0]['id'])->get();
+            $if_exist = Member::where('fb_id','=',$buyer[0]['id'])
+                        ->where('page_id','=',$page_id)
+                        ->get();
             if(count($if_exist))
             {
                 Member::where('fb_id','=',$buyer[0]['id'])
+                ->where('page_id','=',$page_id)
                 ->increment('bid_times');
+
+             
             }
             else
             {
@@ -412,6 +417,7 @@ class StreamingIndexController extends Controller
                 $member_store->bid_times = 1;
                 $member_store->checkout_times = 0;
                 $member_store->blacklist_times = 0;
+                $member_store->money_spent = 0;
                 $member_store->save();
             }
 
@@ -470,11 +476,15 @@ class StreamingIndexController extends Controller
                         $private_replies='很抱歉！由於商品庫存不足，得標數量改為'.$num;
                         $private_replies.='。結帳請至 '.'http://livego.herokuapp.com/buyer_index'.' ，謝謝！';
 
-                        $if_exist = Member::where('fb_id','=',$buyers['id'])->get();
+                        $if_exist = Member::where('fb_id','=',$buyers['id'])
+                                    ->where('page_id','=',$page_id)
+                                    ->get();
                         if(count($if_exist))
                         {
                             Member::where('fb_id','=',$buyers['id'])
+                            ->where('page_id','=',$page_id)
                             ->increment('bid_times');
+
                         }
                         else
                         {
@@ -486,6 +496,7 @@ class StreamingIndexController extends Controller
                             $member_store->bid_times = 1;
                             $member_store->checkout_times = 0;
                             $member_store->blacklist_times = 0;
+                            $member_store->money_spent = 0;
                             $member_store->save();
                         }
                     }
@@ -495,11 +506,16 @@ class StreamingIndexController extends Controller
                     }
                     else
                     {
-                        $if_exist = Member::where('fb_id','=',$buyers['id'])->get();
+                        $if_exist = Member::where('fb_id','=',$buyers['id'])
+                                    ->where('page_id','=',$page_id)
+                                    ->get();
                         if(count($if_exist))
                         {
                             Member::where('fb_id','=',$buyers['id'])
+                            ->where('page_id','=',$page_id)
                             ->increment('bid_times');
+
+                           
                         }
                         else
                         {
@@ -511,6 +527,7 @@ class StreamingIndexController extends Controller
                             $member_store->bid_times = 1;
                             $member_store->checkout_times = 0;
                             $member_store->blacklist_times = 0;
+                            $member_store->money_spent = 0;
                             $member_store->save();
                         }
 

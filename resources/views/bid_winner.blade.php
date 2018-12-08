@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','Live GO 得標者清單')
+@section('title','得標者清單')
 @section('heads')
     <!-- datatable + bootstrap 4  -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">

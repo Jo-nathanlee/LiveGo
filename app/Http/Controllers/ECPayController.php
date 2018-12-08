@@ -146,6 +146,12 @@ class ECPayController extends Controller
         }
         else
         {
+            $query = OrderDetail::where('order_id', '=', $order_id)->first();
+            //更新member購物金額
+            Member::where('fb_id','=',$query->buyer_fbid)
+            ->where('page_id','=',$query->page_id)
+            ->increment('money_spent',$query->$goods_total);
+
             $update_OrderDetail = OrderDetail::where('order_id', '=', $order_id)->update(['order_status' => 'undelivered','transaction_date' => $payment_time]);
             $update_CheckoutOrder = CheckoutOrder::where('order_id', '=', $order_id)->update(['order_status' => 'undelivered']);
         }

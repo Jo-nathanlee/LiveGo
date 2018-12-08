@@ -1,6 +1,6 @@
 @extends('layouts.master_mall')
 
-@section('title','Live GO 來福商城')
+@section('title','來福商城')
 
 @section('wrapper')
 <div class="wrapper">

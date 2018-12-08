@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','Live GO 商城商品總覽')
+@section('title','商城商品總覽')
 
 @section('wrapper')
 <div class="wrapper">

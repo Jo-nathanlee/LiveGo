@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','Live GO 我的訂單')
+@section('title','我的訂單')
 
    
 @section('heads')

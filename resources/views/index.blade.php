@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','Live GO 直播')
+@section('title','直播')
 
    
 @section('heads')
