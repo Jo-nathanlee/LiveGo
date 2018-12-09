@@ -107,6 +107,8 @@ class BidWinnerController extends Controller
             $blacklist_time = PageDetail::where('page_id', '=', $page_id)
             ->first();
 
+            dd($blacklist_time);
+
             return view('set_blacklist_time', ['hours' => $blacklist_time]);
         }
         else
