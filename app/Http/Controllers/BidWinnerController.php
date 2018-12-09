@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
-use DB;
+use App\Entities\PageDetail;
 use App\Entities\Page;
 use App\Entities\StreamingOrder;
 use App\Entities\Member;
@@ -104,8 +104,7 @@ class BidWinnerController extends Controller
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
 
-            $blacklist_time = DB::table('page_detail')
-            ->where('page_id', '=', $page_id)
+            $blacklist_time = PageDetail::where('page_id', '=', $page_id)
             ->first();
 
             return view('set_blacklist_time', ['hours' => $blacklist_time]);

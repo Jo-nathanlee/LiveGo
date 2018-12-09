@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
+use DB;
 use App\Entities\Page;
 use App\Entities\StreamingOrder;
 use Facebook\Exceptions\FacebookSDKException;
@@ -94,6 +95,18 @@ class SetpageController extends Controller//設定粉絲團
                         'page_token' => $page_token,
                     ]
                 );
+
+                DB::table('page_detail')
+                ->updateOrCreate(
+                    ['page_id' => $page_id],
+                    [
+                        'deadline_time' => 24,
+                        'freight' => 60,
+                    ]
+                );
+
+
+
                 return redirect()->back()->with('alert', '綁定成功！');
             }
             else
