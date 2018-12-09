@@ -55,13 +55,13 @@
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" type="button">公司地址設定</button>
                                 </div>
-                                <input type="number" name="address" value="{{ $address }}" class="form-control" placeholder="請輸入地址 ..." aria-label="" aria-describedby="basic-addon1">
+                                <input type="text" name="address" value="{{ $address }}" class="form-control" placeholder="請輸入地址 ..." aria-label="" aria-describedby="basic-addon1">
                             </div>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" type="button">公司電話設定</button>
                                 </div>
-                                <input type="number" name="phone" value="{{ $phone }}" class="form-control" placeholder="請輸入電話 ..." aria-label="" aria-describedby="basic-addon1">
+                                <input type="text" name="phone" value="{{ $phone }}" class="form-control" placeholder="請輸入電話 ..." aria-label="" aria-describedby="basic-addon1">
                             </div>
                             <div class="form-row text-center">
                                 <div class="col-12">
