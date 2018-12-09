@@ -40,7 +40,8 @@ class MembershipController extends Controller
             $page_id = $page->page_id;
 
             $member = Member::where('page_id','=', $page_id)
-            ->get();
+            ->where('fb_id', '=', $fb_id)
+            ->first();
 
             $order = DB::table('order_detail')
             ->where('page_id', '=', $page_id)
