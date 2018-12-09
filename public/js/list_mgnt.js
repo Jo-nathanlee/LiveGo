@@ -4,6 +4,30 @@
 // Datatable  
 $(document).ready(function () {
 
+    var default_language =  {
+        "sProcessing": "處理中...",
+        "sLengthMenu": "_MENU_ 顯示筆數",
+        "sZeroRecords": "沒有結果",
+        "sInfo": " 顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+        "sInfoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+        "sInfoFiltered": "(由 _MAX_ 項結果過濾)",
+        "sInfoPostFix": "", "sSearch": "<i class='icofont icofont-search'> </i>",
+        "sUrl": "", "sEmptyTable": "表單沒有任何資料",
+        "sLoadingRecords": "載入中...",
+        "sInfoThousands": ",",
+        "oPaginate": {
+            "sFirst": "首頁",
+            "sPrevious": "上頁",
+            "sNext": "下頁", "sLast":
+                "末頁"
+        },
+        "oAria": {
+            "sSortAscending": ": 以升序排列此列",
+            "sSortDescending": ": 以降序排列此列"
+        }
+    };
+
+
     var language = {
         "sProcessing": "處理中...",
         "sLengthMenu": "<button type='button' id='d_new' class='btn btn-primary'>新增</button>  <button type='button' id='d_edit' class='btn btn-info'>修改</button>  <button type='button' id='d_delete' class='btn btn-danger mr-1'>刪除</button>_MENU_ 顯示筆數",
@@ -53,7 +77,7 @@ $(document).ready(function () {
 
 
     $(document).ready(function () {
-        $("#btn_status").click(function () {
+        $("#d_edit").click(function () {
             alertify.confirm('Confirm Title', '<select class="custom-select" id="select_statue"><option selected>選取更改訂單狀態</option><option value="1">未付款</option><option value="2">等待出貨中</option><option value="3">運送中</option><option value="4">訂單完成</option><option value="5">訂單取消</option></select>', function(){ alertify.success('Ok') }
             , function(){ alertify.error('Cancel')});
 
@@ -61,7 +85,11 @@ $(document).ready(function () {
 
     });
 
+    
+    $('#table_member_bid_list_detail').DataTable({
 
+        language: default_language
+    });
 
     $('#table_bid_list_detail').DataTable({
         "columns": [
@@ -181,7 +209,7 @@ $(document).ready(function () {
     });
     $('#dtAccount').DataTable({
 
-        language: language,
+        language: default_language,
         "columns": [
             {
                 "defaultContent": '',
