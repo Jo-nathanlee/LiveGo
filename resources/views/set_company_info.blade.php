@@ -63,6 +63,24 @@
                                 </div>
                                 <input type="text" name="phone" value="{{ $phone }}" class="form-control" placeholder="請輸入電話 ..." aria-label="" aria-describedby="basic-addon1">
                             </div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-secondary" type="button">銀行代碼</button>
+                                </div>
+                                <input type="text" class="form-control" placeholder="請輸入銀行代碼 ..." aria-label="" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-secondary" type="button">銀行名稱</button>
+                                </div>
+                                <input type="text" class="form-control" placeholder="請輸入銀行名稱 ..." aria-label="" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-secondary" type="button">帳戶名稱</button>
+                                </div>
+                                <input type="text" class="form-control" placeholder="請輸入帳戶名稱 ..." aria-label="" aria-describedby="basic-addon1">
+                            </div>
                             <div class="form-row text-center">
                                 <div class="col-12">
                                     <input type="submit" id="btnSubmit" class="btn btn-outline-success" value="修改">

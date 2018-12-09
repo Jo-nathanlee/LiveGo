@@ -2,8 +2,7 @@
 
 @section('title','設定棄標時間')
 @section('heads')
-<script src="js/add_product.js"></script>
-<script>
+<!-- <script>
     function message_danger() {
         // error_code 接收錯誤代碼 error_msg 接收錯誤提示訊息
         var alert_div = document.createElement("div");
@@ -26,7 +25,7 @@
                 $("#data_info").parent().remove();
             }, 3000);
     }
-</script>
+</script> -->
 @stop
 
 @section('wrapper')
