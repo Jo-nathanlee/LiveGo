@@ -239,7 +239,13 @@ class SellerOrderController extends Controller
             $queryOrders = CheckoutOrder::where('order_id', '=', $order_id)
             ->get();
 
-            return view('seller_order_detail', ['order_detail' => $queryDetail,'order_goods' => $queryOrders]);
+            $order = DB::table('order_detail')
+            ->where('order_id', '=', $order_id)
+            ->join('status', 'order_detail.status', '=', 'status.status_eng')
+            ->select('order_detail.*', 'status.status_cht')
+            ->first();
+
+            return view('seller_order_detail', ['order_detail' => $order,'order_goods' => $queryOrders]);
 
          }
          else

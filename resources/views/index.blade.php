@@ -381,10 +381,12 @@
 
     //訊息
     function reply(event) {
-        alertify.prompt('私訊', '請輸入要私訊訊息',''
+        alertify.prompt('請輸入私訊', '',''
     , function (evt, value) {
         var reply_text=$(".ajs-input").val();                //接收傳送的私訊
-        CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        if(reply_text!="")
+        {
+            CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         var message_id=$(event.target).siblings('.message_id').val();
             $.ajax({
                     /* the route pointing to the post function */
@@ -404,6 +406,7 @@
                         alertify.alert("連線錯誤！請稍後再試！");
                     }
             });
+        }
     });
     }
         
