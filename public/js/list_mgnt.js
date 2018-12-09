@@ -54,7 +54,7 @@ $(document).ready(function () {
 
     var language_list_edit = {
         "sProcessing": "處理中...",
-        "sLengthMenu": " <button type='button' id='d_edit' class='btn btn-info mr-1'>更改訂單狀態</button>_MENU_ 顯示筆數 <span id='unpaid'>未付款</span><span id='undelivered'>等待出貨</span><span id='delivered'>運送中</span><span id='finished'>已完成</span><span id='canceled'>已取消</span>",
+        "sLengthMenu": " <button type='button' id='d_edit' class='btn btn-info mr-1'>更改訂單狀態</button>_MENU_ 顯示筆數",
         "sZeroRecords": "沒有結果",
         "sInfo": " 顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
         "sInfoEmpty": "顯示第 0 至 0 項結果，共 0 項",
