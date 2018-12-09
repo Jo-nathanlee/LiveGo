@@ -68,7 +68,7 @@ class BidWinnerController extends Controller
 
         //結帳但未付款之棄標者
         $order = DB::table('streaming_order')
-        ->where('streaming_order.page_id', '=', $page_id)
+        ->where('streaming_order.page_id', '=', '$page_id')
         ->where('streaming_order.deadline', '<',$time_now)
         ->join('order_detail', 'streaming_order.order_id', '=', 'order_detail.order_id')
         ->where('order_detail.status', '=', 'unpaid')
