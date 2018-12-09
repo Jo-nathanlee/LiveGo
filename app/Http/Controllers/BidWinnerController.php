@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
+use DB;
 use App\Entities\Page;
 use App\Entities\StreamingOrder;
 use App\Entities\Member;
@@ -59,15 +60,28 @@ class BidWinnerController extends Controller
         $time_now = date("Y-m-d H:i:s");
         $page = Page::where('fb_id', Auth::user()->fb_id)->first();
         $page_id = $page->page_id;
+        //尚未點選結帳之棄標者
         StreamingOrder::where('page_id', '=', $page_id)
         ->whereNull('order_id')
         ->where('deadline', '<',$time_now)
         ->update(['if_valid' => 'N']);
 
-        $query = StreamingOrder::where('page_id', '=', $page_id)
-        ->whereNull('order_id')
+        //結帳但未付款之棄標者
+        $order = DB::table('streaming_order')
+        ->where('page_id', '=', $page_id)
         ->where('deadline', '<',$time_now)
+        ->join('order_detail', 'streaming_order.order_id', '=', 'order_detail.order_id')
+        ->where('order_detail.status', '=', 'unpaid')
+        ->update(['streaming_order.if_valid' => 'N']);
+
+
+
+
+        $query = StreamingOrder::where('page_id', '=', $page_id)
+        ->where('if_valid', '=', 'N')
         ->get();
+
+
 
         foreach($query as $blacklist)
         {

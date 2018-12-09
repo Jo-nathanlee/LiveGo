@@ -115,10 +115,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @if(count($order)==0)
+                                    @if(count($blacklist)==0)
                                         <tr>
                                             <td align="center" colspan="6">無資料</td>
                                         </tr>
+                                    @else
                                     @foreach($blacklist as $blacklist)
                                         <tr id="blacklist_item">
                                             <td scope="row">
