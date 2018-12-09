@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="css/alertify.min.css">
     <link href="css/alertify.css" rel="stylesheet">
     <link href="css/default.css" rel="stylesheet">
-    <script src="js/alertify.min.js"></script>
+    <script src="js/alertify.js"></script>
 
     <script>
     function message_danger() {

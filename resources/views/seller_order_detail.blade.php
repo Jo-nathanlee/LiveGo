@@ -62,7 +62,6 @@
                     <table id="table_bid_list_detail" class="table">
                         <thead>
                             <tr>
-                                <th></th>
                                 <th>編號</th>
                                 <th>商品圖片</th>
                                 <th>商品名稱</th>
