@@ -191,19 +191,27 @@ class MallProductController extends Controller
         }
     }
 
-     //商城顯示
-     public function ShowMall(Request $request)
-     {
-         $page = Page::where('fb_id', Auth::user()->fb_id)->first();
-         $page_id = $page->page_id;
- 
-         $query = Shop::where('page_id', '=', $page_id)->get();
+    //商城顯示
+    public function ShowMall(Request $request)
+    {
+        $page = Page::where('fb_id', Auth::user()->fb_id)->first();
+        $page_id = $page->page_id;
 
-         $companyInfo = PageDetail::where('page_id','=',$page_id)
-         ->first();
- 
- 
-         return view('shopping_mall', ['products' => $query,'address' => $companyInfo->company_address,'phone' => $companyInfo->company_phone]);
-     }
+        $query = Shop::where('page_id', '=', $page_id)->get();
+
+        $companyInfo = PageDetail::where('page_id','=',$page_id)
+        ->first();
+
+
+        return view('shopping_mall', ['products' => $query,'address' => $companyInfo->company_address,'phone' => $companyInfo->company_phone]);
+    }
+
+    //網紅
+    public function InternetCelebrityMatch(Request $request)
+    {
+
+        return view('InternetCelebrityMatch');
+    }
+     
 
 }

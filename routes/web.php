@@ -146,6 +146,10 @@ Route::group(['middleware' => [
     //會員
     Route::get('/membership', 'MembershipController@index')->name('membership');
     Route::get('/member_detail', 'MembershipController@detail')->name('member_detail');
+
+    //網紅
+    Route::get('/InternetCelebrityMatch', 'MallProductController@InternetCelebrityMatch')->name('InternetCelebrityMatch');
+    
     
     
 });
