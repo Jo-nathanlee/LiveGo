@@ -72,12 +72,13 @@ class BidWinnerController extends Controller
         ->where('streaming_order.deadline', '<',$time_now)
         ->join('order_detail', DB::raw('BINARY streaming_order.order_id'), '=', DB::raw('BINARY order_detail.order_id'))
         ->where('order_detail.status', '=', 'unpaid')
-        ->update(['streaming_order.if_valid' => 'N']);
+        ->update(['streaming_order.if_valid' => 'N','order_detail.status' => 'canceled']);
 
 
 
 
         $query = StreamingOrder::where('page_id', '=', $page_id)
+        ->whereNotNull('deadline')
         ->where('if_valid', '=', 'N')
         ->get();
 
@@ -87,6 +88,9 @@ class BidWinnerController extends Controller
         {
             Member::where('fb_id','=',$blacklist->fb_id)
             ->increment('blacklist_times');
+
+            StreamingOrder::where('id','=',$blacklist->id)
+            ->update(['deadline' => null]);
         }
 
         
