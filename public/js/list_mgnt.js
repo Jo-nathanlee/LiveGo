@@ -53,7 +53,7 @@ $(document).ready(function () {
 
 
     $(document).ready(function () {
-        $("#d_edit").click(function () {
+        $("#btn_status").click(function () {
             alertify.confirm('Confirm Title', '<select class="custom-select" id="select_statue"><option selected>選取更改訂單狀態</option><option value="1">未付款</option><option value="2">等待出貨中</option><option value="3">運送中</option><option value="4">訂單完成</option><option value="5">訂單取消</option></select>', function(){ alertify.success('Ok') }
             , function(){ alertify.error('Cancel')});
 

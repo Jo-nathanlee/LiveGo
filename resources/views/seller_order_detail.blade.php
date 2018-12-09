@@ -49,7 +49,7 @@
                             </h5>
                             <i class="icofont icofont-map h5"></i> 
                             <b>買家電話/收件地址</b>
-                            <font class="text-secondary">{{ $order_detail->buyer_name }},{{ $order_detail->buyer_phone }}<br>
+                            <font class="text-secondary">{{ $order_detail->buyer_name }}   {{ $order_detail->buyer_phone }}<br>
                             {{ $order_detail->buyer_address }}</font>
                         </div>
                     </div>
