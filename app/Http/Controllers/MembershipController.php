@@ -44,7 +44,7 @@ class MembershipController extends Controller
 
             $order = DB::table('order_detail')
             ->where('page_id', '=', $page_id)
-            ->where('fb_id', '=', $fb_id)
+            ->where('buyer_fbid', '=', $fb_id)
             ->join('status', 'order_detail.status', '=', 'status.status_eng')
             ->select('order_detail.*', 'status.status_cht')
             ->get();
