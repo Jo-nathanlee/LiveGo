@@ -22,7 +22,7 @@ class BidWinnerController extends Controller
             $page_id = $page->page_id;
 
             $query = StreamingOrder::where('page_id', '=', $page_id)
-                    ->select('name','goods_name','pic_path','goods_price','goods_num','total_price','comment','created_time','note')
+                    ->select('fb_id','name','goods_name','pic_path','goods_price','goods_num','total_price','comment','created_time','note')
                     ->get();
 
             return view('bid_winner', ['winner' => $query]);

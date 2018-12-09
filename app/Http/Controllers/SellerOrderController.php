@@ -21,8 +21,11 @@ class SellerOrderController extends Controller
         if (Gate::allows('seller-only',  Auth::user())) {
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
-            $query = OrderDetail::where('page_id', '=', $page_id)
-                    ->get();
+            $query = DB::table('order_detail')
+            ->where('page_id', '=', $page_id)
+            ->join('status', 'order_detail.status', '=', 'status.status_eng')
+            ->select('order_detail.*', 'status.status_cht')
+            ->get();
 
             $countAllOrder=OrderDetail::where('page_id', '=', $page_id)
             ->count();

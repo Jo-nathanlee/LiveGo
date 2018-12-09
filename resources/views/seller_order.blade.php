@@ -157,8 +157,8 @@
                                             </td>
                                             <td>{{$order_detail->buyer_fbname}}</td>
                                             <td>{{$order_detail->order_id}}</td>
-                                            <td>{{$order_detail->total_price}}</td>
-                                            <td>{{$order_detail->status}}</td>
+                                            <td>{{$order_detail->all_total}}</td>
+                                            <td>{{$order_detail->status_cht}}</td>
                                             <td><a href="{{ route('seller_order_detail',['order_id' => json_encode($order_detail->order_id)]) }}"><button  type="button" class="btn btn-outline-dark">查看詳情</button></a></td>
                                         </tr>
                                 @endforeach

@@ -26,6 +26,7 @@
                     <table id="table_source" class="table text-truncate">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>得標者姓名</th>
                                 <th>商品圖片</th>
                                 <th>得標商品</th>
@@ -48,6 +49,7 @@
                     <thead>
                         <tr>
                             <tr>
+                                <th></th>
                                 <th>得標者姓名</th>
                                 <th>商品圖片</th>
                                 <th>得標商品</th>
@@ -62,6 +64,7 @@
                     <tbody>
                             @foreach($winner as $winner)
                                 <tr>
+                                    <td><img src="https://graph.facebook.com/{{  $winner->fb_id }}/picture" class="rounded-circle user_pic" ></td>
                                     <td>{{$winner->name}}</td>
                                     <td> <img id="order_img" src="{{$winner->pic_path}}" style="height:50px;width:50px" ></td>
                                     <td>{{$winner->goods_name}}</td>
