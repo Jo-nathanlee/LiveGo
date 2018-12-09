@@ -123,6 +123,10 @@ Route::group(['middleware' => [
     Route::get('/catch_blacklist', 'BidWinnerController@Blacklist_check')->name('catch_blacklist');
     Route::get('/blacklist_time', 'BidWinnerController@Blacklist_time')->name('blacklist_time');
     Route::post('/set_blacklist_time', 'BidWinnerController@Set_BlacklistTime')->name('set_blacklist_time');
+
+    //設定公司info
+    Route::get('/company_info', 'BidWinnerController@CompanyInfoSetting')->name('company_info');
+    Route::post('/set_company_info', 'BidWinnerController@Set_CompanyInfo')->name('set_company_info');
     
     
    

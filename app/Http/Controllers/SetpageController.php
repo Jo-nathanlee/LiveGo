@@ -120,4 +120,39 @@ class SetpageController extends Controller//設定粉絲團
         }
     }
 
+    //公司地址、電話設定
+    public function CompanyInfoSetting(Request $request)
+    {
+        if (Gate::allows('seller-only',  Auth::user())) {
+            $page = Page::where('fb_id', Auth::user()->fb_id)->first();
+            $page_id = $page->page_id;
+
+            $blacklist_time = PageDetail::where('page_id', '=', $page_id)
+            ->first();
+
+
+            return view('set_company_info', ['address' => $blacklist_time->company_address,'phone' => $blacklist_time->company_phone]);
+        }
+        else
+        {
+            return redirect('/')->with('alert', '您尚未開通，請聯繫我們！');
+        }
+    }
+
+    public function Set_CompanyInfo(Request $request)
+    {
+        $address =  $request->input('address');
+        $phone = $request->input('phone');
+
+        
+        $page = Page::where('fb_id', Auth::user()->fb_id)->first();
+        $page_id = $page->page_id;
+
+        DB::table('page_detail')
+        ->where('page_id', '=', $page_id)
+        ->update(['company_address' => $address,'company_phone' => $phone]);
+
+        return redirect()->back()->with('alert', '成功!');
+    }
+
 }
