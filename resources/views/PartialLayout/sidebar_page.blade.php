@@ -31,7 +31,7 @@
                     <a href="{{ route('bid_blacklist') }}">棄標黑名單</a>
                 </li>
                 <li>
-                    <a href="{{ route('set_blacklist_time') }}">棄標時間設定</a>
+                    <a href="{{ route('blacklist_time') }}">棄標時間設定</a>
                 </li>
             </ul>
         </li>
