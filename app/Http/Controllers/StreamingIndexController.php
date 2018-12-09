@@ -378,6 +378,13 @@ class StreamingIndexController extends Controller
             $random_num=rand(100,999);
             $uid=$fb_id.time().$random_num;
 
+            //棄標時間
+            $page = Page::where('fb_id', Auth::user()->fb_id)->first();
+            $page_id = $page->page_id;
+
+            $blacklist_time = PageDetail::where('page_id', '=', $page_id)
+            ->first();
+
             //存入DB
             $page_store = new StreamingOrder();
             $page_store->page_id = $page_id;
@@ -391,7 +398,7 @@ class StreamingIndexController extends Controller
             $page_store->note =  $note;
             $page_store->comment =  $buyer[0]['comment'];
             $page_store->created_time =  date("Y-m-d H:i:s");
-            $page_store->deadline =  date('Y-m-d H:i:s', strtotime(date("Y-m-d H:i:s") . ' +1 day'));
+            $page_store->deadline =  date('Y-m-d H:i:s', strtotime(date("Y-m-d H:i:s") . ' +'.(string)($blacklist_time->deadline_time).' hours'));
             $page_store->uid = $uid;
             $page_store->pic_path = $pic_url;
             $page_store->save();
