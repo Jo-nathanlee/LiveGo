@@ -4,7 +4,7 @@ namespace App\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Member extends Model
+class PageDetail extends Model
 {
     public $table = 'page_detail';
 
