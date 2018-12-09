@@ -23,10 +23,10 @@
                 <i class="icofont icofont-paper"></i>我的訂單</a>
         </li>
         <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <a href="#pageSubmenuˇ" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                 <i class="icofont icofont-investigator"></i>棄標黑名單
             </a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
+            <ul class="collapse list-unstyled" id="pageSubmenuˇ">
                 <li>
                     <a href="{{ route('bid_blacklist') }}">棄標黑名單</a>
                 </li>
@@ -36,10 +36,10 @@
             </ul>
         </li>
         <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <a href="#pageSubmenuㄉ" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                 <i class="icofont icofont-home"></i>粉絲團設定
             </a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
+            <ul class="collapse list-unstyled" id="pageSubmenuㄉ">
                 <li>
                     <a href="{{ route('set_page') }}">綁定粉絲團</a>
                 </li>
