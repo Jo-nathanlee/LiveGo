@@ -381,7 +381,7 @@
 
     //訊息
     function reply(event) {
-        alertify.prompt('私訊', ''
+        alertify.prompt('私訊', '請輸入要私訊訊息',''
     , function (evt, value) {
         var reply_text=$(".ajs-input").val();                //接收傳送的私訊
         CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');

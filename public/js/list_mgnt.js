@@ -93,14 +93,7 @@ $(document).ready(function () {
 
     $('#table_bid_list_detail').DataTable({
         "columns": [
-            {
-                "defaultContent": '',
-                "orderable": false,
-            },
-            {
-                "defaultContent": '',
-                "orderable": false,
-            },
+            { "data": "goods_no" },
             {
                 "defaultContent": '',
                 "orderable": false,
