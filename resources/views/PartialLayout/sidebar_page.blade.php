@@ -46,6 +46,9 @@
                 <li>
                     <a href="{{ route('company_info') }}">商城基本設定</a>
                 </li>
+                <li>
+                    <a href="{{ route('delivery') }}">物流設定</a>
+                </li>
             </ul>
         </li>
         <li>

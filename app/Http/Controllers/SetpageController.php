@@ -156,4 +156,19 @@ class SetpageController extends Controller//設定粉絲團
         return redirect()->back()->with('alert', '成功!');
     }
 
+    public function DeliverySetting(Request $request)
+    {
+        if (Gate::allows('seller-only',  Auth::user())) {
+     
+
+
+            return view('set_delivery');
+        }
+        else
+        {
+            return redirect('/')->with('alert', '您尚未開通，請聯繫我們！');
+        }
+    }
+    
+
 }

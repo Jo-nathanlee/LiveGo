@@ -127,6 +127,7 @@ Route::group(['middleware' => [
     //設定公司info
     Route::get('/company_info', 'SetpageController@CompanyInfoSetting')->name('company_info');
     Route::post('/set_company_info', 'SetpageController@Set_CompanyInfo')->name('set_company_info');
+    Route::get('/delivery', 'SetpageController@DeliverySetting')->name('delivery');
     
     
    
