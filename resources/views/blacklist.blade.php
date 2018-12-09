@@ -19,6 +19,11 @@
         <!--Nav bar end-->
 @stop
 @section('content')
+@if (session('alert'))
+<script>
+    message_danger();
+</script>
+@endif
         <div id="blacklist" class="container-fluid main">
             <div class="row">
                 <div class="col-md-12">  

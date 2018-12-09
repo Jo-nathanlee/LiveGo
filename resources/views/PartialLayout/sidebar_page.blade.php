@@ -23,8 +23,17 @@
                 <i class="icofont icofont-paper"></i>我的訂單</a>
         </li>
         <li>
-            <a href="{{ route('bid_blacklist') }}" >
-                <i class="icofont icofont-investigator"></i>棄標黑名單</a>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <i class="icofont icofont-investigator"></i>棄標黑名單
+            </a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+                <li>
+                    <a href="{{ route('bid_blacklist') }}">棄標黑名單</a>
+                </li>
+                <li>
+                    <a href="{{ route('product_overview') }}">棄標時間設定</a>
+                </li>
+            </ul>
         </li>
         <li>
             <a href="{{ route('set_page') }}" >

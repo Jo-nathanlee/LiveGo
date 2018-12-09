@@ -5,7 +5,7 @@
     <!-- datatable + bootstrap 4  -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-   
+
 @stop
 
 @section('wrapper')
@@ -19,6 +19,11 @@
         <!--Nav bar end-->
 @stop
 @section('content')
+@if (session('alert'))
+<script>
+    message_danger();
+</script>
+@endif
         <div id="bidder_list" class="container-fluid">
             <div class="row">
                 <div class="col-md-12">

@@ -121,6 +121,9 @@ Route::group(['middleware' => [
     //棄標黑名單
     Route::get('/bid_blacklist', 'BidWinnerController@Blacklist')->name('bid_blacklist');
     Route::get('/catch_blacklist', 'BidWinnerController@Blacklist_check')->name('catch_blacklist');
+    Route::get('/blacklist_time', 'BidWinnerController@Blacklist_time')->name('blacklist_time');
+    Route::post('/set_blacklist_time', 'BidWinnerController@Set_BlacklistTime')->name('set_blacklist_time');
+    
     
    
     //設定直播拍賣商品

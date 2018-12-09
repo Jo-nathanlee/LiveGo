@@ -29,6 +29,11 @@
         <!--Nav bar end-->
 @stop
 @section('content')
+@if (session('alert'))
+<script>
+    message_danger();
+</script>
+@endif
         <div id="main" class="row">
             <div class="col-offset-1 col-md-10 chartheight mb-4">
                 <canvas id="canvas"></canvas>

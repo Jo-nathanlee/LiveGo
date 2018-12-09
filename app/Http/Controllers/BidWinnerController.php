@@ -97,5 +97,39 @@ class BidWinnerController extends Controller
     }
 
     
+    //棄標時間設定
+    public function Blacklist_time(Request $request)
+    {
+        if (Gate::allows('seller-only',  Auth::user())) {
+            $page = Page::where('fb_id', Auth::user()->fb_id)->first();
+            $page_id = $page->page_id;
+
+            $blacklist_time = DB::table('page_detail')
+            ->where('page_id', '=', $page_id)
+            ->first();
+
+            return view('set_blacklist_time', ['hours' => $blacklist_time->deadline_time]);
+        }
+        else
+        {
+            return redirect('/')->with('alert', '您尚未開通，請聯繫我們！');
+        }
+    }
+
+    public function Set_BlacklistTime(Request $request)
+    {
+        $hours =  $request->input('hours');
+
+        
+        $page = Page::where('fb_id', Auth::user()->fb_id)->first();
+        $page_id = $page->page_id;
+
+        DB::table('page_detail')
+        ->where('page_id', '=', $page_id)
+        ->update(['deadline_time' => $hours]);
+
+        return redirect()->back()->with('alert', '成功!');
+    }
+    
     
 }

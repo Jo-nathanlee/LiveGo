@@ -19,6 +19,11 @@
         <!--Nav bar end-->
 @stop
 @section('content')
+@if (session('alert'))
+<script>
+    message_danger();
+</script>
+@endif
         <div id="main" class="row">
             <div class="col-md-12">
                 <table class="table table-borderles" id="dtAccount">

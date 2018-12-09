@@ -11,7 +11,9 @@
 </head>
 
 <body>
-   
+    @yield('wrapper')
+    @yield('navbar')
+    @include('PartialLayout.navbar_checkout')
     @yield('content')
     @yield('footer')
 

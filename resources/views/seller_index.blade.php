@@ -23,6 +23,11 @@
         <!--Nav bar end-->
 @stop
 @section('content')
+@if (session('alert'))
+<script>
+    message_danger();
+</script>
+@endif
  <!-- main -->
  <div class="main bg-light shadow">
                 <div class="card">

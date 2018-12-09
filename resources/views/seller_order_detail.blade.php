@@ -23,6 +23,11 @@
         <!--Nav bar end-->
 @stop
 @section('content')
+@if (session('alert'))
+<script>
+    message_danger();
+</script>
+@endif
         <div class="container-fluid mt-3 mb-3 ">
             <div class="card shadow-sm">
                 <div class="card-body">
