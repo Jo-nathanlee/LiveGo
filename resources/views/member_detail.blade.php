@@ -27,7 +27,7 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <div class="media">
-                        <img class="d-flex mr-3 rounded-circle user_pic" src="https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.0-1/p240x240/45455307_2159005314118774_1441794936147017728_n.jpg?_nc_cat=111&_nc_ht=scontent.ftpe8-3.fna&oh=32a3845b90822e780aa5104cb585f3d8&oe=5C7026F4">
+                        <img class="d-flex mr-3 rounded-circle user_pic" src="https://graph.facebook.com/{{  $member->fb_id }}/picture">
                         <div class="media-body">
                             <h5 class="mt-0">
                                 <font class="text-secondary">

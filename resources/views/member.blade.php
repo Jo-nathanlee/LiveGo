@@ -37,7 +37,7 @@
                         @foreach($member as $member)
                         <tr >
                             <td>
-                                <img src=""
+                                <img src="https://graph.facebook.com/{{  $member->fb_id }}/picture"
                                     class="rounded-circle user_pic" >
                             </td>
                             <td>{{ $member->fb_name }}</td>
