@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
+use DB;
 use App\Entities\Page;
 use App\Entities\CheckoutOrder;
 use App\Entities\OrderDetail;
