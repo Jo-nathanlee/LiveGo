@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
+use DB;
 use App\Entities\PageDetail;
 use App\Entities\Page;
 use App\Entities\StreamingOrder;
