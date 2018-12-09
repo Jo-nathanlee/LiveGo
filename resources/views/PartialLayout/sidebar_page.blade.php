@@ -36,8 +36,17 @@
             </ul>
         </li>
         <li>
-            <a href="{{ route('set_page') }}" >
-                <i class="icofont icofont-home"></i>粉絲團設定</a>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <i class="icofont icofont-home"></i>粉絲團設定
+            </a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+                <li>
+                    <a href="{{ route('set_page') }}">綁定粉絲團</a>
+                </li>
+                <li>
+                    <a href="{{ route('company_info') }}">商城基本設定</a>
+                </li>
+            </ul>
         </li>
         <li>
             <a href="{{ route('StreamingProductOverview') }}">
