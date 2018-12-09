@@ -109,6 +109,7 @@ $(document).ready(function () {
             { "data": "unit_price" },
             { "data": "count" },
             { "data": "total_price" },
+            { "data": "status" },
 
         ],
         language: language_list_edit
