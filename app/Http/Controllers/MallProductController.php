@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
 use App\Entities\Page;
+use App\Entities\PageDetail;
 use App\Entities\Shop;
 use App\Entities\ProductCategories;
 use App\User;
@@ -197,9 +198,12 @@ class MallProductController extends Controller
          $page_id = $page->page_id;
  
          $query = Shop::where('page_id', '=', $page_id)->get();
+
+         $companyInfo = PageDetail::where('page_id','=',$page_id)
+         ->first();
  
  
-         return view('shopping_mall', ['products' => $query]);
+         return view('shopping_mall', ['products' => $query,'address' => $companyInfo->company_address,'phone' => $companyInfo->company_phone]);
      }
 
 }

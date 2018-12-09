@@ -128,11 +128,11 @@ class SetpageController extends Controller//設定粉絲團
             $page = Page::where('fb_id', Auth::user()->fb_id)->first();
             $page_id = $page->page_id;
 
-            $blacklist_time = PageDetail::where('page_id', '=', $page_id)
+            $company_info = PageDetail::where('page_id', '=', $page_id)
             ->first();
 
 
-            return view('set_company_info', ['address' => $blacklist_time->company_address,'phone' => $blacklist_time->company_phone]);
+            return view('set_company_info', ['address' => $company_info->company_address,'phone' => $company_info->company_phone]);
         }
         else
         {

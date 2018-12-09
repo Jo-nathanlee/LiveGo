@@ -434,7 +434,7 @@ class StreamingIndexController extends Controller
 
             //私訊
             try {
-                $url='請至 '.'http://livego.herokuapp.com/buyer_index'.' 結帳，謝謝！';
+                $url='請至 '.'http://livego.herokuapp.com/buyer_index?page_id='.$page_id.'  結帳，謝謝！';
                 $query = '/' . $buyer[0]['message_id'] . '/private_replies';
                 $post = $this->api->post($query, array('message' => $url), $token);
                 $post2 = $post->getGraphNode()->asArray();
@@ -481,7 +481,7 @@ class StreamingIndexController extends Controller
                         //剩餘數量扣除
                         $left_num-=$num;
                         $private_replies='很抱歉！由於商品庫存不足，得標數量改為'.$num;
-                        $private_replies.='。結帳請至 '.'http://livego.herokuapp.com/buyer_index'.' ，謝謝！';
+                        $private_replies.='。結帳請至 '.'http://livego.herokuapp.com/buyer_index?page_id='.$page_id.' ，謝謝！';
 
                         $if_exist = Member::where('fb_id','=',$buyers['id'])
                                     ->where('page_id','=',$page_id)
@@ -541,7 +541,7 @@ class StreamingIndexController extends Controller
 
                         //剩餘數量扣除
                         $left_num-=$num;
-                        $private_replies.='結帳請至 '.'http://livego.herokuapp.com/buyer_index'.' ，謝謝！';
+                        $private_replies.='結帳請至 '.'http://livego.herokuapp.com/buyer_index?page_id='.$page_id.' ，謝謝！';
                     }
                     //私訊
                     try {

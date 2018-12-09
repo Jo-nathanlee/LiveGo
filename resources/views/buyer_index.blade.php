@@ -53,8 +53,7 @@
             $item=1;
             $page_id='';
             ?>
-            @foreach($shopping_cart as $page => $collection)
-                {{$page}}<hr>
+
                 <form action="{{ route('checkout_form') }}" method="POST">       
                             {{ csrf_field() }}
                            
@@ -71,7 +70,7 @@
                         </tr>
                 </thead>
                 <tbody>
-                            @foreach($collection as $cart)
+                            @foreach($shopping_cart as $cart)
                             <?php
                              $item++;
                              $page_id = $cart->page_id;
@@ -103,8 +102,7 @@
                         </td>
                     </tr>
                 </tfoot>
-                </table>
-            @endforeach                          
+                </table>                      
             @endif
             </div>
         </div>
