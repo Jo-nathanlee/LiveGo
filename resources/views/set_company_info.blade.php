@@ -65,7 +65,7 @@
                             </div>
                             <div class="form-row text-center">
                                 <div class="col-12">
-                                    <input type="submit" id="btnSubmit" class="btn btn-outline-success d-none" value="修改">
+                                    <input type="submit" id="btnSubmit" class="btn btn-outline-success" value="修改">
                                 </div>
                             </div>
                         </form>
