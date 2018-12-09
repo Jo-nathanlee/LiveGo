@@ -55,7 +55,7 @@
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" type="button">得標付款期限設定</button>
                                 </div>
-                                <input type="number" name="hours" value="{{ $hours->deadline_time }}" class="form-control" placeholder="請輸入付款期限 (小時) ..." aria-label="" aria-describedby="basic-addon1">
+                                <input type="number" name="hours" value="{{ $hours }}" class="form-control" placeholder="請輸入付款期限 (小時) ..." aria-label="" aria-describedby="basic-addon1">
                             </div>
                             <div class="form-row text-center">
                                 <div class="col-12">
