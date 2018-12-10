@@ -84,7 +84,6 @@ $(document).ready(function () {
                 CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 var order_id=$("#order_id").html();
              
-                console.log(status);
                 $.ajax({
                         /* the route pointing to the post function */
                         url: '/OrderStatusChange',
