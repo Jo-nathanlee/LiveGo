@@ -102,4 +102,9 @@ class AnalysisController extends Controller
 
         return view('analysis');
     }
+
+    public function index_show(Request $request)
+    {
+        return view('analysis_index');
+    }
 }

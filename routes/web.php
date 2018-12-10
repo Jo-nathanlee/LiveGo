@@ -158,6 +158,8 @@ Route::group(['middleware' => [
 
     //文字雲
     Route::get('/analysis', 'AnalysisController@index')->name('analysis');
+    Route::get('/analysis_show', 'AnalysisController@index_show')->name('analysis_show');
+    
 
     
     
