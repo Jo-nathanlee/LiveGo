@@ -108,7 +108,7 @@ Route::group(['middleware' => [
 
     //更改訂單狀態
     Route::post('/OrderStatusChange','SellerOrderController@StatusChange')->name('OrderStatusChange');
-    Route::get('/OrderStatusChange','SellerOrderController@StatusChange')->name('OrderStatusChange');
+   
     
 
     //訂單PDF

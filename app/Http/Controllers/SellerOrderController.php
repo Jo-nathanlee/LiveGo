@@ -270,7 +270,7 @@ class SellerOrderController extends Controller
          ->first();
 
 
-         return json_encode($status_cht, true);
+         return json_encode("", true);
 
 
      }
