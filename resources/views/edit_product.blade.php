@@ -29,7 +29,8 @@
                 <form action="{{ route('edit_product') }}" enctype="multipart/form-data" method="POST">
                 {{ csrf_field() }}
                     <div class="row mb-2">
-                        <div class="col-md-5 ml-3 d-flex " id="pictureEdit">
+                        <!-- <div class="col-md-5 ml-3 d-flex " id="pictureEdit"> -->
+                        <div class="col-md-5 ml-3 d-flex " id="">
                             <img src="{{$product->pic_url  }}" class="img-fluid img mh-100 m-auto" />
                             <input type="hidden" name="primary_key" value="{{$product->pic_url  }}">
                         </div>
