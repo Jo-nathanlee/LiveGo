@@ -65,9 +65,11 @@
                 <button type="submit" class="fluid primary ui button" id="trigger">開始斷詞</button>
             </div>
         </div>
+        <div id="sidebar_page"></div>
         <!-- <div class="ui grid container"> -->
         <div id="content">
             <!-- navbar -->
+            <div id="navbar_page"></div>
             <div class="main bg-light shadow">
                 <div class="row main">
                     <div class="col-12 col-md-12">
