@@ -88,7 +88,6 @@ $(document).ready(function () {
             function(){
                 var status=$('#select_status option:selected').val();
                 var order_id=$("#order_id").html();
-                console.log(status);
                 $.ajax({
                         /* the route pointing to the post function */
                         url: '/OrderStatusChange',
@@ -98,7 +97,7 @@ $(document).ready(function () {
                         dataType: 'JSON',
                         /* remind that 'data' is the response of the AjaxController */
                         success: function (data) {
-                            $("#order_status").html() = data;
+                            $("#order_status").html(data);
                             alertify.success('Ok');
                         },
                         error: function(xhr, status, error) {
