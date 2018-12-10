@@ -77,9 +77,13 @@ $(document).ready(function () {
 
 
     $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $("#d_edit").click(function () {
             var status=$('#select_status option:selected').val();
-            CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             var order_id=$("#order_id").html();
             alertify.confirm('更改訂單狀態', '<select  class="custom-select" id="select_status"><option selected value="unpaid">未付款</option><option value="undelivered">等待出貨中</option><option value="delivered">運送中</option><option value="finished">訂單完成</option><option value="canceled">訂單取消</option></select>', 
             function(){
@@ -96,9 +100,9 @@ $(document).ready(function () {
                             alertify.success('Ok');
                         },
                         error: function(xhr, status, error) {
-                            alert(error);
-                            alert(XMLHttpRequest.status);
-                            alert(XMLHttpRequest.responseText);
+                            console.log(error);
+                            console.log(XMLHttpRequest.status);
+                            console.log(XMLHttpRequest.responseText);
                             alertify.error("連線錯誤！請稍後再試！");
                         }
                 }); 
