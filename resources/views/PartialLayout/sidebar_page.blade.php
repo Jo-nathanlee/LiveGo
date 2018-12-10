@@ -31,16 +31,16 @@
             </ul>
         </li>
         <li>
+            <a href="{{ route('seller_order') }}" >
+                <i class="icofont icofont-paper"></i>我的訂單</a>
+        </li>
+        <li>
             <a href="{{ route('bid_winner') }}" >
                 <i class="icofont icofont-list"></i>得標者清單</a>
         </li>
         <li>
             <a href="{{ route('membership') }}" >
                 <i class="icofont icofont-male"></i>會員名單</a>
-        </li>
-        <li>
-            <a href="{{ route('seller_order') }}" >
-                <i class="icofont icofont-paper"></i>我的訂單</a>
         </li>
         <li>
             <a href="#pageSubmenuˇ" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
