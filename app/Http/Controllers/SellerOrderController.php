@@ -257,17 +257,17 @@ class SellerOrderController extends Controller
      //更改訂單狀態
      public function StatusChange(Request $request)
      {
-         // $order_id = $request->input('order_id');
-         // $status = $request->input('status');
+         $order_id = $request->input('order_id');
+         $status = $request->input('status');
 
-         // OrderDetail::where('order_id', '=', $order_id)
-         // ->update(['status' => $status]);
+         OrderDetail::where('order_id', '=', $order_id)
+         ->update(['status' => $status]);
 
-         // $status_cht = DB::table('order_detail')
-         // ->where('order_id', '=', $order_id)
-         // ->join('status', 'order_detail.status', '=', 'status.status_eng')
-         // ->select('status.status_cht')
-         // ->first();
+         $status_cht = DB::table('order_detail')
+         ->where('order_id', '=', $order_id)
+         ->join('status', 'order_detail.status', '=', 'status.status_eng')
+         ->select('status.status_cht')
+         ->first();
 
 
          return json_encode("", true);

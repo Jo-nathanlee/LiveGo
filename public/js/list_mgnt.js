@@ -89,7 +89,7 @@ $(document).ready(function () {
                         url: '/OrderStatusChange',
                         type: 'POST',
                         /* send the csrf-token and the input to the controller */
-                        data: { order_id:order_id,status:status},
+                        data: { order_id:order_id},
                         dataType: 'JSON',
                         /* remind that 'data' is the response of the AjaxController */
                         success: function (data) {
