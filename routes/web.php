@@ -105,6 +105,11 @@ Route::group(['middleware' => [
     Route::get('/seller_order_delivered', 'SellerOrderController@SellerOrderDelivered')->name('seller_order_delivered');
     Route::get('/seller_order_finished', 'SellerOrderController@SellerOrderFinished')->name('seller_order_finished');
     Route::get('/seller_order_canceled', 'SellerOrderController@SellerOrderCanceled')->name('seller_order_canceled');
+
+    //更改訂單狀態
+    Route::post('/OrderStatusChange','SellerOrderController@StatusChange')->name('OrderStatusChange');
+    
+
     //訂單PDF
     Route::get('/downloadPDF','SellerOrderController@downloadPDF')->name('download');
     Route::get('/download_pdf','SellerOrderController@download_pdf')->name('download_pdf');
