@@ -1,44 +1,16 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.master')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- icon -->
-      <link rel="Shortcut Icon" type="image/x-icon" href="img/livego.png" />
-    <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
-        crossorigin="anonymous">
-    <!-- MY CSS -->
-    <link rel="stylesheet" href="css/sidebar.css">
-    <!--導覽列-->
-    <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/navbar_shop.css">
-    <!--標題列-->
-    <link rel="stylesheet" href="css/notification.css">
-    <!--通知列-->
-    <link rel="stylesheet" href="css/LiveGO.css">
-    <link rel="stylesheet" href="css/comment.css">
-    <!-- iconfont CSS -->
-    <link rel="stylesheet" href="css/icofont.css">
-    <link rel="stylesheet" href="css/product_mgnt.css">
+@section('title','我的訂單')
 
-    <!-- Font Awesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
-        crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
-        crossorigin="anonymous"></script>
+   
+@section('heads')
+    <!-- 我新增的 CSS -->
+    <link rel="stylesheet" href="css/list_mgnt.css">
+     <!-- datatable + bootstrap 4  -->
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-
-    <!-- altertify CSS & JS -->
-    <link rel="stylesheet" href="css/alertify.min.css">
-    <link href="css/alertify.css" rel="stylesheet">
-    <link href="css/default.css" rel="stylesheet">
-    <script src="js/alertify.js"></script>
-    <title>jieba-js demo</title>
-    <script>
+     <script>
         (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
             (i[r].q = i[r].q || []).push(arguments)
@@ -73,10 +45,8 @@
         display: none;
     }
     </style>
-</head>
 
-<body>
-    <script src="js/zingchart.min.js"></script>
+        <script src="js/zingchart.min.js"></script>
     <script>
         zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
         ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
@@ -89,23 +59,32 @@
     <script src="js/input-file-loader.js"></script>
     <script src="js/FileSaver.js"></script>
     <script src="js/puli-util.clipboard.js"></script>
+@stop
 
-    <form onsubmit="return false;" class="ui form" data-persist="garlic">
-        <div class="ui grid container">
-            <!-- <div class="eight wide column"> -->
-            <div class="sixteen wide column field" style="display: none">
-                <button type="submit" class="fluid primary ui button" id="trigger">開始斷詞</button>
-            </div>
-        </div>
-        <div id="sidebar_page"></div>
-        <!-- <div class="ui grid container"> -->
-        <div id="content">
-            <!-- navbar -->
-            <div id="navbar_page"></div>
+
+@section('wrapper')
+<div class="wrapper">
+    <div id="sidebar_page"></div>
+@stop
+@section('navbar')
+    <!-- Page Content  -->
+    <div id="content">
+        <div id="navbar_page"></div>
+        <!--Nav bar end-->
+@stop
+@section('content')
             <div class="main bg-light shadow">
                 <div class="row main">
                     <div class="col-12 col-md-12">
+                        <form onsubmit="return false;" class="ui form" data-persist="garlic">
+                        <div class="ui grid container">
+                            <!-- <div class="eight wide column"> -->
+                            <div class="sixteen wide column field" style="display: none">
+                                <button type="submit" class="fluid primary ui button" id="trigger">開始斷詞</button>
+                            </div>
+                        </div>
                         <div id="myChart"></div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -215,8 +194,9 @@
 
         </script>
 
-</body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+@stop
+@section('footer')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
             crossorigin="anonymous"></script>
         <!-- Bootstrap JS -->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
@@ -228,4 +208,4 @@
         <!-- DataTable + Bootstrap 4  cdn引用-->
         <script defer src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <script defer src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-</html>
+@stop
