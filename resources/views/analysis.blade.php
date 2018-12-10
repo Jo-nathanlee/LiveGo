@@ -72,7 +72,12 @@
 
         </div>
         <!-- <div class="ui grid container"> -->
-        <div id="myChart"></div>
+        <div class="card">
+            <div class="card-body">
+                  <div id="myChart"></div>
+            </div>
+        </div>
+        
         <script>
             $(function () {
                 var _form = $("form");
