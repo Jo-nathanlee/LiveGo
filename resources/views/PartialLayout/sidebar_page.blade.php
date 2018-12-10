@@ -57,7 +57,7 @@
         </li>
         <li>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                <i class="icofont icofont-prestashop"></i>來福逛逛設定</a>
+                <i class="icofont icofont-shopify"></i>來福逛逛設定</a>
             <ul class="collapse list-unstyled" id="pageSubmenu">
                 <li>
                     <a href="{{ route('AddProduct_show') }}">新增商品</a>
