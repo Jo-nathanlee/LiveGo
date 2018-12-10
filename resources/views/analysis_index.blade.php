@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','我的訂單')
+@section('title','聲量趨勢分析')
 
    
 @section('heads')
