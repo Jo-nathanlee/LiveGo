@@ -128,15 +128,15 @@ class StreamingProductController extends Controller
             $goods_price=$request->input('price');
             $goods_num=$request->input('num');
 
-            $this->validate($request, [
-                'image' => 'required|image|mimes:jpeg,dng,png,jpg,gif,svg|max:10000',
-            ]);
+            // $this->validate($request, [
+            //     'image' => 'required|image|mimes:jpeg,dng,png,jpg,gif,svg|max:10000',
+            // ]);
             
-            if($request->hasFile('image'))
-            {
-                $image=Imgur::upload($request->image);
-                StreamingProduct::where('pic_url', '=', $pic_url)->update(['pic_url' => $image->link() ]);
-            }
+            // if($request->hasFile('image'))
+            // {
+            //     $image=Imgur::upload($request->image);
+            //     StreamingProduct::where('pic_url', '=', $pic_url)->update(['pic_url' => $image->link() ]);
+            // }
 
             StreamingProduct::where('pic_url', '=', $pic_url)->update([
             'goods_name' => $goods_name,

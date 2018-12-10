@@ -76,7 +76,6 @@ class AnalysisController extends Controller
                         for($i=0;$i<count($arr);$i++)
                         {
                             $all_comments .= $arr[$i];
-
                         }
 
                        
