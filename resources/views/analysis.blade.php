@@ -76,6 +76,7 @@
             <div class="main bg-light shadow">
                 <div class="row main">
                     <div class="col-12 col-md-12">
+                    <body>
                         <form onsubmit="return false;" class="ui form" data-persist="garlic">
                         <div class="ui grid container">
                             <!-- <div class="eight wide column"> -->
@@ -85,6 +86,7 @@
                         </div>
                         <div id="myChart"></div>
                         </form>
+                    </body>
                     </div>
                 </div>
             </div>
