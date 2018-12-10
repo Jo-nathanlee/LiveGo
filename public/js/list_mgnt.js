@@ -97,8 +97,8 @@ $(document).ready(function () {
                         dataType: 'JSON',
                         /* remind that 'data' is the response of the AjaxController */
                         success: function (data) {
-                            console.log(data[0]);
-                            $("#order_status").html(data[0]);
+                            console.log(data);
+                            $("#order_status").html(data);
                             alertify.success('更改成功！');
                         },
                         error: function(xhr, status, error) {
