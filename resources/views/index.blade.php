@@ -205,6 +205,7 @@
                                                 <input type='hidden' id='message_content' value='"+comment.message+"'>\
                                                 <input type='hidden' id='message_num' value='"+comment.num+"'>\
                                                 <input type='hidden' id='messenger_text' value='"+comment.messenger_text+"'>\
+                                                <input type='hidden' id='live_video_id' value='"+comment.live_video_id+"'>\
                                     </a>\
                                 </div>\
                             </li>");
@@ -267,6 +268,7 @@
                                                 <input type='hidden' id='message_id' value='"+data[0][0].message_id+"'>\
                                                 <input type='hidden' id='message_content' value='"+comment.message+"'>\
                                                 <input type='hidden' id='message_num' value='1'>\
+                                                <input type='hidden' id='live_video_id' value='"+comment.live_video_id+"'>\
                                     </a>\
                                 </div>\
                             </li>");
@@ -316,7 +318,9 @@
                 var comment = $("ul li:nth-child("+i+")").find("#message_content").val();
                 var id=$("ul li:nth-child("+i+")").find("#fb_id").val();
                 var message_id=$("ul li:nth-child("+i+")").find("#message_id").val();
+                var live_video_id=$("ul li:nth-child("+i+")").find("#live_video_id").val();
                 var messenger_text="";
+                
 
                 if(type==1)
                 {
@@ -329,6 +333,7 @@
                     'id':id,
                     'message_id':message_id,
                     'messenger_text':messenger_text,
+                    'live_video_id':live_video_id,
                 };
 
                 buyer.push(tmp);

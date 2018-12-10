@@ -155,6 +155,10 @@ Route::group(['middleware' => [
 
     //網紅
     Route::get('/InternetCelebrityMatch', 'MallProductController@InternetCelebrityMatch')->name('InternetCelebrityMatch');
+
+    //文字雲
+    Route::get('/analysis', 'AnalysisController@index')->name('analysis');
+
     
     
     

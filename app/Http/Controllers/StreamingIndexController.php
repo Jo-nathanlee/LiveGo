@@ -219,6 +219,7 @@ class StreamingIndexController extends Controller
                                             'message_time' => $time,
                                             'message_id' => $key['id'],
                                             'messenger_text' =>'',
+                                            'live_video_id' => $video_id,
                                         );
                                     }
                                     else if($left_num>0&&$left_num<$num)
@@ -232,6 +233,7 @@ class StreamingIndexController extends Controller
                                             'message_time' => $time,
                                             'message_id' => $key['id'],
                                             'messenger_text' =>'insufficient',
+                                            'live_video_id' => $video_id,
                                         );
                                     }
                                     else
@@ -244,6 +246,7 @@ class StreamingIndexController extends Controller
                                             'message_time' => $time,
                                             'message_id' => $key['id'],
                                             'messenger_text' =>'fail',
+                                            'live_video_id' => $video_id,
                                         );
                                     }
                                     $left_num-=$num;
@@ -324,6 +327,7 @@ class StreamingIndexController extends Controller
                         'id' => $fb_id,
                         'message_time' => $message_time,
                         'message_id' => $message_id,
+                        'live_video_id' => $video_id,
                     ],
                 );
                 if( $fb_name == "")
@@ -390,6 +394,7 @@ class StreamingIndexController extends Controller
             $page_store->page_id = $page_id;
             $page_store->page_name = $page_name;
             $page_store->fb_id = $buyer[0]['id'];
+            $page_store->live_video_id = $buyer[0]['live_video_id'];
             $page_store->name = $buyer[0]['name'];
             $page_store->goods_name =  $goods_name;
             $page_store->goods_price =  $goods_price;
@@ -457,6 +462,7 @@ class StreamingIndexController extends Controller
                     $page_store->page_id = $page_id;
                     $page_store->page_name = $page_name;
                     $page_store->fb_id = $buyers['id'];
+                    $page_store->live_video_id = $buyers['live_video_id'];
                     $page_store->name = $buyers['name'];
                     $page_store->goods_name =  $goods_name;
                     $page_store->goods_price =  $goods_price;
