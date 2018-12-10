@@ -97,19 +97,19 @@ $(document).ready(function () {
                         dataType: 'JSON',
                         /* remind that 'data' is the response of the AjaxController */
                         success: function (data) {
-                            console.log(data);
-                            $("#order_status").html(data);
-                            alertify.success('Ok');
+                            console.log(data[0]);
+                            $("#order_status").html(data[0]);
+                            alertify.success('更改成功！');
                         },
                         error: function(xhr, status, error) {
-                            console.log(error);
-                            console.log(XMLHttpRequest.status);
-                            console.log(XMLHttpRequest.responseText);
+                            // console.log(error);
+                            // console.log(XMLHttpRequest.status);
+                            // console.log(XMLHttpRequest.responseText);
                             alertify.error("連線錯誤！請稍後再試！");
                         }
                 }); 
             }, 
-            function(){ alertify.error('Cancel')});
+            function(){ alertify.error('更改失敗！')});
 
         });
 
