@@ -54,6 +54,7 @@ class AnalysisController extends Controller
                     $comments = $response->getGraphNode();
                     if (isset($comments['comments'])) {
                         $comments = $comments['comments'];
+                        dd($comments);
                         foreach ($comments as $key) {
                             if( strpos($key['comments'], '+' )===false)
                             {
