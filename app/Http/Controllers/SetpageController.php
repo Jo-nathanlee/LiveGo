@@ -34,7 +34,7 @@ class SetpageController extends Controller//設定粉絲團
 
     public function show()
     {
-        if (Gate::allows('seller-only',  Auth::user())) {
+        // if (Gate::allows('seller-only',  Auth::user())) {
             $query = '/me/accounts';
             $token = Auth::user()->token;
 
@@ -68,16 +68,16 @@ class SetpageController extends Controller//設定粉絲團
             } catch (FacebookSDKException $e) {
                 dd($e); // handle exception
             }
-        }
-        else
-        {
-           return redirect('/')->with('alert', '您尚未開通，請聯繫我們！');
-        }
+        // }
+        // else
+        // {
+        //    return redirect('/')->with('alert', '您尚未開通，請聯繫我們！');
+        // }
     }
     //存入資料庫
     public function CreateOrUpdatePage(Request $request)
     {
-        if (Gate::allows('seller-only',  Auth::user())) {
+        // if (Gate::allows('seller-only',  Auth::user())) {
             if($request->has('id')){
                 $page = $request->input('id');
                 $id_name_token = preg_split("/[,]+/", $page);
@@ -114,11 +114,11 @@ class SetpageController extends Controller//設定粉絲團
             {
                 return redirect()->back()->with('alert', '請選擇粉絲團！');
             }
-        }
-        else
-        {
-           return redirect('/')->with('alert', '您尚未開通，請聯繫我們！');
-        }
+        // }
+        // else
+        // {
+        //    return redirect('/')->with('alert', '您尚未開通，請聯繫我們！');
+        // }
     }
 
     //公司地址、電話設定

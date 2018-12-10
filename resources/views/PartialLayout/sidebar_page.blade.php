@@ -69,7 +69,7 @@
             </ul>
         </li>
         <li>
-            <a href="{{ route('analysis') }}" >
+            <a href="{{ route('analysis_show') }}" >
                 <i class="icofont icofont-data"></i>聲量分析</a>
         </li>
         <!-- <li>
