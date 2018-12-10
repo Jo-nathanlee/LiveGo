@@ -78,7 +78,7 @@
                 var _form = $("form");
                 var _submit_button = _form.find('button#trigger');
                 _submit_button.click(function () {
-                    var _text ="{{ $comments  }} ";
+                    var _text ="";
             
                     //console.log(_text);
                     var _submit = $(this).find("button#trigger");
