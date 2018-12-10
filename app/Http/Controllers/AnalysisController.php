@@ -79,6 +79,7 @@ class AnalysisController extends Controller
 
                         }
 
+                        dd($all_comments);
                         return view('analysis',[ 'comments' => json_encode($all_comments, true)]);
 
 
