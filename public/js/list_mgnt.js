@@ -97,7 +97,8 @@ $(document).ready(function () {
                         dataType: 'JSON',
                         /* remind that 'data' is the response of the AjaxController */
                         success: function (data) {
-                            $("#order_status").html(data);
+                            console.log(JSON.parse(data));
+                            $("#order_status").html(JSON.parse(data));
                             alertify.success('Ok');
                         },
                         error: function(xhr, status, error) {
