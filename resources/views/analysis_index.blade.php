@@ -29,7 +29,7 @@
             <hr>
             <div class="row main">
                 <div class="col-12 col-md-12">
-                    <iframe src="{{ route('analysis') }}" scrolling="no"  style="border:none;height: 70vh" class="w-100" ></iframe>
+                    <iframe src="http://livego.herokuapp.com/analysis" scrolling="no"  style="border:none;height: 70vh" class="w-100" ></iframe>
                 </div>
             </div>
         </div>
