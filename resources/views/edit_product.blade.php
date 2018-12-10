@@ -30,7 +30,7 @@
                 {{ csrf_field() }}
                     <div class="row mb-2">
                         <div class="col-md-5 ml-3 d-flex " id="pictureEdit">
-                        <input type="file" class="custom-file-input" name="image" id="imgInp" value="{{$product->pic_url  }}" required>
+                        <input type="file" class="custom-file-input" name="image" id="imgInp" required>
                             <img src="{{$product->pic_url  }}" id="pictureEdit_upload" class="img-fluid img mh-100 m-auto" />
                             <input type="hidden" name="primary_key" value="{{$product->pic_url  }}">
                         </div>

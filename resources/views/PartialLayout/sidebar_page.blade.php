@@ -11,6 +11,10 @@
                 <i class="icofont icofont-video-cam"></i>開啟直播</a>
         </li>
         <li>
+            <a href="{{ route('StreamingProductOverview') }}">
+                <i class="icofont icofont-settings-alt"></i>直播商品設定</a>
+        </li>
+        <li>
             <a href="#pageSubmenuㄉ" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                 <i class="icofont icofont-home"></i>粉絲團設定
             </a>
@@ -50,10 +54,6 @@
                     <a href="{{ route('blacklist_time') }}">棄標時間設定</a>
                 </li>
             </ul>
-        </li>
-        <li>
-            <a href="{{ route('StreamingProductOverview') }}">
-                <i class="icofont icofont-settings-alt"></i>直播商品設定</a>
         </li>
         <li>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
