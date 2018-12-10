@@ -44,19 +44,19 @@
 </head>
 
 <body>
-    <script src="zingchart.min.js"></script>
+    <script src="js/zingchart.min.js"></script>
     <script>
         zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
         ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
     </script>
-    <script src="jquery.js"></script>
-    <script src="require-jieba-js.js"></script>
-    <link rel="stylesheet" href="semantic.min.css" />
-    <script src="semantic.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/require-jieba-js.js"></script>
+    <link rel="stylesheet" href="css/semantic.min.css" />
+    <script src="js/semantic.min.js"></script>
     <!-- <script src="html-lib/Garlic.js/garlic.js"></script> -->
-    <script src="input-file-loader.js"></script>
-    <script src="FileSaver.js"></script>
-    <script src="puli-util.clipboard.js"></script>
+    <script src="js/input-file-loader.js"></script>
+    <script src="js/FileSaver.js"></script>
+    <script src="js/puli-util.clipboard.js"></script>
 
     <form onsubmit="return false;" class="ui form" data-persist="garlic">
         <div class="ui grid container">
