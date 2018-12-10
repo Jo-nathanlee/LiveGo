@@ -43,10 +43,10 @@
                 <i class="icofont icofont-male"></i>會員名單</a>
         </li>
         <li>
-            <a href="#pageSubmenuˇ" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                 <i class="icofont icofont-investigator"></i>棄標黑名單
             </a>
-            <ul class="collapse list-unstyled" id="pageSubmenuˇ">
+            <ul class="collapse list-unstyled" id="pageSubmenu">
                 <li>
                     <a href="{{ route('bid_blacklist') }}">棄標黑名單</a>
                 </li>
@@ -57,7 +57,8 @@
         </li>
         <li>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                <i class="icofont icofont-shopify"></i>來福逛逛設定</a>
+                <i class="icofont icofont-shopping-cart"></i>來福逛逛設定
+            </a>
             <ul class="collapse list-unstyled" id="pageSubmenu">
                 <li>
                     <a href="{{ route('AddProduct_show') }}">新增商品</a>
