@@ -37,7 +37,7 @@ class AnalysisController extends Controller
     {
         $page = Page::where('fb_id', Auth::user()->fb_id)->first();
         $page_id = $page->page_id;
-        $page_token = $page->page_token;
+        $token = $page->page_token;
         $query = '/' . $page_id . '/live_videos';
         try {
             $response = $this->graphapi($query, $token);
