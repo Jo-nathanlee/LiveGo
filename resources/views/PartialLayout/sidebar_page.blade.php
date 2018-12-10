@@ -69,7 +69,7 @@
         </li>
         <li>
             <a href="{{ route('analysis') }}" >
-                <i class="icofont icofont-male"></i>聲量分析</a>
+                <i class="icofont icofont-data"></i>聲量分析</a>
         </li>
         <!-- <li>
             <a href="#">
