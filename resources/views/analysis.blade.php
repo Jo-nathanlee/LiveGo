@@ -60,21 +60,20 @@
 
     <form onsubmit="return false;" class="ui form" data-persist="garlic">
         <div class="ui grid container">
-
-
             <!-- <div class="eight wide column"> -->
-
-
             <div class="sixteen wide column field" style="display: none">
                 <button type="submit" class="fluid primary ui button" id="trigger">開始斷詞</button>
             </div>
-
-
         </div>
         <!-- <div class="ui grid container"> -->
-        <div class="card">
-            <div class="card-body">
-                  <div id="myChart"></div>
+        <div id="content">
+            <!-- navbar -->
+            <div class="main bg-light shadow">
+                <div class="row main">
+                    <div class="col-12 col-md-12">
+                        <div id="myChart"></div>
+                    </div>
+                </div>
             </div>
         </div>
         
