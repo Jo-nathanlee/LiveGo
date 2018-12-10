@@ -46,6 +46,7 @@
                                 <i class="icofont icofont-numbered"></i> 
                                 <b>訂單編號</b>
                                 <font id="order_id" class="text-secondary">{{ $order_detail->order_id }}</font>
+                                <font class="float-right mr-2">訂單狀態：</font>
                                 <font id="order_status" class="float-right mr-2">訂單狀態： {{ $order_detail->status_cht }}</font>
                             </h5>
                             <i class="icofont icofont-map h5"></i> 
