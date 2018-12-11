@@ -14,13 +14,13 @@ class RevenueController extends Controller
     public function DailyRevenue(Request $request)
     {
         if (Gate::allows('seller-only',  Auth::user())) {
-            $date1 = date('Y-m-d', strtotime('-7 days'));
-            $date2 = date('Y-m-d', strtotime('-6 days'));
-            $date3 = date('Y-m-d', strtotime('-5 days'));
-            $date4 = date('Y-m-d', strtotime('-4 days'));
-            $date5 = date('Y-m-d', strtotime('-3 days'));
-            $date6 = date('Y-m-d', strtotime('-2 days'));
-            $date7 = date('Y-m-d', strtotime('-1 days'));
+            $date1 = (string)(date('Y-m-d', strtotime('-7 days')));
+            $date2 = (string)(date('Y-m-d', strtotime('-6 days')));
+            $date3 = (string)(date('Y-m-d', strtotime('-5 days')));
+            $date4 = (string)(date('Y-m-d', strtotime('-4 days')));
+            $date5 = (string)(date('Y-m-d', strtotime('-3 days')));
+            $date6 = (string)(date('Y-m-d', strtotime('-2 days')));
+            $date7 = (string)(date('Y-m-d', strtotime('-1 days')));
 
             $date1_query = OrderDetail::where('transaction_date', 'like', '%'.$date1.'%')
             ->where('status', '=', 'finished')
