@@ -44,7 +44,6 @@ class RevenueController extends Controller
             ->where('status', '=', 'finished')
             ->get();
 
-            dd($date2_query);
 
             $date1_amount = 0;
             $date2_amount = 0;
@@ -55,25 +54,25 @@ class RevenueController extends Controller
             $date7_amount = 0;
 
             foreach ($date1_query as $order) {
-                $date1_amount += (int)($order->total_price);
+                $date1_amount += (int)($order->goods_total);
             }
             foreach ($date2_query as $order) {
-                $date2_amount += (int)($order->total_price);
+                $date2_amount += (int)($order->goods_total);
             }
             foreach ($date3_query as $order) {
-                $date3_amount += (int)($order->total_price);
+                $date3_amount += (int)($order->goods_total);
             }
             foreach ($date4_query as $order) {
-                $date4_amount += (int)($order->total_price);
+                $date4_amount += (int)($order->goods_total);
             }
             foreach ($date5_query as $order) {
-                $date5_amount += (int)($order->total_price);
+                $date5_amount += (int)($order->goods_total);
             }
             foreach ($date6_query as $order) {
-                $date6_amount += (int)($order->total_price);
+                $date6_amount += (int)($order->goods_total);
             }
             foreach ($date7_query as $order) {
-                $date7_amount += (int)($order->total_price);
+                $date7_amount += (int)($order->goods_total);
             }
 
             $amount = array();
