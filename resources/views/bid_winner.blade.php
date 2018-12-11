@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="col-md-12">
                 @if(count($winner)==0)
-                    <table id="table_source_nodata" class="table text-truncate">
+                    <table id="table_source" class="table text-truncate table_source">
                         <thead>
                             <tr>
                                 <th></th>
@@ -50,7 +50,7 @@
                         </tbody>
                     </table>
                 @else
-                <table id="table_source" class="table text-truncate">
+                <table id="table_source" class="table text-truncate table_source">
                     <thead>
                         <tr>
                             <tr>
