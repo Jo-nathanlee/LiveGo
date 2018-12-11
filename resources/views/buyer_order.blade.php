@@ -95,66 +95,45 @@
                             <table id="table_buyer_order" class="table">
                                 <thead>
                                     <tr>
+                                        <th>訂單編號</th>
+                                        <th>粉絲專業名稱</th>
+                                        <th>消費總金額</th>
+                                        <th>狀態</th>
+                                        <th>訂單成立時間</th>
                                         <th></th>
-                                        <th>商品名稱</th>
-                                        <th>商品價錢</th>
-                                        <th>商品數量</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td align="center" colspan="3">無資料</td>
+                                        <td align="center" colspan="6">無資料</td>
                                     </tr>
                                 </tbody>
                             </table>
                         @else
-                        <?php 
-                        $order_status='';
-                        $created_time='';
-                        $total_amount='';
-                        ?>
-                        
-                        @foreach($order as $orderid => $collection)
-                            <br><br>
                             <table id="table_nocontroler" class="table">
                                 <thead>
                                     <tr>
-                                        <th>訂單編號：{{$orderid}}</th>
-                                        <th></th>
-                                        <th></th>
+                                        <th>訂單編號</th>
+                                        <th>粉絲專業名稱</th>
+                                        <th>消費總金額</th>
+                                        <th>狀態</th>
+                                        <th>訂單成立時間</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($order as $order_detail)
                                     <tr>
-                                        <td></td>
-                                        <td>商品名稱</td>
-                                        <td>商品價錢</td>
-                                        <td>商品數量</td>
+                                        <td>{{$order_detail->order_id}}</td>
+                                        <td>{{$order_detail->page_name}}</td>
+                                        <td>{{$order_detail->all_total}}</td>
+                                        <td>{{$order_detail->status_cht}}</td>
+                                        <td>{{$order_detail->created_at}}</td>
+                                        <td><a href="{{ route('buyer_order_detail',['order_id' => $order_detail->order_id]) }}"><button  type="button" class="btn btn-outline-dark">查看詳情</button></a></td>
                                     </tr>
-                                @foreach($collection as $order_detail)
-                                    <tr id="order_item">
-                                        <td scope="row">
-                                            <img id="order_img" src="{{ $order_detail->pic_path }}" class="img-fluid img" alt="Responsive image">
-                                        </td>
-                                        <td>{{$order_detail->goods_name}}</td>
-                                        <td>{{$order_detail->goods_price}}</td>
-                                        <td>{{$order_detail->goods_num}}</td>
-                                    </tr>
-                                    <?php 
-                                    $order_status=$order_detail->order_status;
-                                    $created_time=$order_detail->created_time;
-                                    $total_amount=$order_detail->total_price;
-                                    ?>
                                 @endforeach
-                                    <tr>
-                                        <td>訂單成立時間：{{$created_time}}</td>
-                                        <td colspan="3" align="right" >總金額：{{$total_amount}} </td>
-                                    </tr>
                                 </tbody>
-                            </table>
-                            <hr>
-                        @endforeach     
+                            </table> 
                         <!-- 頁碼 -->
                         <span id="list_table_page" class="list_table_page"></span>   
                         <!-- 頁碼end -->                 
