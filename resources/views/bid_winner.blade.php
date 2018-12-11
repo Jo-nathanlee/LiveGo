@@ -45,7 +45,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td colspan="9" class="text-center">無資料</td>
+                                <td colspan="10" class="text-center">無資料</td>
                             </tr>
                         </tbody>
                     </table>
