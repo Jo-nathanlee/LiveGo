@@ -40,6 +40,11 @@
     input.input-field[type='file'] {
         display: none;
     }
+
+    #myChart-license-text{
+      display: none;
+
+    }
     </style>
 </head>
 
