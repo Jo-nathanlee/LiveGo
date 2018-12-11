@@ -78,7 +78,6 @@ class AnalysisController extends Controller
                             $all_comments .= $arr[$i];
                         }
 
-                        dd($all_comments);
                        
                         return view('analysis',[ 'comments' => $all_comments]);
 
