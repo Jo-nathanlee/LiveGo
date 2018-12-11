@@ -92,7 +92,7 @@
                     <div class="row">
                         <div class="col-md-12" id="table_div">
                         @if(count($order)==0)
-                            <table id="table_nocontroler" class="table">
+                            <table id="table_buyer_order" class="table">
                                 <thead>
                                     <tr>
                                         <th></th>

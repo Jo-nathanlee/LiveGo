@@ -30,7 +30,7 @@ $(document).ready(function () {
 
     var language = {
         "sProcessing": "處理中...",
-        "sLengthMenu": "<button type='button' id='d_new'  class='btn btn-primary'>新增</button>  <button type='button' id='d_edit' class='btn btn-info'>修改</button>  <button type='button' id='d_delete' class='btn btn-danger mr-1'>刪除</button>_MENU_ 顯示筆數",
+        "sLengthMenu": "<button type='button' id='d_new' class='btn btn-primary'>新增</button>  <button type='button' id='d_edit' class='btn btn-info'>修改</button>  <button type='button' id='d_delete' class='btn btn-danger mr-1'>刪除</button>_MENU_ 顯示筆數",
         "sZeroRecords": "沒有結果",
         "sInfo": " 顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
         "sInfoEmpty": "顯示第 0 至 0 項結果，共 0 項",
@@ -54,7 +54,7 @@ $(document).ready(function () {
 
     var language_list_edit = {
         "sProcessing": "處理中...",
-        "sLengthMenu": " <button type='button' id='d_edit' class='btn btn-info mr-1'>更改訂單狀態</button>_MENU_ 顯示筆數",
+        "sLengthMenu": " <button type='button' id='d_edit' class='btn btn-info mr-1'>更改訂單狀態</button>_MENU_ 顯示筆數 <span id='statue_detail'>556</span>",
         "sZeroRecords": "沒有結果",
         "sInfo": " 顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
         "sInfoEmpty": "顯示第 0 至 0 項結果，共 0 項",
@@ -77,43 +77,13 @@ $(document).ready(function () {
 
 
     $(document).ready(function () {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
         $("#d_edit").click(function () {
-        
-            alertify.confirm('更改訂單狀態', '<select  class="custom-select" id="select_status"><option selected value="unpaid">未付款</option><option value="undelivered">等待出貨中</option><option value="delivered">運送中</option><option value="finished">訂單完成</option><option value="canceled">訂單取消</option></select>', 
-            function(){
-                var status=$('#select_status option:selected').val();
-                var order_id=$("#order_id").html();
-                $.ajax({
-                        /* the route pointing to the post function */
-                        url: '/OrderStatusChange',
-                        type: 'POST',
-                        /* send the csrf-token and the input to the controller */
-                        data: { order_id:order_id,status:status},
-                        dataType: 'JSON',
-                        /* remind that 'data' is the response of the AjaxController */
-                        success: function (data) {
-                            $("#order_status").html(data["status_cht"]);
-                            alertify.success('更改成功！');
-                        },
-                        error: function(xhr, status, error) {
-                            // console.log(error);
-                            // console.log(XMLHttpRequest.status);
-                            // console.log(XMLHttpRequest.responseText);
-                            alertify.error("連線錯誤！請稍後再試！");
-                        }
-                }); 
-            }, 
-            function(){ alertify.error('更改失敗！')});
+            alertify.confirm('Confirm Title', '<select class="custom-select" id="select_statue"><option selected>選取更改訂單狀態</option><option value="1">未付款</option><option value="2">等待出貨中</option><option value="3">運送中</option><option value="4">訂單完成</option><option value="5">訂單取消</option></select>', function(){ alertify.success('Ok') }
+            , function(){ alertify.error('Cancel')});
 
         });
 
     });
-
 
     
     $('#table_member_bid_list_detail').DataTable({
@@ -150,21 +120,22 @@ $(document).ready(function () {
                 "data": "Controler",
 
             },
+            { "data": "Order_name" },
             {
                 "defaultContent": '',
                 "orderable": false,
                 "data": "pic",
 
             },
-            { "data": "Order_number" },
-            { "data": "bidder" },
-            { "data": "product" },
+            { "data": "Order_goods_name" },
+            { "data": "unit_price" },
+            { "data": "count" },
+            { "data": "total_price" },
             { "data": "content" },
-            { "data": "price" },
             { "data": "remarks" },
             { "data": "time" },
         ],
-        language: language
+        language: default_language
         , "order": [[2, 'asc']]
     });
 
@@ -185,11 +156,42 @@ $(document).ready(function () {
                 "data": "btn",
             },
         ],
-        language: language
+        language: default_language
     });
 
+    $('#table_buyer_order').DataTable({
+        "columns": [
+            {
+                "defaultContent": '',
+                "orderable": false,
+                "data": "bid_pic",
+            },
+            { "data": "goods_name" },
+            { "data": "total_price" },
+            { "data": "goods_count" },
+        ],
+        language: default_language
+    });
 
-
+    $('#table_blacklist').DataTable({
+        "columns": [
+            {
+                "defaultContent": '',
+                "orderable": false,
+                "data": "bid_pic",
+            },
+            { "data": "black_ID"},
+            { "data": "black_name" },
+            { "data": "counts" },
+            { "data": "status" },
+            {
+                "defaultContent": '',
+                "orderable": false,
+                "data": "btn",
+            },
+        ],
+        language: default_language
+    });
 
 
     $('#table_list_detail').DataTable({
@@ -244,8 +246,10 @@ $(document).ready(function () {
 
             },
             { "data": "name" },
-            { "data": "evaluation" },
-            { "data": "Shopping_amount" },
+            { "data": "shop_times" },
+            { "data": "counts" },
+            {"data":"shop_total_price"},
+            {"date":"Evaluation"},
             {
                 "defaultContent": '',
                 "orderable": false,
