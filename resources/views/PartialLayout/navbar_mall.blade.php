@@ -1,5 +1,6 @@
 <?php
-$page_id = Session::get('page_id');
+use Illuminate\Http\Request;
+$page_id = $request->session()->get('page_id');
 ?>
 <nav class="navbar-ft navbar-expand-sm">
     <div class="container-fluid">
