@@ -56,10 +56,10 @@
             </ul>
         </li>
         <li>
-            <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <a href="#pageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                 <i class="icofont icofont-money"></i>日/月營收
             </a>
-            <ul class="collapse list-unstyled" id="pageSubmenu1">
+            <ul class="collapse list-unstyled" id="pageSubmenu4">
                 <li>
                     <a href="{{ route('daily_revenue') }}">日營收</a>
                 </li>
