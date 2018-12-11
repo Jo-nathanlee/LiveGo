@@ -52,7 +52,6 @@
                 @else
                 <table id="table_source" class="table">
                     <thead>
-                        
                             <tr>
                                 <th></th>
                                 <th>得標者姓名</th>
@@ -68,7 +67,7 @@
                     </thead>
                     <tbody>
                             @foreach($winner as $winner)
-                                <tr>
+                                <tr id="order_item">
                                     <td><img src="https://graph.facebook.com/{{  $winner->fb_id }}/picture" class="rounded-circle user_pic" ></td>
                                     <td>{{$winner->name}}</td>
                                     <td> <img id="order_img" src="{{$winner->pic_path}}" style="height:50px;width:50px" ></td>
@@ -82,7 +81,10 @@
                                 </tr>
                             @endforeach
                     </tbody>
-                </table>                       
+                </table>     
+                 <!-- 頁碼 -->
+                 <span id="list_table_page" class="list_table_page"></span>   
+                 <!-- 頁碼end -->                  
                 @endif
 
                 </div>
