@@ -40,6 +40,7 @@ class BuyerIndexController extends Controller
         $companyInfo = PageDetail::where('page_id','=',$page_id)
         ->first();
         
+        Session::put('page_id', $page_id);
 
 
         return view('buyer_index', ['shopping_cart' => $cart,'address' => $companyInfo->company_address,'phone' => $companyInfo->company_phone]);

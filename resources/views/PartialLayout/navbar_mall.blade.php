@@ -1,3 +1,6 @@
+<?php
+$page_id = Session::get('page_id');
+?>
 <nav class="navbar-ft navbar-expand-sm">
     <div class="container-fluid">
         <div class="collapse navbar-collapse  col-offset-1  d-block" id="#">
@@ -56,7 +59,7 @@
                         />
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="Account">
-                        <a class="dropdown-item" href="{{ route('buyer_index') }}">來去逛逛</a>
+                        <a class="dropdown-item" href="{{ route('buyer_index',[ 'page_id'=>$page_id ]) }}">來去逛逛</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
