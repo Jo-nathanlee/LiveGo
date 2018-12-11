@@ -26,9 +26,9 @@
 @endif
         <div id="bidder_list" class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12" id="table_div">
                 @if(count($winner)==0)
-                    <table id="table_source" class="table text-truncate table_source">
+                    <table id="table_source" class="table">
                         <thead>
                             <tr>
                                 <th></th>
@@ -50,7 +50,7 @@
                         </tbody>
                     </table>
                 @else
-                <table id="table_source" class="table text-truncate table_source">
+                <table id="table_source" class="table">
                     <thead>
                         
                             <tr>
@@ -84,9 +84,7 @@
                     </tbody>
                 </table>                       
                 @endif
-                <!-- 頁碼 -->
-                <span id="list_table_page" class="list_table_page"></span>
-                <!-- 頁碼end -->
+
                 </div>
             </div>
         </div>
