@@ -3,6 +3,33 @@
 
 // Datatable  
 $(document).ready(function () {
+    $('#table_source_nodata').DataTable({
+        "columns": [
+            {
+                "defaultContent": '',
+                "orderable": false,
+                "data": "Controler",
+
+            },
+            { "data": "Order_name" },
+            {
+                "defaultContent": '',
+                "orderable": false,
+                "data": "pic",
+
+            },
+            { "data": "Order_goods_name" },
+            { "data": "unit_price" },
+            { "data": "count" },
+            { "data": "total_price" },
+            { "data": "content" },
+            { "data": "remarks" },
+            { "data": "time" },
+        ],
+        language: default_language
+        , "order": [[2, 'asc']]
+    });
+
 
     var default_language =  {
         "sProcessing": "處理中...",
