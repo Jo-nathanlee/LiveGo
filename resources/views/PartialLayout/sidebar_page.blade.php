@@ -85,10 +85,6 @@
             <a href="{{ route('analysis_show') }}" >
                 <i class="icofont icofont-data"></i>聲量分析</a>
         </li>
-        <!-- <li>
-            <a href="#">
-                <i class="icofont icofont-gift"></i>抽獎</a>
-        </li> -->
     </ul>
 </nav>
 

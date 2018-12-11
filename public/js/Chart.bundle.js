@@ -15914,7 +15914,7 @@ var noop = helpers.noop;
 
 defaults._set('global', {
 	legend: {
-		display: true,
+		display: false,
 		position: 'top',
 		fullWidth: true,
 		reverse: false,

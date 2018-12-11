@@ -78,7 +78,7 @@
 
         var day_income_data = [];
         var average_income_data = [];
-        var chart_title = '2018 強大體育用品 - 月成長報表';
+        var chart_title = 'Watch Live Boxer - 日成長報表';
 
 
         

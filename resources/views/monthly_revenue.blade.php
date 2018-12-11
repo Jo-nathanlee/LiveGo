@@ -75,7 +75,7 @@
 @section('footer')
  <!-- chart data -->
     <script>
-        var chart_title = '2018 強大體育用品 - 月成長報表';
+        var chart_title = 'Watch Live Boxer - 月成長報表';
         // 月份(如十月辯十一月時 自動產生 '十一月'))
         var month_data = [];
         // 每個月的總收益
