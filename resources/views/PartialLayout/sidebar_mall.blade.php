@@ -29,10 +29,10 @@
     </ul>
     <ul class="list-unstyled">
         <li>
-            <a>公司地址 : <br/>{{ $address }}</a>
+            <!-- <a>公司地址 : <br/>{{ $address }}</a> -->
         </li>
         <li>
-            <a>匯款帳號 : <br/> {{ $phone }} </a>
+            <!-- <a>匯款帳號 : <br/> {{ $phone }} </a> -->
         </li>
 
     </ul>
