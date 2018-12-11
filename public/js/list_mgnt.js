@@ -54,7 +54,7 @@ $(document).ready(function () {
 
     var language_list_edit = {
         "sProcessing": "處理中...",
-        "sLengthMenu": " <button type='button' id='d_edit' class='btn btn-info mr-1'>更改訂單狀態</button>_MENU_ 顯示筆數 <span id='statue_detail'>556</span>",
+        "sLengthMenu": " <button type='button' id='d_edit' class='btn btn-info mr-1'>更改訂單狀態</button>_MENU_ 顯示筆數",
         "sZeroRecords": "沒有結果",
         "sInfo": " 顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
         "sInfoEmpty": "顯示第 0 至 0 項結果，共 0 項",
@@ -138,6 +138,26 @@ $(document).ready(function () {
 
         ],
         language: language_list_edit
+    });
+
+
+    $('#table_buyer_list_detail').DataTable({
+        "columns": [
+            {
+                "defaultContent": '',
+                "orderable": false,
+            },
+            {
+                "defaultContent": '',
+                "orderable": false,
+            },
+            { "data": "goods_name" },
+            { "data": "unit_price" },
+            { "data": "count" },
+            { "data": "total_price" },
+
+        ],
+        language: default_language
     });
 
     $('#table_source_nodata').DataTable({

@@ -62,7 +62,7 @@
         <div class="container-fluid">
             <div class="card shadow-sm">
                 <div class="card-body">
-                    <table id="table_bid_list_detail" class="table">
+                    <table id="table_buyer_list_detail" class="table">
                         <thead>
                             <tr>
                                 <th>編號</th>
