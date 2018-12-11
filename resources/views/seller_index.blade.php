@@ -52,7 +52,7 @@
                         <div class="media">
                             <i class="icofont icofont-look h1 d-flex align-self-center mr-3"></i>
                             <div class="media-body">
-                                <h5 class="mt-0">粉絲專業預覽</h5>
+                                <h5 class="mt-0">粉絲專頁預覽</h5>
                                 132
                                 <small class="text-black-50 ml-2">( 粉絲專頁總遊覽次數
                                     <font class="text-success">▲123</font> )</small>
@@ -69,7 +69,7 @@
                         <div class="media">
                             <i class="icofont icofont-like h1 d-flex align-self-center mr-3"></i>
                             <div class="media-body">
-                                <h5 class="mt-0">粉絲專業的讚</h5>
+                                <h5 class="mt-0">粉絲專頁的讚</h5>
                                 9453
                                 <small class="text-black-50 ml-2">( 粉絲專頁總遊覽次數
                                     <font class="text-success">▲123</font> )</small>
