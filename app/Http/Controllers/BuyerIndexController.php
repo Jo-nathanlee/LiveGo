@@ -45,7 +45,7 @@ class BuyerIndexController extends Controller
             $request->session()->put('page_id', $page_id);
     
     
-            return view('buyer_index', ['shopping_cart' => $cart,'address' => $companyInfo->company_address,'phone' => $companyInfo->company_phone]);
+            return view('buyer_index', ['shopping_cart' => $cart,'address' => $companyInfo->company_address,'phone' => $companyInfo->company_phone,'page_id' => $page_id]);
         }
     }
 }
