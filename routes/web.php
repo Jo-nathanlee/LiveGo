@@ -123,6 +123,9 @@ Route::group(['middleware' => [
     Route::get('/buyer_order_delivered', 'BuyerOrderController@BuyerOrderDelivered')->name('buyer_order_delivered');
     Route::get('/buyer_order_finished', 'BuyerOrderController@BuyerOrderFinished')->name('buyer_order_finished');
     Route::get('/buyer_order_canceled', 'BuyerOrderController@BuyerOrderCanceled')->name('buyer_order_canceled');
+    Route::get('/buyer_order_detail', 'BuyerOrderController@BuyerOrderDetail')->name('buyer_order_detail');
+
+    
 
     //棄標黑名單
     Route::get('/bid_blacklist', 'BidWinnerController@Blacklist')->name('bid_blacklist');
