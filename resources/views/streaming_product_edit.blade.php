@@ -43,7 +43,7 @@
                     <h4>商品資訊</h4>
                     <div class="form-group">
                         <label for="exampleFormControlInput1"> 商品名稱</label>
-                        <input type="text" name="name" class="form-control form-control-sm" value="{{ $product->goods_name }}">
+                        <input type="text" name="name" class="form-control form-control-sm" value="{{ $product->goods_name }}" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1"> 商品描述</label>
@@ -56,7 +56,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1">商品數量</label>
-                        <input type="text" name="num" class="form-control form-control-sm" value="{{ $product->goods_num }}">
+                        <input type="text" name="num" class="form-control form-control-sm" value="{{ $product->goods_num }}" required>
                     </div>
                     <input class="btn btn-info float-right" type="submit" value="送出">
                 </form>

@@ -108,10 +108,10 @@
                     <div id="blacklist_list" class="container-fluid">
                         <div class="row">
                             <div  class="col-md-12">
-                                <table id="table_source" class="table" >
+                                <table id="table_blacklist" class="table" >
                                     <thead>
                                         <tr>
-                                            <th>大頭貼</th>
+                                            <th></th>
                                             <th>FB ID</th>
                                             <th>姓名</th>
                                             <th>棄標次數</th>

@@ -95,12 +95,12 @@
                     <diV class="col-md-6">
                         <div class="form-group">
                             <label for="formGroupExampleInput">收件人</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput" name="buyer_name" value="{{$name}}">
+                            <input type="text" class="form-control" id="formGroupExampleInput" name="buyer_name" value="{{$name}}" required>
                             <input type="hidden"  name="buyer_fbname" value="{{$name}}">
                         </div>
                         <div class="form-group">
                             <label for="formGroupExampleInput2">電話</label>
-                            <input type="text" class="form-control" name="phone" id="formGroupExampleInput2" placeholder="請輸入收件人電話 ...">
+                            <input type="text" class="form-control" name="phone" id="formGroupExampleInput2" placeholder="請輸入收件人電話 ..." required>
                         </div>
                         <div class="form-group">
                                 <label for="formGroupExampleInput2">物流方式</label>
@@ -116,7 +116,7 @@
                         <div class="form-group">
                             <label for="formGroupExampleInput">計件地址</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="address" placeholder="請輸入寄件地址 ..." aria-label="" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control" name="address" placeholder="請輸入寄件地址 ..." aria-label="" aria-describedby="basic-addon1" required>
                             </div>
                         </div>
                         <div class="form-group">

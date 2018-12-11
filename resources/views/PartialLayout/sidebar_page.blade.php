@@ -56,6 +56,19 @@
             </ul>
         </li>
         <li>
+            <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <i class="icofont icofont-money"></i>日/月營收
+            </a>
+            <ul class="collapse list-unstyled" id="pageSubmenu1">
+                <li>
+                    <a href="{{ route('daily_revenue') }}">日營收</a>
+                </li>
+                <li>
+                    <a href="{{ route('monthly_revenue') }}">月營收</a>
+                </li>
+            </ul>
+        </li>
+        <li>
             <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                 <i class="icofont icofont-shopping-cart"></i>來福逛逛設定
             </a>

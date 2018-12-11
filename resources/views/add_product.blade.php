@@ -66,11 +66,11 @@
                         <h4>價格與庫存</h4>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">商品價格</label>
-                            <input type="number" name="price" class="form-control form-control-sm">
+                            <input type="number" name="price" class="form-control form-control-sm" required>
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">商品數量</label>
-                            <input type="number" name="num" class="form-control form-control-sm">
+                            <input type="number" name="num" class="form-control form-control-sm" required>
                         </div>
                         <input class="btn btn-info " type="submit" value="送出">
                     </form>
