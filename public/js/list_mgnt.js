@@ -77,11 +77,41 @@ $(document).ready(function () {
 
 
     $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $("#d_edit").click(function () {
-            alertify.confirm('Confirm Title', '<select class="custom-select" id="select_statue"><option selected>選取更改訂單狀態</option><option value="1">未付款</option><option value="2">等待出貨中</option><option value="3">運送中</option><option value="4">訂單完成</option><option value="5">訂單取消</option></select>', function(){ alertify.success('Ok') }
-            , function(){ alertify.error('Cancel')});
+        
+            alertify.confirm('更改訂單狀態', '<select  class="custom-select" id="select_status"><option selected value="unpaid">未付款</option><option value="undelivered">等待出貨中</option><option value="delivered">運送中</option><option value="finished">訂單完成</option><option value="canceled">訂單取消</option></select>', 
+            function(){
+                var status=$('#select_status option:selected').val();
+                var order_id=$("#order_id").html();
+                $.ajax({
+                        /* the route pointing to the post function */
+                        url: '/OrderStatusChange',
+                        type: 'POST',
+                        /* send the csrf-token and the input to the controller */
+                        data: { order_id:order_id,status:status},
+                        dataType: 'JSON',
+                        /* remind that 'data' is the response of the AjaxController */
+                        success: function (data) {
+                            $("#order_status").html(data["status_cht"]);
+                            alertify.success('更改成功！');
+                        },
+                        error: function(xhr, status, error) {
+                            // console.log(error);
+                            // console.log(XMLHttpRequest.status);
+                            // console.log(XMLHttpRequest.responseText);
+                            alertify.error("連線錯誤！請稍後再試！");
+                        }
+                }); 
+            }, 
+            function(){ alertify.error('更改失敗！')});
 
         });
+
 
     });
 

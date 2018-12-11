@@ -52,7 +52,7 @@
                 @else
                 <table id="table_source" class="table text-truncate table_source">
                     <thead>
-                        <tr>
+                        
                             <tr>
                                 <th></th>
                                 <th>得標者姓名</th>
