@@ -24,11 +24,11 @@
     message_danger();
 </script>
 @endif
-        <div id="bidder_list" class="container-fluid">
-            <div class="row">
+        <div id="main" class="row">
+            <div class="col-md-12">
                 <div class="col-md-12" id="table_div">
                 @if(count($winner)==0)
-                    <table id="table_source" class="table">
+                    <table id="table_source" class="table table-borderles">
                         <thead>
                             <tr>
                                 <th></th>
@@ -50,7 +50,7 @@
                         </tbody>
                     </table>
                 @else
-                <table id="table_source" class="table">
+                <table id="table_source" class="table table-borderles">
                     <thead>
                             <tr>
                                 <th></th>
@@ -67,7 +67,7 @@
                     </thead>
                     <tbody>
                             @foreach($winner as $winner)
-                                <tr id="order_item">
+                                <tr>
                                     <td><img src="https://graph.facebook.com/{{  $winner->fb_id }}/picture" class="rounded-circle user_pic" ></td>
                                     <td>{{$winner->name}}</td>
                                     <td> <img id="order_img" src="{{$winner->pic_path}}" style="height:50px;width:50px" ></td>
@@ -82,12 +82,8 @@
                             @endforeach
                     </tbody>
                 </table>     
-                 <!-- 頁碼 -->
-                 <span id="list_table_page" class="list_table_page"></span>   
-                 <!-- 頁碼end -->                  
+                           
                 @endif
-
-                </div>
             </div>
         </div>
     </div>    
@@ -96,6 +92,14 @@
 @stop
 
 @section('footer')
+    <script>
+        //talbe 分頁
+        $("#dtAccount").tablepage($("#table_page"), 10);
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+    </script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
         crossorigin="anonymous"></script>
