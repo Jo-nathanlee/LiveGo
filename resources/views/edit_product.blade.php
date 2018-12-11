@@ -31,7 +31,7 @@
                     <div class="row mb-2">
                         <!-- <div class="col-md-5 ml-3 d-flex " id="pictureEdit"> -->
                         <div class="col-md-5 ml-3 d-flex " id="">
-                            <img src="{{$product->pic_url  }}" class="img-fluid img mh-100 m-auto" />
+                            <img src="{{$product->pic_url  }}" class="img-fluid img mh-100 m-auto" style="width:200px;height:200px" />
                             <input type="hidden" name="primary_key" value="{{$product->pic_url  }}">
                         </div>
                         <div class="pictureEdit_item invisible">
