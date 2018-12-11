@@ -75,7 +75,8 @@ class AnalysisController extends Controller
                         $all_comments = '';
                         for($i=0;$i<count($arr);$i++)
                         {
-                            $all_comments .= $arr[$i];
+                            str_replace("\n","",(string)($arr[$i]));
+                            $all_comments .= (string)($arr[$i]);
                         }
 
                        
