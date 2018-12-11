@@ -1,5 +1,7 @@
 <!-- Page Content  -->
 <?php
+use App\Entities\Page;
+use Illuminate\Support\Facades\Auth;
 $page = Page::where('fb_id', Auth::user()->fb_id)->first();
 $page_id = $page->page_id;
 ?>
