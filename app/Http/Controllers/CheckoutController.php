@@ -108,7 +108,7 @@ class CheckoutController extends Controller
 
 
 
-                return view('checkout', ['order' => $request->input('goods'),'freight' => $freight]);
+                return view('checkout', ['order' => $request->input('goods'),'freight' => $freight,'page_id' => $page_id]);
             }
             else
             {
