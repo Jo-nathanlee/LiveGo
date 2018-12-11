@@ -44,6 +44,8 @@ class RevenueController extends Controller
             ->where('status', '=', 'finished')
             ->get();
 
+            dd($date2_query);
+
             $date1_amount = 0;
             $date2_amount = 0;
             $date3_amount = 0;
