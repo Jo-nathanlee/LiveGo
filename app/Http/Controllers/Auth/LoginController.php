@@ -76,7 +76,7 @@ class LoginController extends Controller
 
         Auth::login($user, true);
         if ($if_buyer) {
-            return redirect()->route('buyer_index');
+            return redirect()->back();
         } else {
            return redirect()->route('seller_index');
         }

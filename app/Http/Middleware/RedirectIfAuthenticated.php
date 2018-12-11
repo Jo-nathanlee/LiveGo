@@ -31,7 +31,7 @@ class RedirectIfAuthenticated
             }
 
             if ($if_buyer) {
-                //return redirect()->route('buyer_index');
+               return redirect()->back();
             } else {
                return redirect()->route('seller_index');
             }

@@ -203,7 +203,7 @@ class MallProductController extends Controller
         ->first();
 
 
-        return view('shopping_mall', ['products' => $query,'address' => $companyInfo->company_address,'phone' => $companyInfo->company_phone]);
+        return view('shopping_mall', ['page_id' => $page_id,'products' => $query,'address' => $companyInfo->company_address,'phone' => $companyInfo->company_phone]);
     }
 
     //網紅
