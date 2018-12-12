@@ -39,6 +39,7 @@ class ProgramController extends Controller
 
         $arr = array();
         $item = 0;
+        $page_id = '';
         foreach($query as $page)
         {
             $page_id = $page->page_id;
@@ -82,12 +83,12 @@ class ProgramController extends Controller
 
         if ($item>0) {
             return view(
-                'program', ['arr' => json_encode($arr,true)]
+                'program', ['arr' => json_encode($arr,true),'page_id' => $page_id]
             );
         }
         else
         {
-            return view('program');
+            return view('program',['page_id' => $page_id]);
         }
     }
 }
