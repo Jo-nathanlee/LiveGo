@@ -48,7 +48,7 @@ class ProgramController extends Controller
             $graph_query = '/' . $page_id . '/live_videos';
             
             try {
-                $response = $this->graphapi($query, $token);
+                $response = $this->graphapi($query, $page_token);
                
                
                 $videos = $response->getGraphEdge()->asArray();
