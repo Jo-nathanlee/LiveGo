@@ -58,7 +58,7 @@
                            
                 <table class="table table-striped tablecart" id="table_cart">  
                 <thead>
-                    <tr>
+
                         <tr>
                             <th></th>
                             <th>商品圖片</th>
