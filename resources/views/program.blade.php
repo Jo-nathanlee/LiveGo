@@ -80,8 +80,8 @@
                 @foreach($arr as $page)
 
                 <div class="row">
-                    <div class="col-md-2 mt-4 ">
-                        <div class="col-md-12 shadow pt-3 pb-2">
+                    <div class="col-md-3 col-sm-4 mt-4 ">
+                        <div class="container shadow pt-3 pb-2">
                             <div class="facebook-responsive ">
                             <!-- <iframe src="{{ $page->url }}"
                                 allowTransparency="true" allowFullScreen="true" class="video_list_item"></iframe> -->
