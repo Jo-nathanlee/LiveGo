@@ -73,9 +73,7 @@
                 </div>
                 <hr> -->
                 @if(isset($arr))
-                <?php 
-                dd($arr);
-                ?>
+                dd($arr[0]);
                 @foreach($arr as $page)
 
                 <div class="row">
