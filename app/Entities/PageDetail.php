@@ -9,6 +9,6 @@ class PageDetail extends Model
     public $table = 'page_detail';
 
     protected $fillable = [
-        'page_id', 'deadline_time', 'freight', 'company_address','company_phone'
+        'page_id','page_name','page_token', 'deadline_time', 'freight', 'company_address','company_phone'
     ];
 }

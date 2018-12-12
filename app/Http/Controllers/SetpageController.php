@@ -100,6 +100,7 @@ class SetpageController extends Controller//設定粉絲團
                 PageDetail::updateOrCreate(
                     ['page_id' => $page_id],
                     [
+                        'page_name' => $page_name,
                         'deadline_time' => 24,
                         'freight' => 60,
                     ]
