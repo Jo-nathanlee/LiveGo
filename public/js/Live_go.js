@@ -331,3 +331,37 @@ function message_danger() {
             $("#data_info").parent().remove();
         }, 3000);
 }
+
+for (var i = 0; i < $(".facebook-responsive iframe").length; i++) {
+    var iframeWidth = $(".facebook-responsive iframe").eq(i).attr("width");
+    var iframeHeight = $(".facebook-responsive iframe").eq(i).attr("height");
+    var warpWidth = $("#Video_Shop .row .col-md-3 .facebook-responsive").width();
+    var multiple = warpWidth / 500;
+
+    if (iframeWidth < iframeHeight)  //手機開啟直播
+    {
+        $(".facebook-responsive iframe").eq(i).css("width", "50%");
+        $(".facebook-responsive iframe").eq(i).css("margin-left", "25%");
+        $(".facebook-responsive").eq(i).height(iframeHeight * multiple /2);
+        // console.log("w:" + iframeWidth);
+        // console.log("H:" + iframeHeight);
+        //  console.log("手機-------------------------");
+    } else {  // 電腦開啟直播
+        $(".facebook-responsive iframe").eq(i).css("width", "100%");
+        $(".facebook-responsive").eq(i).css("padding-top", iframeHeight * multiple / 3.45);
+        $(".facebook-responsive").eq(i).css("padding-bottom", iframeHeight * multiple / 3.45);
+        $(".facebook-responsive").eq(i).height(iframeHeight * multiple);
+        // iframeWidth = $(".facebook-responsive iframe").eq(i).attr("width");
+        // console.log("W:"+warpWidth);
+        // console.log("w:" + iframeWidth);
+        // console.log("H:" + iframeHeight);
+        // console.log("電腦-------------------------");
+    }
+}
+
+
+$(document).ready(function () {
+resizeVideos();
+});
+
+$(window).resize(resizeVideos);
