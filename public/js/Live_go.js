@@ -207,6 +207,8 @@ $(document).ready(function () {
         console.log(d.date + d.income + d.Growth); //後端抓取值
     }
 
+    resizeVideos();
+
 });
 
 
@@ -338,6 +340,8 @@ for (var i = 0; i < $(".facebook-responsive iframe").length; i++) {
     var warpWidth = $("#Video_Shop .row .col-md-3 .facebook-responsive").width();
     var multiple = warpWidth / 500;
 
+    console.log(iframeHeight);
+    console.log(iframeWidth);
     if (iframeWidth < iframeHeight)  //手機開啟直播
     {
         $(".facebook-responsive iframe").eq(i).css("width", "50%");
@@ -360,8 +364,6 @@ for (var i = 0; i < $(".facebook-responsive iframe").length; i++) {
 }
 
 
-$(document).ready(function () {
-resizeVideos();
-});
+
 
 $(window).resize(resizeVideos);
