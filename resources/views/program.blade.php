@@ -72,19 +72,25 @@
                     </div>
                 </div>
                 <hr> -->
+                @if(isset($arr))
+                @foreach($arr as $collection)
+                @foreach($collerction as $page)
                 <div class="row">
                     <div class="col-md-2 mt-4 ">
                         <div class="col-md-12 shadow pt-3 pb-2">
-                            <iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fyvonnechuapage%2Fvideos%2F2072369292834984%2F"
+                            <iframe src="{{ $page->url }}"
                                 allowTransparency="true" allowFullScreen="true" class="video_list_item"></iframe>
 
                             <p class="video_shoptxt">
-                                I Love Aperio 这次的直播会送出3份我在用的洗面慕斯 Aperio氨基酸彈力潔顏慕斯 不要错过直播的任何部分 有奖问答 先回答先得哦❤
+                               
                             </p>
-                            <h6 class="mb-2 text-muted">Yvonne 蔡怡汶</h6>
+                            <h6 class="mb-2 text-muted">{{ $page->page_name }}</h6>
                         </div>
                     </div>
                 </div>
+                @endforeach
+                @endforeach
+                @endif
             </div>
         </div>
     </div>

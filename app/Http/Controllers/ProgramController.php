@@ -35,7 +35,7 @@ class ProgramController extends Controller
     public function index(Request $request)
     {
         $query = PageDetail::all()
-        ->distinct()
+        ->distinct('page_id')
         ->get();
 
         $arr = array();
