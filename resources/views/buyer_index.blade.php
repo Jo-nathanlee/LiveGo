@@ -29,7 +29,7 @@
             <div class="col-md-12">
             @if(count($shopping_cart)==0)
 
-                <table class="table table-striped " id="table_cart_nodata">
+                <table class="table table-striped" id="table_cart_nodata">
                     <thead>
                             <tr>
                                 <th></th>
@@ -57,7 +57,7 @@
                 <form action="{{ route('checkout_form') }}" method="POST">       
                             {{ csrf_field() }}
                            
-                <table class="table table-striped tablecart" id="table_cart">  
+                <table class="table table-striped" id="table_cart">  
                 <thead>
 
                         <tr>
