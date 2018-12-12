@@ -37,7 +37,6 @@
                                 <th>商品價格</th>
                                 <th>商品數量</th>
                                 <th>總金額</th>
-                                <th>得標時間</th>
                             </tr>
                     </thead>
                     <tbody>
