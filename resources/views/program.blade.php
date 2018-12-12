@@ -75,7 +75,7 @@
                 @if(isset($arr))
                 <?php
 
-                dd($arr[0]);
+                $arr = json_decode($arr);
                 ?>
                 @foreach($arr as $page)
 
