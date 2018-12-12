@@ -89,7 +89,7 @@
                             <p class="video_shoptxt">
                                
                             </p>
-                            <h6 class="mb-2 text-muted">{{ $page->page_name }}</h6>
+                            <h6 class="mb-2 text-muted">{{ str_replace('"','',$page->page_name) }}</h6>
                         </div>
                     </div>
                 </div>
