@@ -140,6 +140,24 @@ $(document).ready(function () {
         language: language_list_edit
     });
 
+    $('#table_cart').DataTable({
+        "columns": [
+            {
+                "defaultContent": '',
+                "orderable": false,
+            },
+            {
+                "defaultContent": '',
+                "orderable": false,
+            },
+            { "data": "goods_name" },
+            { "data": "unit_price" },
+            { "data": "count" },
+            { "data": "total_price" },
+            { "data": "bid_time" },
+        ],
+        language: default_language
+    });
 
     $('#table_buyer_list_detail').DataTable({
         "columns": [
