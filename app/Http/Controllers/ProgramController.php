@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Gate;
+use DB;
 use App\Entities\PageDetail;
 use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Facebook;
@@ -34,9 +35,7 @@ class ProgramController extends Controller
 
     public function index(Request $request)
     {
-        $query = PageDetail::all()
-        ->distinct('page_id')
-        ->get();
+        $query =  DB::table('page_detail')->distinct()->get();
 
         $arr = array();
         $item = 0;
