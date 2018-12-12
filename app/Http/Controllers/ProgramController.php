@@ -81,14 +81,15 @@ class ProgramController extends Controller
 
         }
 
+        dd($page_id);
         if ($item>0) {
             return view(
-                'program', ['arr' => json_encode($arr,true),'page_id' => '1775801842732634']
+                'program', ['arr' => json_encode($arr,true),'page_id' => $page_id]
             );
         }
         else
         {
-            return view('program',['page_id' => '1775801842732634']);
+            return view('program',['page_id' => $page_id]);
         }
     }
 }
