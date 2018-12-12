@@ -387,7 +387,23 @@ height: 60vh;
   }
 
   .facebook-responsive iframe{
+    position:absolute;
     border: medium none; 
     overflow: hidden; 
     width: 100%;
+  }
+
+  .facebook-responsive {
+    overflow:hidden;
+    position:relative;
+  }
+
+  .video_shoptxt{
+    display: -webkit-box;  
+   overflow:hidden;
+   text-overflow : ellipsis;
+   -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  
+    min-height: 6vh;
   }
