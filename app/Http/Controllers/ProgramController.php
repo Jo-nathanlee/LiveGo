@@ -43,6 +43,7 @@ class ProgramController extends Controller
         foreach($query as $page)
         {
             $page_id = $page->page_id;
+            dd($page_id);
             $page_name = $page->page_name;
             $page_token = $page->page_token;
             //graph api 查詢
@@ -81,7 +82,6 @@ class ProgramController extends Controller
 
         }
 
-        dd($page_id);
         if ($item>0) {
             return view(
                 'program', ['arr' => json_encode($arr,true),'page_id' => $page_id]
