@@ -154,7 +154,6 @@ $(document).ready(function () {
             { "data": "unit_price" },
             { "data": "count" },
             { "data": "total_price" },
-            { "data": "bid_time" },
         ],
         language: default_language
     });
