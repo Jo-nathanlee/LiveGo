@@ -28,7 +28,7 @@
             <div class="col-md-12">
             @if(count($shopping_cart)==0)
 
-                <table class="table table-striped " id="table_cart">
+                <table class="table table-striped " id="table_cart_nodata">
                     <thead>
                             <tr>
                                 <th></th>

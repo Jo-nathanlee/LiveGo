@@ -157,7 +157,23 @@ $(document).ready(function () {
         ],
         language: default_language
     });
-
+    $('#table_cart_nodata').DataTable({
+        "columns": [
+            {
+                "defaultContent": '',
+                "orderable": false,
+            },
+            {
+                "defaultContent": '',
+                "orderable": false,
+            },
+            { "data": "goods_name" },
+            { "data": "unit_price" },
+            { "data": "count" },
+            { "data": "total_price" },
+        ],
+        language: default_language
+    });
     $('#table_buyer_list_detail').DataTable({
         "columns": [
             {
