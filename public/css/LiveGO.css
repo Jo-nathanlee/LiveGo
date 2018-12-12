@@ -385,3 +385,9 @@ height: 60vh;
     max-height: 60%;
     overflow: auto;
   }
+
+  .facebook-responsive iframe{
+    border: medium none; 
+    overflow: hidden; 
+    width: 100%;
+  }
