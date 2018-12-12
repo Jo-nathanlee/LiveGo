@@ -5,6 +5,7 @@
     <!-- datatable + bootstrap 4  -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
 
 @stop
 
@@ -56,7 +57,7 @@
                 <form action="{{ route('checkout_form') }}" method="POST">       
                             {{ csrf_field() }}
                            
-                <table class="table table-striped tablecart" id="table_cart">  
+                <table class="table table-striped tablecart" id="table_cart_buyerindex">  
                 <thead>
 
                         <tr>

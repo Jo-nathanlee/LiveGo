@@ -140,7 +140,7 @@ $(document).ready(function () {
         language: language_list_edit
     });
 
-    $('#table_cart').DataTable({
+    $('#table_cart_buyerindex').DataTable({
         "columns": [
             {
                 "defaultContent": '',
