@@ -84,9 +84,6 @@
                         <div class="col-md-12 shadow pt-3 pb-2">
                             <!-- <iframe src="{{ $page->url }}"
                                 allowTransparency="true" allowFullScreen="true" class="video_list_item"></iframe> -->
-                                <?php
-                                dd($page->url);
-                            ?>
                                 {{ $page->url }}
 
                             <p class="video_shoptxt">
