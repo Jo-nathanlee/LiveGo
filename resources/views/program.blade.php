@@ -73,8 +73,8 @@
                 </div>
                 <hr> -->
                 @if(isset($arr))
-                @foreach($arr as $collection)
-                @foreach($collerction as $page)
+
+                @foreach($arr as $page)
                 <div class="row">
                     <div class="col-md-2 mt-4 ">
                         <div class="col-md-12 shadow pt-3 pb-2">
@@ -88,7 +88,6 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
                 @endforeach
                 @endif
             </div>
