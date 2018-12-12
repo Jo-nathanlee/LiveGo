@@ -83,7 +83,7 @@ class ProgramController extends Controller
 
         }
 
-        dd(json_encode($arr,true)  );
+
 
         if ($item>0) {
             return view(
