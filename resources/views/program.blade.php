@@ -82,15 +82,15 @@
                 <div class="row">
                     <div class="col-md-2 mt-4 ">
                         <div class="col-md-12 shadow pt-3 pb-2">
+                            <div class="facebook-responsive ">
                             <!-- <iframe src="{{ $page->url }}"
                                 allowTransparency="true" allowFullScreen="true" class="video_list_item"></iframe> -->
                                 <?php echo str_replace('"','', $page->url );?>
-
+                            </div>
+                            <h6 class="mb-2 mt-2 text-muted">{{ $page->page_name }}</h6>
                             <p class="video_shoptxt">
                                
                             </p>
-                         
-                            <h6 class="mb-2 text-muted">{{ $page->page_name }}</h6>
                         </div>
                     </div>
                 </div>
