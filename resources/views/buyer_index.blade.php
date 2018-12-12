@@ -42,7 +42,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td colspan="7">無資料</td>
+                            <td colspan="6">無資料</td>
                         </tr>
                     </tbody>
                 </table>
@@ -57,7 +57,7 @@
                 <form action="{{ route('checkout_form') }}" method="POST">       
                             {{ csrf_field() }}
                            
-                <table class="table table-striped tablecart" id="table_cart_buyerindex">  
+                <table class="table table-striped tablecart" id="table_cart">  
                 <thead>
 
                         <tr>
@@ -95,7 +95,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="7">
+                        <td colspan="6">
                         <input type="hidden"  name="page_id" value="{{ $page_id }}">
                         <input type="submit" value="結帳" class="btn btn-secondary">
                         </form>
