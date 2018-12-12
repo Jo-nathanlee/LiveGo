@@ -83,6 +83,8 @@ class ProgramController extends Controller
 
         }
 
+        dd(json_encode($arr,true)  );
+
         if ($item>0) {
             return view(
                 'program', ['arr' => json_encode($arr,true),'page_id' => $page_id]
