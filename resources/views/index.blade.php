@@ -371,9 +371,9 @@
                             alertify.alert("得標訊息已私訊得標者!");
                         },
                         error: function(XMLHttpRequest, status, error) {
-                            alert(error);
-                            alert(XMLHttpRequest.status);
-                            alert(XMLHttpRequest.responseText);
+                            // alert(error);
+                            // alert(XMLHttpRequest.status);
+                            // alert(XMLHttpRequest.responseText);
                             alertify.alert("連線錯誤！請稍後再試！");
                         }
                 });
