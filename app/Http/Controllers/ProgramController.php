@@ -70,7 +70,7 @@ class ProgramController extends Controller
                     $arr[$item] = array(
                         'page_name' => $page_name,
                         'page_id' => $page_id,
-                        'url' => str_replace('"',"'", $url),
+                        'url' => $url,
                     );
                     $item++;
                 }
