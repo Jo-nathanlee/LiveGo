@@ -2,9 +2,39 @@
 
 @section('title','我的訂單')
 @section('heads')
-    <!-- datatable + bootstrap 4  -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <!-- 我新增的 CSS -->
+    <link rel="stylesheet" href="css/list_mgnt.css">
+     <!-- datatable + bootstrap 4  -->
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $('#order .row .col-md-12 .nav a').on('click', function () {
+                $('.nav a').removeClass('selected');
+                $(this).addClass('selected');
+            });
+            @if($click=='canceled')
+                $('#all').removeClass('selected');
+                $('#canceled').addClass('selected');
+            @endif
+            @if($click=='finished')
+                $('#all').removeClass('selected');
+                $('#finished').addClass('selected');
+            @endif
+            @if($click=='delivered')
+                $('#all').removeClass('selected');
+                $('#delivered').addClass('selected');
+            @endif
+            @if($click=='undelivered')
+                $('#all').removeClass('selected');
+                $('#undelivered').addClass('selected');
+            @endif
+            @if($click=='unpaid')
+                $('#all').removeClass('selected');
+                $('#unpaid').addClass('selected');
+            @endif
+        });
+    </script>
 @stop
 
 @section('wrapper')
