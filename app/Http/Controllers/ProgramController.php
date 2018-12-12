@@ -43,7 +43,7 @@ class ProgramController extends Controller
         foreach($query as $page)
         {
             $page_id = $page->page_id;
-            dd($page_id);
+
             $page_name = $page->page_name;
             $page_token = $page->page_token;
             //graph api 查詢
@@ -76,7 +76,8 @@ class ProgramController extends Controller
                 }
                 
             } catch (FacebookSDKException $e) {
-                return view('program'); // handle exception
+                dd($e);
+                //return view('program'); // handle exception
             }
 
 
