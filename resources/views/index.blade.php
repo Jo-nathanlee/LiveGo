@@ -246,8 +246,9 @@
                         success: function (data) {
                             if(data!="")
                             {
-                                console.log(data[0].id);
+                                console.log(data[0][0].id);
                                 console.log(data[0][0]);
+                                console.log(JSON.parse(data));
                                 $( "#buyer_list" ).append("<li class='list-group-item delete bid_winner'>\
                                 <div id='bid-list-iformation' aria-labelledby='Notice'>\
                                     <a>\
