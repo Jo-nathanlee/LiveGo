@@ -596,15 +596,15 @@ class StreamingIndexController extends Controller
                     }
             }
         }
-        try
-        {
-            StreamingProduct::where('goods_name', '=', $goods_name)
-            ->update(['goods_num' => $left_num ]);
-        }
-        catch(exception $e)
-        {
+        // try
+        // {
+        //     StreamingProduct::where('goods_name', '=', $goods_name)
+        //     ->update(['goods_num' => $left_num ]);
+        // }
+        // catch(exception $e)
+        // {
 
-        }
+        // }
             
 
         return json_encode(count($buyer),true);
