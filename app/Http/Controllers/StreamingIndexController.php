@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
 use App\Entities\Page;
 use App\Entities\StreamingOrder;
+use App\Entities\PageDetail;
 use App\Entities\StreamingProduct;
 use App\Entities\Member;
 use Facebook\Exceptions\FacebookSDKException;
@@ -453,15 +454,7 @@ class StreamingIndexController extends Controller
             $if_exist = Member::where('fb_id','=',$buyer[0]['id'])
                         ->where('page_id','=',$page_id)
                         ->get();
-            if(count($if_exist))
-            {
-                Member::where('fb_id','=',$buyer[0]['id'])
-                ->where('page_id','=',$page_id)
-                ->increment('bid_times');
-
-             
-            }
-            else
+            if($if_exist===null)
             {
                 $member_store = new Member();
                 $member_store->page_id = $page_id;
@@ -473,6 +466,13 @@ class StreamingIndexController extends Controller
                 $member_store->blacklist_times = 0;
                 $member_store->money_spent = 0;
                 $member_store->save();
+             
+            }
+            else
+            {
+                Member::where('fb_id','=',$buyer[0]['id'])
+                ->where('page_id','=',$page_id)
+                ->increment('bid_times');
             }
 
 
@@ -532,27 +532,27 @@ class StreamingIndexController extends Controller
                         $private_replies.='。結帳請至 '.'http://livego.herokuapp.com/buyer_index?page_id='.$page_id.' ，謝謝！';
 
                         $if_exist = Member::where('fb_id','=',$buyers['id'])
-                                    ->where('page_id','=',$page_id)
-                                    ->get();
-                        if(count($if_exist))
-                        {
-                            Member::where('fb_id','=',$buyers['id'])
-                            ->where('page_id','=',$page_id)
-                            ->increment('bid_times');
-
-                        }
-                        else
+                        ->where('page_id','=',$page_id)
+                        ->get();
+                        if($if_exist===null)
                         {
                             $member_store = new Member();
                             $member_store->page_id = $page_id;
                             $member_store->page_name = $page_name;
-                            $member_store->fb_id = $buyers['id'];
-                            $member_store->fb_name = $buyers['name'];
+                            $member_store->fb_id = $buyer[0]['id'];
+                            $member_store->fb_name = $buyer[0]['name'];
                             $member_store->bid_times = 1;
                             $member_store->checkout_times = 0;
                             $member_store->blacklist_times = 0;
                             $member_store->money_spent = 0;
                             $member_store->save();
+                            
+                        }
+                        else
+                        {
+                            Member::where('fb_id','=',$buyer[0]['id'])
+                            ->where('page_id','=',$page_id)
+                            ->increment('bid_times');
                         }
                     }
                     else if($messenger_text=='fail')
@@ -562,28 +562,27 @@ class StreamingIndexController extends Controller
                     else
                     {
                         $if_exist = Member::where('fb_id','=',$buyers['id'])
-                                    ->where('page_id','=',$page_id)
-                                    ->get();
-                        if(count($if_exist))
-                        {
-                            Member::where('fb_id','=',$buyers['id'])
-                            ->where('page_id','=',$page_id)
-                            ->increment('bid_times');
-
-                           
-                        }
-                        else
+                        ->where('page_id','=',$page_id)
+                        ->get();
+                        if($if_exist===null)
                         {
                             $member_store = new Member();
                             $member_store->page_id = $page_id;
                             $member_store->page_name = $page_name;
-                            $member_store->fb_id = $buyers['id'];
-                            $member_store->fb_name = $buyers['name'];
+                            $member_store->fb_id = $buyer[0]['id'];
+                            $member_store->fb_name = $buyer[0]['name'];
                             $member_store->bid_times = 1;
                             $member_store->checkout_times = 0;
                             $member_store->blacklist_times = 0;
                             $member_store->money_spent = 0;
                             $member_store->save();
+                            
+                        }
+                        else
+                        {
+                            Member::where('fb_id','=',$buyer[0]['id'])
+                            ->where('page_id','=',$page_id)
+                            ->increment('bid_times');
                         }
 
 
