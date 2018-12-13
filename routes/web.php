@@ -91,6 +91,8 @@ Route::group(['middleware' => [
     Route::get('/AddProduct_show', 'MallProductController@AddProduct_show')->name('AddProduct_show');
     Route::get('/EditProduct_show', 'MallProductController@EditProduct_show')->name('EditProduct_show');
     Route::get('/product_overview', 'MallProductController@ProductOverview')->name('product_overview');
+    Route::get('/product_overview_on', 'MallProductController@ProductOverviewOn')->name('product_overview_on');
+    Route::get('/product_overview_out', 'MallProductController@ProductOverviewOut')->name('product_overview_out');
     Route::get('/shopping_mall', 'MallProductController@ShowMall')->name('shopping_mall');
     Route::post('/add_product', 'MallProductController@AddNewProduct')->name('add_product');
     Route::post('/edit_product', 'MallProductController@EditProduct')->name('edit_product');

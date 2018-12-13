@@ -191,6 +191,62 @@ class MallProductController extends Controller
         }
     }
 
+    public function ProductOverviewOn(Request $request)
+    {
+        if (Gate::allows('seller-only',  Auth::user())) {
+            $page = Page::where('fb_id', Auth::user()->fb_id)->first();
+            $page_id = $page->page_id;
+            $query = Shop::where('page_id', '=', $page_id)
+            ->where('goods_num','>',0 )
+            ->get();
+
+            $countAllProduct=Shop::where('page_id', '=', $page_id)
+            ->count();
+
+            $countOnProduct=Shop::where('page_id', '=', $page_id)
+            ->where('goods_num','>',0 )
+            ->count();
+
+            $countOutProduct=Shop::where('page_id', '=', $page_id)
+            ->where('goods_num','=',0 )
+            ->count();
+            
+            return view('product_overview', ['products' => $query,'countAllProduct' => $countAllProduct,'countOnProduct' => $countOnProduct,'countOutProduct' => $countOutProduct]);
+        }
+        else
+        {
+           return redirect('/')->with('alert', '您尚未開通，請聯繫我們！');
+        }
+    }
+
+    public function ProductOverviewOut(Request $request)
+    {
+        if (Gate::allows('seller-only',  Auth::user())) {
+            $page = Page::where('fb_id', Auth::user()->fb_id)->first();
+            $page_id = $page->page_id;
+            $query = Shop::where('page_id', '=', $page_id)
+            ->where('goods_num','=',0 )
+            ->get();
+
+            $countAllProduct=Shop::where('page_id', '=', $page_id)
+            ->count();
+
+            $countOnProduct=Shop::where('page_id', '=', $page_id)
+            ->where('goods_num','>',0 )
+            ->count();
+
+            $countOutProduct=Shop::where('page_id', '=', $page_id)
+            ->where('goods_num','=',0 )
+            ->count();
+            
+            return view('product_overview', ['products' => $query,'countAllProduct' => $countAllProduct,'countOnProduct' => $countOnProduct,'countOutProduct' => $countOutProduct]);
+        }
+        else
+        {
+           return redirect('/')->with('alert', '您尚未開通，請聯繫我們！');
+        }
+    }
+
     //商城顯示
     public function ShowMall(Request $request)
     {

@@ -27,7 +27,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <nav class="nav nav-tabs">
-                                    <a class="nav-link selected" href="#!">全部</a>
+                                    <a class="nav-link selected" href="{{ route('StreamingProductOverview')  }}">全部</a>
                                     <a class="nav-link tip" href="{{ route('StreamingProductOverview_On')  }}">
                                         <span data-tooltip="{{ $countOnProduct }}筆">已上架
                                             <sub>{{ $countOnProduct }}</sub>

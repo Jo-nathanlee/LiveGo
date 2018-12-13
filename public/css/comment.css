@@ -649,8 +649,9 @@ tfoot .input-group input{
   min-width: 100% !important;
 }
 
-#product_mgnt_list .col-lg-2 .col-md-12{
+#product_mgnt_list .col-lg-2 .col-md-12 {
   padding-top: 1rem;
+  min-height: 40vh;
 }
 
 #table_normal{
