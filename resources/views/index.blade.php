@@ -246,10 +246,12 @@
                         success: function (data) {
                             if(data!="")
                             {
+                                console.log(data);
+                                console.log(data[0]);
                                 $( "#buyer_list" ).append("<li class='list-group-item delete bid_winner'>\
                                 <div id='bid-list-iformation' aria-labelledby='Notice'>\
                                     <a>\
-                                        <img src='https://graph.facebook.com/'"+data[0][0].id+"'/picture' class='rounded-circle'>\
+                                        <img src='https://graph.facebook.com/'"+data[0].id+"'/picture' class='rounded-circle'>\
                                         <div class='text-truncate w-100'>\
                                             <div class='d-flex w-100  justify-content-between '>\
                                                 <h6 class='mb-1'>\
@@ -257,15 +259,15 @@
                                                 </h6>\
                                             </div>\
                                             <small>"+goods_name+"得標價錢：</small>\
-                                            <small id='small_price'>"+data[0][0].price+"</small>\
+                                            <small id='small_price'>"+data[0].price+"</small>\
                                             <small>元得標</small>\
                                         </div>\
                                         <div class='align-middle m-auto '>\
                                             <button type='button' class='btn btn-xm btn-danger btn_delete' onclick='delete_getter(event)'>刪除</button>\
                                         </div>\
-                                        <input type='hidden' id='fb_id' value='"+data[0][0].id+"'>\
-                                                <input type='hidden' id='message_time' value='"+data[0][0].message_time+"'>\
-                                                <input type='hidden' id='message_id' value='"+data[0][0].message_id+"'>\
+                                        <input type='hidden' id='fb_id' value='"+data[0].id+"'>\
+                                                <input type='hidden' id='message_time' value='"+data[0].message_time+"'>\
+                                                <input type='hidden' id='message_id' value='"+data[0].message_id+"'>\
                                                 <input type='hidden' id='message_content' value='"+comment.message+"'>\
                                                 <input type='hidden' id='message_num' value='1'>\
                                                 <input type='hidden' id='live_video_id' value='"+comment.live_video_id+"'>\
