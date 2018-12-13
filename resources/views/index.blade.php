@@ -269,7 +269,7 @@
                                                 <input type='hidden' id='message_id' value='"+data[0][0].message_id+"'>\
                                                 <input type='hidden' id='message_content' value='"+data[0][0].price+"'>\
                                                 <input type='hidden' id='message_num' value='1'>\
-                                                <input type='hidden' id='live_video_id' value='"+comment.live_video_id+"'>\
+                                                <input type='hidden' id='live_video_id' value='"+data[0][0].live_video_id+"'>\
                                     </a>\
                                 </div>\
                             </li>");
