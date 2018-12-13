@@ -173,15 +173,14 @@ class StreamingIndexController extends Controller
         $left_num_query=StreamingProduct::where('goods_name', '=', $goods_name)
                 ->first();
 
-        $left_num=$left_num_query->goods_num;
-        // if(count($left_num_query))
-        // {
-        //     $left_num=$left_num_query->goods_num;
-        // }
-        // else
-        // {
-        //     $left_num = 99999;
-        // }
+        if(count($left_num_query)>0)
+        {
+            $left_num=$left_num_query->goods_num;
+        }
+        else
+        {
+            $left_num = 99999;
+        }
         
         
         
@@ -394,7 +393,7 @@ class StreamingIndexController extends Controller
         //剩餘的數量
         $left_num_query=StreamingProduct::where('goods_name', '=', $goods_name)
         ->first();
-        if(count($left_num_query))
+        if(count($left_num_query)>0)
         {
             $left_num=$left_num_query->goods_num;
         }
