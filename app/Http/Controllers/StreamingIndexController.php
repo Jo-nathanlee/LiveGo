@@ -589,7 +589,7 @@ class StreamingIndexController extends Controller
                         $url=$private_replies;
 
                         $query = '/' . $buyers['message_id'] . '/private_replies';
-                        $post = $this->api->post($query, array('message' => utf8_encode($url)), $token);
+                        $post = $this->api->post($query, array('message' => $url), $token);
                         $post2 = $post->getGraphNode()->asArray();
                     } catch (FacebookSDKException $e) {
                         //return json_encode($e, true);
