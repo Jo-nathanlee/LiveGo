@@ -401,9 +401,9 @@
                             alertify.alert("得標訊息已私訊得標者!");
                         },
                         error: function(XMLHttpRequest, status, error) {
-                            // console.log(error);
-                            // console.log(XMLHttpRequest.status);
-                            // console.log(XMLHttpRequest.responseText);
+                            console.log(error);
+                            console.log(XMLHttpRequest.status);
+                            console.log(XMLHttpRequest.responseText);
                             alertify.alert("連線錯誤！請稍後再試！");
                         }
                 });
