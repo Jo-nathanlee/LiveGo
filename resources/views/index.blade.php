@@ -246,9 +246,36 @@
                         success: function (data) {
                             if(data!="")
                             {
-                                console.log(data[0][0].id);
-                                console.log(data[0][0]);
-                                console.log(JSON.parse(data));
+                                $.each(data, function(i, comment) {
+                                $( "#buyer_list" ).append("<li class='list-group-item delete bid_winner'>\
+                                <div id='bid-list-iformation' aria-labelledby='Notice'>\
+                                    <a>\
+                                        <img src='https://graph.facebook.com/"+comment.id+"/picture' class='rounded-circle'>\
+                                        <div class='text-truncate w-100'>\
+                                            <div class='d-flex w-100  justify-content-between '>\
+                                                <h6 class='mb-1'>\
+                                                    <b>"+comment.name+"</b>\
+                                                </h6>\
+                                            </div>\
+                                            <small>"+goods_name+"得標價錢：</small>\
+                                            <small id='small_price'>"+comment.price+"</small>\
+                                            <small>元得標</small>\
+                                        </div>\
+                                        <div class='align-middle m-auto '>\
+                                            <button type='button' class='btn btn-xm btn-danger btn_delete' onclick='delete_getter(event)'>刪除</button>\
+                                        </div>\
+                                        <input type='hidden' id='fb_id' value='"+comment.id+"'>\
+                                                <input type='hidden' id='message_time' value='"+comment.message_time+"'>\
+                                                <input type='hidden' id='message_id' value='"+comment.message_id+"'>\
+                                                <input type='hidden' id='message_content' value='"+comment.price+"'>\
+                                                <input type='hidden' id='message_num' value='1'>\
+                                                <input type='hidden' id='live_video_id' value='"+comment.live_video_id+"'>\
+                                    </a>\
+                                </div>\
+                            </li>");
+                                    });
+
+
                                 $( "#buyer_list" ).append("<li class='list-group-item delete bid_winner'>\
                                 <div id='bid-list-iformation' aria-labelledby='Notice'>\
                                     <a>\
