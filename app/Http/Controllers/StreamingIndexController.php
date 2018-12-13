@@ -172,7 +172,16 @@ class StreamingIndexController extends Controller
         //剩餘的數量
         $left_num_query=StreamingProduct::where('goods_name', '=', $goods_name)
                 ->first();
-        $left_num=$left_num_query->goods_num;
+
+        if(count($left_num_query))
+        {
+            $left_num=$left_num_query->goods_num;
+        }
+        else
+        {
+            $left_num = 99999;
+        }
+        
         
         
 
@@ -256,19 +265,22 @@ class StreamingIndexController extends Controller
                     }
                     $item++;
                 }
-                if($getter=='')
+                if($getter!='')
                 {
-                    $getter=' 無';
-                }
-                 //留言得標者
-                 $post_query = '/'.$post_video_id.'/comments';
-                 $post_response = $this->api->post($post_query, array('message' => '得標者為'.$getter), $token);
+                    //留言得標者
+                    $post_query = '/'.$post_video_id.'/comments';
+                    $post_response = $this->api->post($post_query, array('message' => '得標者為'.$getter), $token);
 
-                 return json_encode($temp,true);
+                    return json_encode($temp,true);
+                }
+                else
+                {
+                    return "";
+                }
             }
             else
             {
-                return json_encode("",true);
+                return "";
             }
         } catch (FacebookSDKException $e) {
             return json_encode($e,true);
@@ -286,6 +298,20 @@ class StreamingIndexController extends Controller
         //留言結束競標
         $post_video_id = $request->input('post_video_id');
         $goods_name = $request->input('goods_name');
+
+        $left_num_query=StreamingProduct::where('goods_name', '=', $goods_name)
+        ->first();
+
+        if(count($left_num_query))
+        {
+            $left_num=$left_num_query->goods_num;
+        }
+        else
+        {
+            $left_num=999;
+        }
+
+
         $addcomment=$goods_name." 拍賣結束------------------------------";
         $post_query = '/'.$post_video_id.'/comments';
         $post_response = $this->api->post($post_query, array('message' => $addcomment), $token);
@@ -320,30 +346,32 @@ class StreamingIndexController extends Controller
                         }
                     }
                 }
-                $temp[0] = array(
-                    [
-                        'price' => $top_price,
-                        'name' => $fb_name,
-                        'id' => $fb_id,
-                        'message_time' => $message_time,
-                        'message_id' => $message_id,
-                        'live_video_id' => $video_id,
-                    ],
-                );
-                if( $fb_name == "")
+                
+                if( $left_num>0&&$fb_name != "")
                 {
-                    $fb_name="無";
+                    $temp[0] = array(
+                        [
+                            'price' => $top_price,
+                            'name' => $fb_name,
+                            'id' => $fb_id,
+                            'message_time' => $message_time,
+                            'message_id' => $message_id,
+                            'live_video_id' => $video_id,
+                        ],
+                    );
+                     //留言得標者
+                    $post_query = '/'.$post_video_id.'/comments';
+                    $post_response = $this->api->post($post_query, array('message' => '得標者為 '.$fb_name), $token);
+                    return json_encode($temp,true);
                 }
-                //留言得標者
-                $post_query = '/'.$post_video_id.'/comments';
-                $post_response = $this->api->post($post_query, array('message' => '得標者為 '.$fb_name), $token);
-
-                $encoded_json=json_encode($temp,true);
-                return $encoded_json;
+               
+                return "";
+              
+                
             }
             else
             {
-                return json_encode("",true);
+                return "";
             }
         } catch (FacebookSDKException $e) {
             return json_encode($e,true);
@@ -365,7 +393,14 @@ class StreamingIndexController extends Controller
         //剩餘的數量
         $left_num_query=StreamingProduct::where('goods_name', '=', $goods_name)
         ->first();
-        $left_num=$left_num_query->goods_num;
+        if(count($left_num_query))
+        {
+            $left_num=$left_num_query->goods_num;
+        }
+        else
+        {
+            $left_num=999999;
+        }
 
         $pic=$query = StreamingProduct::where('page_id', '=', $page_id)
         ->where('goods_name', '=', $goods_name)
@@ -557,12 +592,20 @@ class StreamingIndexController extends Controller
                         $post = $this->api->post($query, array('message' => utf8_encode($url)), $token);
                         $post2 = $post->getGraphNode()->asArray();
                     } catch (FacebookSDKException $e) {
-                    return json_encode($e, true);
+                        //return json_encode($e, true);
                     }
             }
         }
-        StreamingProduct::where('goods_name', '=', $goods_name)
+        try
+        {
+            StreamingProduct::where('goods_name', '=', $goods_name)
             ->update(['goods_num' => $left_num ]);
+        }
+        catch(exception $e)
+        {
+
+        }
+            
 
         return json_encode(count($buyer),true);
     }

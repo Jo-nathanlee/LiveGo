@@ -289,7 +289,7 @@
                             }
                             else
                             {
-                                alert(JSON.parse(data));
+                                alertify.alert("庫存不足！");
                             }
                             
                         },
