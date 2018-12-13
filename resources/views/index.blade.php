@@ -402,7 +402,7 @@
                     dataType: 'JSON',
                     /* remind that 'data' is the response of the AjaxController */
                     success: function (data) {
-                            //alert('回覆成功！');
+                        alertify.alert('已傳送！');
                     },
                     error: function(xhr, status, error) {
                         // alert(error);
