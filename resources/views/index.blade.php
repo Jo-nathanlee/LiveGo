@@ -225,9 +225,9 @@
                             }
                         },
                         error: function(xhr, status, error) {
-                            console.log(error);
-                            console.log(XMLHttpRequest.status);
-                            console.log(XMLHttpRequest.responseText);
+                            // console.log(error);
+                            // console.log(XMLHttpRequest.status);
+                            // console.log(XMLHttpRequest.responseText);
                             alertify.alert("連線錯誤！請稍後再試！");
                         }
                 });
@@ -294,9 +294,9 @@
                             
                         },
                         error: function(xhr, status, error) {
-                            console.log(error);
-                            console.log(XMLHttpRequest.status);
-                            console.log(XMLHttpRequest.responseText);
+                            // console.log(error);
+                            // console.log(XMLHttpRequest.status);
+                            // console.log(XMLHttpRequest.responseText);
                             alertify.alert("連線錯誤！請稍後再試！");
                         }
                 });
@@ -405,9 +405,9 @@
                         alertify.alert('已傳送！');
                     },
                     error: function(xhr, status, error) {
-                        console.log(error);
-                        console.log(XMLHttpRequest.status);
-                        console.log(XMLHttpRequest.responseText);
+                        // console.log(error);
+                        // console.log(XMLHttpRequest.status);
+                        // console.log(XMLHttpRequest.responseText);
                         alertify.alert("連線錯誤！請稍後再試！");
                     }
             });

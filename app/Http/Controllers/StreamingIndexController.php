@@ -406,7 +406,14 @@ class StreamingIndexController extends Controller
         ->where('goods_name', '=', $goods_name)
         ->first();
 
-        $pic_url=$pic->pic_url;
+        if($pic===null)
+        {
+            $pic_url = '';
+        }
+        else
+        {
+            $pic_url=$pic->pic_url;
+        }
 
         if ($type == 2) //最高價制
         {
