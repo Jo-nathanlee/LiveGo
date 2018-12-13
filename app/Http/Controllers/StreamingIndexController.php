@@ -173,13 +173,13 @@ class StreamingIndexController extends Controller
         $left_num_query=StreamingProduct::where('goods_name', '=', $goods_name)
                 ->first();
 
-        if(count($left_num_query)>0)
+        if($left_num_query===null)
         {
-            $left_num=$left_num_query->goods_num;
+            $left_num = 99999;
         }
         else
         {
-            $left_num = 99999;
+            $left_num=$left_num_query->goods_num;
         }
         
         
@@ -302,13 +302,13 @@ class StreamingIndexController extends Controller
         $left_num_query=StreamingProduct::where('goods_name', '=', $goods_name)
         ->first();
 
-        if(count($left_num_query))
+        if($left_num_query===null)
         {
-            $left_num=$left_num_query->goods_num;
+            $left_num = 99999;
         }
         else
         {
-            $left_num=999;
+            $left_num=$left_num_query->goods_num;
         }
 
 
@@ -393,13 +393,13 @@ class StreamingIndexController extends Controller
         //剩餘的數量
         $left_num_query=StreamingProduct::where('goods_name', '=', $goods_name)
         ->first();
-        if(count($left_num_query)>0)
+        if($left_num_query===null)
         {
-            $left_num=$left_num_query->goods_num;
+            $left_num = 99999;
         }
         else
         {
-            $left_num=999999;
+            $left_num=$left_num_query->goods_num;
         }
 
         $pic=$query = StreamingProduct::where('page_id', '=', $page_id)
