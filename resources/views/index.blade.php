@@ -371,9 +371,9 @@
                             alertify.alert("得標訊息已私訊得標者!");
                         },
                         error: function(XMLHttpRequest, status, error) {
-                            console.log(error);
-                            console.log(XMLHttpRequest.status);
-                            console.log(XMLHttpRequest.responseText);
+                            // console.log(error);
+                            // console.log(XMLHttpRequest.status);
+                            // console.log(XMLHttpRequest.responseText);
                             alertify.alert("連線錯誤！請稍後再試！");
                         }
                 });
@@ -443,24 +443,31 @@
                                 </li>");
                         }
                         $( ".winner_list" ).after("<li class='list-group-item delete bid_winner'>\
-                                    <div id='bid-list-iformation ' aria-labelledby='Notice '>\
-                                        <a>\
-                                            <div class='text-truncate w-100 '>\
-                                                <div class='d-flex w-100 justify-content-between '>\
-                                                    <h6 class='mb-1 '>\
-                                                        <b>"+winner_name+"</b>\
-                                                    </h6>\
-                                                    <small class='text-muted float-right ' >\
-                                                        <button type='button' class='btn btn-xm btn-danger btn_delete' onclick='delete_getter(event)'>刪除</button>\
-                                                    </small>\
-                                                    <input type='hidden' id='fb_id' value='"+winner_id+"'>\
-                                                    <input type='hidden' id='message_time' value='"+comment_time+"'>\
-                                                    <input type='hidden' id='message_id' value='"+message_id+"'>\
-                                                <small id='comment'>"+comment_message+"</small></div>\
+                                <div id='bid-list-iformation' aria-labelledby='Notice'>\
+                                    <a>\
+                                        <img src='https://graph.facebook.com/"+winner_id+"/picture' class='rounded-circle'>\
+                                        <div class='text-truncate w-100'>\
+                                            <div class='d-flex w-100  justify-content-between '>\
+                                                <h6 class='mb-1'>\
+                                                    <b>"+winner_name+"</b>\
+                                                </h6>\
                                             </div>\
-                                        </a>\
-                                    </div>\
-                                </li>");
+                                            <small>"+goods_name+"得標數量：</small>\
+                                            <small id='small_num'>"+temp+"</small>\
+                                        </div>\
+                                        <div class='align-middle m-auto '>\
+                                            <button type='button' class='btn btn-xm btn-danger btn_delete' onclick='delete_getter(event)'>刪除</button>\
+                                        </div>\
+                                        <input type='hidden' id='fb_id' value='"+winner_id+"'>\
+                                                <input type='hidden' id='message_time' value='"+comment_time+"'>\
+                                                <input type='hidden' id='message_id' value='"+message_id+"'>\
+                                                <input type='hidden' id='message_content' value='"+comment_message+"'>\
+                                                <input type='hidden' id='message_num' value='"+temp+"'>\
+                                                <input type='hidden' id='messenger_text' value=''>\
+                                                <input type='hidden' id='live_video_id' value='{{ $video_id }}'>\
+                                    </a>\
+                                </div>\
+                            </li>");
                     }
                 }
             }
@@ -477,24 +484,31 @@
                                 </li>");
                         }
                         $( ".winner_list" ).after("<li class='list-group-item delete bid_winner'>\
-                                    <div id='bid-list-iformation ' aria-labelledby='Notice '>\
-                                        <a>\
-                                            <div class='text-truncate w-100 '>\
-                                                <div class='d-flex w-100 justify-content-between '>\
-                                                    <h6 class='mb-1 '>\
-                                                        <b>"+winner_name+"</b>\
-                                                    </h6>\
-                                                    <small class='text-muted float-right ' >\
-                                                        <button type='button' class='btn btn-xm btn-danger btn_delete' onclick='delete_getter(event)'>刪除</button>\
-                                                    </small>\
-                                                    <input type='hidden' id='fb_id' value='"+winner_id+"'>\
-                                                    <input type='hidden' id='message_time' value='"+comment_time+"'>\
-                                                    <input type='hidden' id='message_id' value='"+message_id+"'>\
-                                                <small id='comment'>"+comment_message+"</small></div>\
+                                <div id='bid-list-iformation' aria-labelledby='Notice'>\
+                                    <a>\
+                                        <img src='https://graph.facebook.com/'"+winner_id+"'/picture' class='rounded-circle'>\
+                                        <div class='text-truncate w-100'>\
+                                            <div class='d-flex w-100  justify-content-between '>\
+                                                <h6 class='mb-1'>\
+                                                    <b>"+winner_name+"</b>\
+                                                </h6>\
                                             </div>\
-                                        </a>\
-                                    </div>\
-                                </li>");
+                                            <small>"+goods_name+"得標價錢：</small>\
+                                            <small id='small_price'>"+comment_message+"</small>\
+                                            <small>元得標</small>\
+                                        </div>\
+                                        <div class='align-middle m-auto '>\
+                                            <button type='button' class='btn btn-xm btn-danger btn_delete' onclick='delete_getter(event)'>刪除</button>\
+                                        </div>\
+                                        <input type='hidden' id='fb_id' value='"+winner_id+"'>\
+                                                <input type='hidden' id='message_time' value='"+comment_time+"'>\
+                                                <input type='hidden' id='message_id' value='"+message_id+"'>\
+                                                <input type='hidden' id='message_content' value='"+comment_message+"'>\
+                                                <input type='hidden' id='message_num' value='1'>\
+                                                <input type='hidden' id='live_video_id' value='{{ $video_id }}'>\
+                                    </a>\
+                                </div>\
+                            </li>");
                 }
             }
            
