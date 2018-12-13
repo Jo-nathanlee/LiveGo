@@ -146,6 +146,8 @@ Route::group(['middleware' => [
     Route::get('/EditStreamingProduct_show', 'StreamingProductController@EditStreamingProduct_show')->name('EditStreamingProduct_show');
     Route::post('/edit_streaming_product', 'StreamingProductController@EditProduct')->name('edit_streaming_product');
     Route::get('/StreamingProductOverview', 'StreamingProductController@ProductOverview')->name('StreamingProductOverview');
+    Route::get('/StreamingProductOverview_On', 'StreamingProductController@ProductOverviewOn')->name('StreamingProductOverview_On');
+    Route::get('/StreamingProductOverview_Out', 'StreamingProductController@ProductOverviewOut')->name('StreamingProductOverview_Out');
     Route::post('/delete_streaming_product', 'StreamingProductController@DeleteProduct')->name('delete_streaming_product');
 
     //營收

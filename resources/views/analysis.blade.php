@@ -83,8 +83,12 @@
                 var _form = $("form");
                 var _submit_button = _form.find('button#trigger');
                 _submit_button.click(function () {
+                    @if(isset($comments))
                     var _text ="{{ $comments  }}";
-            
+                    @else
+                    var _text ="";
+                    @endif
+
                     //console.log(_text);
                     var _submit = $(this).find("button#trigger");
                     _submit.attr("disabled", "disabled");

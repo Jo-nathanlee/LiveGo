@@ -96,6 +96,63 @@ class StreamingProductController extends Controller
         }
     }
 
+    public function ProductOverviewOn(Request $request)
+    {
+        if (Gate::allows('seller-only',  Auth::user())) {
+            $page = Page::where('fb_id', Auth::user()->fb_id)->first();
+            $page_id = $page->page_id;
+            $query = StreamingProduct::where('page_id', '=', $page_id)
+            ->where('goods_num','>',0 )
+            ->get();
+
+            $countAllProduct=StreamingProduct::where('page_id', '=', $page_id)
+            ->count();
+
+            $countOnProduct=StreamingProduct::where('page_id', '=', $page_id)
+            ->where('goods_num','>',0 )
+            ->count();
+
+            $countOutProduct=StreamingProduct::where('page_id', '=', $page_id)
+            ->where('goods_num','=',0 )
+            ->count();
+            
+            return view('streaming_product_overview', ['products' => $query ,'countAllProduct' => $countAllProduct,'countOnProduct' => $countOnProduct,'countOutProduct' => $countOutProduct]);
+        }
+        else
+        {
+           return redirect('/')->with('alert', '您尚未開通，請聯繫我們！');
+        }
+    }
+
+    public function ProductOverviewOut(Request $request)
+    {
+        if (Gate::allows('seller-only',  Auth::user())) {
+            $page = Page::where('fb_id', Auth::user()->fb_id)->first();
+            $page_id = $page->page_id;
+            $query = StreamingProduct::where('page_id', '=', $page_id)
+            ->where('goods_num','=',0 )
+            ->get();
+
+            $countAllProduct=StreamingProduct::where('page_id', '=', $page_id)
+            ->count();
+
+            $countOnProduct=StreamingProduct::where('page_id', '=', $page_id)
+            ->where('goods_num','>',0 )
+            ->count();
+
+            $countOutProduct=StreamingProduct::where('page_id', '=', $page_id)
+            ->where('goods_num','=',0 )
+            ->count();
+            
+            return view('streaming_product_overview', ['products' => $query ,'countAllProduct' => $countAllProduct,'countOnProduct' => $countOnProduct,'countOutProduct' => $countOutProduct]);
+        }
+        else
+        {
+           return redirect('/')->with('alert', '您尚未開通，請聯繫我們！');
+        }
+    }
+
+
     //直播商品編輯頁面顯示
     public function EditStreamingProduct_show(Request $request)
     {
