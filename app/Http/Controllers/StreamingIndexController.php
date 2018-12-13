@@ -173,14 +173,15 @@ class StreamingIndexController extends Controller
         $left_num_query=StreamingProduct::where('goods_name', '=', $goods_name)
                 ->first();
 
-        if(count($left_num_query))
-        {
-            $left_num=$left_num_query->goods_num;
-        }
-        else
-        {
-            $left_num = 99999;
-        }
+        $left_num=$left_num_query->goods_num;
+        // if(count($left_num_query))
+        // {
+        //     $left_num=$left_num_query->goods_num;
+        // }
+        // else
+        // {
+        //     $left_num = 99999;
+        // }
         
         
         
@@ -275,12 +276,12 @@ class StreamingIndexController extends Controller
                 }
                 else
                 {
-                    return "";
+                    return json_encode("",true);;
                 }
             }
             else
             {
-                return "";
+                return json_encode("",true);;
             }
         } catch (FacebookSDKException $e) {
             return json_encode($e,true);
