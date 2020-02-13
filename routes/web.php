@@ -10,173 +10,104 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
+
 use Illuminate\Support\Facades\Auth;
-
-Route::get('/', 'HomePageController@HomePageShow');
-//Route::post('/checkout_return', 'ECPayController@CheckoutReturn')->name('checkout_return');
-
-Route::post('/ecpayCheckout', 'ECPayController@checkout');
-Route::get('/ecpayCheckout', 'ECPayController@checkout');
-
-Route::post('/OrderResult', 'ECPayController@payReturn');
-Route::get('/OrderResult', 'ECPayController@payReturn');
-
-
-
-
-
-
-
-
-
+use Illuminate\Support\Facades\Gate;
 Auth::routes();
-
+Route::get('/', 'HomePageController@HomePageShow');
 Route::get('/login/facebook', 'Auth\LoginController@redirectToFacebookProvider');
 Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderFacebookCallback');
 Route::get('logout', 'Auth\LoginController@logout');
-// Route::get('/webhook', 'MessengerWebhook@index')->name('webhook');
- //chatbot
-//  Route::get('/messengerbot', 'MessengerWebhook@index');
-//  Route::post('/messengerbot', 'MessengerWebhook@index');
+
+
 
 Route::group(['middleware' => [
-    'auth',
+  'auth','gate_seller'
 ]], function () {
-    //賣家首頁
-    Route::get('/seller_index', 'SellerIndexController@show')->name('seller_index');
-    //設定粉絲團
-    Route::get('/set_page', 'SetpageController@show')->name('set_page');
-    Route::post('/save_page', 'SetpageController@CreateOrUpdatePage')->name('save_page');
-    //laravel首頁
-    Route::get('/home', 'HomeController@index')->name('home');
-    //直播頁面
-    Route::get('/index_load', 'StreamingIndexController@index_load')->name('index_load');
-    Route::get('/index_show', 'StreamingIndexController@index_show');
-    //ajax
-    Route::get('/update_message', 'StreamingIndexController@update_message');
-    Route::post('/update_message', 'StreamingIndexController@update_message');
+  // 直播
+  Route::get('/streaming_index', 'testController@index_load')->name('streaming_index');
+  Route::post('/TopFiveShoper', 'testController@TopFiveShoper')->name('TopFiveShoper');
+  Route::post('/update_message', 'testController@StreamingComment')->name('update_message');
+  Route::post('/create_product', 'testController@create_product')->name('create_product');
+  Route::post('/lucky_draw', 'testController@LuckyDraw')->name('lucky_draw');
+  Route::post('/lucky_winner', 'testController@GetWinner')->name('lucky_winner');
+  Route::post('/send_comment', 'testController@SendComment')->name('send_comment');
+  Route::post('/refresh_drp_product', 'testController@RefreshDrpProduct')->name('refresh_drp_product');
+  Route::post('/select_product', 'testController@StoreSelectedProduct')->name('select_product');
+  Route::post('/delete_auction', 'testController@DeleteAuctionProduct')->name('delete_auction');
+  Route::post('/delete_product', 'ProductController@DeleteProduct')->name('delete_product');
+  Route::post('/show_product', 'testController@ShowAuctionProduct')->name('show_product');
+  Route::post('/share_product', 'testController@ShareAuctionProduct')->name('share_product');
+  Route::post('/update_product', 'testController@UpdateSaleTime')->name('update_product');
+  Route::post('/manually_awarded', 'testController@NanuallyAwarded')->name('manually_awarded');
+  Route::post('/GetShopThreeDaysCustomer', 'testController@GetShopThreeDaysCustomer')->name('GetShopThreeDaysCustomer');
+  Route::post('/TopFiveShoper', 'testController@TopFiveShoper')->name('TopFiveShoper');
+  Route::post('/CommoditySalesList', 'testController@CommoditySalesList')->name('CommoditySalesList');
 
-    Route::get('/reply', 'StreamingIndexController@private_reply');
-    Route::post('/reply', 'StreamingIndexController@private_reply');
+  //商品
+  Route::get('/product_show', 'ProductController@ShowPorduct')->name('product_show');
+  Route::post('/edit_product', 'ProductController@EditProduct')->name('edit_product');
+  Route::post('/product_onoff', 'ProductController@ProductOnOf')->name('product_onoff');
+  Route::post('/show_EditProduct', 'ProductController@EditProductShow')->name('show_EditProduct');
+  Route::get('/collapseProduct', 'ProductController@collapseProduct')->name('collapseProduct');
+  Route::get('/ProductSalesList', 'ProductController@ProductSalesList')->name('ProductSalesList');
 
-    Route::get('/start_record', 'StreamingIndexController@start_record');
-    Route::post('/start_record', 'StreamingIndexController@start_record');
-
-    Route::get('/end_record', 'StreamingIndexController@end_record');
-    Route::post('/end_record', 'StreamingIndexController@end_record');
-
-    Route::get('/end_record_top_price', 'StreamingIndexController@end_record_top_price');
-    Route::post('/end_record_top_price', 'StreamingIndexController@end_record_top_price');
-
-    Route::get('/store_streaming_order', 'StreamingIndexController@store_streaming_order');
-    Route::post('/store_streaming_order', 'StreamingIndexController@store_streaming_order');
-
-    Route::get('/add_comment', 'StreamingIndexController@add_comment');
-    Route::post('/add_comment', 'StreamingIndexController@add_comment');
-
-    Route::get('/get_streaming_productInfo', 'StreamingIndexController@get_streaming_productInfo');
-    Route::post('/get_streaming_productInfo', 'StreamingIndexController@get_streaming_productInfo');
-
-    
-    //買家購物車
-    Route::get('/buyer_index', 'BuyerIndexController@show')->name('buyer_index');
-    //得標者頁面
-    Route::get('/bid_winner', 'BidWinnerController@show')->name('bid_winner');
-    //買家結帳
-    Route::post('/checkout', 'CheckoutController@CheckOut')->name('checkout');
-    Route::post('/checkout_form', 'CheckoutController@CheckoutForm')->name('checkout_form');
+  //member
+  Route::post('/black', 'MembershipController@BlackMember')->name('black');
+  Route::get('/member', 'MembershipController@MemberIndex')->name('member');
+  Route::get('/member_detail', 'MembershipController@MemberDetail')->name('member_detail');
+  Route::get('/print_member_table', 'MembershipController@PrintMemberTable')->name('print_member_table');
 
 
-    //商城商品新增修改顯示
-    Route::get('/AddProduct_show', 'MallProductController@AddProduct_show')->name('AddProduct_show');
-    Route::get('/EditProduct_show', 'MallProductController@EditProduct_show')->name('EditProduct_show');
-    Route::get('/product_overview', 'MallProductController@ProductOverview')->name('product_overview');
-    Route::get('/product_overview_on', 'MallProductController@ProductOverviewOn')->name('product_overview_on');
-    Route::get('/product_overview_out', 'MallProductController@ProductOverviewOut')->name('product_overview_out');
-    Route::get('/shopping_mall', 'MallProductController@ShowMall')->name('shopping_mall');
-    Route::post('/add_product', 'MallProductController@AddNewProduct')->name('add_product');
-    Route::post('/edit_product', 'MallProductController@EditProduct')->name('edit_product');
-    Route::post('/delete_product', 'MallProductController@DeleteProduct')->name('delete_product');
+  //excle
+  Route::get('/order_excel', 'OrderController@Excel_printer')->name('order_excel');
+  Route::get('/streaming_excel', 'testController@streaming_sells_excle')->name('streaming_excel');
+  Route::get('/member_excel', 'MembershipController@MemberExcel')->name('member_excel');
 
-    
-    //賣家訂單查看
-    Route::get('/seller_order', 'SellerOrderController@SellerOrderAll')->name('seller_order');
-    Route::get('/seller_order_detail', 'SellerOrderController@SellerOrderDetail')->name('seller_order_detail');
-    Route::get('/seller_order_unpaid', 'SellerOrderController@SellerOrderUnpaid')->name('seller_order_unpaid');
-    Route::get('/seller_order_undelivered', 'SellerOrderController@SellerOrderUndelivered')->name('seller_order_undelivered');
-    Route::get('/seller_order_delivered', 'SellerOrderController@SellerOrderDelivered')->name('seller_order_delivered');
-    Route::get('/seller_order_finished', 'SellerOrderController@SellerOrderFinished')->name('seller_order_finished');
-    Route::get('/seller_order_canceled', 'SellerOrderController@SellerOrderCanceled')->name('seller_order_canceled');
+  //order
+  Route::get('/order', 'OrderController@Order')->name('order');
+  Route::post('/order_edit', 'OrderController@Order_edit');
+  Route::get('/order_detail', 'OrderController@OrderDetail')->name('order_detail');
+  Route::get('/inconfirmed_orders', 'OrderController@InconfirmedOrders')->name('inconfirmed_orders'); 
+  Route::post('/submit_EditProduct', 'OrderController@SubmitEditProduct'); 
+  Route::post('/submit_AddProduct', 'OrderController@SubmitAddProduct'); 
+  Route::get('/show_product', 'OrderController@ShowProduct'); 
+  Route::get('/get_ProductNum', 'OrderController@GetProductNum'); 
+  Route::post('/delete_order', 'OrderController@DeleteOrder'); 
+  Route::post('/refresh_order', 'OrderController@RefreshOrder');   
 
-    //更改訂單狀態
-    Route::post('/OrderStatusChange','SellerOrderController@StatusChange')->name('OrderStatusChange');
-   
-    
 
-    //訂單PDF
-    Route::get('/downloadPDF','SellerOrderController@downloadPDF')->name('download');
-    Route::get('/download_pdf','SellerOrderController@download_pdf')->name('download_pdf');
-    Route::post('/download_pdf','SellerOrderController@download_pdf')->name('download_pdf');
 
-    //買家訂單查看
-    Route::get('/buyer_order', 'BuyerOrderController@BuyerOrderAll')->name('buyer_order');
-    Route::get('/buyer_order_unpaid', 'BuyerOrderController@BuyerOrderUnpaid')->name('buyer_order_unpaid');
-    Route::get('/buyer_order_undelivered', 'BuyerOrderController@BuyerOrderUndelivered')->name('buyer_order_undelivered');
-    Route::get('/buyer_order_delivered', 'BuyerOrderController@BuyerOrderDelivered')->name('buyer_order_delivered');
-    Route::get('/buyer_order_finished', 'BuyerOrderController@BuyerOrderFinished')->name('buyer_order_finished');
-    Route::get('/buyer_order_canceled', 'BuyerOrderController@BuyerOrderCanceled')->name('buyer_order_canceled');
-    Route::get('/buyer_order_detail', 'BuyerOrderController@BuyerOrderDetail')->name('buyer_order_detail');
+  
+  //setting 
+  Route::get('/setting', 'SetpageController@Setting')->name('setting');
+  Route::get('/update_manager', 'SetpageController@update_manager')->name('update_manager');
+  Route::post('/update_pagedeatil', 'SetpageController@UpdatePagedeatil')->name('update_pagedeatil');
+  Route::post('/update_page', 'SetpageController@UpdatePage')->name('update_page');
+  Route::post('/update_shipping_fee', 'SetpageController@UpdateShippingFee')->name('update_shipping_fee');
+  Route::post('/get_ship_set', 'SetpageController@GetShipSet')->name('get_ship_set');
 
-    
+  Route::post('/excel_upload', 'ProductController@excel_upload')->name('excel_upload');
 
-    //棄標黑名單
-    Route::get('/bid_blacklist', 'BidWinnerController@Blacklist')->name('bid_blacklist');
-    Route::get('/catch_blacklist', 'BidWinnerController@Blacklist_check')->name('catch_blacklist');
-    Route::get('/blacklist_time', 'BidWinnerController@Blacklist_time')->name('blacklist_time');
-    Route::post('/set_blacklist_time', 'BidWinnerController@Set_BlacklistTime')->name('set_blacklist_time');
 
-    //設定公司info
-    Route::get('/company_info', 'SetpageController@CompanyInfoSetting')->name('company_info');
-    Route::post('/set_company_info', 'SetpageController@Set_CompanyInfo')->name('set_company_info');
-    Route::get('/delivery', 'SetpageController@DeliverySetting')->name('delivery');
-    
-    
-   
-    //設定直播拍賣商品
-    Route::get('/SetProduct_show', 'StreamingProductController@SetStreamingProduct_show')->name('SetProduct_show');
-    Route::post('/set_product', 'StreamingProductController@SetStreamingProduct')->name('set_product');
-    Route::get('/EditStreamingProduct_show', 'StreamingProductController@EditStreamingProduct_show')->name('EditStreamingProduct_show');
-    Route::post('/edit_streaming_product', 'StreamingProductController@EditProduct')->name('edit_streaming_product');
-    Route::get('/StreamingProductOverview', 'StreamingProductController@ProductOverview')->name('StreamingProductOverview');
-    Route::get('/StreamingProductOverview_On', 'StreamingProductController@ProductOverviewOn')->name('StreamingProductOverview_On');
-    Route::get('/StreamingProductOverview_Out', 'StreamingProductController@ProductOverviewOut')->name('StreamingProductOverview_Out');
-    Route::post('/delete_streaming_product', 'StreamingProductController@DeleteProduct')->name('delete_streaming_product');
 
-    //營收
-    Route::get('/daily_revenue', 'RevenueController@DailyRevenue')->name('daily_revenue');
-    Route::get('/monthly_revenue', 'RevenueController@MonthlyRevenue')->name('monthly_revenue');
-
-    //會員
-    Route::get('/membership', 'MembershipController@index')->name('membership');
-    Route::get('/member_detail', 'MembershipController@detail')->name('member_detail');
-
-    //網紅
-    Route::get('/InternetCelebrityMatch', 'MallProductController@InternetCelebrityMatch')->name('InternetCelebrityMatch');
-
-    //文字雲
-    Route::get('/analysis', 'AnalysisController@index')->name('analysis');
-    Route::get('/analysis_show', 'AnalysisController@index_show')->name('analysis_show');
-
-    //節目表
-    Route::get('/program', 'ProgramController@index')->name('program');
-    
-
-    
-    
-    
 });
 
+Route::group(['middleware' => [
+  'auth'
+]], function () {
+
+  //買家購物車
+  Route::get('/buyer_cart', 'CheckoutController@cart_show')->name('buyer_cart');
+  Route::post('/checkout', 'CheckoutController@Checkout')->name('checkout');
+  Route::get('/getMart_area', 'ShopController@getMart_area')->name('getMart_area');
+  Route::get('/getMart_address', 'ShopController@getMart_address')->name('getMart_address');
+  Route::get('/remittance', 'ShopController@Remittance')->name('remittance');
+
+  //商城
+  Route::get('/buyer_shop', 'ShopController@ShowShop')->name('buyer_shop');
+  Route::post('/shop_product', 'ShopController@ShopProduct')->name('shop_product');
+  Route::post('/shop_add_cart', 'ShopController@AddToCart')->name('shop_add_cart');
 
 
-
-
+});

@@ -101,7 +101,7 @@ class GraphController extends Controller
             }
             else
             {
-                return redirect()->back()->with('alert', '直播尚未開啟！');
+                return redirect()->back()->with('fail', '直播尚未開啟！');
             }
         } catch (FacebookSDKException $e) {
             dd($e); // handle exception

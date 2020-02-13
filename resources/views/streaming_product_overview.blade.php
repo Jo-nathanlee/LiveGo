@@ -1,142 +1,105 @@
 @extends('layouts.master')
 
-@section('title','
-直播商品總覽')
+@section('title','直播商品總覽')
 
 @section('wrapper')
 <div class="wrapper">
-    <div id="sidebar_page"></div>
+
 @stop
 @section('navbar')
     <!-- Page Content  -->
     <div id="content">
-        <div id="navbar_page"></div>
-        <!--Nav bar end-->
 @stop
 @section('content')
-@if (session('alert'))
-<script>
-    message_danger();
-</script>
-@endif
-<div id="product_mgnt" class="container-fluid main">
+        <div class="container-fluid all_content overflow-auto" id="Product_Manage">
             <div class="row">
+                <div class="col-md-12 mb-4">
+                    <ul class="nav nav-tabs ">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark font-weight-bold active" id="StreamingProductOverview" href="{{ route('StreamingProductOverview')  }}">全部</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black-50" id="StreamingProductOverview_On" href="{{ route('StreamingProductOverview_On')  }}">已上架
+                                <sub class="text-danger ml-1">{{ $countOnProduct }}</sub>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link text-black-50" id="StreamingProductOverview_Out" href="{{ route('StreamingProductOverview_Out')  }}">已售完
+                                <sub class="text-danger ml-1">{{ $countOutProduct }}</sub>
+                            </a>
+                        </li>
+                        <li class="nav-item ml-auto">
+                            <form id="excel_Form" action="{{ route('excel_reader') }}" enctype="multipart/form-data" method="POST">
+                                {{ csrf_field() }}
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                      <input type="file" class="custom-file-input" id="excelupload" name="excelupload" 
+                                        aria-describedby="excelupload">
+                                      <label class="custom-file-label" id="exceltext" for="excelupload">選擇excel檔</label>
+                                    </div>
+                                    <div class="input-group-prepend">
+                                        <input type="submit" class="btn btn-secondary" value="送出">
+                                      </div>
+                                  </div>
+                            </form>
+                        </li>
+                        <li class="nav-item  ml-auto">
+                            <div class="form-group row">
+                                <label for="InputSearch" class="col-sm-2 col-form-label">
+                                    <i class='fas d-inline-block ml-4'>&#xf002;</i>
+                                    <style id="search_style"></style>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input class="d-inline form-control mr-sm-2" type="text" id="InputSearch" placeholder="Search" aria-label="Search"> 
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
                 <div class="col-md-12">
-                    <!-- 狀態列 -->
-                    <div id="product_st_nav " class="container-fluid st_nav">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <nav class="nav nav-tabs">
-                                    <a class="nav-link selected" href="{{ route('StreamingProductOverview')  }}">全部</a>
-                                    <a class="nav-link tip" href="{{ route('StreamingProductOverview_On')  }}">
-                                        <span data-tooltip="{{ $countOnProduct }}筆">已上架
-                                            <sub>{{ $countOnProduct }}</sub>
-                                    </a>
-                                    <a class="nav-link tip" href="{{ route('StreamingProductOverview_Out')  }}">
-                                        <span data-tooltip="{{ $countOutProduct }}筆">已售完
-                                            <sub>{{ $countOutProduct }}</sub>
-                                    </a>
-                                </nav>
-                            </div>
+                    <div class="Add_Product_warp ">
+                        <div class="Add_Product_Content text-center">
+                            <div onclick="location.href='{{ route('SetProduct_show') }}'">
+                                <i class='fas mr-2'>&#xf067;</i>點選新增商品</div>
+                        </div>
+                        <div class="Add_Product_note  pt-3">
+                            <P>&nbsp;</P>
+                            <P>&nbsp;</P>
+                            <small>&nbsp;</small>
+                            <br>
+                            <small>&nbsp;</small>
                         </div>
                     </div>
-                    <!-- 狀態列end -->
-                    <!-- 搜尋 -->
-                    <div id="product" class="container-fluid">
-                        <div class="row">
-                            <div id="product_search" class="col-sm-6 col-md-6 col-lg-8 form-group search ">
-                                <div class="input-group mb-2 mr-sm-2">
-                                    <input class="form-control" type="text" placeholder="商品搜尋">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text btn">
-                                            <i class="icofont icofont-search"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="sort_slt col-sm-6 col-md-6 col-lg-4 float-right">
-                                <button class="btn btn-light badge-pill">人氣 <small><i class="icofont icofont-sort"></i></small></button>
-                                <button class="btn btn-light badge-pill">銷售數量 <small><i class="icofont icofont-sort"></i></small></button>
-                                <button class="btn btn-light badge-pill">剩餘數量 <small><i class="icofont icofont-sort"></i></small></button>
-                                
-                            </div>
+                    @foreach($products as $product)
+                    <div class="Product_warp shadow" data-index="{{$product->goods_name}}"  onclick="location.href='{{route('EditStreamingProduct_show', [ 'product_id'=>$product->product_id, 'key' =>$product->pic_url ])}}';">
+                        <div class="Product_Img" style="background-image: url('{{$product->pic_url }}')"></div>
+                        <div class="Product_Content pt-3">
+                            <P class="text-truncate">商品名稱： {{$product->goods_name}}
+                                @if( $product->category != "empty" )
+                                    <small>{{$product->category}}</small>
+                                @endif
+                            </P>
+                            <P class="text-truncate">商品價格：
+                                <a class="text-danger currencyField">{{$product->goods_price}}</a>
+                            </P>
+                            <small class="text-black-50 text-truncate">剩餘數量：{{$product->goods_num}}</small>
+                            <br>
+                            <small class="text-black-50 text-truncate">銷售數量：{{$product->selling_num}}</small>
                         </div>
                     </div>
-                    <hr>
-                    <!-- 搜尋end -->
-                    <!-- 商品列表 -->
-                    <div class="container-fluid">
-                        <div class="col-md-12">
-                            <div class="row" id="product_mgnt_list">
-                                <div  class="col-lg-2 col-md-3 col-sm-6 mt-4">
-                                    <div class="col-md-12" id="add_product_btn">
-                                    <a href="{{ route('SetProduct_show') }}">
-                                        <i class="icofont icofont-ui-add mr-2"></i>點選新增商品
-                                        </a>
-                                    </div>
-                                </div>
-                                @foreach($products as $product)
-                                <!-- ------------- -->
-                                <div class="col-lg-2 col-md-3 col-sm-6">
-                                    <div class="col-md-12 shadow  pb-1 mt-4">
-                                        <div class="card-img-top ">
-                                            <div  style="background: url('{{$product->pic_url }}');height: 12rem; background-repeat: no-repeat;background-size: cover;  background-position: center ;background-size: 100%;"  onclick="location.href='{{route('EditStreamingProduct_show', ['key' =>$product->pic_url ])}}';">                                        </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <P>
-                                                {{$product->goods_name}}
-                                            </P>
-                                            <P class="now_page">
-                                              $ {{$product->goods_price}}
-                                            </P>
-                                        </div>
-                                        <P style="font-size:0.75rem">
-                                            <sapn class="float-left">
-                                                <samll>
-                                                    <i class="icofont icofont-heart-alt text-danger"></i> 520
-                                                </samll>
-                                            </sapn>
-                                            <sapn class="float-right">
-                                                <samll style="font-size:0.5rem">
-                                                    <i class="icofont icofont-star text-info"></i>
-                                                    <i class="icofont icofont-star text-info"></i>
-                                                    <i class="icofont icofont-star text-info"></i>
-                                                    <i class="icofont icofont-star text-info"></i>
-                                                    <i class="icofont icofont-star"></i> (573)
-                                                </samll>
-                                            </sapn>
-                                        </P>
-                                        <P style="font-size:0.75rem">
-                                            <br><sapn><samll>剩餘數量：{{$product->goods_num}}</samll></sapn>
-                                            <br><sapn><samll>銷售數量：{{$product->sell_num}}</samll></sapn>
-                                        </P>
-                                    </div>
-                                </div>
-
-                                <!-- ------------- -->
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 商品列表end -->
+                    @endforeach
                 </div>
             </div>
         </div>
-        <!-- main end -->
     </div>
-    <!-- Cotent end-->
 </div>
-<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script>
+document.getElementById("excelupload").onchange = function () {
+    document.getElementById("exceltext").innerText = this.value;
+ };
+</script>
+
 @stop 
 @section('footer')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-        crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-        crossorigin="anonymous"></script>
-    <!-- My JS -->
-    <script src="js/Live_go.js"></script>
-    <!-- 我新增的JS -->
-    <!-- <script src="js/list_mgnt.js"></script> -->
-    <script src="js/jquery-tablepage-1.0.js"></script>
+
 @stop

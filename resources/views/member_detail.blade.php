@@ -1,119 +1,125 @@
 @extends('layouts.master')
 
-@section('title','會員資料')
+@section('title','會員詳細資料')
 
-   
-@section('heads')
-    <!-- 我新增的 CSS -->
-    <link rel="stylesheet" href="css/list_mgnt.css">
-     <!-- datatable + bootstrap 4  -->
-     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+@section('head_extension')
+
+
 @stop
-
 
 @section('wrapper')
 <div class="wrapper">
-    <div id="sidebar_page"></div>
 @stop
 @section('navbar')
-    <!-- Page Content  -->
-    <div id="content" class="Microsoft">
-        <div id="navbar_page"></div>
-        <!--Nav bar end-->
+    <div id="content">
 @stop
-@section('content')
-@if (session('alert'))
-<script>
-    message_danger();
-</script>
-@endif
-        <div class="container-fluid mt-3 mb-3 ">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <div class="media">
-                        <img class="d-flex mr-3 rounded-circle user_pic" src="https://graph.facebook.com/{{  $member->fb_id }}/picture">
-                        <div class="media-body">
-                            <h5 class="mt-0">
-                                <font class="text-secondary">
-                                    <b>{{ $member->fb_name }}</b>
-                                </font>
-                            </h5>
-                        </div>
-                    </div>
-                    <div class="media mt-3 border-top pt-3">
-                        <div class="media-body">
-                            <div class="mb-2">
-                                <i class="icofont icofont-skull-face h5"></i>
-                                <b>棄標次數</b>
-                                <font class="text-secondary">{{ $member->blacklist_times }}</font>
-                            </div>
-                            <div class="mb-2">
-                                <i class="icofont icofont-hand-thunder h5"></i>
-                                <b>購物次數</b>
-                                <font class="text-secondary">{{ $member->checkout_times }}</font>
-                            </div>
-                            <div class="mb-2">
-                                <i class="icofont icofont-bill h5"></i>
-                                <b>購物總金額</b>
-                                <font class="text-secondary">{{ $member->money_spent }}</font>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <table id="table_member_bid_list_detail" class="table">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>訂單編號</th>
-                                <th>訂單總金額</th>
-                                <th>訂單產生時間</th>
-                                <th>狀態</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php 
-                        $no=1;
-                        ?>
-                        @foreach($order as $order)
-                            <tr id="order_item">
-                                <td>{{ $no }}</td>
-                                <td>{{ $order->order_id }}</td>
-                                <td>{{ $order->all_total }}</td>
-                                <td>{{ $order->created_at }}</td>
-                                <td>{{ $order->status_cht }}</td>
-                                <td><a href="{{ route('seller_order_detail',['order_id' => json_encode($order->order_id)]) }}"><button type="button" class="btn btn-outline-dark">查看詳情</button></a></td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <!-- main end -->
-            </div>
-        </div>
+        @section('content')
 
-        <!-- Cotent end-->
-    </div>
+
+        <div id="order_detail_S1" class="stepwizard mt-4 container-fluid S1">
+                <div class="S1_L ">
+                    <img src="https://graph.facebook.com/{{$member->ps_id}}/picture?type=large&access_token={{$page_token}}" alt="photo">
+                </div>
+                <div class="col-10 S1_R">
+                    <div class="S1_R1">
+                        <span class="R1_name">{{$member->fb_name}}</span>
+                        <div class="mb_lev lv_VIP"><i class="fas fa-thumbs-up"></i>&nbsp;{{$member->type_cht}}</div>
+                        <div class="R1_time">訂單取消次數&nbsp;<span>{{$member->cancel_times}}</span>&nbsp;次</div>
+                    </div>
+                    <div class="S1_R2">
+                        <i class="fab fa-facebook-square"></i><span>{{$member->fb_name}}</span>
+                    </div>
+                    <div class="S1_R3">
+                        <div class="R3_time">於&nbsp;<u>{{$member->created_at}}</u>&nbsp;加入</div>
+                        <div class="R3_d">
+                            總消費金額$&nbsp;&nbsp;<span>{{$member->money_spent}}</span>&emsp;
+                            @if( $member->checkout_times > 0)
+                                每次平均消費金額$&nbsp;&nbsp;<span>{{ceil($member->money_spent / $member->checkout_times)}}</span>&emsp;
+                            @else
+                                每次平均消費金額$&nbsp;&nbsp;<span>0</span>&emsp;
+                            @endif
+                            {{-- 當日最高排名No.&nbsp;&nbsp;<span>1</span> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        <div class="row " style="position: relative;">
+            <div class="col-md-12">
+                
+                    <div class="card-body">
+                        <table class="table " id="order_detail" >
+                            <thead>
+                                <tr>
+                                    <th>訂單日期</th>
+                                    <th>訂單編號</th>
+                                    <th>訂單金額</th>
+                                    <th>訂單狀態</th>
+                                    <th>訂單詳情</th>
+                                </tr>
+                            </thead>
+
+                            <tbody >
+                            @foreach ($order as $order)
+                                <tr>
+                                    <th>{{$order->created_at}}</th>
+                                    <td>{{$order->order_id}}</td>
+                                    <td>{{$order->goods_total}}</td>
+                                    <td>{{$order->order_status}}</td>
+                                    <td><a href="{{ route('order_detail', ['order_id' => $order->order_id]) }}"><i class="fas fa-info-circle"></i></a></td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+               
+            </div>
+            <!-- <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-header">
+                            共計 1 樣商品
+                        </div>
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                商品總計
+                                <span class="currencyField">124</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                運費 ( 店到店 )
+                                <span class="currencyField">222</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                訂單金額
+                                <span class="currencyField">333</span>
+                            </li>
+                        </ul>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                            應付金額  <span class="currencyField">333</span>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        @stop 
+@section('footer')    
+
+
+<script>
+        $('#order_detail').DataTable({
+            "pagingType": "full_numbers",
+            "oLanguage": {
+                "sInfo": "共 _TOTAL_ 筆資料",
+                "oPaginate": {
+                    "sFirst":" ",
+                    "sPrevious": " ",
+                    "sNext":" ",
+                    "sLast":" "
+                }
+            }
+        });
+    </script>
 @stop
-@section('footer')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-            crossorigin="anonymous"></script>
-        <!-- Bootstrap JS -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-            crossorigin="anonymous"></script>
-        <!-- My JS -->
-        <script src="js/Live_go.js"></script>
-        <!-- 我新增的JS -->
-        <script src="js/list_mgnt.js"></script>
-        <!-- <script src="js/jquery-tablepage-1.0.js"></script> -->
-        <!-- <script src="js/moment.js"></script> -->
-        <!-- DataTable + Bootstrap 4  cdn引用-->
-        <script defer src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-        <script defer src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-@stop
+

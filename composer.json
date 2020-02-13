@@ -4,19 +4,28 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
+    "repositories": [
+          {
+             "type": "git",
+            "url": "https://github.com/kennychou3896/ecpay2in1"
+          }
+    ],
     "require": {
         "php": "^7.1.3",
+        "ext-gd": "*",
         "facebook/graph-sdk": "^5.6",
         "fideloper/proxy": "^4.0",
-        "flamelin/ecpay": "dev-master",
         "h4cc/wkhtmltoimage-amd64": "0.12.x",
         "h4cc/wkhtmltopdf-amd64": "0.12.x",
         "inwave/laravel-uploadcare": "^1.6",
         "laravel/framework": "5.6.*",
         "laravel/socialite": "^3.0",
         "laravel/tinker": "^1.0",
+        "maatwebsite/excel": "~3.1",
+        "phpoffice/phpspreadsheet": "^1.8",
         "tecnickcom/tcpdf": "^6.2",
-        "yish/imgur": "^1.0"
+        "yish/imgur": "^1.0",
+	    "kennychou3896/ecpay2in1": "dev-master"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

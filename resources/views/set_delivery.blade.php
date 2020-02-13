@@ -3,139 +3,126 @@
 @section('title','物流設定')
 
 
-@section('wrapper')
+    @section('wrapper')
 <div class="wrapper">
-    <div id="sidebar_page"></div>
-@stop
-@section('navbar')
+    @stop
+    @section('navbar')
     <!-- Page Content  -->
     <div id="content">
-        <div id="navbar_page"></div>
-        <!--Nav bar end-->
-@stop
-@section('content')
-@if (session('alert'))
-<script>
-    message_danger();
-</script>
-@endif
-        <div id="main" class="row">
-            <div class="col-md-12">
-                <form>
-                    <div class="card">
-                        <div class="card-body">
-                            <font class="align-middle">本島常溫宅配</font>
-
-                            <div class="onoffswitch1 float-right">
-                                <input type="checkbox" name="onoffswitch1" class="onoffswitch1-checkbox" id="TW_Microtherm_Shipment">
-                                <label class="onoffswitch1-label" for="TW_Microtherm_Shipment">
-                                    <span class="onoffswitch1-inner"></span>
-                                    <span class="onoffswitch1-switch"></span>
-                                </label>
-                            </div>
-                            <div class="float-right">
-                                <font class="align-middle text-right edit-money">$60</font>
-                                <i class="icofont icofont-edit align-middle edit-icon"></i>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <font class="align-middle">本島低溫宅配</font>
-                            <div class="onoffswitch1 float-right">
-                                <input type="checkbox" name="onoffswitch1" class="onoffswitch1-checkbox" id="TW_Homoeothermy_Shipment">
-                                <label class="onoffswitch1-label" for="TW_Homoeothermy_Shipment">
-                                    <span class="onoffswitch1-inner"></span>
-                                    <span class="onoffswitch1-switch"></span>
-                                </label>
-                            </div>
-                            <div class="float-right">
-                                <font class="align-middle text-right edit-money">$60</font>
-                                <i class="icofont icofont-edit align-middle edit-icon"></i>
+        @stop
+        @section('content')
+        <div class="container-fluid all_content overflow-auto" id="LogisticsSetting">
+            <div class="row">
+                <form class="w-100">
+                {{ csrf_field() }}
+                @foreach($ship_set as $ship_set)
+                    @if( $ship_set->ship_id < 50 || $ship_set->ship_id > 80)
+                        <div class="col-md-12" id="{{ $ship_set->ship_type }}">
+                            <div class="media bg-white p-4 rounded border">
+                                <div class="media-body">
+                                    {{ $ship_set->ship_type }}
+                                </div>
+                                <div class="mr-4" data-toggle="tooltip" data-placement="top" title="點選修改運費金額" onclick="Edit_Delivery_Price(this)">
+                                    
+                                    <span class="currencyField">{{ $ship_set->ship_price }}</span>
+                                    <input type="hidden" value="{{ $ship_set->ship_id }}">
+                                    <i class='fas'>&#xf044;</i>
+                                </div>
+                                <div class="m-auto">
+                                    <div class="custom-control custom-checkbox">
+                                        @if ($ship_set->is_active == 'true')
+                                            <input type="checkbox"  class="custom-control-input is-active" ship_id="{{ $ship_set->ship_id }}" id="{{ $ship_set->ship_id }}" checked>
+                                            <label class="custom-control-label" for="{{ $ship_set->ship_id }}"></label>
+                                        @else
+                                            <input type="checkbox" class="custom-control-input is-active" ship_id="{{ $ship_set->ship_id }}" id="{{ $ship_set->ship_id }}">
+                                            <label class="custom-control-label" for="{{ $ship_set->ship_id }}"></label>
+                                        @endif
+                                        
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <font class="align-middle">外島常溫宅配</font>
-                            <div class="onoffswitch1 float-right">
-                                <input type="checkbox" name="onoffswitch1" class="onoffswitch1-checkbox" id="Microtherm_Shipment">
-                                <label class="onoffswitch1-label" for="Microtherm_Shipment">
-                                    <span class="onoffswitch1-inner"></span>
-                                    <span class="onoffswitch1-switch"></span>
-                                </label>
+                    @else
+                        @if($if_ecpay == 'true')
+                        <div class="col-md-12" id="{{ $ship_set->ship_type }}">
+                            <div class="media bg-white p-4 rounded border">
+                                <div class="media-body">
+                                    {{ $ship_set->ship_type }}
+                                </div>
+                                <div class="mr-4" >
+                                    
+                                </div>
+                                <div class="m-auto">
+                                    <div class="custom-control custom-checkbox">
+                                        @if ($ship_set->is_active == 'true')
+                                            <input type="checkbox"  class="custom-control-input is-active" ship_id="{{ $ship_set->ship_id }}" id="{{ $ship_set->ship_id }}" checked>
+                                            <label class="custom-control-label" for="{{ $ship_set->ship_id }}"></label>
+                                        @else
+                                            <input type="checkbox" class="custom-control-input is-active" ship_id="{{ $ship_set->ship_id }}" id="{{ $ship_set->ship_id }}">
+                                            <label class="custom-control-label" for="{{ $ship_set->ship_id }}"></label>
+                                        @endif
+                                        
+                                    </div>
+                                </div>
                             </div>
-                            <div class="float-right">
-                                <font class="align-middle text-right edit-money">$60</font>
-                                <i class="icofont icofont-edit align-middle edit-icon"></i>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <font class="align-middle">外島常溫宅配</font>
-                            <div class="onoffswitch1 float-right">
-                                <input type="checkbox" name="onoffswitch1" class="onoffswitch1-checkbox" id="Homoeothermy_Shipment">
-                                <label class="onoffswitch1-label" for="Homoeothermy_Shipment">
-                                    <span class="onoffswitch1-inner"></span>
-                                    <span class="onoffswitch1-switch"></span>
-                                </label>
-                            </div>
-                            <div class="float-right">
-                                <font class="align-middle text-right edit-money">$60</font>
-                                <i class="icofont icofont-edit align-middle edit-icon"></i>
-                            </div>
-                        </div>
-
-                        <div class="card-body">
-                            <font class="align-middle">本島店到店常溫運送</font>
-                            <div class="onoffswitch1 float-right">
-                                <input type="checkbox" name="TW_Homoeothermy_711" class="onoffswitch1-checkbox" id="TW_Homoeothermy_711">
-                                <label class="onoffswitch1-label" for="TW_Homoeothermy_711">
-                                    <span class="onoffswitch1-inner"></span>
-                                    <span class="onoffswitch1-switch"></span>
-                                </label>
-                            </div>
-                            <div class="float-right">
-                                <font class="align-middle text-right edit-money">$60</font>
-                                <i class="icofont icofont-edit align-middle edit-icon"></i>
-                            </div>
-                        </div>
-
-                        <div class="card-body">
-                            <font class="align-middle">本島店到店低溫運送</font>
-                            <div class="onoffswitch1 float-right">
-                                <input type="checkbox" name="TW_Microtherm_711" class="onoffswitch1-checkbox" id="TW_Microtherm_711">
-                                <label class="onoffswitch1-label" for="TW_Microtherm_711">
-                                    <span class="onoffswitch1-inner"></span>
-                                    <span class="onoffswitch1-switch"></span>
-                                </label>
-                            </div>
-                            <div class="float-right">
-                                <font class="align-middle text-right edit-money">$60</font>
-                                <i class="icofont icofont-edit align-middle edit-icon run"></i>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            全館滿額運費設定
-                        </div>
-                    </div>
-                    <div class="form-row text-center mt-4">
-                        <div class="col-12">
-                            <button type="submit" id="btnEdit" class="btn btn-outline-success ">修改</button>
-                            <button type="submit" id="btnSubmit" class="btn btn-outline-success d-none">送出</button>
-                        </div>
-                    </div>
+                        </div> 
+                        @endif
+                    @endif
+                @endforeach
                 </form>
             </div>
         </div>
     </div>
     <!-- Cotent end-->
 </div>
+<script>
+    $( document ).ready(function() {
+        const driver = new Driver();
+
+        driver.defineSteps([
+                // {
+                //     element: '.col-md-12',
+                //     popover: {
+                //         title: '輸入滿額免運費優惠',
+                //         description: '可以搭配加價購商品來提升銷售量'   ,
+                //         position: 'bottom'
+                //     }
+                // },
+                {
+                    element: '.media .mr-4',
+                    popover: {
+                        title: '點選設定金額',
+                        description: '輸入金額',
+                        position: 'left-bottom'
+                    }
+                },
+                {
+                    element: '.media .m-auto',
+                    popover: {
+                        title: '是否開啟',
+                        description: '勾選後為開啟此選項',
+                        position: 'left-bottom'
+                    }
+                },
+                {
+                    element: '#本島常溫宅配',
+                    popover: {
+                        title: '設定運送模式',
+                        description: '必須開啟一個選項，否則買家無法結帳',
+                        position: 'bottom'
+                    }
+                },
+                
+            ]);
+
+        document.querySelector('#help_me').addEventListener('click', function (e) {
+            e.preventDefault();
+        e.stopPropagation();
+        driver.start();
+        });
+    });
+</script>
 @stop 
 @section('footer')
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-        crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-        crossorigin="anonymous"></script>
-    <!-- My JS -->
-    <script src="js/Live_go.js"></script>
-    <!--alertify-->
-    <script src="js/Live_go.js"></script>
+    
 @stop

@@ -1,0 +1,583 @@
+@charset "UTF-8";
+/* @font-face {
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/Karla/Karla-Regular.eot");
+  src: url("../fonts/Karla/Karla-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/Karla/Karla-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Karla";
+  font-style: bold;
+  font-weight: 700;
+  src: url("../fonts/Karla/Karla-Bold.eot");
+  src: url("../fonts/Karla/Karla-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/Karla/Karla-Bold.ttf") format("truetype");
+} */
+/* line 25, ../sass/joyce.sass */
+.flex {
+  display: flex;
+}
+
+/* line 27, ../sass/joyce.sass */
+.flex-center-start {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* line 32, ../sass/joyce.sass */
+ul {
+  list-style: none;
+}
+
+/* line 35, ../sass/joyce.sass */
+a:hover {
+  background-color: transparent;
+}
+
+/* line 38, ../sass/joyce.sass */
+h4, p, span, h2, h3, h5, h6, ul {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-family: "Noto Sans TC", "WenQuanYi Zen Hei", "Heiti TC", Helvetica, "Microsoft YaHei", "Microsoft JhengHei", Arial, sans-serif;
+}
+
+/* line 43, ../sass/joyce.sass */
+.ml15 {
+  margin-left: 15px;
+}
+
+/* line 46, ../sass/joyce.sass */
+.ml30 {
+  margin-left: 30px;
+}
+
+/* line 49, ../sass/joyce.sass */
+.ml5 {
+  margin-left: 5px;
+}
+
+/* line 52, ../sass/joyce.sass */
+.mr5 {
+  margin-right: 5px;
+}
+
+/* line 54, ../sass/joyce.sass */
+.mt10 {
+  margin-top: 10px;
+}
+
+/* line 57, ../sass/joyce.sass */
+.w75 {
+  width: 75%;
+}
+
+/* line 60, ../sass/joyce.sass */
+.btn {
+  border-radius: 10px;
+}
+
+/* line 63, ../sass/joyce.sass */
+#content {
+  padding: 0;
+}
+
+/* line 65, ../sass/joyce.sass */
+.intro {
+  padding: 1.5rem 2.3rem;
+  background-color: #F4F4F4;
+}
+/* line 68, ../sass/joyce.sass */
+.intro .shopIMG {
+  border-radius: 100%;
+  width: 100px;
+  height: 100px;
+}
+
+/* line 73, ../sass/joyce.sass */
+#shop_intro {
+  justify-content: space-between;
+}
+/* line 75, ../sass/joyce.sass */
+#shop_intro img:not(.shopIMG) {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+}
+/* line 81, ../sass/joyce.sass */
+#shop_intro .introLeft .introTitle {
+  padding: 10px 20px;
+}
+@media (max-width: 991.98px) {
+  /* line 81, ../sass/joyce.sass */
+  #shop_intro .introLeft .introTitle {
+    padding: 10px 0px 10px 10px;
+  }
+}
+/* line 85, ../sass/joyce.sass */
+#shop_intro .introLeft .subTitle {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 5px;
+}
+/* line 90, ../sass/joyce.sass */
+#shop_intro .introLeft .subTitle h6 {
+  color: #c72c41;
+  font-weight: 700;
+  padding: 0 10px 0 0px;
+  border-right: 1px solid #d4d7dd;
+}
+/* line 95, ../sass/joyce.sass */
+#shop_intro .introLeft .liveIcon {
+  border: 2px solid #c72c41;
+  color: #c72c41;
+  padding: 2px;
+  margin-right: 5px;
+}
+/* line 100, ../sass/joyce.sass */
+#shop_intro .introLeft .iconBox {
+  padding: 0 10px;
+}
+/* line 103, ../sass/joyce.sass */
+#shop_intro .introRight {
+  padding: 10px 10px 0px 10px;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 991.98px) {
+  /* line 103, ../sass/joyce.sass */
+  #shop_intro .introRight {
+    flex-direction: row;
+    align-items: baseline;
+  }
+  /* line 110, ../sass/joyce.sass */
+  #shop_intro .introRight h5 {
+    margin-left: 30px;
+  }
+}
+@media (max-width: 991.98px) {
+  /* line 112, ../sass/joyce.sass */
+  #shop_intro .introRight .input-group {
+    width: 50%;
+  }
+}
+/* line 115, ../sass/joyce.sass */
+#shop_intro .introRight .input-group .input-group-text, #shop_intro .introRight .input-group .form-control {
+  border: none;
+  background-color: #fff;
+}
+/* line 118, ../sass/joyce.sass */
+#shop_intro .introRight .input-group .form-control {
+  margin: 0;
+}
+/* line 120, ../sass/joyce.sass */
+#shop_intro .introRight h5 {
+  text-align: right;
+  font-weight: bold;
+}
+/* line 123, ../sass/joyce.sass */
+#shop_intro .introRight h5 span {
+  font-size: 1.6em;
+}
+/* line 126, ../sass/joyce.sass */
+#shop_intro .introRight .introTitle {
+  padding: 10px 0px;
+}
+
+/* line 130, ../sass/joyce.sass */
+#itemBlock {
+  margin-top: 50px;
+  background-color: #F4F4F4;
+  padding: 50px;
+}
+/* line 134, ../sass/joyce.sass */
+#itemBlock .goods {
+  cursor: pointer;
+  margin: 0 5px 30px;
+  border: 1px solid #cccccc;
+}
+/* line 138, ../sass/joyce.sass */
+#itemBlock .goods:hover {
+  border: 2px solid #999999;
+}
+/* line 140, ../sass/joyce.sass */
+#itemBlock .goods .goodsTitle, #itemBlock .goods .goodsDetail {
+  background-color: #fff;
+}
+/* line 142, ../sass/joyce.sass */
+#itemBlock .goods .imgBlock {
+  position: relative;
+  z-index: 1;
+}
+/* line 145, ../sass/joyce.sass */
+#itemBlock .goods .imgBlock .flags {
+  position: absolute;
+  right: -10px;
+  top: 20px;
+}
+/* line 151, ../sass/joyce.sass */
+#itemBlock .goods .goodsTitle {
+  padding: 15px;
+  border-bottom: 1px solid #cccccc;
+}
+/* line 154, ../sass/joyce.sass */
+#itemBlock .goods .goodsTitle h4 {
+  line-height: 35px;
+}
+/* line 156, ../sass/joyce.sass */
+#itemBlock .goods .goods_img {
+  width: 100%;
+}
+/* line 159, ../sass/joyce.sass */
+#itemBlock .goods .goodsDetail {
+  padding: 10px;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+@media (max-width: 1493.98px) {
+  /* line 164, ../sass/joyce.sass */
+  #itemBlock .goods span {
+    font-size: 1em;
+  }
+  /* line 166, ../sass/joyce.sass */
+  #itemBlock .goods h4 {
+    font-size: 18px;
+  }
+}
+@media (max-width: 991.98px) {
+  /* line 170, ../sass/joyce.sass */
+  #itemBlock .goods span {
+    font-size: 16px;
+  }
+  /* line 172, ../sass/joyce.sass */
+  #itemBlock .goods h4 {
+    font-size: 22px;
+  }
+}
+
+/* line 177, ../sass/joyce.sass */
+.goodsIntro {
+  position: relative;
+  background-color: #fff;
+  padding: 30px;
+  margin: 15px;
+}
+/* line 182, ../sass/joyce.sass */
+.goodsIntro .closeBtn {
+  position: absolute;
+  right: 20px;
+  top: 5px;
+  font-size: 2em;
+}
+/* line 187, ../sass/joyce.sass */
+.goodsIntro .picsBox {
+  width: 25%;
+  position: relative;
+}
+/* line 190, ../sass/joyce.sass */
+.goodsIntro .picsBox .pics {
+  width: 100%;
+}
+@media (min-width: 768px) {
+  /* line 190, ../sass/joyce.sass */
+  .goodsIntro .picsBox .pics {
+    margin-bottom: 20px;
+  }
+}
+/* line 195, ../sass/joyce.sass */
+.goodsIntro .picsBox .picsmask {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+/* line 203, ../sass/joyce.sass */
+.goodsIntro .picsBox .picsmask p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  text-align: center;
+  color: #ffffff;
+  font-size: 1.4em;
+  font-weight: 400;
+}
+/* line 212, ../sass/joyce.sass */
+.goodsIntro .picsBox .picsmask:before {
+  content: "";
+  font-family: "fontawesome";
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #ffffff;
+  font-size: 2em;
+}
+/* line 221, ../sass/joyce.sass */
+.goodsIntro .picsBox .picsmask:after {
+  content: "";
+  font-family: "fontawesome";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #ffffff;
+  font-size: 2em;
+}
+/* line 230, ../sass/joyce.sass */
+.goodsIntro .picsBox .picsmask:hover {
+  opacity: 1;
+  transition-duration: 0.5s;
+}
+/* line 236, ../sass/joyce.sass */
+.goodsIntro .info {
+  padding: 0 35px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+@media (max-width: 767.98px) {
+  /* line 236, ../sass/joyce.sass */
+  .goodsIntro .info {
+    padding: 0;
+  }
+  /* line 243, ../sass/joyce.sass */
+  .goodsIntro .info .goodscontent {
+    padding: 0px;
+  }
+  /* line 245, ../sass/joyce.sass */
+  .goodsIntro .info h2 {
+    font-size: 25px;
+  }
+  /* line 247, ../sass/joyce.sass */
+  .goodsIntro .info .goodsheader {
+    margin: 15px 0;
+  }
+}
+/* line 249, ../sass/joyce.sass */
+.goodsIntro .goodsheader {
+  align-items: flex-end;
+}
+/* line 251, ../sass/joyce.sass */
+.goodsIntro .goodscontent {
+  padding: 20px 50px 20px 0px;
+}
+/* line 253, ../sass/joyce.sass */
+.goodsIntro .goodsfooter {
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+/* line 257, ../sass/joyce.sass */
+.goodsIntro .goodsfooter .selectBlock {
+  align-items: center;
+}
+@media (max-width: 767.98px) {
+  /* line 257, ../sass/joyce.sass */
+  .goodsIntro .goodsfooter .selectBlock {
+    flex-wrap: wrap;
+  }
+}
+/* line 261, ../sass/joyce.sass */
+.goodsIntro .goodsfooter select {
+  width: 70%;
+  max-width: 200px;
+}
+/* line 264, ../sass/joyce.sass */
+.goodsIntro .goodsfooter span {
+  margin: 10px;
+}
+/* line 267, ../sass/joyce.sass */
+.goodsIntro .goodsfooter .select-btn li {
+  cursor: pointer;
+  padding: 3px 12px;
+  border: 1px solid #BEBAB6;
+  margin: 5px;
+  border-radius: 5px;
+  line-height: 25px;
+}
+/* line 274, ../sass/joyce.sass */
+.goodsIntro .goodsfooter .select-btn li:hover {
+  border: 1px solid #2c7873;
+  color: #2c7873;
+}
+/* line 278, ../sass/joyce.sass */
+.goodsIntro .goodsfooter .select-btn li a:hover {
+  background-color: #ffffff;
+}
+/* line 280, ../sass/joyce.sass */
+.goodsIntro .goodsfooter .price {
+  font-size: 2em;
+  margin-right: 30px;
+}
+
+/* line 287, ../sass/joyce.sass */
+.flags {
+  padding: 10px 20px;
+  background-color: #c72c41;
+  position: relative;
+}
+/* line 291, ../sass/joyce.sass */
+.flags:before {
+  background-color: #731a26;
+  position: absolute;
+  right: 0px;
+  z-index: -1;
+  display: block;
+  content: "";
+  width: 30px;
+  height: 45px;
+}
+/* line 300, ../sass/joyce.sass */
+.flags p {
+  color: #fff;
+  font-weight: 700;
+}
+/* line 303, ../sass/joyce.sass */
+.flags:after {
+  position: absolute;
+  width: 94%;
+  height: 43px;
+  content: "";
+  border: 2px dashed #fff;
+  top: 3px;
+  left: 3px;
+}
+@media (max-width: 1199.98px) {
+  /* line 287, ../sass/joyce.sass */
+  .flags {
+    padding: 5px 10px;
+  }
+  /* line 314, ../sass/joyce.sass */
+  .flags p {
+    font-size: 0.9em;
+  }
+  /* line 316, ../sass/joyce.sass */
+  .flags:after {
+    height: 28px;
+  }
+  /* line 318, ../sass/joyce.sass */
+  .flags:before {
+    height: 32px;
+  }
+}
+
+/* line 321, ../sass/joyce.sass */
+.greenFlag {
+  background-color: #357376;
+}
+/* line 323, ../sass/joyce.sass */
+.greenFlag:before {
+  background-color: #152e30;
+}
+
+/* line 325, ../sass/joyce.sass */
+.orangeFlag {
+  background-color: #eb8242;
+}
+/* line 327, ../sass/joyce.sass */
+.orangeFlag:before {
+  background-color: #b45013;
+}
+
+/* line 329, ../sass/joyce.sass */
+.blueFlag {
+  background-color: #293a80;
+}
+/* line 331, ../sass/joyce.sass */
+.blueFlag:before {
+  background-color: #101733;
+}
+
+/* line 334, ../sass/joyce.sass */
+.form-control {
+  background-color: #fff;
+}
+
+/* line 336, ../sass/joyce.sass */
+.form-group {
+  margin: 0;
+}
+
+/* line 339, ../sass/joyce.sass */
+.lastgoods, .price {
+  margin: 0 5px;
+  font-size: 1.6em;
+  font-weight: 400;
+  font-family: "Karla";
+}
+
+/* line 346, ../sass/joyce.sass */
+.popover-mask {
+  z-index: 9997;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  opacity: 0.4;
+  display: none;
+}
+
+/* line 358, ../sass/joyce.sass */
+.popover {
+  z-index: 9998;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 364, ../sass/joyce.sass */
+#slide-window {
+  z-index: 9999;
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  max-width: 100%;
+  max-height: 100%;
+  background-color: #fff;
+  display: none;
+}
+/* line 374, ../sass/joyce.sass */
+#slide-window span {
+  position: absolute;
+  color: #ffffff;
+  transform: translateY(-50%);
+  top: 50%;
+  font-size: 3em;
+}
+/* line 380, ../sass/joyce.sass */
+#slide-window span:hover {
+  color: #cccccc;
+}
+/* line 382, ../sass/joyce.sass */
+#slide-window #left {
+  left: -10%;
+}
+/* line 384, ../sass/joyce.sass */
+#slide-window #right {
+  right: -10%;
+}
+/* line 386, ../sass/joyce.sass */
+#slide-window #close {
+  top: 5px;
+  right: -15px;
+}
+
+/* line 389, ../sass/joyce.sass */
+#slides {
+  z-index: 1000;
+  overflow: hidden;
+}
+/* line 392, ../sass/joyce.sass */
+#slides li {
+  transition-duration: 0.5s;
+}

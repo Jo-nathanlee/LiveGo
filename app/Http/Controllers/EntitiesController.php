@@ -274,7 +274,7 @@ class EntitiesController extends Controller
 
 
 
-        return redirect()->back()->with('alert', '成功!');
+        return redirect()->back()->with('success', '修改商品成功!');
     }
 
     //Insert商城商品
@@ -310,11 +310,11 @@ class EntitiesController extends Controller
             $shop->status=$status;
             $shop->save();
 
-            return redirect()->back()->with('alert', '成功!');
+            return redirect()->back()->with('success', '新增商品成功！');
         }
         else
         {
-            return redirect()->back()->with('alert', '失敗!');
+            return redirect()->back()->with('fail', '內部連線錯誤，請稍後再試！');
         }
     }
 
@@ -359,11 +359,11 @@ class EntitiesController extends Controller
            
             $StramingProduct->save();
 
-            return redirect()->back()->with('alert', '成功!');
+            return redirect()->back()->with('success', '設定商品成功!');
         }
         else
         {
-            return redirect()->back()->with('alert', '失敗!');
+            return redirect()->back()->with('fail', '內部連線錯誤，請稍後再試！');
         }
     }
 

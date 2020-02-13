@@ -3,20 +3,20 @@
 <head>
     <title>@yield('title')</title>
     @section('head')
-        @include('PartialLayout.head')
+        @include('PartialLayout.head_new')
     @show
 
-    @yield('heads')
+    @yield('head_extension')
 
 </head>
 
 <body>
     @yield('wrapper')
-    @include('PartialLayout.sidebar_page')
+    @include('PartialLayout.sidebar_new')
     @yield('navbar')
-    @include('PartialLayout.navbar_page')
+    @include('PartialLayout.navbar')
     @yield('content')
     @yield('footer')
-
+    @include('PartialLayout.footer_new')
 </body>
 </html>

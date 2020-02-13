@@ -9,7 +9,7 @@ class OrderDetail extends Model
     public $table = 'order_detail';
 
     protected $fillable = [
-        'page_id', 'page_name', 'buyer_fbid','buyer_fbname', 'buyer_name', 'order_id', 'transaction_date', 'status','freight',
-         'all_total','goods_total', 'buyer_address','buyer_phone','note','delivery_type'
+        'id','page_id','ps_id','receiver_name','order_id','transaction_date','status','other_status','address',
+        'cellphone','note','created_at','updated_at','delivery_type','pay_id','freight','goods_total','buyer_bankcode'
     ];
 }

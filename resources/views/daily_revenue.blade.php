@@ -2,12 +2,6 @@
 
 @section('title','日營收')
 @section('heads')
-    <!-- datatable + bootstrap 4  -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-    <!--chart js-->
-    <script src="js/Chart.bundle.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <style>
         canvas {
             -moz-user-select: none;
@@ -15,67 +9,125 @@
             -ms-user-select: none;
         }
     </style>
-   
 @stop
 
 @section('wrapper')
 <div class="wrapper">
-    <div id="sidebar_page"></div>
 @stop
 @section('navbar')
     <!-- Page Content  -->
     <div id="content">
-        <div id="navbar_page"></div>
         <!--Nav bar end-->
-@stop
-@section('content')
-@if (session('alert'))
-<script>
-    message_danger();
-</script>
-@endif
-        <div id="main" class="row">
-            <div class="col-offset-1 col-md-10 chartheight mb-4">
-                <canvas id="canvas"></canvas>
-            </div>
-            <div class="col-offset-1 col-md-10 charttable mb-4">
-                <table class="table table-striped " id="table_source">
-                    <thead>
-                        <tr>
-                            <th scope="col">日期</th>
-                            <th scope="col">日收益</th>
-                            <th scope="col">日成長額</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for($i=0;$i<(count($date));$i++)
-                        <tr>
-                            <th scope="row">{{ $date[$i] }}</th>
-                            <td>{{ $amount[$i] }}</td>
-                            @if($i!=0)
-                            <td>{{ (int)($amount[$i])-(int)($amount[$i-1]) }}</td>
-                            @else
-                            <td>0</td>
-                            @endif
-                            <td>
-                                <button type="button" class="btn btn-info">列印</button>
-                            </td>
-                        </tr>
-                       @endfor
-                    </tbody>
-
-                </table>
+        @stop
+        @section('content')
+        <div class="container-fluid all_content overflow-auto" id="Day_Neticome">
+            <div class="row">
+                <div class="col-md-7 all_content">
+                    <canvas id="canvas"></canvas>
+                </div>
+                <div class="col-md-5 all_content  overflow-auto">
+                    <table class="table table-striped " id="table_source">
+                        <thead>
+                            <tr>
+                                <td class="d-none">1</td>
+                                <th scope="col">日期</th>
+                                <th scope="col">日收益</th>
+                                <th scope="col">日成長額</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for($i=0;$i<(count($date));$i++)
+                            <tr>
+                                <td class="d-none">1</td>
+                                <th scope="row">{{ $date[$i] }}</th>
+                                <td>{{ $amount[$i] }}</td>
+                                @if(($i+1)!=count($date))
+                                    <td>{{ (int)($amount[$i])-(int)($amount[$i+1]) }}</td>
+                                @else
+                                    <td>0</td>
+                                @endif
+                                @if($amount[$i]!=0)
+                                    <td>
+                                        <a href="{{route('daily_revenue_pdf', ['key' =>$date[$i] ])}}" class="btn btn-info">列印</a>
+                                    </td>
+                                @else
+                                    <td>
+                                        <button type="button" class="btn btn-info" disabled>列印</button>
+                                    </td>
+                                @endif
+                            </tr>
+                            @endfor
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
     <!-- Cotent end-->
 </div>
+<script>
+    $( document ).ready(function() {
+        const driver = new Driver();
+
+        driver.defineSteps([
+                {
+                    element: '#canvas',
+                    popover: {
+                        title: '日成長報表',
+                        description: '可以觀看每日收益情形，進而分析直播適合日期與時間',
+                        position: 'right'
+                    }
+                },
+                {
+                    element: '.dataTables_length',
+                    popover: {
+                        title: '選取資料筆數',
+                        description: '調整日營收筆數',
+                        position: 'bottom'
+                    }
+                },
+                {
+                    element:'#table_source_filter',
+                    popover: {
+                        title: '快速尋找日期',
+                        description: '只需輸入關鍵字即可！',
+                        position: 'bottom'
+                    }
+                },
+                {
+                    element: '#table_source',
+                    popover: {
+                        title: '查看每日收益情況',
+                        description: '可以查看每日營收資訊',
+                        position: 'left'
+                    }
+                },
+                {
+                    element: '.btn.btn-info',
+                    popover: {
+                        title: '點選列印',
+                        description: '列印當日收益情形，如無收益則無法列印',
+                        position: 'left-bottom'
+                    }
+                }
+            ]);
+
+        document.querySelector('#help_me').addEventListener('click', function (e) {
+            e.preventDefault();
+        e.stopPropagation();
+        driver.start();
+        });
+    });
+
+   
+</script>
 @stop
 
 @section('footer')
+<script src="js/Chart.bundle.min.js"></script>
+    <script src="js/utils.js"></script>
     <script>
-
         var day_income_data = [];
         var average_income_data = [];
         var chart_title = 'Watch Live Boxer - 日成長報表';
@@ -87,7 +139,8 @@
             daily_date.push('{{ date("m-d", strtotime( (string)$date[$i]))  }} ');
             day_income_data.push( {{ $amount[$i] }} );
         @endfor
-
+        daily_date = daily_date.reverse();
+        day_income_data= day_income_data.reverse();
         var average_income=0;
         for(var i =0;i<day_income_data.length;i++){
             average_income+=parseInt(day_income_data[i]);
@@ -158,16 +211,5 @@
         };
 
     </script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-        crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-        crossorigin="anonymous"></script>
-    <!-- My JS -->
-    <script src="js/Live_go.js"></script>
 
-    <!-- DataTable + Bootstrap 4  cdn引用-->
-    <script defer src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script defer src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 @stop            

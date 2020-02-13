@@ -27,12 +27,12 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('seller-only', function ($user) {
-            $ifSeller=Page::where('fb_id', $user->fb_id)->count();
+            $ifSeller=Page::where('as_id', $user->fb_id)->count();
             if($ifSeller>0)
             {
                 return true;
             }
-            return false;
+            return redirect('/');
         });
     }
 }

@@ -1,0 +1,527 @@
+.pointer {
+    cursor: pointer;
+}
+
+.bg-gray {
+    background-color: #F5F5F5 !important;
+}
+
+.inset-shadow{
+    box-shadow: inset 0px 0px 20px rgba(192, 191, 191, 0.9)
+}
+
+.live_goods{
+    height: 6rem !important;
+    width: 6rem;
+}
+
+.list-none-type{
+    list-style-type:none;
+}
+.dropdown-toggle::after { 
+    content: none; 
+} 
+
+#facebook_comment{
+    height: calc(100vh - 8rem - 150px);
+    overflow-y: auto
+}
+
+#Upload_Img,#Edit_Img,#prize_Input{
+    background-color: whitesmoke;
+    border:3px #DDDDDD dashed;
+    width: 15rem;
+    height: 15rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#Upload_Img:before , #Edit_Img:before ,#prize_Input:before{
+    color: #888888;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    content: "✙點選新增商品";
+}
+
+#Upload_Img:hover:before, #Edit_Img:before ,#prize_Input:before{
+    color: #000000;
+}
+
+#Upload_Img:hover, #Edit_Img:hover ,#prize_Input:hover{
+    border:3px #AAAAAA dashed;
+}
+#Upload_Input, #prize_image, #Edit_Input{
+    width: 15rem;
+    height: 15rem;
+    position: absolute;
+    z-index: 500;
+}
+
+.New_Img{
+    width: 15rem;
+    height: 15rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-size: 100%;
+}
+.r-45{
+    -ms-transform: rotate(45deg); /* IE 9 */
+    -webkit-transform: rotate(45deg); /* Safari 3-8 */
+    transform: rotate(45deg);
+}
+
+#PickGoods li:hover{
+    background-color: #F5F5F5 !important;
+}
+
+#PickGoods li:hover:after{
+    content: "✚ 挑選";
+    color: 	#00BBFF;
+}
+
+#CheckedGoods li:hover:after{
+    content: "🗑 刪除";
+    color: 	tomato;
+}
+
+#live_shop{
+    max-height: calc(100vh - 8rem - 426px);
+    overflow-y: auto;
+}
+
+.half{
+    transform: scale(0.5, 0.5);
+}
+
+.eighty_percent{
+    transform: scale(0.8, 0.8);
+}
+
+.seventy_percent{
+    transform: scale(0.7, 0.7);
+}
+
+.middle{
+    vertical-align: middle;
+}
+
+.table tr td{
+    vertical-align: middle;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider-danger {
+    background-color: rgb(243, 33, 33);
+  }
+  
+  input:focus + .slider-danger {
+    box-shadow: 0 0 1px rgb(243, 33, 33);
+  }
+  
+  input:checked + .slider-primary {
+    background-color: rgb(33, 100, 243);
+  }
+
+  input:checked + .slider-primary {
+    background-color: rgb(33, 100, 243);
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+
+  /* step */
+  .stepwizard-step p {
+    margin-top: 0px;
+    color:#666;
+}
+.stepwizard-row {
+    display: table-row;
+}
+.stepwizard {
+    display: table;
+    width: 100%;
+    position: relative;
+}
+
+.stepwizard .btn.disabled, .stepwizard .btn[disabled], .stepwizard fieldset[disabled] .btn {
+    opacity:1 !important;
+    color:#bbb;
+}
+.stepwizard-row:before {
+    top: 14px;
+    bottom: 0;
+    position: absolute;
+    content:" ";
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    z-index: 0;
+}
+.stepwizard-step {
+    display: table-cell;
+    text-align: center;
+    position: relative;
+}
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+}
+
+.rem-1{
+    width: 1rem;
+    height: 1rem;
+}
+
+.rem-2{
+    width: 2rem;
+    height: 2rem;
+}
+
+.mh-10rem{
+    height: 10rem;
+}
+
+.pic-35px{
+    height: 35px;
+    width: 35xpx;
+}
+
+#button_panel button{
+    background-size: 200%;
+    font-weight: bolder;
+    color: white !important;
+}
+
+#button_panel img{
+    width: 5rem;
+    height: 5rem;
+    position: relative;
+}
+
+#button_panel img:not(:last-child){
+    top:-1rem;
+}
+
+
+th .ck_box{
+    border-radius: 0% !important;
+    width: 15px !important;
+    height: 15px !important;
+}
+th  .ck_box img{
+
+    transform: scale(1);
+    width: 15px !important;
+    height: 15px !important;
+}
+
+
+.btn-yellow {
+ 
+    background-color: #EF9149 !important;
+    letter-spacing: 2px;
+    font-family: "微軟正黑體";
+    font-weight: bold;
+  }
+  .btn-green {
+ 
+    background-color: #009944 !important;
+    letter-spacing: 2px;
+    font-family: "微軟正黑體";
+    font-weight: bold;
+  }
+
+  .btn-blue {
+ 
+    background-color: #0075AA !important;
+    letter-spacing: 2px;
+    font-family: "微軟正黑體";
+    font-weight: bold;
+  }
+
+ .custom-file-label::after{
+    content: "瀏覽" !important; 
+    background-color: #b3b3b3 !important;
+    color: white !important;
+  }
+
+  .excel_font{
+    color: rgb(131, 131, 131);
+    text-decoration: underline;
+    font-weight: bolder;
+  }
+
+
+
+  .dtr-details li{
+      list-style-type:none;
+  }
+
+  .center-block {
+    display: table-cell;  /* Instead of display:block */
+    margin-left: auto;
+    margin-right: auto;
+    }   
+
+    .progressbar-wrapper {
+        width: 100%;
+        padding-top: 30px;
+        padding-bottom: 30px;
+      }
+      .progressbar {
+          counter-reset: step;
+      }
+      .progressbar li.active:before {
+        color: #EEEEEE;
+        font-weight: bold;
+        -webkit-text-stroke-width: 0.5px;
+        -webkit-text-stroke-color: #464646;
+      }
+      .progressbar li {
+        list-style-type: none;
+        width: 20%;
+        float: left;
+        font-size: 1.5em;
+        position: relative;
+        text-align: center;
+        text-transform: uppercase;
+        color: #464646;
+      }
+      
+      .progressbar li.active:before {
+        background: #464646 url(user.svg) no-repeat center center;
+        background-size: 60%;
+      }
+      
+      .progressbar li.active:before {
+        border-color: #EEEEEE;
+      }
+      
+      .progressbar li:before {
+        content: counter(step) !important;
+        counter-increment: step;
+      }
+      
+      .progressbar li::before {
+        background: #EEEEEE url(user.svg) no-repeat center center;
+        background-size: 60%;
+      }
+      
+      .progressbar li:before {
+        width: 100px;
+        height: 100px;
+        content: "";
+        line-height: 90px;
+        border: 0.2em solid #EEEEEE;
+        display: block;
+        text-align: center;
+        margin: 0 auto 3px auto;
+        border-radius: 50%;
+        position: relative;
+        z-index: 2;
+      }
+      
+      .progressbar li:first-child:after {
+        content: none;
+      }
+      .progressbar li:after {
+        width: 100%;
+        height: 15px;
+        content: ' ';
+        position: absolute;
+        background-color: #EEEEEE;
+        top: 45px;
+        left: -50%;
+        z-index: 0;
+      }
+      
+      .progressbar li.active + li:after {
+        background-image: linear-gradient(#EEEEEE,#EEEEEE,#EEEEEE, #464646,#464646,#464646,#464646,#EEEEEE,#EEEEEE,#EEEEEE);
+      
+      }
+      
+      @media (min-width: 990px) and (max-width: 1200px) { 
+        #live_shop {
+            height: calc(100vh - 8rem );
+            overflow-y: auto;
+        }
+      }
+    
+
+      @media (min-width: 576px) {
+        .card-deck .card {
+            min-width: 50.1%; /* 1 Column */
+            margin-bottom: 12px;
+        }
+      }
+      
+      @media (min-width: 768px) {
+        .card-deck .card {
+            min-width: 33.4%;  /* 2 Columns */
+        }
+      }
+      
+      @media (min-width: 992px) {
+        .card-deck .card {
+          min-width: 33.4%;  /* 2 Columns */
+        }
+      }
+      
+      @media (min-width: 1200px) {
+        .card-deck .card {
+            min-width: 20.1%;  /* 4 Columns */
+        }
+      }
+      
+      .over-text{
+        white-space:nowrap; 
+        width:100%; 
+        overflow:hidden;
+        text-overflow:ellipsis;
+      }
+      
+      .product {
+        vertical-align: middle;
+        width: 2.5em;
+        height: 2.5em;
+        border-radius: 50%;
+      }
+      break{
+        flex-basis: 100%;
+        width: 0px; 
+        height: 0px; 
+        overflow: hidden;
+      }
+      
+      #order_arrange li{
+        border-color: #6c757d2d;border-width: 1.5px;
+      }
+        /* Base for label styling */
+        .or_ck_label {
+          position: relative;
+          margin-left: 0px;
+      }
+
+      .or_ck_label {
+          -webkit-user-select: none;
+          /* for Chrome */
+      }
+
+      .or_ck_label [type="checkbox"]:not(:checked),
+      .or_ck_label [type="checkbox"]:checked {
+          position: absolute;
+          /* left: -9999px; */
+          /* display: none; */
+          opacity: 0;
+          z-index: 100;
+          width: 1.25em;
+          height: 1.25em;
+
+      }
+
+      .or_ck_label [type="checkbox"]:not(:checked)+label,
+      .or_ck_label [type="checkbox"]:checked+label {
+          /* position: relative; */
+          width: 1.25em;
+          height: 1.25em;
+          margin: 0;
+          margin-right: 0.5em;
+          cursor: pointer;
+      }
+
+      /* checkbox aspect */
+      .or_ck_label [type="checkbox"]:not(:checked)+label:before,
+      .or_ck_label [type="checkbox"]:checked+label:before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1.25rem;
+          height: 1.25rem;
+          border: 2px solid #ccc;
+          background: #fff;
+          border-radius: 1px;
+      }
+
+      /* checked mark aspect */
+      .or_ck_label [type="checkbox"]:not(:checked)+label:after,
+      .or_ck_label [type="checkbox"]:checked+label:after {
+          content: '\2713\0020';
+          position: absolute;
+          top: -.2rem;
+          left: .1rem;
+          font-size: 1.8rem;
+          line-height: 0.8;
+          color: #222;
+          transition: all .2s;
+      }
+
+      /* checked mark aspect changes */
+      .or_ck_label [type="checkbox"]:not(:checked)+label:after {
+          opacity: 0;
+          transform: scale(0);
+      }
+
+      .or_ck_label [type="checkbox"]:checked+label:after {
+          opacity: 1;
+          transform: scale(1);
+      }

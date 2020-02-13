@@ -4,140 +4,134 @@
 
    
 @section('heads')
-    <!-- 我新增的 CSS -->
-    <link rel="stylesheet" href="css/list_mgnt.css">
-     <!-- datatable + bootstrap 4  -->
-     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 @stop
 
 
 @section('wrapper')
 <div class="wrapper">
-    <div id="sidebar_page"></div>
 @stop
 @section('navbar')
     <!-- Page Content  -->
     <div id="content" class="Microsoft">
-        <div id="navbar_page"></div>
-        <!--Nav bar end-->
-@stop
-@section('content')
-@if (session('alert'))
-<script>
-    message_danger();
-</script>
-@endif
-        <div class="container-fluid mt-3 mb-3 ">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <div class="media">
-                        <img class="d-flex mr-3 rounded-circle user_pic" src="https://graph.facebook.com/{{ $order_detail->buyer_fbid }}/picture">
-                        <div class="media-body">
-                            <h5 class="mt-0">
-                                <font class="text-secondary"><b>{{ $order_detail->buyer_fbname }}</b></font>
-                            </h5>
-                            <font class="text-secondary">{{ $order_detail->buyer_fbid }}</font>
+        @stop
+        @section('content')
+        <div class="container-fluid all_content overflow-auto" id="List_Manage_Detail">
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="card" id="memberinformation">
+                        <div class="media card-body">
+                            <img class="d-flex mr-3" src="https://graph.facebook.com/{{ $order_detail->buyer_fbid }}/picture">
+                            <div class="media-body">
+                                <h5 class="mt-0 text-truncate">{{ $order_detail->buyer_name }}</h5>
+                                <small class="text-truncate">
+                                    <i class='fas mr-2'>&#xf3c5;</i>買家電話/收件地址：{{ $order_detail->buyer_phone }}/{{ $order_detail->buyer_address }}</small>
+                            </div>
                         </div>
                     </div>
-                    <div class="media mt-3 border-top pt-3">
-                        <div class="media-body">
-                            <h5 class="mt-0">
-                                <i class="icofont icofont-numbered"></i> 
-                                <b>訂單編號</b>
-                                <font id="order_id" class="text-secondary">{{ $order_detail->order_id }}</font>
-                                <font class="float-right mr-2">訂單狀態：
-                                <font id="order_status" class="float-right mr-2"> {{ $order_detail->status_cht }}</font>
-                                </font>
-                            </h5>
-                            <i class="icofont icofont-map h5"></i> 
-                            <b>買家電話/收件地址</b>
-                            <font class="text-secondary">{{ $order_detail->buyer_name }}   {{ $order_detail->buyer_phone }}<br>
-                            {{ $order_detail->buyer_address }}</font>
+                    <div class="card" id="liststatue">
+                        <div class="media card-body">
+                            <div class="media-body">
+                                <h6 class="text-truncate"><i class='fas mr-3'>&#xf15c;</i>訂單編號：{{ $order_detail->order_id }}</h6>
+                                <h6 class="text-truncate"><i class='fas mr-2'>&#xf0d1;</i>訂單狀態：<span id="List_state" class="badge badge-pill">{{ $order_detail->order_status }}<br>{{$order_detail->message}}</span></h6>
+                            </div>
+                            <div class="m-auto">
+                            @if( $order_detail->order_status == '等待出貨中')
+                                <input type="button" class="btn btn-secondary btn-sm" value="列印超商繳款單" onclick="window.open('{{ route("PrintLogisticsPaymentSlip",["order_id"=>$order_detail->order_id ]) }}')"><br><br>
+                            @endif
+                                <button type="button" class="btn btn-secondary btn-sm" onclick="Edit_List_State('{{ $order_detail->order_id }}')">更改訂單狀態</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <table id="table_bid_list_detail" class="table">
-                        <thead>
-                            <tr>
-                                <th>編號</th>
-                                <th>商品圖片</th>
-                                <th>商品名稱</th>
-                                <th>單價</th>
-                                <th>數量</th>
-                                <th>總金額</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php 
-                            $no=1;
-                            ?>
-                            @foreach($order_goods as $goods)
-                            <tr id="order_item">
-                                <td>{{ $no }}</td>
-                                <!-- 流水號 -->
-                                <td scope="row">
-                                    <img id="order_img" src="{{ $goods->pic_path }}" class="img-fluid img" alt="Responsive image">
-                                </td>
-                                <td>{{ $goods->goods_name }}</td>
-                                <td>{{ $goods->goods_price }}</td>
-                                <td>{{ $goods->goods_num }}</td>
-                                <td>{{ $goods->total_price }}</td>
-                            </tr>
-                            <?php
-                            $no+=1;
-                            ?>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <!-- main end -->
-            </div>
-        </div>
-        <div class="container-fluid mt-3 mb-3 ">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <div class="media " data-toggle="collapse" href="#pirce_detail" role="button" aria-expanded="false" aria-controls="pirce_detail">
-                        <i class="icofont icofont-bill d-flex mr-3 text-success" style="font-size: 40px"></i>
-                        <div class="align-self-center">
-                            <b>總金額 : </b> {{ $order_detail->all_total }}</div>
-                        <div class="media-body text-secondary">
-                            <small class="float-right mt-2">查看詳情
-                                <i class="icofont icofont-rounded-expand"></i>
-                            </small>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>商品圖片</th>
+                                        <th>商品名稱</th>
+                                        <th>單價</th>
+                                        <th>數量</th>
+                                        <th>總金額</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($streaming_products as $streaming_products)
+                                    <tr>
+                                        <td>
+                                            <img src="{{ $streaming_products->pic_url }}">
+                                        </td>
+                                        <td>{{ $streaming_products->goods_name }}
+                                            @if($streaming_products->category!="empty" && $streaming_products->category!=null)
+                                                ，{{ $streaming_products->category }}
+                                            @endif
+                                        </td>
+                                        <td class="currencyField">{{ $streaming_products->single_price }}</td>
+                                        <td>{{ $streaming_products->order_num }}</td>
+                                        <td class="currencyField">{{ ((int)$streaming_products->single_price)*((int)$streaming_products->order_num) }}</td>
+                                    </tr>
+                                    @endforeach
+                                    @foreach($shop_products as $shop_products)
+                                    <tr>
+                                        <td>
+                                            <img src="{{ $shop_products->pic_url }}">
+                                        </td>
+                                        <td>{{ $shop_products->goods_name }}
+                                            @if($shop_products->category!="empty" && $shop_products->category!=null)
+                                                ，{{ $shop_products->category }}
+                                            @endif
+                                        </td>
+                                        <td class="currencyField">{{ $shop_products->goods_price }}</td>
+                                        <td>{{ $shop_products->order_num }}</td>
+                                        <td class="currencyField">{{ $shop_products->total_price }}</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <div class="collapse mt-3" id="pirce_detail">
-                        <div class=" p-3  border-top">
-                            <div class="media text-secondary">
-                                <i class="icofont icofont-truck-loaded d-flex mr-3" style="font-size: 20px"></i>
-                                <div class="align-self-center">
-                                    <small>
-                                        <b>訂單金額 : </b> {{ $order_detail->goods_total }}</div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="media card-body" data-toggle="collapse" data-target="#collapseDetail" aria-expanded="false" aria-controls="collapseDetail">
+                            <div class="media-body">
+                                <h5>
+                                    <i class='far'>&#xf3d1;</i>
+                                    <small class=" text-truncate">總金額： <span class="currencyField">{{ $order_detail->all_total }} </span></small>
+                                </h5>
+                            </div>
+                            <div class="m-auto">
+                                <small class="text-black-50"> 點選查看詳情
+                                    <i class='fas'>&#xf0dc;</i>
                                 </small>
                             </div>
                         </div>
-                        <div class="p-3  border-top">
-                            <div class="media mt-3 text-secondary">
-                                <i class="icofont icofont-truck-loaded d-flex mr-3" style="font-size: 20px"></i>
-                                <div class="align-self-center">
-                                    <small>
-                                        <b>運費 : </b>{{ $order_detail->freight }}</div>
-                                </small>
+                        <div class="collapse text-black-50" id="collapseDetail">
+                            <div class="media card-body">
+                                <div class="media-body">
+                                    <h6>
+                                        <i class='fas mr-2'>&#xf0c5;</i>
+                                        <small class="text-truncate">訂單總金額： <span class="currencyField">{{ $order_detail->goods_total }}</span> </small>
+                                    </h6>
+                                </div>
                             </div>
-                        </div>
-                        <div class=" p-3  border-top">
-                            <div class="media mt-3 text-secondary">
-                                <i class="icofont icofont-card d-flex mr-3" style="font-size: 20px"></i>
-                                <div class="align-self-center">
-                                    <small>
-                                        <b>優惠折扣 : </b> 0</div>
-                                </small>
+                            <div class="media card-body">
+                                <div class="media-body">
+                                    <h6>
+                                        <i class='fas mr-2'>&#xf4df;</i>
+                                        <small class="text-truncate">運費： <span class="currencyField">{{ $order_detail->freight }}</span> </small>
+                                    </h6>
+                                </div>
+                            </div>
+                            <div class="media card-body">
+                                <div class="media-body">
+                                    <h6>
+                                        <i class='fas mr-2'>&#xf53c;</i>
+                                        <small>折扣優惠： <span class="currencyField">0</span></small>
+                                    </h6>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -146,18 +140,64 @@
         </div>
         <!-- Cotent end-->
     </div>
+</div>
+<script>
+    $( document ).ready(function() {
+        const driver = new Driver();
+
+        driver.defineSteps([
+                {
+                    element: '#liststatue',
+                    popover: {
+                        title: '粉絲訂單狀態',
+                        description: '顯示粉絲該筆訂單目前狀態',
+                        position: 'bottom'
+                    }
+                },
+                {
+                    element: '.btn.btn-secondary.btn-sm',
+                    popover: {
+                        title: '點選更改訂單狀態',
+                        description: '更改該筆訂單目前狀態，如訂單完成請更改為完成',
+                        position: 'left-bottom'
+                    }
+                },
+                {
+                    element: '.dataTables_length',
+                    popover: {
+                        title: '選取資料筆數',
+                        description: '調整顯示訂單筆數',
+                        position: 'bottom'
+                    }
+                },
+                {
+                    element: '#DataTables_Table_0_filter',
+                    popover: {
+                        title: '快速尋找訂單',
+                        description: '只需輸入關鍵字即可！',
+                        position: 'bottom'
+                    }
+                },
+                {
+                    element: '#DataTables_Table_0',
+                    popover: {
+                        title: '訂單資訊',
+                        description: '查看訂單詳細資訊',
+                        position: 'top'
+                    }
+                }
+            ]);
+
+        document.querySelector('#help_me').addEventListener('click', function (e) {
+            e.preventDefault();
+        e.stopPropagation();
+        driver.start();
+        });
+    });
+
+   
+</script>
 @stop
 @section('footer')
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-            crossorigin="anonymous"></script>
-        <!-- Bootstrap JS -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-            crossorigin="anonymous"></script>
-        <!-- My JS -->
-        <script src="js/Live_go.js"></script>
-        <!-- 我新增的JS -->
-        <script src="js/list_mgnt.js"></script>
-        <!-- DataTable + Bootstrap 4  cdn引用-->
-        <script defer src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-        <script defer src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
 @stop

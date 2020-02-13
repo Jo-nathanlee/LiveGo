@@ -9,6 +9,6 @@ class Member extends Model
     public $table = 'member';
 
     protected $fillable = [
-        'fb_id', 'fb_name', 'page_id', 'page_name', 'bid_times', 'checkout_times','blacklist_times','last_buying_time'
+        'ps_id','as_id', 'page_id', 'bid_times', 'checkout_times', 'cancel_times', 'last_buying_time','member_type', 'fb_name', 'money_spent'
     ];
 }

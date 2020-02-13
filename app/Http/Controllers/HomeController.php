@@ -14,13 +14,21 @@ class HomeController extends Controller
         $this->middleware('auth');
 
     }
-
     public function index()
     {
         return view('home');
     }
 
-   
+
+    public function info()
+    {
+        return view('info');
+    }
+
+   public function notfound()
+   {
+        return view('404');
+   }
 
 
     /**

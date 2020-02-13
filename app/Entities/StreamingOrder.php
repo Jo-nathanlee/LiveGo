@@ -8,7 +8,8 @@ class StreamingOrder extends Model
 {
     public $table = 'streaming_order';
 
-    protected $fillable = [
-        'page_id','page_name', 'fb_id', 'name', 'goods_name', 'goods_price', 'goods_num','total_price', 'note', 'comment', 'order_id', 'created_time',
+    protected $fillable =[
+        'page_id', 'ps_id', 'goods_num','bid_price', 'comment', 'order_id', 'live_video_id','product_id'
     ];
+
 }

@@ -1,0 +1,383 @@
+@charset "UTF-8";
+/* line 4, ../sass/profile.sass */
+ul {
+  list-style: none;
+}
+
+/* line 7, ../sass/profile.sass */
+.flex {
+  display: flex;
+}
+
+/* line 9, ../sass/profile.sass */
+.flex-center-start {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* line 14, ../sass/profile.sass */
+.flex-bet-center {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* line 21, ../sass/profile.sass */
+.flex-bet-center2 {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+@media (max-width: 991.98px) {
+  /* line 21, ../sass/profile.sass */
+  .flex-bet-center2 {
+    flex-wrap: wrap;
+  }
+}
+
+/* line 30, ../sass/profile.sass */
+.flex-center-center {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+/* line 36, ../sass/profile.sass */
+.fwB {
+  font-weight: bold;
+}
+
+/* line 39, ../sass/profile.sass */
+.textAC {
+  text-align: center;
+}
+
+/* line 42, ../sass/profile.sass */
+.w50 {
+  width: 50%;
+}
+@media (max-width: 1199.98px) {
+  /* line 42, ../sass/profile.sass */
+  .w50 {
+    width: 100%;
+  }
+}
+
+/* line 47, ../sass/profile.sass */
+.mr5 {
+  margin-right: 5px;
+}
+
+/* line 50, ../sass/profile.sass */
+.d-none {
+  display: none;
+}
+
+/* line 53, ../sass/profile.sass */
+.btn-primary {
+  background-color: #1a2849;
+  border-color: #1a2849;
+}
+
+/* line 59, ../sass/profile.sass */
+a {
+  cursor: pointer;
+}
+/* line 61, ../sass/profile.sass */
+a:focus, a:hover {
+  background-color: transparent;
+}
+
+/* line 65, ../sass/profile.sass */
+.btn:focus, .btn:active, .btn:visited, .form-control:focus, .form-control:active, .form-control:visited {
+  box-shadow: none;
+  outline: none;
+}
+
+/* line 71, ../sass/profile.sass */
+.fb-icon {
+  width: 30px;
+}
+
+/* line 76, ../sass/profile.sass */
+#profileBlock .header {
+  padding: 40px 0px;
+}
+/* line 78, ../sass/profile.sass */
+#profileBlock .header a {
+  font-size: 0.85em;
+  color: #bbbbbb;
+}
+@media (max-width: 599.98px) {
+  /* line 76, ../sass/profile.sass */
+  #profileBlock .header {
+    padding-top: 20px;
+  }
+}
+/* line 84, ../sass/profile.sass */
+#profileBlock .fb-tag {
+  border: 1px solid #3b5998;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+}
+/* line 89, ../sass/profile.sass */
+#profileBlock .fb-tag span {
+  margin: 0px 10px;
+  color: #3b5998;
+  font-size: 20px;
+}
+@media (max-width: 599.98px) {
+  /* line 89, ../sass/profile.sass */
+  #profileBlock .fb-tag span {
+    font-size: 14px;
+  }
+}
+/* line 96, ../sass/profile.sass */
+#profileBlock .fb-tag .fb-icon {
+  width: 30px;
+}
+/* line 99, ../sass/profile.sass */
+#profileBlock .content {
+  background-color: #F4F4F4;
+  padding: 30px;
+  border-radius: 10px 0px 10px 10px;
+  position: relative;
+}
+/* line 104, ../sass/profile.sass */
+#profileBlock .content .content-header {
+  padding: 20px 0;
+  justify-content: space-around;
+}
+/* line 107, ../sass/profile.sass */
+#profileBlock .content .content-header .shop_img {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background-image: url(../img/cat.jpg);
+  background-size: 300px auto;
+  z-index: 10;
+  border: 10px solid #ffffff;
+  position: absolute;
+  top: -100px;
+}
+@media (max-width: 1199.98px) {
+  /* line 107, ../sass/profile.sass */
+  #profileBlock .content .content-header .shop_img {
+    width: 200px;
+    height: 200px;
+    background-size: 200px auto;
+    top: -40px;
+  }
+}
+@media (max-width: 499.98px) {
+  /* line 107, ../sass/profile.sass */
+  #profileBlock .content .content-header .shop_img {
+    width: 150px;
+    height: 150px;
+    background-size: 150px auto;
+    top: -40px;
+  }
+}
+@media (max-width: 1199.98px) {
+  /* line 128, ../sass/profile.sass */
+  #profileBlock .content h3.title {
+    font-size: 20px;
+    position: absolute;
+    top: 80px;
+    left: 40px;
+  }
+  /* line 133, ../sass/profile.sass */
+  #profileBlock .content h3.entitle {
+    font-size: 20px;
+    position: absolute;
+    right: 50px;
+    top: 80px;
+  }
+}
+@media (max-width: 499.98px) {
+  /* line 139, ../sass/profile.sass */
+  #profileBlock .content h3.title {
+    position: absolute;
+    top: 120px;
+    left: 40px;
+  }
+  /* line 143, ../sass/profile.sass */
+  #profileBlock .content h3.entitle {
+    position: absolute;
+    right: 50px;
+    top: 120px;
+  }
+}
+/* line 148, ../sass/profile.sass */
+#profileBlock .content form label {
+  font-size: 1.2em;
+}
+/* line 150, ../sass/profile.sass */
+#profileBlock .content form h3 {
+  margin: 30px;
+}
+@media (max-width: 1199.98px) {
+  /* line 147, ../sass/profile.sass */
+  #profileBlock .content form {
+    margin-top: 100px;
+  }
+}
+/* line 154, ../sass/profile.sass */
+#profileBlock .content form .btnBlock {
+  margin: 20px;
+}
+/* line 156, ../sass/profile.sass */
+#profileBlock .content .form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+/* line 160, ../sass/profile.sass */
+#profileBlock .content .form-group.w35 {
+  width: 35%;
+}
+@media (max-width: 1199.98px) {
+  /* line 160, ../sass/profile.sass */
+  #profileBlock .content .form-group.w35 {
+    width: 100%;
+  }
+}
+/* line 164, ../sass/profile.sass */
+#profileBlock .content .form-group label {
+  margin: 0 15px;
+  white-space: nowrap;
+}
+/* line 167, ../sass/profile.sass */
+#profileBlock .content .form-group .form-control {
+  border: 2px dashed #3b5998;
+}
+/* line 169, ../sass/profile.sass */
+#profileBlock .content .form-group .form-control:read-only {
+  border: none;
+  background-color: #fff;
+}
+@media (max-width: 499.98px) {
+  /* line 156, ../sass/profile.sass */
+  #profileBlock .content .form-group {
+    flex-wrap: wrap;
+  }
+  /* line 174, ../sass/profile.sass */
+  #profileBlock .content .form-group .inputTitle {
+    margin: 5px 0;
+  }
+}
+/* line 176, ../sass/profile.sass */
+#profileBlock .content .btn-edit {
+  position: absolute;
+  top: -38px;
+  right: 0px;
+  border-radius: 5px 5px 0px 0px;
+}
+@media (max-width: 499.98px) {
+  /* line 176, ../sass/profile.sass */
+  #profileBlock .content .btn-edit {
+    font-size: 0.8em;
+    top: -30px;
+  }
+}
+/* line 185, ../sass/profile.sass */
+#profileBlock .content .content-footer {
+  padding: 20px;
+  margin-bottom: -20px;
+  background-image: url(../img/foot2.png);
+  background-repeat: repeat-x;
+  background-size: 50px 50px;
+  background-position: -10px;
+}
+
+/* line 194, ../sass/profile.sass */
+#switchAccount .modal-header {
+  border: none;
+  padding-bottom: 0;
+}
+/* line 197, ../sass/profile.sass */
+#switchAccount .modal-header .modal-title {
+  font-size: 2em;
+  width: 100%;
+  text-align: center;
+}
+/* line 201, ../sass/profile.sass */
+#switchAccount .modal-body {
+  padding-top: 0.5rem;
+}
+/* line 203, ../sass/profile.sass */
+#switchAccount .modal-content {
+  background-color: #F4F4F4;
+}
+/* line 205, ../sass/profile.sass */
+#switchAccount .switch_img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-image: url(../img/cat.jpg);
+  background-size: 80px auto;
+}
+/* line 211, ../sass/profile.sass */
+#switchAccount ul {
+  padding: 0 20px;
+  margin: 0;
+}
+/* line 214, ../sass/profile.sass */
+#switchAccount ul li {
+  padding: 10px;
+  background-color: #fff;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+@media (min-width: 992px) {
+  /* line 221, ../sass/profile.sass */
+  #switchAccount .modal-lg {
+    max-width: 500px;
+  }
+}
+/* line 224, ../sass/profile.sass */
+#switchAccount label {
+  margin: 0;
+  font-size: 1.4em;
+}
+
+/* line 231, ../sass/profile.sass */
+.radioboxBlock.iconRadio input {
+  opacity: 1;
+  margin-right: 15px;
+  z-index: 10;
+}
+/* line 235, ../sass/profile.sass */
+.radioboxBlock.iconRadio input {
+  position: relative;
+  cursor: pointer;
+}
+/* line 238, ../sass/profile.sass */
+.radioboxBlock.iconRadio input::after {
+  display: inline-block;
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  border-radius: 50px;
+  border: 1px solid gray;
+  top: 0px;
+  left: 0px;
+  background-color: #ffffff;
+}
+/* line 251, ../sass/profile.sass */
+.radioboxBlock.iconRadio input:checked::after {
+  content: "";
+  color: black;
+  font-family: "FontAwesome";
+  font-size: 16px;
+  line-height: 13px;
+  display: flex;
+  justify-content: center;
+}

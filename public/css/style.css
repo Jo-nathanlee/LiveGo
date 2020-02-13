@@ -1,0 +1,297 @@
+/*
+    DEMO STYLE
+*/
+
+*{
+    transition: all 0.3s;
+}
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+body {
+    font-family: "Noto Sans TC","WenQuanYi Zen Hei","Heiti TC",Helvetica,"Microsoft YaHei","Microsoft JhengHei",Arial,sans-serif !important;
+    background: #fafafa;
+    
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar {
+    background: rgba(245, 245, 245, 0.397);
+    border: none;
+    border-radius: 0.5rem;
+    margin-bottom: 40px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar:after {
+    background-image: url(../img/nav.svg) ; /* 導覽列背景圖片 */
+    background-size: cover;
+    top: 0px;
+    left: 0px; 
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    -webkit-animation-name: nav; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 6s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
+    animation-name: nav;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes nav {
+    0%   {opacity:0.0;}
+    25%  {opacity:0.3;}
+    50%  {opacity:0.6;}
+    75%  {opacity:0.3;}
+    100% {opacity:0.0;}
+  }
+  
+  /* Standard syntax */
+  @keyframes nav {
+    0%   {opacity:0.0;}
+    25%  {opacity:0.3;}
+    50%  {opacity:0.6;}
+    75%  {opacity:0.3;}
+    100% {opacity:0.0;}
+  }
+
+
+.navbar div{
+    z-index: 1024;
+    display: block;
+}
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 20px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: #111111;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar:after {
+    /* background-image: url(../img/sider.jpg) ; 導覽列背景圖片 */
+    background-size: cover;
+    top: 0px;
+    left: 0px; 
+    position: absolute;
+    opacity: 0.2;
+    width: 100%;
+    height: 100%;
+    content: "";
+}
+
+
+#sidebar.active {
+    margin-left: -166.666667px;
+    transition: all 0.3s;
+}
+
+#sidebar.active #sidebaricon{
+    margin-left:  166.666667px;
+    transition: all 0.3s;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #000000;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #111111;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    z-index: 1024;
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color: rgb(0, 0, 0);
+    background: #fff;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #2b2a2e;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+#sidebarcontent ul li a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #000000;
+}
+
+
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    z-index: 1024;
+    opacity: 0.75;
+    position: relative;
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+a.download {
+    background: #fff;
+    color: rgb(60, 62, 68);
+}
+
+a.article,
+a.article:hover {
+    background: #63676e !important;
+    color: #fff !important;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    width: calc(100% - 250px);
+    padding: 40px;
+    padding: 20px 40px 40px 40px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#content.active {
+    width: calc(100% - 83.3333333px);
+}
+
+.analysis{
+    font-size: 0.1rem !important;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -166.666667px;
+    }
+
+    #sidebaricon{
+        margin-left:  166.666667px;
+    }
+
+    #sidebarcontent{
+        margin-left:  166.666667px;
+    }
+
+    #content {
+
+        width: calc(100% - 83.3333334px)
+    }
+
+    #sidebarCollapse span {
+        display: none;
+    }
+}
+
+
+@media (max-width: 990px) {
+    #live_shop{
+        max-height: calc(100vh - 8rem - 426px);
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 1200px) {
+    #live_video{
+        display: none;
+    }
+    #live_shop{
+        max-height: calc(93vh - 10rem);
+        margin-bottom: 2rem;
+   }
+   .col-md-6_R{
+       margin-top: 2rem;
+   }
+}
+
+@media (max-width: 1500px) {
+    #button_panel{
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+}
+

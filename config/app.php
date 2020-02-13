@@ -146,11 +146,11 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        flamelin\ECPay\EcpayServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
         /*
          * Package Service Providers...
          */
-
+        
         /*
          * Application Service Providers...
          */
@@ -159,7 +159,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        kennychou3896\Ecpay2in1\EcpayServiceProvider::class,
     ],
 
     /*
@@ -209,7 +209,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Imgur' => Yish\Imgur\Facades\Upload::class,
-        'Ecpay' => flamelin\ECPay\Facade\Ecpay::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Ecpay' => kennychou3896\Ecpay2in1\Facade\Ecpay::class, 
     ],
 
 ];

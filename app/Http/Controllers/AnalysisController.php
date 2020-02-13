@@ -6,9 +6,11 @@ use App\Entities\Page;
 use App\Entities\StreamingOrder;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Facebook\Exceptions\FacebookSDKException;
 use Facebook\Facebook;
+use App\User;
 
 
 
@@ -108,5 +110,73 @@ class AnalysisController extends Controller
     public function index_show(Request $request)
     {
         return view('analysis_index');
+    }
+
+    public function Seller_FeedBack(Request $request)
+    {
+        
+        if (Gate::allows('seller-only',  Auth::user())) {
+            $page = Page::where('fb_id', Auth::user()->fb_id)->first();
+            //$page_id = $page->page_id;
+            $page_name = $page->page_name;
+            //$user_id = Auth::user()->fb_id;
+            $user_name = Auth::user()->name;
+            
+
+            return view('seller_feedback',['user_name' => $user_name, 'page_name' => $page_name]);
+       }
+       else
+       {
+          return redirect('/')->with('fail', '您尚未開通，請聯繫我們！');
+       }
+ 
+    }
+
+    public function Sent_FeedBackEmail(Request $request)
+    {
+        
+        if (Gate::allows('seller-only',  Auth::user())) {
+            $page = Page::where('fb_id', Auth::user()->fb_id)->first();
+            $page_id = $page->page_id;
+            $page_name = $page->page_name;
+            $user_id = Auth::user()->fb_id;
+            $user_name = Auth::user()->name;
+
+            $mail_title = $request->input('mail_title');
+            $mail_content = $request->input('mail_content');
+
+            //寄件人
+            $from = ['email'=>'s10444221@gmail.com',
+                    'name'=>'LiveGo意見回饋系統',
+                    'subject'=>'LiveGo：'.$mail_title
+            ];
+
+            //填寫收信人信箱
+            $to = ['email'=>'jerrychen.livego@gmail.com',
+                    'name'=>'xxx'];
+
+            //信件的內容
+            $data = ['page_id'=>$page_id,
+                    'page_name'=>$page_name,
+                    'user_id'=>$user_id,
+                    'user_name'=>$user_name,
+                    'subject'=>'LiveGo：'.$mail_title,
+                    'mail_content'=>$mail_content
+            ];
+
+            //寄出信件
+            Mail::send('emails.feedback', $data, function($message) use ($from, $to) {
+            $message->from($from['email'], $from['name']);
+            $message->to($to['email'])->subject($from['subject']);
+            });
+            
+            return redirect()->back()->with('success', '傳送成功！');
+            
+       }
+       else
+       {
+          return redirect('/')->with('fail', '您尚未開通，請聯繫我們！');
+       }
+ 
     }
 }
